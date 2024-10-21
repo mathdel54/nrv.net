@@ -1,0 +1,42 @@
+
+networks:
+  nrv.net:
+    driver: bridge
+
+services:
+
+  api.nrv:
+    build:
+      context: build
+      dockerfile: dockerfile
+    ports:
+      - '6080:80'
+    volumes:
+      - ./app:/var/php
+    working_dir: /var/php
+    networks:
+      - nrv.net
+    depends_on:
+      - nrv.db
+    command: php -S 0.0.0.0:80 -t /var/php/public
+
+  # service nrv.db : base de données postgresql
+  toubeelib.db:
+    image: 'postgres:latest'
+    env_file: ./nrvdb.env
+    ports:
+      - '5432:5432'
+    networks:
+      - nrv.net
+    volumes:
+      - ./app/sql:/var/sql'
+  #
+  # service administration des bases sql
+  #
+  adminer:
+    image: adminer
+    ports:
+      - '8080:8080'
+    networks:
+      - nrv.net
+
