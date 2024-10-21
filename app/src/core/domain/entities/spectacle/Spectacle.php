@@ -9,16 +9,22 @@ use nrv\core\dto\spectacle\SpectacleDTO;
 class Spectacle extends Entity {
 
     protected string $titre;
-    protected DateTime $date;
-    protected string $image;
-
-    public function __construct(string $titre, DateTime $date, string $image) {
+    protected array $artistes;
+    protected string $description;
+    protected array $images;
+    protected string $video;
+    protected DateTime $horaire;
+    
+    public function __construct(string $titre, array $artistes, string $description, array $images, string $video, DateTime $horaire) {
         $this->titre = $titre;
-        $this->date = $date;
-        $this->image = $image;
+        $this->artistes = $artistes;
+        $this->description = $description;
+        $this->images = $images;
+        $this->video = $video;
+        $this->horaire = $horaire;
     }
 
-    public function toDTO() : SpectacleDTO {
-        return new SpectacleDTO($this->ID, $this->titre, $this->date, $this->image);
+    public function toDTO(): SpectacleDTO {
+        return new SpectacleDTO($this->ID, $this->titre, $this->artistes, $this->description, $this->images, $this->video, $this->horaire);
     }
 }
