@@ -1,4 +1,3 @@
-
 networks:
   nrv.net:
     driver: bridge
@@ -21,7 +20,7 @@ services:
     command: php -S 0.0.0.0:80 -t /var/php/public
 
   # service nrv.db : base de données postgresql
-  toubeelib.db:
+  nrv.db:
     image: 'postgres:latest'
     env_file: ./nrvdb.env
     ports:
@@ -39,4 +38,3 @@ services:
       - '8080:8080'
     networks:
       - nrv.net
-
