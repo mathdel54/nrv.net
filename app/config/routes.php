@@ -7,5 +7,9 @@ return function( \Slim\App $app):\Slim\App {
 
     $app->get('/spectacles', callable: nrv\application\actions\ListeSpectacleAction::class)->setName('spectacles');
 
+    $app->get('/soiree/{id}', callable: nrv\application\actions\DetailSoireeAction::class)->setName('soiree');
+
+    $app->get('/soiree/{id}/spectacles', callable: nrv\application\actions\ListeSpectacleSoireeAction::class)->setName('spectaclesSoiree');
+
     return $app;
 };

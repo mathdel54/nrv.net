@@ -6,6 +6,7 @@ use DateTime;
 use nrv\core\domain\entities\Entity;
 use nrv\core\domain\entities\spectacle\LieuxSpectacle;
 use nrv\core\dto\soiree\SoireeDTO;
+use nrv\core\domain\entities\spectacle\Spectacle;
 
 class Soiree extends Entity {
 
@@ -24,6 +25,6 @@ class Soiree extends Entity {
     }
 
     public function toDTO(): SoireeDTO {
-        return new SoireeDTO($this->ID, $this->nom, $this->theme, $this->horaire, $this->lieu->toDTO(), $this->spectacles);
+        return new SoireeDTO($this->ID, $this->nom, $this->theme, $this->horaire, $this->lieu->toDTO());
     }
 }
