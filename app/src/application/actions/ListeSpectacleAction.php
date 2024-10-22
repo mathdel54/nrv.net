@@ -5,8 +5,8 @@ namespace nrv\application\actions;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use nrv\application\renderer\JsonRenderer;
-use nrv\core\services\ServiceUserInterface;
-use nrv\core\services\ServiceUserNotFoundException;
+use nrv\core\services\user\ServiceUserInterface;
+use nrv\core\services\user\ServiceUserNotFoundException;
 
 class ListeSpectacleAction {
     
