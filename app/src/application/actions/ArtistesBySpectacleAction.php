@@ -8,7 +8,7 @@ use nrv\application\renderer\JsonRenderer;
 use nrv\core\services\user\ServiceUserInterface;
 use nrv\core\services\user\ServiceUserNotFoundException;
 
-class ListeSpectacleAction {
+class ArtistesBySpectacleAction {
     
     protected ServiceUserInterface $serviceUser;
 
@@ -17,17 +17,16 @@ class ListeSpectacleAction {
     }
 
     public function __invoke (ServerRequestInterface $rq, ResponseInterface $rs, array $args): ResponseInterface {
+        $id = $args['ID_Spectacle'];
+
         try {
-            $spectacles = $this->serviceUser->getSpectacles();
+            $artistes = $this->serviceUser->getArtistesBySpectacle($id);
             $data = [];
-            foreach ($spectacles as $spectacle) {
+            foreach ($artistes as $artiste) {
                 $data[] = [
-                    'titre' => $spectacle->titre,
-                    'date' => $spectacle->horaire->format('Y-m-d'),
-                    'horaire' => $spectacle->horaire->format('H:i'),
-                    'images' => $spectacle->images,
+                    'nom' => $artiste->nom,
                     'links' => [
-                        'artistes' => [ 'href' => '/spectacles/' . $spectacle->ID . '/artistes']
+                        'self' => [ 'href' => '/spectacles/' . $id . '/artistes']
                     ]
                 ];
             }
@@ -60,9 +59,9 @@ class ListeSpectacleAction {
          $tabFinal = [
             'type' => 'ressource',
             'locale' => 'fr_FR',
-            'spectacles' => $data,
+            'artistes' => $data,
             'links' => [
-                'self' => [ 'href' => '/spectacles'],
+                'spectacles' => [ 'href' => '/spectacles/']
             ]
         ];
 

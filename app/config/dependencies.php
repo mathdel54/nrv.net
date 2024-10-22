@@ -1,9 +1,11 @@
 <?php
 
+use nrv\application\actions\DetailSoireeAction;
 use nrv\application\actions\ListeSpectacleAction;
-use nrv\core\services\ServiceUserInterface;
+use nrv\application\actions\ListeSpectacleSoireeAction;
+use nrv\core\services\user\ServiceUserInterface;
 use Psr\Container\ContainerInterface;
-use nrv\core\services\ServiceUser;
+use nrv\core\services\user\ServiceUser;
 use nrv\core\repositoryInterface\NrvRepositoryInterface;
 use nrv\infrastructure\repositories\PDONrvRepository;
 
@@ -25,7 +27,15 @@ return [
         return new ListeSpectacleAction($c->get(ServiceUserInterface::class));
     },
 
+    DetailSoireeAction::class => function (ContainerInterface $c) {
+        return new DetailSoireeAction($c->get(ServiceUserInterface::class));
+    },
+
     NrvRepositoryInterface::class => function (ContainerInterface $c) {
         return new PDONrvRepository($c->get('nrv.pdo'));
     },
+
+    ListeSpectacleSoireeAction::class => function (ContainerInterface $c) {
+        return new ListeSpectacleSoireeAction($c->get(ServiceUserInterface::class));
+    }
 ];

@@ -1,7 +1,8 @@
 <?php
 
-namespace nrv\core\services;
+namespace nrv\core\services\user;
 
+use nrv\core\dto\spectacle\LieuxSpectacleDTO;
 use nrv\core\repositoryInterface\NrvRepositoryInterface;
 use nrv\core\dto\spectacle\SpectacleDTO;
 use nrv\core\dto\soiree\SoireeDTO;
@@ -81,5 +82,48 @@ class ServiceUser implements ServiceUserInterface {
      */
     public function getImagesBySpectacle(string $id): array {
         return $this->_nrvRepository->getImagesBySpectacle($id);
+    }
+
+    /**
+     * Méthode qui retourne une soirée par son ID
+     * @param string $id de la soirée
+     * @return SoireeDTO la soirée en DTO
+     */
+    public function getSoireeById(string $id): SoireeDTO {
+        $soiree = $this->_nrvRepository->getSoireeById($id);
+        return $soiree->toDTO();
+    }
+
+    /**
+     * Méthode qui retourne un lieu par son ID
+     * @param string $id du lieu
+     * @return array le lieu en DTO
+     */
+    public function getLieuById(string $id): LieuxSpectacleDTO {
+        $lieu = $this->_nrvRepository->getLieuById($id);
+        return $lieu->toDTO();
+    }
+
+    /**
+     * Méthode qui retourne la liste des images par lieu
+     * @param string $id du lieu
+     * @return array liste des images
+     */
+    public function getImagesByLieu(string $id): array {
+        return $this->_nrvRepository->getImagesByLieu($id);
+    }
+
+    /**
+     * Méthode qui retourne la liste des spectacles par soirée
+     * @param string $id de la soirée
+     * @return array liste des spectacles en DTO
+     */
+    public function getSpectaclesBySoireeId(string $id): array {
+        $spectacles = $this->_nrvRepository->getSpectaclesBySoireeId($id);
+        $spectaclesDTO = [];
+        foreach($spectacles as $spectacle){
+            $spectaclesDTO[] = $spectacle->toDTO();
+        }
+        return $spectaclesDTO;
     }
 }
