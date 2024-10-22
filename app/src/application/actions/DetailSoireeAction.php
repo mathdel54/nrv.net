@@ -33,9 +33,6 @@ class DetailSoireeAction extends AbstractAction
                 'lieu' => $soiree->lieu,
                 'tarifNormal' => $soiree->tarifNormal,
                 'tarifReduit' => $soiree->tarifReduit,
-                'links' => [
-                    'artistes' => ['href' => '/spectacles/' . $id . '/artistes']
-                ]
             ];
         } catch (ServiceUserNotFoundException $e) {
             $data = [

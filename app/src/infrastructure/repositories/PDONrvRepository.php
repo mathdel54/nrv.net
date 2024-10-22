@@ -267,9 +267,6 @@ class PDONrvRepository implements NrvRepositoryInterface
             $stmt = $this->pdoNrv->prepare("SELECT * FROM spectacle WHERE soiree_id = :id");
             $stmt->execute(['id' => $id]);
             $spectacles = $stmt->fetchAll();
-            if (!$spectacles) {
-                throw new RepositoryEntityNotFoundException('Aucun spectacle trouvé');
-            }
         } catch (\PDOException $e) {
             throw new RepositoryDatabaseErrorException($e->getMessage(), 0, $e);
         }
@@ -284,5 +281,29 @@ class PDONrvRepository implements NrvRepositoryInterface
             $tabSpectacles[] = $spec;
         }
         return $tabSpectacles;
+    }
+
+    /**
+     * Méthode qui retourne la soirée par spectacle
+     * @param string $id
+     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
+     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
+     * @return Soiree
+     */
+    public function getSoireeBySpectacleId(string $id): Soiree
+    {
+        try {
+            $stmt = $this->pdoNrv->prepare("SELECT * FROM soiree INNER JOIN spectacle ON soiree.id = spectacle.soiree_id WHERE spectacle.id = :id");
+            $stmt->execute(['id' => $id]);
+            $soiree = $stmt->fetch();
+            if (!$soiree) {
+                throw new RepositoryEntityNotFoundException('Aucune soirée trouvée');
+            }
+        } catch (\PDOException $e) {
+            throw new RepositoryDatabaseErrorException('Erreur lors de la récupération de la soirée', 0, $e);
+        }
+        $soireeObj = new Soiree($soiree['nom'], $soiree['thematique'], new \DateTime($soiree['date_heure']), $this->getLieuById($soiree['lieu_id']), $this->getSpectaclesBySoireeId($soiree['id']), $soiree['tarif_normal'], $soiree['tarif_reduit']);
+        $soireeObj->setID($soiree['id']);
+        return $soireeObj;
     }
 }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace nrv\core\services\user;
 
@@ -18,4 +18,5 @@ interface ServiceUserInterface
     public function getLieuById(string $id): LieuxSpectacleDTO;
     public function getImagesByLieu(string $id): array;
     public function getSpectaclesBySoireeId(string $id): array;
+    public function getSoireeBySpectacleId(string $id): SoireeDTO;
 }

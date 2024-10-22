@@ -19,4 +19,5 @@ interface NrvRepositoryInterface
     public function getLieuById(string $id): LieuxSpectacle;
     public function getImagesByLieu(string $id): array;
     public function getSpectaclesBySoireeId(string $id): array;
+    public function getSoireeBySpectacleId(string $id): Soiree;
 }
