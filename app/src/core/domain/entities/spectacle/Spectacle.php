@@ -3,6 +3,7 @@
 namespace nrv\core\domain\entities\spectacle;
 
 use DateTime;
+use nrv\core\domain\entities\artiste\Artiste;
 use nrv\core\domain\entities\Entity;
 use nrv\core\dto\spectacle\SpectacleDTO;
 
@@ -25,6 +26,6 @@ class Spectacle extends Entity {
     }
 
     public function toDTO(): SpectacleDTO {
-        return new SpectacleDTO($this->ID, $this->titre, $this->artistes, $this->description, $this->images, $this->video, $this->horaire);
+        return new SpectacleDTO($this->ID, $this->titre, Artiste::arrayArtisteToDTO($this->artistes), $this->description, $this->images, $this->video, $this->horaire);
     }
 }
