@@ -3,12 +3,9 @@ import {loadSpectacles} from "./spectaclesLoader";
 
 export async function showSpectacles(){
     let spectacles = await loadSpectacles();
-    console.log('Spectacles loaded: ', spectacles);
     display_spectacles(spectacles);
 }
 
-showSpectacles().then(
-    () => console.log('Spectacles displayed')
-).catch(
+showSpectacles().catch(
     (error) => console.error('Error displaying spectacles: ', error)
 );

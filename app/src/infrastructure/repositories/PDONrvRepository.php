@@ -46,7 +46,7 @@ class PDONrvRepository implements NrvRepositoryInterface
         foreach ($spectacles as $spectacle) {
             $tabArtistes = $this->getArtistesBySpectacle($spectacle['id']);
             $tabImages = $this->getImagesBySpectacle($spectacle['id']);
-            $spec = new Spectacle($spectacle['titre'], $tabArtistes, $spectacle['description'], $tabImages, $spectacle['url_video'], new \DateTime($spectacle['horaire_previsionnel']));
+            $spec = new Spectacle($spectacle['titre'], $tabArtistes, $spectacle['description'], $tabImages, $spectacle['url_video'], new \DateTime($spectacle['horaire_previsionnel']), $spectacle['style']);
             $spec->setID($spectacle['id']);
             $tabSpectacles[] = $spec;
         }
@@ -74,7 +74,7 @@ class PDONrvRepository implements NrvRepositoryInterface
         }
         $tabArtistes = $this->getArtistesBySpectacle($spectacle['id']);
         $tabImages = $this->getImagesBySpectacle($spectacle['id']);
-        $spec = new Spectacle($spectacle['titre'], $tabArtistes, $spectacle['description'], $tabImages, $spectacle['url_video'], new \DateTime($spectacle['horaire_previsionnel']));
+        $spec = new Spectacle($spectacle['titre'], $tabArtistes, $spectacle['description'], $tabImages, $spectacle['url_video'], new \DateTime($spectacle['horaire_previsionnel']), $spectacle['style']);
         $spec->setID($spectacle['id']);
         return $spec;
     }
@@ -104,7 +104,7 @@ class PDONrvRepository implements NrvRepositoryInterface
         foreach ($spectacles as $spectacle) {
             $tabArtistes = $this->getArtistesBySpectacle($spectacle['id']);
             $tabImages = $this->getImagesBySpectacle($spectacle['id']);
-            $spec = new Spectacle($spectacle['titre'], $tabArtistes, $spectacle['description'], $tabImages, $spectacle['url_video'], new \DateTime($spectacle['horaire_previsionnel']));
+            $spec = new Spectacle($spectacle['titre'], $tabArtistes, $spectacle['description'], $tabImages, $spectacle['url_video'], new \DateTime($spectacle['horaire_previsionnel']), $spectacle['style']);
             $spec->setID($spectacle['id']);
             $tabSpectacles[] = $spec;
         }
@@ -138,7 +138,7 @@ class PDONrvRepository implements NrvRepositoryInterface
         foreach ($spectacles as $spectacle) {
             $tabArtistes = $this->getArtistesBySpectacle($spectacle['id']);
             $tabImages = $this->getImagesBySpectacle($spectacle['id']);
-            $spec = new Spectacle($spectacle['titre'], $tabArtistes, $spectacle['description'], $tabImages, $spectacle['url_video'], new \DateTime($spectacle['horaire_previsionnel']));
+            $spec = new Spectacle($spectacle['titre'], $tabArtistes, $spectacle['description'], $tabImages, $spectacle['url_video'], new \DateTime($spectacle['horaire_previsionnel']), $spectacle['style']);
             $spec->setID($spectacle['id']);
             $tabSpectacles[] = $spec;
         }
@@ -280,7 +280,7 @@ class PDONrvRepository implements NrvRepositoryInterface
         foreach ($spectacles as $spectacle) {
             $tabArtistes = $this->getArtistesBySpectacle($spectacle['id']);
             $tabImages = $this->getImagesBySpectacle($spectacle['id']);
-            $spec = new Spectacle($spectacle['titre'], $tabArtistes, $spectacle['description'], $tabImages, $spectacle['url_video'], new \DateTime($spectacle['horaire_previsionnel']));
+            $spec = new Spectacle($spectacle['titre'], $tabArtistes, $spectacle['description'], $tabImages, $spectacle['url_video'], new \DateTime($spectacle['horaire_previsionnel']), $spectacle['style']);
             $spec->setID($spectacle['id']);
             $tabSpectacles[] = $spec;
         }

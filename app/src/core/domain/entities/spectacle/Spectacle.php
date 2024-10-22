@@ -16,8 +16,9 @@ class Spectacle extends Entity
     protected array $images;
     protected string $video;
     protected DateTime $horaire;
+    protected string $style;
 
-    public function __construct(string $titre, array $artistes, string $description, array $images, string $video, DateTime $horaire)
+    public function __construct(string $titre, array $artistes, string $description, array $images, string $video, DateTime $horaire, string $style)
     {
         $this->titre = $titre;
         $this->artistes = $artistes;
@@ -25,11 +26,12 @@ class Spectacle extends Entity
         $this->images = $images;
         $this->video = $video;
         $this->horaire = $horaire;
+        $this->style = $style;
     }
 
     public function toDTO(): SpectacleDTO
     {
-        return new SpectacleDTO($this->ID, $this->titre, Artiste::arrayArtisteToDTO($this->artistes), $this->description, $this->images, $this->video, $this->horaire);
+        return new SpectacleDTO($this->ID, $this->titre, Artiste::arrayArtisteToDTO($this->artistes), $this->description, $this->images, $this->video, $this->horaire, $this->style);
     }
 
     public static function arraySpectacleToDTO(array $spectacles): array

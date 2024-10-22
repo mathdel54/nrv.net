@@ -11,13 +11,21 @@ return function(\Slim\App $app):\Slim\App {
     $app->get('/spectacles', callable: nrv\application\actions\ListeSpectacleAction::class)->setName('spectacles')
         ->add(new Cors());
 
-    $app->get('/spectacles/{ID_Spectacle}/artistes', callable: nrv\application\actions\ArtistesBySpectacleAction::class)->setName('artistesBySpectacles');
+    $app->get('/spectacles/{ID_Spectacle}/artistes', callable: nrv\application\actions\ArtistesBySpectacleAction::class)
+        ->setName('artistesBySpectacles')
+        ->add(new Cors());
 
-    $app->get('/soirees/{id}', callable: nrv\application\actions\DetailSoireeAction::class)->setName('soiree');
+    $app->get('/soiree/{id}', callable: nrv\application\actions\DetailSoireeAction::class)
+        ->setName('soiree')
+        ->add(new Cors());
 
-    $app->get('/soirees/{id}/spectacles', callable: nrv\application\actions\ListeSpectacleSoireeAction::class)->setName('spectaclesSoiree');
+    $app->get('/soirees/{id}/spectacles', callable: nrv\application\actions\ListeSpectacleSoireeAction::class)
+        ->setName('spectaclesSoiree')
+        ->add(new Cors());
 
-    $app->get('/spectacles/{ID_Spectacle}/soiree', callable: nrv\application\actions\SoireeBySpectacleAction::class)->setName('soireeBySpectacle');
+    $app->get('/spectacles/{ID_Spectacle}/soiree', callable: nrv\application\actions\SoireeBySpectacleAction::class)
+        ->setName('soireeBySpectacle')
+        ->add(new Cors());
 
     return $app;
 };

@@ -14,10 +14,47 @@
         <h2>Affichage de la liste des spectacles :</h2>
         <ul>
             {{#each spectacles}}
-                <li>
+                <li class="spectacle" data-lienSoiree="{{links.soiree.href}}">
                     <h3>{{titre}}</h3>
-                    <p>Date: {{horaire}}</p>
-                    <p>Horaire: {{time}}</p>
+                    <p>Date: {{date}}</p>
+                    <p>Horaire: {{horaire}}</p>
+                    <p>Image: <img src="{{images.[0]}}" alt="image"></p>
+                </li>
+            {{/each}}
+        </ul>
+    </script>
+
+    <script id="soireeTemplate" type="text/x-handlebars-template">
+        <h2>Affichage de la soirée :</h2>
+        <h3>{{nom}}</h3>
+        <p>Thématique: {{theme}}</p>
+        <p>Date: {{date}}</p>
+        <p>Heure: {{horaire}}</p>
+        <h4>Lieu: </h4>
+            <p>nom : {{lieu.nom}}</p>
+            <p>adresse : {{lieu.adresse}}</p>
+            <p>places assises : {{lieu.placesAssises}}</p>
+            <p>places debout : {{lieu.placesDebout}}</p>
+        <br>
+        <p>Tarif normal: {{tarifNormal}}</p>
+        <p>Tarif réduit: {{tarifReduit}}</p>
+
+        <h4>Spectacles :</h4>
+        <ul>
+            {{#each spectacles.spectacles}}
+                <li>
+                    <h5>{{titre}}</h5>
+                    <p>Artistes: </p>
+                    <ul>
+                        {{#each artiste.artistes}}
+                            <li>{{nom}} </li>
+                        {{/each}}
+                    </ul>
+                    <p>Description: {{description}}</p>
+                    <p>Style: {{style}}</p>
+                    <video controls>
+                        <source src="{{video}}" type="video/mp4">
+                    </video>
                 </li>
             {{/each}}
         </ul>

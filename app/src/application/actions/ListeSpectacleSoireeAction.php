@@ -30,6 +30,8 @@ class ListeSpectacleSoireeAction extends AbstractAction
             foreach ($spectacles as $spectacle) {
                 $data[] = [
                     'titre' => $spectacle->titre,
+                    'description' => $spectacle->description,
+                    'style' => $spectacle->style,
                     'date' => $spectacle->horaire->format('Y-m-d'),
                     'horaire' => $spectacle->horaire->format('H:i'),
                     'images' => $spectacle->images,

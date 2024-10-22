@@ -24,7 +24,7 @@ class SoireeBySpectacleAction
 
         try {
             $soiree = $this->serviceUser->getSoireeBySpectacleId($id);
-            $data[] = [
+            $data = [
                 'ID' => $soiree->ID,
                 'nom' => $soiree->nom,
                 'theme' => $soiree->theme,
