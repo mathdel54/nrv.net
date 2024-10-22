@@ -4,7 +4,7 @@ namespace nrv\core\services;
 
 use nrv\core\dto\spectacle\SpectacleDTO;
 
-interface ServiceSpectacleInterface
+interface ServiceUserInterface
 {
     public function getSpectacles(): array;
     public function getSpectacleById(string $id): SpectacleDTO;

@@ -2,14 +2,14 @@
 
 namespace nrv\core\services;
 
-use nrv\core\repositoryInterface\SpectacleRepositoryInterface;
+use nrv\core\repositoryInterface\NrvRepositoryInterface;
 use nrv\core\dto\spectacle\SpectacleDTO;
 
-class ServiceSpectacle implements ServiceSpectacleInterface {
+class ServiceUser implements ServiceUserInterface {
 
-    private SpectacleRepositoryInterface $_spectacleRepository;
+    private NrvRepositoryInterface $_spectacleRepository;
 
-    public function __construct(SpectacleRepositoryInterface $spectacleRepository) {
+    public function __construct(NrvRepositoryInterface $spectacleRepository) {
         $this->_spectacleRepository = $spectacleRepository;
     }
 

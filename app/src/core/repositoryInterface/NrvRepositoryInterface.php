@@ -4,7 +4,7 @@ namespace nrv\core\repositoryInterface;
 
 use nrv\core\domain\entities\spectacle\Spectacle;
 
-interface SpectacleRepositoryInterface
+interface NrvRepositoryInterface
 {
 
     public function getSpectacles(): array;
