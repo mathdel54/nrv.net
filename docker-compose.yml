@@ -18,6 +18,7 @@ services:
     depends_on:
       - nrv.db
     command: php -S 0.0.0.0:80 -t /var/php/public
+    restart: always
 
   # service nrv.db : base de données postgresql
   nrv.db:
@@ -29,6 +30,7 @@ services:
       - nrv.net
     volumes:
       - ./app/sql:/var/sql'
+    restart: always
   #
   # service administration des bases sql
   #
@@ -38,3 +40,15 @@ services:
       - '8080:8080'
     networks:
       - nrv.net
+    restart: always
+
+  nginx:
+    hostname: nginx
+    image: nginx
+    ports:
+      - "20004:80"
+    volumes:
+      - ./web:/usr/share/nginx/html
+    networks:
+      - nrv.net
+    restart: always
