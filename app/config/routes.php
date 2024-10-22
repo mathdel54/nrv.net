@@ -17,7 +17,7 @@ return function(\Slim\App $app):\Slim\App {
 
     $app->get('/soirees/{id}/spectacles', callable: nrv\application\actions\ListeSpectacleSoireeAction::class)->setName('spectaclesSoiree');
 
-    $app->get('/spectacles/{ID_Spectacle}/soirees', callable: nrv\application\actions\SoireeBySpectacleAction::class)->setName('soireeBySpectacle');
+    $app->get('/spectacles/{ID_Spectacle}/soiree', callable: nrv\application\actions\SoireeBySpectacleAction::class)->setName('soireeBySpectacle');
 
     return $app;
 };
