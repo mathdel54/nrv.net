@@ -64,7 +64,7 @@ class SoireeBySpectacleAction
             'locale' => 'fr_FR',
             'soiree' => $data,
             'links' => [
-                'spectacles' => ['href' => '/soirees/' . $id . '/spectacles'],
+                'spectacles' => ['href' => '/soirees/' . $soiree->ID . '/spectacles'],
                 'self' => ['href' => '/spectacles/'],
 
             ]
