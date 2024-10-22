@@ -307,7 +307,7 @@ class PDONrvRepository implements NrvRepositoryInterface
             throw new RepositoryDatabaseErrorException('Erreur lors de la récupération de la soirée', 0, $e);
         }
         $soireeObj = new Soiree($soiree['nom'], $soiree['thematique'], new \DateTime($soiree['date_heure']), $this->getLieuById($soiree['lieu_id']), $this->getSpectaclesBySoireeId($soiree['id']), $soiree['tarif_normal'], $soiree['tarif_reduit']);
-        $soireeObj->setID($soiree['id']);
+        $soireeObj->setID($soiree['soiree_id']);
         return $soireeObj;
     }
 }
