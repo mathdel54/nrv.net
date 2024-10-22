@@ -1,4 +1,4 @@
-CREATE TABLE "Spectacle"
+CREATE TABLE "spectacle"
 (
     "id"                   UUID PRIMARY KEY,
     "titre"                VARCHAR(255),
