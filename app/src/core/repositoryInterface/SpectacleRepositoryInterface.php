@@ -1,6 +1,6 @@
 <?php
 
-namespace nrv\core\repositoryInterfaces;
+namespace nrv\core\repositoryInterface;
 
 use nrv\core\domain\entities\spectacle\Spectacle;
 

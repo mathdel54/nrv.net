@@ -2,7 +2,7 @@
 
 namespace nrv\infrastructure\repositories;
 
-use nrv\core\repositoryInterfaces\SpectacleRepositoryInterface;
+use nrv\core\repositoryInterface\SpectacleRepositoryInterface;
 use nrv\core\domain\entities\spectacle\Spectacle;
 
 class PDOSpectacleRepository implements SpectacleRepositoryInterface {

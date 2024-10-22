@@ -10,7 +10,7 @@ use Psr\Http\Message\ServerRequestInterface;
 
 
     public function __invoke(ServerRequestInterface $rq, ResponseInterface $rs, array $args): ResponseInterface {
-        $rs->getBody()->write('Hello World');
-        return $rs;}
-
+        $rs->getBody()->write('Hello IUT CHarlemagne !');
+        return $rs;
+    }
 }

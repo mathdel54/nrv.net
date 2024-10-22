@@ -1,9 +1,8 @@
 <?php
 
-namespace nrv\core\services\spectacle;
+namespace nrv\core\services;
 
-use nrv\core\repositoryInterfaces\ServiceSpectacleInterface;
-use nrv\core\repositoryInterfaces\SpectacleRepositoryInterface;
+use nrv\core\repositoryInterface\SpectacleRepositoryInterface;
 use nrv\core\dto\spectacle\SpectacleDTO;
 
 class ServiceSpectacle implements ServiceSpectacleInterface {

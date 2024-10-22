@@ -2,9 +2,9 @@
 
 namespace nrv\core\domain\entities\soiree;
 
+use DateTime;
 use nrv\core\domain\entities\Entity;
 use nrv\core\domain\entities\spectacle\LieuxSpectacle;
-use DateTime;
 use nrv\core\dto\soiree\SoireeDTO;
 
 class Soiree extends Entity {

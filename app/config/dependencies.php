@@ -1,9 +1,9 @@
 <?php
 
-use nrv\core\repositoryInterfaces\ServiceSpectacleInterface;
+use nrv\core\services\ServiceSpectacleInterface;
 use Psr\Container\ContainerInterface;
-use nrv\core\services\spectacle\ServiceSpectacle;
-use nrv\core\repositoryInterfaces\SpectacleRepositoryInterface;
+use nrv\core\services\ServiceSpectacle;
+use nrv\core\repositoryInterface\SpectacleRepositoryInterface;
 
 return [
 

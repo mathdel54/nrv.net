@@ -1,6 +1,6 @@
 <?php 
 
-namespace nrv\core\repositoryInterfaces;
+namespace nrv\core\services;
 
 use nrv\core\dto\spectacle\SpectacleDTO;
 
