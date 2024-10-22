@@ -2,42 +2,38 @@
 
 namespace nrv\application\actions;
 
-use nrv\application\actions\AbstractAction;
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use nrv\application\renderer\JsonRenderer;
 use nrv\core\services\user\ServiceUserInterface;
 use nrv\core\services\user\ServiceUserNotFoundException;
 
-
-class ListeSpectacleSoireeAction extends AbstractAction
+class SoireeBySpectacleAction
 {
 
-    protected ServiceUserInterface $soireeRepository;
+    protected ServiceUserInterface $serviceUser;
 
-    public function __construct(ServiceUserInterface $soireeRepository)
+    public function __construct(ServiceUserInterface $serviceUser)
     {
-        $this->soireeRepository = $soireeRepository;
+        $this->serviceUser = $serviceUser;
     }
 
-    public function __invoke(Request $rq, Response $rs, array $args): Response
+    public function __invoke(ServerRequestInterface $rq, ResponseInterface $rs, array $args): ResponseInterface
     {
-        $id = $args['id'];
+        $id = $args['ID_Spectacle'];
 
         try {
-            $spectacles = $this->soireeRepository->getSpectaclesBySoireeId($id);
-            $data = [];
-            foreach ($spectacles as $spectacle) {
-                $data[] = [
-                    'titre' => $spectacle->titre,
-                    'date' => $spectacle->horaire->format('Y-m-d'),
-                    'horaire' => $spectacle->horaire->format('H:i'),
-                    'images' => $spectacle->images,
-                    'links' => [
-                        'artistes' => ['href' => '/spectacles/' . $spectacle->ID . '/artistes']
-                    ]
-                ];
-            }
+            $soiree = $this->serviceUser->getSoireeBySpectacleId($id);
+            $data[] = [
+                'ID' => $soiree->ID,
+                'nom' => $soiree->nom,
+                'theme' => $soiree->theme,
+                'date' => $soiree->horaire->format('Y-m-d'),
+                'horaire' => $soiree->horaire->format('H:i'),
+                'lieu' => $soiree->lieu,
+                'tarifNormal' => $soiree->tarifNormal,
+                'tarifReduit' => $soiree->tarifReduit,
+            ];
         } catch (ServiceUserNotFoundException $e) {
             $data = [
                 'message' => $e->getMessage(),
@@ -62,14 +58,18 @@ class ListeSpectacleSoireeAction extends AbstractAction
             return JsonRenderer::render($rs, 400, $data);
         }
 
+        // On rajoute les liens HATEOAS
         $tabFinal = [
             'type' => 'ressource',
             'locale' => 'fr_FR',
-            'spectacles' => $data,
+            'soiree' => $data,
             'links' => [
-                'self' => ['href' => '/soirees/' . $id . '/spectacles'],
+                'spectacles' => ['href' => '/soirees/' . $id . '/spectacles'],
+                'self' => ['href' => '/spectacles/'],
+
             ]
         ];
+
         return JsonRenderer::render($rs, 200, $tabFinal);
     }
 }

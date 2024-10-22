@@ -10,11 +10,13 @@ use nrv\core\repositoryInterface\RepositoryEntityNotFoundException;
 use nrv\core\domain\entities\soiree\Soiree;
 use nrv\core\domain\entities\spectacle\LieuxSpectacle;
 
-class PDONrvRepository implements NrvRepositoryInterface {
+class PDONrvRepository implements NrvRepositoryInterface
+{
 
     private $pdoNrv;
 
-    public function __construct($pdoNrv) {
+    public function __construct($pdoNrv)
+    {
         $this->pdoNrv = $pdoNrv;
     }
 
@@ -26,12 +28,13 @@ class PDONrvRepository implements NrvRepositoryInterface {
      * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
      * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
      */
-    public function getSpectacles(): array {
-        try{
+    public function getSpectacles(): array
+    {
+        try {
             $stmt = $this->pdoNrv->prepare("SELECT * FROM spectacle");
             $stmt->execute();
             $spectacles = $stmt->fetchAll();
-            if(!$spectacles){
+            if (!$spectacles) {
                 throw new RepositoryEntityNotFoundException('Aucun spectacle trouvé');
             }
         } catch (\PDOException $e) {
@@ -40,7 +43,7 @@ class PDONrvRepository implements NrvRepositoryInterface {
         $tabSpectacles = [];
         $tabArtistes = [];
         $tabImages = [];
-        foreach($spectacles as $spectacle){
+        foreach ($spectacles as $spectacle) {
             $tabArtistes = $this->getArtistesBySpectacle($spectacle['id']);
             $tabImages = $this->getImagesBySpectacle($spectacle['id']);
             $spec = new Spectacle($spectacle['titre'], $tabArtistes, $spectacle['description'], $tabImages, $spectacle['url_video'], new \DateTime($spectacle['horaire_previsionnel']));
@@ -57,12 +60,13 @@ class PDONrvRepository implements NrvRepositoryInterface {
      * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
      * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
      */
-    public function getSpectacleById(string $id): Spectacle {
-        try{
+    public function getSpectacleById(string $id): Spectacle
+    {
+        try {
             $stmt = $this->pdoNrv->prepare("SELECT * FROM spectacle WHERE id = :id");
             $stmt->execute(['id' => $id]);
             $spectacle = $stmt->fetch();
-            if(!$spectacle){
+            if (!$spectacle) {
                 throw new RepositoryEntityNotFoundException('Aucun spectacle trouvé');
             }
         } catch (\PDOException $e) {
@@ -82,12 +86,13 @@ class PDONrvRepository implements NrvRepositoryInterface {
      * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
      * @return array
      */
-    public function getSpectaclesByDate(string $date): array {
-        try{
+    public function getSpectaclesByDate(string $date): array
+    {
+        try {
             $stmt = $this->pdoNrv->prepare("SELECT * FROM spectacle WHERE date = :date");
             $stmt->execute(['date' => $date]);
             $spectacles = $stmt->fetchAll();
-            if(!$spectacles){
+            if (!$spectacles) {
                 throw new RepositoryEntityNotFoundException('Aucun spectacle trouvé');
             }
         } catch (\PDOException $e) {
@@ -96,7 +101,7 @@ class PDONrvRepository implements NrvRepositoryInterface {
         $tabSpectacles = [];
         $tabArtistes = [];
         $tabImages = [];
-        foreach($spectacles as $spectacle){
+        foreach ($spectacles as $spectacle) {
             $tabArtistes = $this->getArtistesBySpectacle($spectacle['id']);
             $tabImages = $this->getImagesBySpectacle($spectacle['id']);
             $spec = new Spectacle($spectacle['titre'], $tabArtistes, $spectacle['description'], $tabImages, $spectacle['url_video'], new \DateTime($spectacle['horaire_previsionnel']));
@@ -115,12 +120,13 @@ class PDONrvRepository implements NrvRepositoryInterface {
      * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
      * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
      */
-    public function getSpectaclesByStyle(string $style): array {
-        try{
+    public function getSpectaclesByStyle(string $style): array
+    {
+        try {
             $stmt = $this->pdoNrv->prepare("SELECT * FROM spectacle WHERE style = :style");
             $stmt->execute(['style' => $style]);
             $spectacles = $stmt->fetchAll();
-            if(!$spectacles){
+            if (!$spectacles) {
                 throw new RepositoryEntityNotFoundException('Aucun spectacle trouvé');
             }
         } catch (\PDOException $e) {
@@ -129,7 +135,7 @@ class PDONrvRepository implements NrvRepositoryInterface {
         $tabSpectacles = [];
         $tabArtistes = [];
         $tabImages = [];
-        foreach($spectacles as $spectacle){
+        foreach ($spectacles as $spectacle) {
             $tabArtistes = $this->getArtistesBySpectacle($spectacle['id']);
             $tabImages = $this->getImagesBySpectacle($spectacle['id']);
             $spec = new Spectacle($spectacle['titre'], $tabArtistes, $spectacle['description'], $tabImages, $spectacle['url_video'], new \DateTime($spectacle['horaire_previsionnel']));
@@ -146,12 +152,13 @@ class PDONrvRepository implements NrvRepositoryInterface {
      * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
      * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
      */
-    public function getArtistesBySpectacle(string $id): array {
-        try{
+    public function getArtistesBySpectacle(string $id): array
+    {
+        try {
             $stmt = $this->pdoNrv->prepare("SELECT * FROM artiste INNER JOIN artiste_spectacle ON artiste.id = id_artiste INNER JOIN spectacle ON id_spectacle = spectacle.id WHERE spectacle.id = :id");
             $stmt->execute(['id' => $id]);
             $artistes = $stmt->fetchAll();
-            if(!$artistes){
+            if (!$artistes) {
                 throw new RepositoryEntityNotFoundException('Aucun artiste trouvé');
             }
         } catch (\PDOException $e) {
@@ -173,8 +180,9 @@ class PDONrvRepository implements NrvRepositoryInterface {
      * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
      * @return array
      */
-    public function getImagesBySpectacle(string $id): array {
-        try{
+    public function getImagesBySpectacle(string $id): array
+    {
+        try {
             $stmt = $this->pdoNrv->prepare("SELECT lien FROM image_spectacle WHERE spectacle_id = :id");
             $stmt->execute(['id' => $id]);
             $images = $stmt->fetchAll();
@@ -191,18 +199,19 @@ class PDONrvRepository implements NrvRepositoryInterface {
      * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
      * @return Soiree
      */
-    public function getSoireeById(string $id): Soiree {
-        try{
+    public function getSoireeById(string $id): Soiree
+    {
+        try {
             $stmt = $this->pdoNrv->prepare("SELECT * FROM soiree WHERE id = :id");
             $stmt->execute(['id' => $id]);
             $soiree = $stmt->fetch();
-            if(!$soiree){
+            if (!$soiree) {
                 throw new RepositoryEntityNotFoundException('Aucune soirée trouvée');
             }
         } catch (\PDOException $e) {
             throw new RepositoryDatabaseErrorException('Erreur lors de la récupération de la soirée', 0, $e);
         }
-        $soireeObj = new Soiree($soiree['nom'], $soiree['thematique'], new \DateTime($soiree['date_heure']), $this->getLieuById($soiree['lieu_id']), $this->getSpectaclesBySoireeId($soiree['id']));
+        $soireeObj = new Soiree($soiree['nom'], $soiree['thematique'], new \DateTime($soiree['date_heure']), $this->getLieuById($soiree['lieu_id']), $this->getSpectaclesBySoireeId($soiree['id']), $soiree['tarif_normal'], $soiree['tarif_reduit']);
         $soireeObj->setID($soiree['id']);
         return $soireeObj;
     }
@@ -213,12 +222,13 @@ class PDONrvRepository implements NrvRepositoryInterface {
      * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
      * @return LieuxSpectacle
      */
-    public function getLieuById(string $id): LieuxSpectacle {
+    public function getLieuById(string $id): LieuxSpectacle
+    {
         try {
             $stmt = $this->pdoNrv->prepare("SELECT * FROM lieu WHERE id = :id");
             $stmt->execute(['id' => $id]);
             $lieu = $stmt->fetch();
-            if(!$lieu){
+            if (!$lieu) {
                 throw new RepositoryEntityNotFoundException('Aucun lieu trouvé');
             }
         } catch (\PDOException $e) {
@@ -236,8 +246,9 @@ class PDONrvRepository implements NrvRepositoryInterface {
      * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
      * @return array
      */
-    public function getImagesByLieu(string $id): array {
-        try{
+    public function getImagesByLieu(string $id): array
+    {
+        try {
             $stmt = $this->pdoNrv->prepare("SELECT lien FROM image_lieu WHERE lieu_id = :id");
             $stmt->execute(['id' => $id]);
             $images = $stmt->fetchAll();
@@ -254,21 +265,19 @@ class PDONrvRepository implements NrvRepositoryInterface {
      * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
      * @return array
      */
-    public function getSpectaclesBySoireeId(string $id): array {
-        try{
+    public function getSpectaclesBySoireeId(string $id): array
+    {
+        try {
             $stmt = $this->pdoNrv->prepare("SELECT * FROM spectacle WHERE soiree_id = :id");
             $stmt->execute(['id' => $id]);
             $spectacles = $stmt->fetchAll();
-            if(!$spectacles){
-                throw new RepositoryEntityNotFoundException('Aucun spectacle trouvé');
-            }
         } catch (\PDOException $e) {
             throw new RepositoryDatabaseErrorException($e->getMessage(), 0, $e);
         }
         $tabSpectacles = [];
         $tabArtistes = [];
         $tabImages = [];
-        foreach($spectacles as $spectacle){
+        foreach ($spectacles as $spectacle) {
             $tabArtistes = $this->getArtistesBySpectacle($spectacle['id']);
             $tabImages = $this->getImagesBySpectacle($spectacle['id']);
             $spec = new Spectacle($spectacle['titre'], $tabArtistes, $spectacle['description'], $tabImages, $spectacle['url_video'], new \DateTime($spectacle['horaire_previsionnel']));
@@ -276,5 +285,29 @@ class PDONrvRepository implements NrvRepositoryInterface {
             $tabSpectacles[] = $spec;
         }
         return $tabSpectacles;
+    }
+
+    /**
+     * Méthode qui retourne la soirée par spectacle
+     * @param string $id
+     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
+     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
+     * @return Soiree
+     */
+    public function getSoireeBySpectacleId(string $id): Soiree
+    {
+        try {
+            $stmt = $this->pdoNrv->prepare("SELECT * FROM soiree INNER JOIN spectacle ON soiree.id = spectacle.soiree_id WHERE spectacle.id = :id");
+            $stmt->execute(['id' => $id]);
+            $soiree = $stmt->fetch();
+            if (!$soiree) {
+                throw new RepositoryEntityNotFoundException('Aucune soirée trouvée');
+            }
+        } catch (\PDOException $e) {
+            throw new RepositoryDatabaseErrorException('Erreur lors de la récupération de la soirée', 0, $e);
+        }
+        $soireeObj = new Soiree($soiree['nom'], $soiree['thematique'], new \DateTime($soiree['date_heure']), $this->getLieuById($soiree['lieu_id']), $this->getSpectaclesBySoireeId($soiree['id']), $soiree['tarif_normal'], $soiree['tarif_reduit']);
+        $soireeObj->setID($soiree['id']);
+        return $soireeObj;
     }
 }

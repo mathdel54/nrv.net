@@ -8,15 +8,18 @@ use nrv\application\renderer\JsonRenderer;
 use nrv\core\services\user\ServiceUserInterface;
 use nrv\core\services\user\ServiceUserNotFoundException;
 
-class ListeSpectacleAction {
-    
+class ListeSpectacleAction
+{
+
     protected ServiceUserInterface $serviceUser;
 
-    public function __construct(ServiceUserInterface $serviceUser) {
+    public function __construct(ServiceUserInterface $serviceUser)
+    {
         $this->serviceUser = $serviceUser;
     }
 
-    public function __invoke (ServerRequestInterface $rq, ResponseInterface $rs, array $args): ResponseInterface {
+    public function __invoke(ServerRequestInterface $rq, ResponseInterface $rs, array $args): ResponseInterface
+    {
         try {
             $spectacles = $this->serviceUser->getSpectacles();
             $data = [];
@@ -27,46 +30,44 @@ class ListeSpectacleAction {
                     'horaire' => $spectacle->horaire->format('H:i'),
                     'images' => $spectacle->images,
                     'links' => [
-                        'artistes' => [ 'href' => '/spectacles/' . $spectacle->ID . '/artistes']
+                        'artistes' => ['href' => '/spectacles/' . $spectacle->ID . '/artistes']
                     ]
                 ];
             }
-            
         } catch (ServiceUserNotFoundException $e) {
             $data = [
-                 'message' => $e->getMessage(),
-                 'exception' => [
-                     'type' => get_class($e),
-                     'code' => $e->getCode(),
-                     'file' => $e->getFile(),
-                     'line' => $e->getLine()
-                 ]
-             ];
-             return JsonRenderer::render($rs, 404, $data);
-         } catch (\Exception  $e) {
-             $data = [
-                 'message' => $e->getMessage(),
-                 'exception' => [
-                     'type' => get_class($e),
-                     'code' => $e->getCode(),
-                     'file' => $e->getFile(),
-                     'line' => $e->getLine()
-                 ]
-             ];
-             return JsonRenderer::render($rs, 400, $data);
-         }
+                'message' => $e->getMessage(),
+                'exception' => [
+                    'type' => get_class($e),
+                    'code' => $e->getCode(),
+                    'file' => $e->getFile(),
+                    'line' => $e->getLine()
+                ]
+            ];
+            return JsonRenderer::render($rs, 404, $data);
+        } catch (\Exception  $e) {
+            $data = [
+                'message' => $e->getMessage(),
+                'exception' => [
+                    'type' => get_class($e),
+                    'code' => $e->getCode(),
+                    'file' => $e->getFile(),
+                    'line' => $e->getLine()
+                ]
+            ];
+            return JsonRenderer::render($rs, 400, $data);
+        }
 
-         // On rajoute les liens HATEOAS
-         $tabFinal = [
+        // On rajoute les liens HATEOAS
+        $tabFinal = [
             'type' => 'ressource',
             'locale' => 'fr_FR',
             'spectacles' => $data,
             'links' => [
-                'self' => [ 'href' => '/spectacles'],
+                'self' => ['href' => '/spectacles'],
             ]
         ];
 
         return JsonRenderer::render($rs, 200, $tabFinal);
-
     }
 }
