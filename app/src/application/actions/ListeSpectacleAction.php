@@ -21,7 +21,7 @@ class ListeSpectacleAction {
             $spectacles = $this->serviceUser->getSpectacles();
             $data = [];
             foreach ($spectacles as $spectacle) {
-                $data[] = $spectacle->toDTO();
+                $data[] = $spectacle;
             }
             
         } catch (ServiceUserNotFoundException $e) {
@@ -49,14 +49,14 @@ class ListeSpectacleAction {
          }
 
          // On rajoute les liens HATEOAS
-            $data['_links'] = [
-                'self' => [
-                    'href' => '/spectacles',
-                    'title' => 'Liste des spectacles'
-                ]
-            ];
+         $tabFinal = [
+            'spectacles' => $data,
+            'links' => [
+                'self' => [ 'href' => '/spectacles/'],
+            ]
+        ];
 
-        return JsonRenderer::render($rs, 200, $data);
+        return JsonRenderer::render($rs, 200, $tabFinal);
 
     }
 }
