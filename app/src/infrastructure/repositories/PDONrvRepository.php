@@ -5,9 +5,8 @@ namespace nrv\infrastructure\repositories;
 use nrv\core\domain\entities\artiste\Artiste;
 use nrv\core\repositoryInterface\NrvRepositoryInterface;
 use nrv\core\domain\entities\spectacle\Spectacle;
-use nrv\core\domain\entities\soiree\SoireeDTO;
-use nrv\core\repositoryInterfaces\RepositoryDatabaseErrorException;
-use nrv\core\repositoryInterfaces\RepositoryEntityNotFoundException;
+use nrv\core\repositoryInterface\RepositoryDatabaseErrorException;
+use nrv\core\repositoryInterface\RepositoryEntityNotFoundException;
 
 
 class PDONrvRepository implements NrvRepositoryInterface {
@@ -20,9 +19,9 @@ class PDONrvRepository implements NrvRepositoryInterface {
 
     /**
      * Méthode qui retourne la liste des spectacles
-     * @throws \nrv\core\repositoryInterfaces\RepositoryEntityNotFoundException
-     * @throws \nrv\core\repositoryInterfaces\RepositoryDatabaseErrorException
      * @return array
+     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
+     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
      */
     public function getSpectacles(): array {
         try{
@@ -51,9 +50,9 @@ class PDONrvRepository implements NrvRepositoryInterface {
     /**
      * Méthode qui retourne un spectacle par son ID
      * @param string $id
-     * @throws \nrv\core\repositoryInterfaces\RepositoryEntityNotFoundException
-     * @throws \nrv\core\repositoryInterfaces\RepositoryDatabaseErrorException
      * @return Spectacle
+     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
+     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
      */
     public function getSpectacleById(string $id): Spectacle {
         try{
@@ -76,9 +75,9 @@ class PDONrvRepository implements NrvRepositoryInterface {
     /**
      * Méthode qui retourne la liste des spectacles par date
      * @param string $date
-     * @throws \nrv\core\repositoryInterfaces\RepositoryEntityNotFoundException
-     * @throws \nrv\core\repositoryInterfaces\RepositoryDatabaseErrorException
      * @return array
+     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
+     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
      */
     public function getSpectaclesByDate(string $date): array {
         try{
@@ -107,9 +106,9 @@ class PDONrvRepository implements NrvRepositoryInterface {
     /**
      * Méthode qui retourne la liste des spectacles par style
      * @param string $style
-     * @throws \nrv\core\repositoryInterfaces\RepositoryEntityNotFoundException
-     * @throws \nrv\core\repositoryInterfaces\RepositoryDatabaseErrorException
      * @return array
+     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
+     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
      */
     public function getSpectaclesByStyle(string $style): array {
         try{
@@ -138,9 +137,9 @@ class PDONrvRepository implements NrvRepositoryInterface {
     /**
      * Méthode qui retourne la liste des artistes par spectacle
      * @param string $id
-     * @throws \nrv\core\repositoryInterfaces\RepositoryEntityNotFoundException
-     * @throws \nrv\core\repositoryInterfaces\RepositoryDatabaseErrorException
      * @return array
+     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
+     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
      */
     public function getArtistesBySpectacle(string $id): array {
         try{
@@ -165,9 +164,9 @@ class PDONrvRepository implements NrvRepositoryInterface {
     /**
      * Méthode qui retourne la liste des images par spectacle
      * @param string $id
-     * @throws \nrv\core\repositoryInterfaces\RepositoryEntityNotFoundException
-     * @throws \nrv\core\repositoryInterfaces\RepositoryDatabaseErrorException
      * @return array
+     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
+     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
      */
     public function getImagesBySpectacle(string $id): array {
         try{

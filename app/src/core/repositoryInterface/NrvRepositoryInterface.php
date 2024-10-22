@@ -3,7 +3,6 @@
 namespace nrv\core\repositoryInterface;
 
 use nrv\core\domain\entities\spectacle\Spectacle;
-use nrv\core\domain\entities\soiree\Soiree;
 
 interface NrvRepositoryInterface
 {

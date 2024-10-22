@@ -3,8 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script defer src="lib/index.js"></script>
 </head>
 <body>
+    <div id="template">
+        <h1 class="text-center mt-5">Bienvenue sur NRV !</h1>
+    </div>
 
+    <script id="spectaclesTemplate" type="text/x-handlebars-template">
+        <h2>Affichage de la liste des spectacles :</h2>
+        <ul>
+            {{#each spectacles}}
+                <li>
+                    <h3>{{titre}}</h3>
+                    <p>Date: {{horaire}}</p>
+                    <p>Horaire: {{time}}</p>
+                </li>
+            {{/each}}
+        </ul>
+    </script>
 </body>
 </html>
