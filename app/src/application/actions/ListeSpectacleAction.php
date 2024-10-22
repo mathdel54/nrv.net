@@ -30,7 +30,8 @@ class ListeSpectacleAction
                     'horaire' => $spectacle->horaire->format('H:i'),
                     'images' => $spectacle->images,
                     'links' => [
-                        'artistes' => ['href' => '/spectacles/' . $spectacle->ID . '/artistes']
+                        'artistes' => ['href' => '/spectacles/' . $spectacle->ID . '/artistes'],
+                        'soiree' => ['href' => '/spectacles/' . $spectacle->ID . '/soiree']
                     ]
                 ];
             }
