@@ -47,8 +47,10 @@ services:
     restart: always
 
   nginx:
+    build:
+      context: build
+      dockerfile: Dockerfile.nginx
     hostname: nginx
-    image: nginx
     ports:
       # - "20004:80"
       - '20009:80'
@@ -57,3 +59,5 @@ services:
     networks:
       - nrv.net
     restart: always
+    working_dir: /usr/share/nginx/html
+    command: /bin/bash -c "npm install && nginx -g 'daemon off;'"

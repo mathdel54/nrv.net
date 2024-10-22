@@ -5,3 +5,4 @@ app/vendor
 *.idea
 .idea
 composer.lock
+web/node_modules
