@@ -25,6 +25,8 @@ class PDONrvRepository implements NrvRepositoryInterface
      * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
      * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
      * @return array
+     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
+     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
      */
     public function getSpectacles(): array
     {
@@ -54,9 +56,9 @@ class PDONrvRepository implements NrvRepositoryInterface
     /**
      * Méthode qui retourne un spectacle par son ID
      * @param string $id
-     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
-     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
      * @return Spectacle
+     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
+     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
      */
     public function getSpectacleById(string $id): Spectacle
     {
@@ -112,9 +114,11 @@ class PDONrvRepository implements NrvRepositoryInterface
     /**
      * Méthode qui retourne la liste des spectacles par style
      * @param string $style
-     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
-     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
+     * @throws \nrv\core\repositoryInterfaces\RepositoryEntityNotFoundException
+     * @throws \nrv\core\repositoryInterfaces\RepositoryDatabaseErrorException
      * @return array
+     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
+     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
      */
     public function getSpectaclesByStyle(string $style): array
     {
@@ -144,9 +148,9 @@ class PDONrvRepository implements NrvRepositoryInterface
     /**
      * Méthode qui retourne la liste des artistes par spectacle
      * @param string $id
-     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
-     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
      * @return array
+     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
+     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
      */
     public function getArtistesBySpectacle(string $id): array
     {
