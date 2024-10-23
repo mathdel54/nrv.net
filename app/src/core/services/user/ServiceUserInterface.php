@@ -2,6 +2,7 @@
 
 namespace nrv\core\services\user;
 
+use DateTime;
 use nrv\core\dto\spectacle\LieuxSpectacleDTO;
 use nrv\core\dto\spectacle\SpectacleDTO;
 use nrv\core\dto\soiree\SoireeDTO;
