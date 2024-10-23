@@ -36,10 +36,10 @@ class ListeSpectacleSoireeAction extends AbstractAction
                         'horaire' => $spectacle->horaire->format('H:i'),
                         'images' => $spectacle->images,
                         'style' => $spectacle->style,
-                        'links' => [
-                            'artistes' => ['href' => '/spectacles/' . $spectacle->ID . '/artistes'],
-                            'soiree' => ['href' => '/spectacles/' . $spectacle->ID . '/soiree']
-                        ]
+                    ],
+                    'links' => [
+                        'artistes' => ['href' => '/spectacles/' . $spectacle->ID . '/artistes'],
+                        'soiree' => ['href' => '/spectacles/' . $spectacle->ID . '/soiree']
                     ]
                 ];
             }

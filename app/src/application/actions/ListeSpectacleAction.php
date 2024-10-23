@@ -22,7 +22,7 @@ class ListeSpectacleAction
     {
         $style = $rq->getQueryParams()['style'] ?? null;
         try {
-            if(isset($style)){
+            if (isset($style)) {
                 $spectacles = $this->serviceUser->getSpectaclesByStyle($style);
             } else {
                 $spectacles = $this->serviceUser->getSpectacles();
@@ -37,10 +37,10 @@ class ListeSpectacleAction
                         'horaire' => $spectacle->horaire->format('H:i'),
                         'images' => $spectacle->images,
                         'style' => $spectacle->style,
-                        'links' => [
-                            'artistes' => ['href' => '/spectacles/' . $spectacle->ID . '/artistes'],
-                            'soiree' => ['href' => '/spectacles/' . $spectacle->ID . '/soiree']
-                        ]
+                    ],
+                    'links' => [
+                        'artistes' => ['href' => '/spectacles/' . $spectacle->ID . '/artistes'],
+                        'soiree' => ['href' => '/spectacles/' . $spectacle->ID . '/soiree']
                     ]
                 ];
             }
