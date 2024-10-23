@@ -20,8 +20,13 @@ class ListeSpectacleAction
 
     public function __invoke(ServerRequestInterface $rq, ResponseInterface $rs, array $args): ResponseInterface
     {
+        $style = $rq->getQueryParams()['style'] ?? null;
         try {
-            $spectacles = $this->serviceUser->getSpectacles();
+            if(isset($style)){
+                $spectacles = $this->serviceUser->getSpectaclesByStyle($style);
+            } else {
+                $spectacles = $this->serviceUser->getSpectacles();
+            }
             $data = [];
             foreach ($spectacles as $spectacle) {
                 $data[] = [

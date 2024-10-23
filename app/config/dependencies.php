@@ -39,8 +39,4 @@ return [
     ListeSpectacleSoireeAction::class => function (ContainerInterface $c) {
         return new ListeSpectacleSoireeAction($c->get(ServiceUserInterface::class));
     },
-
-    SpectacleByStyleAction::class => function (ContainerInterface $c) {
-        return new SpectacleByStyleAction($c->get(ServiceUserInterface::class));
-    },
 ];
