@@ -34,7 +34,7 @@
 
 <script id="spectaclesTemplate" type="text/x-handlebars-template">
     <h2>Affichage de la liste des spectacles {{#if styleSelected}}trié par {{styleSelected}}{{/if}} :</h2>
-    <button>Filtrer spectacles par style</button>
+    <button>Style</button>
     <br>
     {{#each styles}}
         <button class="filtreStyle" data-style="{{this}}">{{this}}</button>

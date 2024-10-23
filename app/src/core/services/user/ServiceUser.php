@@ -33,6 +33,20 @@ class ServiceUser implements ServiceUserInterface
     }
 
     /**
+     * Méthode qui retourne la liste des artistes
+     * @return array liste des artistes
+     */
+    public function getLieux(): array
+    {
+        $lieus = $this->_nrvRepository->getLieux();
+        $lieusDTO = [];
+        foreach ($lieus as $lieu) {
+            $lieusDTO[] = $lieu->toDTO();
+        }
+        return $lieusDTO;
+    }
+
+    /**
      * Méthode qui retourne un spectacle par son ID
      * @param string $id du spectacle
      * @return SpectacleDTO le spectacle en DTO
