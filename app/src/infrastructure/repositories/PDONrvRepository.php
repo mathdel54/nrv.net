@@ -325,10 +325,10 @@ class PDONrvRepository implements NrvRepositoryInterface
         $tabArtistes = [];
         $tabImages = [];
         foreach ($spectacles as $spectacle) {
-            $tabArtistes = $this->getArtistesBySpectacle($spectacle['id']);
-            $tabImages = $this->getImagesBySpectacle($spectacle['id']);
+            $tabArtistes = $this->getArtistesBySpectacle($spectacle[0]);
+            $tabImages = $this->getImagesBySpectacle($spectacle[0]);
             $spec = new Spectacle($spectacle['titre'], $tabArtistes, $spectacle['description'], $tabImages, $spectacle['url_video'], new \DateTime($spectacle['horaire_previsionnel']), $spectacle['style']);
-            $spec->setID($spectacle['id']);
+            $spec->setID($spectacle[0]);
             $tabSpectacles[] = $spec;
         }
         return $tabSpectacles;

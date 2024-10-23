@@ -11,11 +11,11 @@ use nrv\core\services\user\ServiceUserNotFoundException;
 class DetailSoireeAction extends AbstractAction
 {
 
-    protected ServiceUserInterface $soireeRepository;
+    protected ServiceUserInterface $serviceUser;
 
-    public function __construct(ServiceUserInterface $soireeRepository)
+    public function __construct(ServiceUserInterface $serviceUser)
     {
-        $this->soireeRepository = $soireeRepository;
+        $this->serviceUser = $serviceUser;
     }
 
     public function __invoke(ServerRequestInterface $rq, ResponseInterface $rs, array $args): ResponseInterface
@@ -23,7 +23,7 @@ class DetailSoireeAction extends AbstractAction
         $id = $args['id'];
 
         try {
-            $soiree = $this->soireeRepository->getSoireeById($id);
+            $soiree = $this->serviceUser->getSoireeById($id);
 
             $data[] = [
                 'nom' => $soiree->nom,

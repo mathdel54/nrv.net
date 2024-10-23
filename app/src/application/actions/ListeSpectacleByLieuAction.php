@@ -10,7 +10,7 @@ use nrv\core\services\user\ServiceUserInterface;
 use nrv\core\services\user\ServiceUserNotFoundException;
 
 
-class ListeSpectacleSoireeAction extends AbstractAction
+class ListeSpectacleByLieuAction extends AbstractAction
 {
 
     protected ServiceUserInterface $serviceUser;
@@ -22,10 +22,10 @@ class ListeSpectacleSoireeAction extends AbstractAction
 
     public function __invoke(Request $rq, Response $rs, array $args): Response
     {
-        $id = $args['id'];
+        $id = $args['ID_Lieu'];
 
         try {
-            $spectacles = $this->serviceUser->getSpectaclesBySoireeId($id);
+            $spectacles = $this->serviceUser->getSpectaclesByLieu($id);
             $data = [];
             foreach ($spectacles as $spectacle) {
                 $data[] = [
@@ -72,7 +72,7 @@ class ListeSpectacleSoireeAction extends AbstractAction
             'count' => count($data),
             'spectacles' => $data,
             'links' => [
-                'self' => ['href' => '/soirees/' . $id . '/spectacles'],
+                'self' => ['href' => '/lieu/' . $id . '/spectacles'],
             ]
         ];
         return JsonRenderer::render($rs, 200, $tabFinal);
