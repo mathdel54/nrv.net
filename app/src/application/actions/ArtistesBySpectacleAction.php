@@ -61,7 +61,7 @@ class ArtistesBySpectacleAction {
             'locale' => 'fr_FR',
             'artistes' => $data,
             'links' => [
-                'spectacles' => [ 'href' => '/spectacles/']
+                'spectacles' => [ 'href' => '/spectacles']
             ]
         ];
 
