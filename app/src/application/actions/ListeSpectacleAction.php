@@ -26,9 +26,11 @@ class ListeSpectacleAction
             foreach ($spectacles as $spectacle) {
                 $data[] = [
                     'titre' => $spectacle->titre,
+                    'description' => $spectacle->description,
                     'date' => $spectacle->horaire->format('Y-m-d'),
                     'horaire' => $spectacle->horaire->format('H:i'),
                     'images' => $spectacle->images,
+                    'style' => $spectacle->style,
                     'links' => [
                         'artistes' => ['href' => '/spectacles/' . $spectacle->ID . '/artistes'],
                         'soiree' => ['href' => '/spectacles/' . $spectacle->ID . '/soiree']

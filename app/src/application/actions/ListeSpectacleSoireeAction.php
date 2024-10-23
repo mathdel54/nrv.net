@@ -31,12 +31,13 @@ class ListeSpectacleSoireeAction extends AbstractAction
                 $data[] = [
                     'titre' => $spectacle->titre,
                     'description' => $spectacle->description,
-                    'style' => $spectacle->style,
                     'date' => $spectacle->horaire->format('Y-m-d'),
                     'horaire' => $spectacle->horaire->format('H:i'),
                     'images' => $spectacle->images,
+                    'style' => $spectacle->style,
                     'links' => [
-                        'artistes' => ['href' => '/spectacles/' . $spectacle->ID . '/artistes']
+                        'artistes' => ['href' => '/spectacles/' . $spectacle->ID . '/artistes'],
+                        'soiree' => ['href' => '/spectacles/' . $spectacle->ID . '/soiree']
                     ]
                 ];
             }
