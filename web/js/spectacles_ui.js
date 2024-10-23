@@ -3,11 +3,6 @@ import {display_soiree} from "./soiree_ui";
 import {load} from "./loader";
 import {loadSpectaclesParStyle} from "./spectaclesLoader";
 
-Handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
-    console.log(arg1, arg2);
-    return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
-});
-
 
 const source = document.getElementById('spectaclesTemplate').innerHTML;
 const template = Handlebars.compile(source);
@@ -24,10 +19,10 @@ export function display_spectacles(spectacles, styles, styleSelected) {
     });
 
     //On rajoute un evenement sur les styles
-    let styleMusique = document.getElementById("styleMusique");
-    styleMusique.addEventListener('change', async () => {
-
-        let spectacles = await loadSpectaclesParStyle(styleMusique.value);
-        display_spectacles(spectacles, styles, styleMusique.value);
-    });
+    document.querySelectorAll('.filtreStyle').forEach(style => {
+        style.addEventListener('click', async () => {
+            let spectacles = await loadSpectaclesParStyle(style.dataset.style);
+            display_spectacles(spectacles, styles, style.dataset.style);
+        });
+    })
 }

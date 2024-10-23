@@ -20,4 +20,4 @@ export async function showSpectacles(){
 
 
 //On Ajoute un écouteur d'événement sur le bouton "spectacles" pour afficher les spectacles
-document.getElementById('spectacles').addEventListener('click', showSpectacles);
+showSpectacles();

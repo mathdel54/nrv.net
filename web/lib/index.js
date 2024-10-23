@@ -5775,10 +5775,6 @@
   }
 
   // js/spectacles_ui.js
-  import_handlebars2.default.registerHelper("ifEquals", function(arg1, arg2, options) {
-    console.log(arg1, arg2);
-    return arg1 == arg2 ? options.fn(this) : options.inverse(this);
-  });
   var source2 = document.getElementById("spectaclesTemplate").innerHTML;
   var template2 = import_handlebars2.default.compile(source2);
   function display_spectacles(spectacles, styles, styleSelected) {
@@ -5789,11 +5785,12 @@
         display_soiree(soiree.soiree);
       }));
     });
-    let styleMusique = document.getElementById("styleMusique");
-    styleMusique.addEventListener("change", () => __async(this, null, function* () {
-      let spectacles2 = yield loadSpectaclesParStyle(styleMusique.value);
-      display_spectacles(spectacles2, styles, styleMusique.value);
-    }));
+    document.querySelectorAll(".filtreStyle").forEach((style) => {
+      style.addEventListener("click", () => __async(this, null, function* () {
+        let spectacles2 = yield loadSpectaclesParStyle(style.dataset.style);
+        display_spectacles(spectacles2, styles, style.dataset.style);
+      }));
+    });
   }
 
   // js/index.js
@@ -5809,6 +5806,6 @@
       display_spectacles(spectacles, styles);
     });
   }
-  document.getElementById("spectacles").addEventListener("click", showSpectacles);
+  showSpectacles();
 })();
 //# sourceMappingURL=index.js.map
