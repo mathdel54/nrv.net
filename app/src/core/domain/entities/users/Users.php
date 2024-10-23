@@ -15,13 +15,14 @@ class Users extends Entity
     protected DateTime $dateNaissance;
     protected int $role;
 
-    public function __construct(string $nom, string $prenom, DateTime $dateNaissance, string $email, int $role)
+    public function __construct(string $nom, string $prenom, DateTime $dateNaissance, string $email, string $pass, int $role)
     {
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->dateNaissance = $dateNaissance;
         $this->email = $email;
         $this->role = $role;
+        $this->pass = $pass;
     }
 
     public function toDTO() : UsersDTO
