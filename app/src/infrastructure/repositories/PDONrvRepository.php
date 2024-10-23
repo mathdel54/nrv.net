@@ -9,6 +9,7 @@ use nrv\core\domain\entities\spectacle\Spectacle;
 use nrv\core\repositoryInterface\RepositoryDatabaseErrorException;
 use nrv\core\repositoryInterface\RepositoryEntityNotFoundException;
 use nrv\core\domain\entities\soiree\Soiree;
+use nrv\core\domain\entities\billet\Billet;
 use nrv\core\domain\entities\spectacle\LieuxSpectacle;
 
 class PDONrvRepository implements NrvRepositoryInterface
@@ -375,5 +376,30 @@ class PDONrvRepository implements NrvRepositoryInterface
             $tabSpectacles[] = $spec;
         }
         return $tabSpectacles;
+    }
+
+    /**
+     * Méthode qui retourne la liste des billets d'un utilisateur
+     * @param string $id_user
+     * @return array
+     */
+    public function getBilletsByUser(string $id_user): array {
+        try {
+            $stmt = $this->pdoNrv->prepare("SELECT * FROM billet WHERE utilisateur_id = :id_user");
+            $stmt->execute(['id_user' => $id_user]);
+            $billets = $stmt->fetchAll();
+            if (!$billets) {
+                throw new RepositoryEntityNotFoundException('Aucun billet trouvé pour cet utilisateur');
+            }
+        } catch (\PDOException $e) {
+            throw new RepositoryDatabaseErrorException($e->getMessage(), 0, $e);
+        }
+        $tabBillets = [];
+        foreach($billets as $billet){
+            $b = new Billet($billet['utilisateur_id'], $billet['tarif'], new DateTime($billet['date_achat']), $billet['soiree_id']);
+            $b->setID($billet['id']);
+            $tabBillets[] = $b;
+        }
+        return $tabBillets;
     }
 }

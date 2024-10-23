@@ -180,4 +180,18 @@ class ServiceUser implements ServiceUserInterface
         }
         return $spectaclesDTO;
     }
+
+    /**
+     * Méthode qui retourne la liste des billets par utilisateur
+     * @param string $id
+     * @return array liste des billets en DTO
+     */
+    public function getBilletsByUser(string $id): array {
+        $billets = $this->_nrvRepository->getBilletsByUser($id);
+        $billetsDTO = [];
+        foreach ($billets as $billet) {
+            $billetsDTO[] = $billet->toDTO();
+        }
+        return $billetsDTO;
+    }
 }

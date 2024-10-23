@@ -23,4 +23,5 @@ interface NrvRepositoryInterface
     public function getSoireeBySpectacleId(string $id): Soiree;
     public function getSpectaclesByLieu(string $id): array;
     public function getSpectacleByStyle(string $style): array;
+    public function getBilletsByUser(string $user): array;
 }

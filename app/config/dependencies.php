@@ -1,6 +1,7 @@
 <?php
 
 use nrv\application\actions\DetailSoireeAction;
+use nrv\application\actions\ListeBilletUser;
 use nrv\application\actions\ListeSpectacleAction;
 use nrv\application\actions\ListeSpectacleSoireeAction;
 use nrv\application\actions\SpectacleByStyleAction;
@@ -38,5 +39,9 @@ return [
 
     ListeSpectacleSoireeAction::class => function (ContainerInterface $c) {
         return new ListeSpectacleSoireeAction($c->get(ServiceUserInterface::class));
+    },
+
+    ListeBilletUser::class => function (ContainerInterface $c) {
+        return new ListeBilletUser($c->get(ServiceUserInterface::class));
     },
 ];

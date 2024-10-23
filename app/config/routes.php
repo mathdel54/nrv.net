@@ -25,5 +25,8 @@ return function (\Slim\App $app): \Slim\App {
     $app->get('/lieu/{ID_Lieu}/spectacles', callable: \nrv\application\actions\ListeSpectacleByLieuAction::class)
         ->setName('spectaclesByLieu');
 
+    $app->get('/users/{id_user}/billets', callable: nrv\application\actions\ListeBilletUser::class)
+        ->setName('billetsUser');
+
     return $app;
 };
