@@ -90,14 +90,14 @@ class PDONrvRepository implements NrvRepositoryInterface
     public function getSpectaclesByDate(string $date): array
     {
         try {
-            $stmt = $this->pdoNrv->prepare("SELECT * FROM spectacle WHERE horaire_previsonnel = :date");
+            $stmt = $this->pdoNrv->prepare("SELECT * FROM spectacle WHERE horaire_previsionnel::date = :date");
             $stmt->execute(['date' => $date]);
             $spectacles = $stmt->fetchAll();
             if (!$spectacles) {
-                throw new RepositoryEntityNotFoundException('Aucun spectacle trouvé');
+                throw new RepositoryEntityNotFoundException('Aucun spectacle trouvé à la date du ' . $date);
             }
         } catch (\PDOException $e) {
-            throw new RepositoryDatabaseErrorException('Erreur lors de la récupération des spectacles', 0, $e);
+            throw new RepositoryDatabaseErrorException('Erreur lors de la récupération des spectacles: ' . $e->getMessage());
         }
         $tabSpectacles = [];
         $tabArtistes = [];

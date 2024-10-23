@@ -21,9 +21,12 @@ class ListeSpectacleAction extends AbstractAction
     public function __invoke(ServerRequestInterface $rq, ResponseInterface $rs, array $args): ResponseInterface
     {
         $style = $rq->getQueryParams()['style'] ?? null;
+        $date = $rq->getQueryParams()['date'] ?? null;
         try {
             if (isset($style)) {
                 $spectacles = $this->serviceUser->getSpectaclesByStyle($style);
+            } if(isset($date)) {
+                $spectacles = $this->serviceUser->getSpectaclesByDate($date);
             } else {
                 $spectacles = $this->serviceUser->getSpectacles();
             }
