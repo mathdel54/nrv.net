@@ -52,8 +52,8 @@ services:
       dockerfile: Dockerfile.nginx
     hostname: nginx
     ports:
-      # - "20004:80"
-      - '20009:80'
+      - "20004:80"
+      # - '20009:80'
     volumes:
       - ./web:/usr/share/nginx/html
     networks:

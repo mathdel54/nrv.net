@@ -1,13 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nancy Rock Vibration - NRV</title>
     <script defer src="lib/index.js"></script>
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
+    <header>
+        <img src="images/logoNrv.webp" alt="Logo Nancy Rock Vibration" height="50" width="50">
+        <nav>
+            <a href="#">Le Festival</a>
+            <a href="#">Infos Pratiques</a>
+            <a href="#">Billetterie</a>
+            <a href="#">Contact</a>
+        </nav>
+        <div class="authentif-bouttons">
+            <a href="#"><span>Connexion</span></a>
+            <a href="#"><span>Inscription</span></a>
+        </div>
+    </header>
+
+    <section class="banniere">
+        <h1>Nancy Rock Vibration</h1>
+        <p>NRV</p>
+    </section>
+
     <div id="template">
-        <h1 class="text-center mt-5">Bienvenue sur NRV !</h1>
+
     </div>
 
     <script id="spectaclesTemplate" type="text/x-handlebars-template">
@@ -59,5 +82,32 @@
             {{/each}}
         </ul>
     </script>
+
+    <footer>
+        <div class="reseauxIcons">
+            <a class="twitter" href="#" title="twitter">
+                <img src="images/twitter-logo.svg" alt="reseau1" height="30" width="30">
+            </a>
+            <a class="instagram" href="#" title="instagram">
+                <img src="images/instagram_logo.svg" alt="reseau2" height="30" width="30">
+            </a>
+            <a class="youtube" href="#" title="youtube">
+                <img src="images/youtube-logo.svg" alt="reseau3" height="30" width="30">
+            </a>
+            <a class="tiktok" href="#" title="tiktok">
+                <img src="images/logo-tiktok.svg" alt="reseau4" height="30" width="30">
+            </a>
+        </div>
+        <ul>
+            <li><a href="#">Le Festival</a></li>
+            <li><a href="#">Infos Pratiques</a></li>
+            <li><a href="#">Billetterie</a></li>
+        </ul>
+        <ul>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Blog</a></li>
+        </ul>
+    </footer>
 </body>
+
 </html>

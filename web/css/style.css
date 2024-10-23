@@ -1,0 +1,89 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #ffffff;
+}
+header nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: black;
+}
+header .authentif-bouttons a {
+  display: inline;
+  font-size: 16px;
+  text-decoration: none;
+  padding: 5px 10px;
+  color: #333;
+  border: 1px solid #333;
+  border-radius: 5px;
+  text-align: center;
+  position: relative;
+  transition: all 0.35s;
+}
+header .authentif-bouttons a span {
+  position: relative;
+  z-index: 2;
+}
+header .authentif-bouttons a:after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #a8a8a8;
+  transition: all 0.35s;
+}
+header .authentif-bouttons a:hover {
+  color: #fff;
+}
+header .authentif-bouttons a:hover:after {
+  width: 100%;
+}
+
+.banniere {
+  background-color: #f5b5b2;
+  padding: 150px;
+  text-align: center;
+}
+.banniere h1 {
+  font-size: 3em;
+  margin: 0;
+}
+.banniere p {
+  font-size: 1.5em;
+  color: #666;
+}
+
+footer {
+  background-color: #f5f5f5;
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+footer ul {
+  list-style: none;
+  padding: 0;
+}
+footer ul li {
+  margin: 5px 0;
+}
+footer .reseauxIcons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+footer .reseauxIcons a {
+  text-decoration: none;
+}
+
+/*# sourceMappingURL=style.css.map */
