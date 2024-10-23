@@ -1,11 +1,23 @@
 import {display_spectacles} from "./spectacles_ui";
 import {loadSpectacles} from "./spectaclesLoader";
 
+
+
 export async function showSpectacles(){
+
     let spectacles = await loadSpectacles();
-    display_spectacles(spectacles);
+
+    //On récupere les styles différents des spectacles
+    let styles = [];
+    for (let i = 0; i < spectacles.spectacles.length; i++) {
+        if (!styles.includes(spectacles.spectacles[i].spectacle.style)) {
+            styles.push(spectacles.spectacles[i].spectacle.style);
+        }
+    }
+
+    display_spectacles(spectacles, styles);
 }
 
-showSpectacles().catch(
-    (error) => console.error('Error displaying spectacles: ', error)
-);
+
+//On Ajoute un écouteur d'événement sur le bouton "spectacles" pour afficher les spectacles
+document.getElementById('spectacles').addEventListener('click', showSpectacles);

@@ -1,6 +1,5 @@
 import Handlebars from 'handlebars';
 import {loadSpectaclesDeLaSoiree} from "./soireeLoader";
-import {loadArtisteDeSpectacle} from "./spectaclesLoader";
 import {load} from "./loader";
 
 const source = document.getElementById('soireeTemplate').innerHTML;
@@ -12,10 +11,5 @@ export async function display_soiree(soiree) {
         spectacles.spectacles[i].artiste = await load(spectacles.spectacles[i].links.artistes.href);
     }
 
-
-    soiree.spectacles = spectacles;
-
-    console.log(soiree.spectacles);
-
-    document.getElementById('template').innerHTML = template(soiree);
+    document.getElementById('template').innerHTML = template({soiree: soiree, spectacles: spectacles.spectacles});
 }

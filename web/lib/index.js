@@ -5749,13 +5749,6 @@
     });
   }
 
-  // js/spectaclesLoader.js
-  function loadSpectacles() {
-    return __async(this, null, function* () {
-      return yield load("/spectacles");
-    });
-  }
-
   // js/soiree_ui.js
   var source = document.getElementById("soireeTemplate").innerHTML;
   var template = import_handlebars.default.compile(source);
@@ -5765,34 +5758,57 @@
       for (let i = 0; i < spectacles.spectacles.length; i++) {
         spectacles.spectacles[i].artiste = yield load(spectacles.spectacles[i].links.artistes.href);
       }
-      soiree.spectacles = spectacles;
-      console.log(soiree.spectacles);
-      document.getElementById("template").innerHTML = template(soiree);
+      document.getElementById("template").innerHTML = template({ soiree, spectacles: spectacles.spectacles });
+    });
+  }
+
+  // js/spectaclesLoader.js
+  function loadSpectacles() {
+    return __async(this, null, function* () {
+      return yield load("/spectacles");
+    });
+  }
+  function loadSpectaclesParStyle(style) {
+    return __async(this, null, function* () {
+      return yield load(`/spectacles?style=${style}`);
     });
   }
 
   // js/spectacles_ui.js
+  import_handlebars2.default.registerHelper("ifEquals", function(arg1, arg2, options) {
+    console.log(arg1, arg2);
+    return arg1 == arg2 ? options.fn(this) : options.inverse(this);
+  });
   var source2 = document.getElementById("spectaclesTemplate").innerHTML;
   var template2 = import_handlebars2.default.compile(source2);
-  function display_spectacles(spectacles) {
-    document.getElementById("template").innerHTML = template2(spectacles);
+  function display_spectacles(spectacles, styles, styleSelected) {
+    document.getElementById("template").innerHTML = template2({ spectacles: spectacles.spectacles, styles, styleSelected });
     document.querySelectorAll(".spectacle").forEach((spectacle) => {
       spectacle.addEventListener("click", () => __async(this, null, function* () {
         let soiree = yield load(spectacle.dataset.liensoiree);
         display_soiree(soiree.soiree);
       }));
     });
+    let styleMusique = document.getElementById("styleMusique");
+    styleMusique.addEventListener("change", () => __async(this, null, function* () {
+      let spectacles2 = yield loadSpectaclesParStyle(styleMusique.value);
+      display_spectacles(spectacles2, styles, styleMusique.value);
+    }));
   }
 
   // js/index.js
   function showSpectacles() {
     return __async(this, null, function* () {
       let spectacles = yield loadSpectacles();
-      display_spectacles(spectacles);
+      let styles = [];
+      for (let i = 0; i < spectacles.spectacles.length; i++) {
+        if (!styles.includes(spectacles.spectacles[i].spectacle.style)) {
+          styles.push(spectacles.spectacles[i].spectacle.style);
+        }
+      }
+      display_spectacles(spectacles, styles);
     });
   }
-  showSpectacles().catch(
-    (error) => console.error("Error displaying spectacles: ", error)
-  );
+  document.getElementById("spectacles").addEventListener("click", showSpectacles);
 })();
 //# sourceMappingURL=index.js.map

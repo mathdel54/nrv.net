@@ -4,6 +4,6 @@ export async function loadSpectacles(){
     return await load('/spectacles');
 }
 
-export async function loadArtisteDeSpectacle(idSpectacle){
-    return await load(`/spectacles/${idSpectacle}/artistes`);
+export async function loadSpectaclesParStyle(style){
+    return await load(`/spectacles?style=${style}`);
 }
