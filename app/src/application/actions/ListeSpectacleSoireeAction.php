@@ -29,15 +29,17 @@ class ListeSpectacleSoireeAction extends AbstractAction
             $data = [];
             foreach ($spectacles as $spectacle) {
                 $data[] = [
-                    'titre' => $spectacle->titre,
-                    'description' => $spectacle->description,
-                    'date' => $spectacle->horaire->format('Y-m-d'),
-                    'horaire' => $spectacle->horaire->format('H:i'),
-                    'images' => $spectacle->images,
-                    'style' => $spectacle->style,
-                    'links' => [
-                        'artistes' => ['href' => '/spectacles/' . $spectacle->ID . '/artistes'],
-                        'soiree' => ['href' => '/spectacles/' . $spectacle->ID . '/soiree']
+                    'spectacle' => [
+                        'titre' => $spectacle->titre,
+                        'description' => $spectacle->description,
+                        'date' => $spectacle->horaire->format('Y-m-d'),
+                        'horaire' => $spectacle->horaire->format('H:i'),
+                        'images' => $spectacle->images,
+                        'style' => $spectacle->style,
+                        'links' => [
+                            'artistes' => ['href' => '/spectacles/' . $spectacle->ID . '/artistes'],
+                            'soiree' => ['href' => '/spectacles/' . $spectacle->ID . '/soiree']
+                        ]
                     ]
                 ];
             }
@@ -66,8 +68,8 @@ class ListeSpectacleSoireeAction extends AbstractAction
         }
 
         $tabFinal = [
-            'type' => 'ressource',
-            'locale' => 'fr_FR',
+            'type' => 'collection',
+            'count' => count($data),
             'spectacles' => $data,
             'links' => [
                 'self' => ['href' => '/soirees/' . $id . '/spectacles'],

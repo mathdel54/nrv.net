@@ -114,8 +114,6 @@ class PDONrvRepository implements NrvRepositoryInterface
     /**
      * Méthode qui retourne la liste des spectacles par style
      * @param string $style
-     * @throws \nrv\core\repositoryInterfaces\RepositoryEntityNotFoundException
-     * @throws \nrv\core\repositoryInterfaces\RepositoryDatabaseErrorException
      * @return array
      * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
      * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
