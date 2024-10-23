@@ -48,7 +48,7 @@ class ServiceUser implements ServiceUserInterface
      * @param string $date
      * @return array liste des spectacles en DTO
      */
-    public function getSpectaclesByDate(DateTime $date): array
+    public function getSpectaclesByDate(string $date): array
     {
         $spectacles = $this->_nrvRepository->getSpectaclesByDate($date);
         $spectaclesDTO = [];

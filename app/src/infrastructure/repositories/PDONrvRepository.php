@@ -87,10 +87,9 @@ class PDONrvRepository implements NrvRepositoryInterface
      * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
      * @return array
      */
-    public function getSpectaclesByDate(DateTime $date): array
+    public function getSpectaclesByDate(string $date): array
     {
         try {
-            print_r($date);
             $stmt = $this->pdoNrv->prepare("SELECT * FROM spectacle WHERE horaire_previsonnel = :date");
             $stmt->execute(['date' => $date]);
             $spectacles = $stmt->fetchAll();
