@@ -4,7 +4,7 @@ import {display_buttons} from "./boutons_ui";
 
 
 
-export async function showSpectacles(){
+export async function init(){
 
     let spectacles = await loadSpectacles();
 
@@ -21,4 +21,4 @@ export async function showSpectacles(){
 }
 
 
-showSpectacles();
+init();
