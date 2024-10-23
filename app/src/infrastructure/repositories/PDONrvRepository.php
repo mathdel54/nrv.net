@@ -2,6 +2,7 @@
 
 namespace nrv\infrastructure\repositories;
 
+use DateTime;
 use nrv\core\domain\entities\artiste\Artiste;
 use nrv\core\repositoryInterface\NrvRepositoryInterface;
 use nrv\core\domain\entities\spectacle\Spectacle;
@@ -46,7 +47,7 @@ class PDONrvRepository implements NrvRepositoryInterface
         foreach ($spectacles as $spectacle) {
             $tabArtistes = $this->getArtistesBySpectacle($spectacle['id']);
             $tabImages = $this->getImagesBySpectacle($spectacle['id']);
-            $spec = new Spectacle($spectacle['titre'], $tabArtistes, $spectacle['description'], $tabImages, $spectacle['url_video'], new \DateTime($spectacle['horaire_previsionnel']), $spectacle['style']);
+            $spec = new Spectacle($spectacle['titre'], $tabArtistes, $spectacle['description'], $tabImages, $spectacle['url_video'], new DateTime($spectacle['horaire_previsionnel']), $spectacle['style']);
             $spec->setID($spectacle['id']);
             $tabSpectacles[] = $spec;
         }
@@ -74,7 +75,7 @@ class PDONrvRepository implements NrvRepositoryInterface
         }
         $tabArtistes = $this->getArtistesBySpectacle($spectacle['id']);
         $tabImages = $this->getImagesBySpectacle($spectacle['id']);
-        $spec = new Spectacle($spectacle['titre'], $tabArtistes, $spectacle['description'], $tabImages, $spectacle['url_video'], new \DateTime($spectacle['horaire_previsionnel']), $spectacle['style']);
+        $spec = new Spectacle($spectacle['titre'], $tabArtistes, $spectacle['description'], $tabImages, $spectacle['url_video'], new DateTime($spectacle['horaire_previsionnel']), $spectacle['style']);
         $spec->setID($spectacle['id']);
         return $spec;
     }
@@ -86,10 +87,11 @@ class PDONrvRepository implements NrvRepositoryInterface
      * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
      * @return array
      */
-    public function getSpectaclesByDate(string $date): array
+    public function getSpectaclesByDate(DateTime $date): array
     {
         try {
-            $stmt = $this->pdoNrv->prepare("SELECT * FROM spectacle WHERE date = :date");
+            print_r($date);
+            $stmt = $this->pdoNrv->prepare("SELECT * FROM spectacle WHERE horaire_previsonnel = :date");
             $stmt->execute(['date' => $date]);
             $spectacles = $stmt->fetchAll();
             if (!$spectacles) {
@@ -104,7 +106,7 @@ class PDONrvRepository implements NrvRepositoryInterface
         foreach ($spectacles as $spectacle) {
             $tabArtistes = $this->getArtistesBySpectacle($spectacle['id']);
             $tabImages = $this->getImagesBySpectacle($spectacle['id']);
-            $spec = new Spectacle($spectacle['titre'], $tabArtistes, $spectacle['description'], $tabImages, $spectacle['url_video'], new \DateTime($spectacle['horaire_previsionnel']), $spectacle['style']);
+            $spec = new Spectacle($spectacle['titre'], $tabArtistes, $spectacle['description'], $tabImages, $spectacle['url_video'], new DateTime($spectacle['horaire_previsionnel']), $spectacle['style']);
             $spec->setID($spectacle['id']);
             $tabSpectacles[] = $spec;
         }
@@ -136,7 +138,7 @@ class PDONrvRepository implements NrvRepositoryInterface
         foreach ($spectacles as $spectacle) {
             $tabArtistes = $this->getArtistesBySpectacle($spectacle['id']);
             $tabImages = $this->getImagesBySpectacle($spectacle['id']);
-            $spec = new Spectacle($spectacle['titre'], $tabArtistes, $spectacle['description'], $tabImages, $spectacle['url_video'], new \DateTime($spectacle['horaire_previsionnel']), $spectacle['style']);
+            $spec = new Spectacle($spectacle['titre'], $tabArtistes, $spectacle['description'], $tabImages, $spectacle['url_video'], new DateTime($spectacle['horaire_previsionnel']), $spectacle['style']);
             $spec->setID($spectacle['id']);
             $tabSpectacles[] = $spec;
         }
@@ -209,7 +211,7 @@ class PDONrvRepository implements NrvRepositoryInterface
         } catch (\PDOException $e) {
             throw new RepositoryDatabaseErrorException('Erreur lors de la récupération de la soirée', 0, $e);
         }
-        $soireeObj = new Soiree($soiree['nom'], $soiree['thematique'], new \DateTime($soiree['date_heure']), $this->getLieuById($soiree['lieu_id']), $this->getSpectaclesBySoireeId($soiree['id']), $soiree['tarif_normal'], $soiree['tarif_reduit']);
+        $soireeObj = new Soiree($soiree['nom'], $soiree['thematique'], new DateTime($soiree['date_heure']), $this->getLieuById($soiree['lieu_id']), $this->getSpectaclesBySoireeId($soiree['id']), $soiree['tarif_normal'], $soiree['tarif_reduit']);
         $soireeObj->setID($soiree['id']);
         return $soireeObj;
     }
@@ -278,7 +280,7 @@ class PDONrvRepository implements NrvRepositoryInterface
         foreach ($spectacles as $spectacle) {
             $tabArtistes = $this->getArtistesBySpectacle($spectacle['id']);
             $tabImages = $this->getImagesBySpectacle($spectacle['id']);
-            $spec = new Spectacle($spectacle['titre'], $tabArtistes, $spectacle['description'], $tabImages, $spectacle['url_video'], new \DateTime($spectacle['horaire_previsionnel']), $spectacle['style']);
+            $spec = new Spectacle($spectacle['titre'], $tabArtistes, $spectacle['description'], $tabImages, $spectacle['url_video'], new DateTime($spectacle['horaire_previsionnel']), $spectacle['style']);
             $spec->setID($spectacle['id']);
             $tabSpectacles[] = $spec;
         }
@@ -304,7 +306,7 @@ class PDONrvRepository implements NrvRepositoryInterface
         } catch (\PDOException $e) {
             throw new RepositoryDatabaseErrorException('Erreur lors de la récupération de la soirée', 0, $e);
         }
-        $soireeObj = new Soiree($soiree['nom'], $soiree['thematique'], new \DateTime($soiree['date_heure']), $this->getLieuById($soiree['lieu_id']), $this->getSpectaclesBySoireeId($soiree['id']), $soiree['tarif_normal'], $soiree['tarif_reduit']);
+        $soireeObj = new Soiree($soiree['nom'], $soiree['thematique'], new DateTime($soiree['date_heure']), $this->getLieuById($soiree['lieu_id']), $this->getSpectaclesBySoireeId($soiree['id']), $soiree['tarif_normal'], $soiree['tarif_reduit']);
         $soireeObj->setID($soiree['soiree_id']);
         return $soireeObj;
     }

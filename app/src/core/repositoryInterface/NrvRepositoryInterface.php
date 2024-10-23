@@ -2,6 +2,7 @@
 
 namespace nrv\core\repositoryInterface;
 
+use DateTime;
 use nrv\core\domain\entities\spectacle\Spectacle;
 use nrv\core\domain\entities\soiree\Soiree;
 use nrv\core\domain\entities\spectacle\LieuxSpectacle;
@@ -11,7 +12,7 @@ interface NrvRepositoryInterface
 
     public function getSpectacles(): array;
     public function getSpectacleById(string $id): Spectacle;
-    public function getSpectaclesByDate(string $date): array;
+    public function getSpectaclesByDate(DateTime $date): array;
     public function getSpectaclesByStyle(string $style): array;
     public function getArtistesBySpectacle(string $id): array;
     public function getImagesBySpectacle(string $id): array;

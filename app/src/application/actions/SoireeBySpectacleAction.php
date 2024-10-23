@@ -8,7 +8,7 @@ use nrv\application\renderer\JsonRenderer;
 use nrv\core\services\user\ServiceUserInterface;
 use nrv\core\services\user\ServiceUserNotFoundException;
 
-class SoireeBySpectacleAction
+class SoireeBySpectacleAction extends AbstractAction
 {
 
     protected ServiceUserInterface $serviceUser;

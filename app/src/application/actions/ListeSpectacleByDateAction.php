@@ -8,7 +8,7 @@ use nrv\application\renderer\JsonRenderer;
 use nrv\core\services\user\ServiceUserInterface;
 use nrv\core\services\user\ServiceUserNotFoundException;
 
-class ArtistesBySpectacleAction extends AbstractAction
+class ListeSpectacleByDateAction extends AbstractAction
 {
 
     protected ServiceUserInterface $serviceUser;
@@ -20,16 +20,28 @@ class ArtistesBySpectacleAction extends AbstractAction
 
     public function __invoke(ServerRequestInterface $rq, ResponseInterface $rs, array $args): ResponseInterface
     {
-        $id = $args['ID_Spectacle'];
+        $date = $args['date'];
+
+        if ($date) {
+            $date = new \DateTime($date);
+        }
 
         try {
-            $artistes = $this->serviceUser->getArtistesBySpectacle($id);
+            $spectacles = $this->serviceUser->getSpectaclesByDate($date);
             $data = [];
-            foreach ($artistes as $artiste) {
+            foreach ($spectacles as $spectacle) {
                 $data[] = [
-                    'nom' => $artiste->nom,
-                    'links' => [
-                        'self' => ['href' => '/spectacles/' . $id . '/artistes']
+                    'spectacle' => [
+                        'titre' => $spectacle->titre,
+                        'description' => $spectacle->description,
+                        'date' => $spectacle->horaire->format('Y-m-d'),
+                        'horaire' => $spectacle->horaire->format('H:i'),
+                        'images' => $spectacle->images,
+                        'style' => $spectacle->style,
+                        'links' => [
+                            'artistes' => ['href' => '/spectacles/' . $spectacle->ID . '/artistes'],
+                            'soiree' => ['href' => '/spectacles/' . $spectacle->ID . '/soiree']
+                        ]
                     ]
                 ];
             }
@@ -59,11 +71,11 @@ class ArtistesBySpectacleAction extends AbstractAction
 
         // On rajoute les liens HATEOAS
         $tabFinal = [
-            'type' => 'ressource',
-            'locale' => 'fr_FR',
-            'artistes' => $data,
+            'type' => 'collection',
+            'count' => count($data),
+            'spectacles' => $data,
             'links' => [
-                'spectacles' => ['href' => '/spectacles']
+                'self' => ['href' => '/spectacles'],
             ]
         ];
 

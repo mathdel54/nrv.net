@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use nrv\application\middlewares\Cors;
 
-return function(\Slim\App $app):\Slim\App {
+return function (\Slim\App $app): \Slim\App {
 
     $app->get('/', callable: nrv\application\actions\HomeAction::class)->setName('home');
 
@@ -21,6 +21,9 @@ return function(\Slim\App $app):\Slim\App {
 
     $app->get('/spectacles/{ID_Spectacle}/soiree', callable: nrv\application\actions\SoireeBySpectacleAction::class)
         ->setName('soireeBySpectacle');
+
+    $app->get('/spectales/{date}', callable: nrv\application\actions\ListeSpectacleByDateAction::class)
+        ->setName('spectaclesByDate');
 
     return $app;
 };

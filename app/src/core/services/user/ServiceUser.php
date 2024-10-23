@@ -2,6 +2,7 @@
 
 namespace nrv\core\services\user;
 
+use DateTime;
 use nrv\core\dto\spectacle\LieuxSpectacleDTO;
 use nrv\core\repositoryInterface\NrvRepositoryInterface;
 use nrv\core\dto\spectacle\SpectacleDTO;
@@ -47,7 +48,7 @@ class ServiceUser implements ServiceUserInterface
      * @param string $date
      * @return array liste des spectacles en DTO
      */
-    public function getSpectaclesByDate(string $date): array
+    public function getSpectaclesByDate(DateTime $date): array
     {
         $spectacles = $this->_nrvRepository->getSpectaclesByDate($date);
         $spectaclesDTO = [];
