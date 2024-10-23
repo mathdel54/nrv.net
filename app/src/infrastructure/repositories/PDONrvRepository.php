@@ -269,6 +269,9 @@ class PDONrvRepository implements NrvRepositoryInterface
             $stmt = $this->pdoNrv->prepare("SELECT * FROM spectacle WHERE soiree_id = :id");
             $stmt->execute(['id' => $id]);
             $spectacles = $stmt->fetchAll();
+            if(!$spectacles) {
+                throw new RepositoryEntityNotFoundException('Aucun spectacle trouvé');
+            }
         } catch (\PDOException $e) {
             throw new RepositoryDatabaseErrorException($e->getMessage(), 0, $e);
         }
@@ -304,8 +307,40 @@ class PDONrvRepository implements NrvRepositoryInterface
         } catch (\PDOException $e) {
             throw new RepositoryDatabaseErrorException('Erreur lors de la récupération de la soirée', 0, $e);
         }
-        $soireeObj = new Soiree($soiree['nom'], $soiree['thematique'], new \DateTime($soiree['date_heure']), $this->getLieuById($soiree['lieu_id']), $this->getSpectaclesBySoireeId($soiree['id']), $soiree['tarif_normal'], $soiree['tarif_reduit']);
+        $soireeObj = new Soiree($soiree['nom'], $soiree['thematique'], new \DateTime($soiree['date_heure']), $this->getLieuById($soiree['lieu_id']), $this->getSpectaclesBySoireeId($soiree['soiree_id']), $soiree['tarif_normal'], $soiree['tarif_reduit']);
         $soireeObj->setID($soiree['soiree_id']);
         return $soireeObj;
+    }
+
+    /**
+     * Méthode qui retourne la liste des spectacles par style
+     * @param string $style
+     * @return array
+     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
+     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
+     */
+    public function getSpectacleByStyle(string $style): array
+    {
+        try {
+            $stmt = $this->pdoNrv->prepare("SELECT * FROM spectacle WHERE style = :style");
+            $stmt->execute(['style' => $style]);
+            $spectacles = $stmt->fetchAll();
+            if (!$spectacles) {
+                throw new RepositoryEntityNotFoundException('Aucun spectacle trouvé');
+            }
+        } catch (\PDOException $e) {
+            throw new RepositoryDatabaseErrorException('Erreur lors de la récupération des spectacles', 0, $e);
+        }
+        $tabSpectacles = [];
+        $tabArtistes = [];
+        $tabImages = [];
+        foreach ($spectacles as $spectacle) {
+            $tabArtistes = $this->getArtistesBySpectacle($spectacle['id']);
+            $tabImages = $this->getImagesBySpectacle($spectacle['id']);
+            $spec = new Spectacle($spectacle['titre'], $tabArtistes, $spectacle['description'], $tabImages, $spectacle['url_video'], new \DateTime($spectacle['horaire_previsionnel']), $spectacle['style']);
+            $spec->setID($spectacle['id']);
+            $tabSpectacles[] = $spec;
+        }
+        return $tabSpectacles;
     }
 }
