@@ -1,0 +1,110 @@
+@use 'placeholder';
+@use 'sass:math';
+
+$color: #0cf;
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #ffffff;
+
+    nav {
+        a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: black;
+        }
+    }
+
+    .authentif-bouttons {
+        a {
+            display: inline;
+            font-size: 16px;
+            text-decoration: none;
+            padding: 5px 10px;
+            color: #333;
+            border: 1px solid #333;
+            border-radius: 5px;
+            text-align: center;
+            position: relative;
+            transition: all .35s;
+        }
+
+        a span {
+            position: relative;
+            z-index: 2;
+        }
+
+        a:after {
+            position: absolute;
+            content: "";
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: #a8a8a8;
+            transition: all .35s;
+        }
+
+        a:hover {
+            color: #fff;
+        }
+
+        a:hover:after {
+            width: 100%;
+        }
+    }
+
+
+}
+
+.banniere {
+    background-color: #f5b5b2;
+    padding: 150px;
+    text-align: center;
+
+    h1 {
+        font-size: 3em;
+        margin: 0;
+    }
+
+    p {
+        font-size: 1.5em;
+        color: #666;
+    }
+}
+
+footer {
+    background-color: #f5f5f5;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+
+    ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+            margin: 5px 0;
+        }
+    }
+
+    .reseauxIcons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 20px;
+
+        a {
+            text-decoration: none;
+        }
+    }
+}
