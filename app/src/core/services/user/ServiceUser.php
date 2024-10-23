@@ -149,4 +149,19 @@ class ServiceUser implements ServiceUserInterface
         $soiree = $this->_nrvRepository->getSoireeBySpectacleId($id);
         return $soiree->toDTO();
     }
+
+    /**
+     * Méthode qui retourne la liste des spectacles par lieu
+     * @param string $id
+     * @return array
+     */
+    public function getSpectaclesByLieu(string $id): array
+    {
+        $spectacles = $this->_nrvRepository->getSpectaclesByLieu($id);
+        $spectaclesDTO = [];
+        foreach ($spectacles as $spectacle) {
+            $spectaclesDTO[] = $spectacle->toDTO();
+        }
+        return $spectaclesDTO;
+    }
 }

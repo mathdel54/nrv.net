@@ -19,4 +19,5 @@ interface ServiceUserInterface
     public function getImagesByLieu(string $id): array;
     public function getSpectaclesBySoireeId(string $id): array;
     public function getSoireeBySpectacleId(string $id): SoireeDTO;
+    public function getSpectaclesByLieu(string $id): array;
 }

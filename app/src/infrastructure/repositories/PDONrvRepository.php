@@ -308,4 +308,29 @@ class PDONrvRepository implements NrvRepositoryInterface
         $soireeObj->setID($soiree['soiree_id']);
         return $soireeObj;
     }
+
+    public function getSpectaclesByLieu(string $id): array
+    {
+        try {
+            $stmt = $this->pdoNrv->prepare("SELECT * FROM spectacle INNER JOIN soiree ON soiree_id = soiree.id INNER JOIN lieu ON lieu_id = lieu.id WHERE lieu.id = :id");
+            $stmt->execute(['id' => $id]);
+            $spectacles = $stmt->fetchAll();
+            if (!$spectacles) {
+                throw new RepositoryEntityNotFoundException('Aucun spectacle trouvé');
+            }
+        } catch (\PDOException $e) {
+            throw new RepositoryDatabaseErrorException($e->getMessage(), 0, $e);
+        }
+        $tabSpectacles = [];
+        $tabArtistes = [];
+        $tabImages = [];
+        foreach ($spectacles as $spectacle) {
+            $tabArtistes = $this->getArtistesBySpectacle($spectacle['id']);
+            $tabImages = $this->getImagesBySpectacle($spectacle['id']);
+            $spec = new Spectacle($spectacle['titre'], $tabArtistes, $spectacle['description'], $tabImages, $spectacle['url_video'], new \DateTime($spectacle['horaire_previsionnel']), $spectacle['style']);
+            $spec->setID($spectacle['id']);
+            $tabSpectacles[] = $spec;
+        }
+        return $tabSpectacles;
+    }
 }
