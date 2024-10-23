@@ -4,5 +4,5 @@ app/vendor
 .DS_Store
 *.idea
 .idea
-composer.lock
+*.lock
 web/node_modules
