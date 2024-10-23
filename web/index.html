@@ -30,58 +30,70 @@
         </section>
     </div>
 
+    <div id="templateBoutons">
+    </div>
     <div id="template">
     </div>
 
+    <script id="buttonsTemplate" type="text/x-handlebars-template">
+    <button>Style</button>
+    <br>
+    {{#each styles}}
+        <button class="filtreStyle" data-style="{{this}}">{{this}}</button>
+    {{/each}}
+</script>
+
     <script id="spectaclesTemplate" type="text/x-handlebars-template">
-        <h2>Affichage de la liste des spectacles :</h2>
-        <ul>
-            {{#each spectacles}}
-                <li class="spectacle" data-lienSoiree="{{links.soiree.href}}">
-                    <h3>{{titre}}</h3>
-                    <p>Date: {{date}}</p>
-                    <p>Horaire: {{horaire}}</p>
-                    <p>Image: <img src="{{images.[0]}}" alt="image"></p>
-                </li>
-            {{/each}}
-        </ul>
-    </script>
+    <h2>Affichage de la liste des spectacles {{#if styleSelected}}trié par {{styleSelected}}{{/if}} :</h2>
+
+    <ul>
+        {{#each spectacles}}
+            <li class="spectacle" data-lienSoiree="{{links.soiree.href}}">
+                <h3>{{spectacle.titre}}</h3>
+                <p>Date: {{spectacle.date}}</p>
+                <p>Horaire: {{spectacle.horaire}}</p>
+                <p>Image: <img src="{{spectacle.images.[0]}}" alt="image"></p>
+            </li>
+        {{/each}}
+    </ul>
+</script>
 
     <script id="soireeTemplate" type="text/x-handlebars-template">
-        <h2>Affichage de la soirée :</h2>
-        <h3>{{nom}}</h3>
-        <p>Thématique: {{theme}}</p>
-        <p>Date: {{date}}</p>
-        <p>Heure: {{horaire}}</p>
-        <h4>Lieu: </h4>
-            <p>nom : {{lieu.nom}}</p>
-            <p>adresse : {{lieu.adresse}}</p>
-            <p>places assises : {{lieu.placesAssises}}</p>
-            <p>places debout : {{lieu.placesDebout}}</p>
-        <br>
-        <p>Tarif normal: {{tarifNormal}}</p>
-        <p>Tarif réduit: {{tarifReduit}}</p>
+    <h2>Affichage de la soirée :</h2>
+    <h3>{{soiree.nom}}</h3>
+    <p>Thématique: {{soiree.theme}}</p>
+    <p>Date: {{soiree.date}}</p>
+    <p>Heure: {{soiree.horaire}}</p>
+    <p>Lieu: </p>
+    <ul>
+        <li>nom : {{soiree.lieu.nom}}</li>
+        <li>adresse : {{soiree.lieu.adresse}}</li>
+        <li>places assises : {{soiree.lieu.placesAssises}}</li>
+        <li>places debout : {{soiree.lieu.placesDebout}}</li>
+    </ul>
+    <p>Tarif normal: {{soiree.tarifNormal}}</p>
+    <p>Tarif réduit: {{soiree.tarifReduit}}</p>
 
-        <h4>Spectacles :</h4>
-        <ul>
-            {{#each spectacles.spectacles}}
-                <li>
-                    <h5>{{titre}}</h5>
-                    <p>Artistes: </p>
-                    <ul>
-                        {{#each artiste.artistes}}
-                            <li>{{nom}} </li>
-                        {{/each}}
-                    </ul>
-                    <p>Description: {{description}}</p>
-                    <p>Style: {{style}}</p>
-                    <video controls>
-                        <source src="{{video}}" type="video/mp4">
-                    </video>
-                </li>
-            {{/each}}
-        </ul>
-    </script>
+    <h4>Spectacles :</h4>
+    <ul>
+        {{#each spectacles}}
+            <li>
+                <h5>{{spectacle.titre}}</h5>
+                <p>Artistes: </p>
+                <ul>
+                    {{#each artiste.artistes}}
+                        <li>{{nom}} </li>
+                    {{/each}}
+                </ul>
+                <p>Description: {{spectacle.description}}</p>
+                <p>Style: {{spectacle.style}}</p>
+                <video controls>
+                    <source src="{{spectacle.video}}" type="video/mp4">
+                </video>
+            </li>
+        {{/each}}
+    </ul>
+</script>
 
     <footer>
         <div class="reseauxIcons">

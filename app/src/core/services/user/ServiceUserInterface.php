@@ -10,6 +10,7 @@ use nrv\core\dto\soiree\SoireeDTO;
 interface ServiceUserInterface
 {
     public function getSpectacles(): array;
+    public function getLieux(): array;
     public function getSpectacleById(string $id): SpectacleDTO;
     public function getSpectaclesByDate(string $date): array;
     public function getSpectaclesByStyle(string $style): array;

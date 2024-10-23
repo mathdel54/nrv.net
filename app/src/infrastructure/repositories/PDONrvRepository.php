@@ -4,6 +4,7 @@ namespace nrv\infrastructure\repositories;
 
 use DateTime;
 use nrv\core\domain\entities\artiste\Artiste;
+use nrv\core\domain\entities\lieu\Lieu;
 use nrv\core\repositoryInterface\NrvRepositoryInterface;
 use nrv\core\domain\entities\spectacle\Spectacle;
 use nrv\core\repositoryInterface\RepositoryDatabaseErrorException;
@@ -53,6 +54,33 @@ class PDONrvRepository implements NrvRepositoryInterface
             $tabSpectacles[] = $spec;
         }
         return $tabSpectacles;
+    }
+
+    /**
+     * Méthode qui retourne la liste des lieux
+     * @return array
+     * @throws RepositoryDatabaseErrorException
+     * @throws RepositoryEntityNotFoundException
+     */
+    public function getLieux(): array
+    {
+        try {
+            $stmt = $this->pdoNrv->prepare("SELECT * FROM lieu");
+            $stmt->execute();
+            $lieus = $stmt->fetchAll();
+            if (!$lieus) {
+                throw new RepositoryEntityNotFoundException('Aucun lieu trouvé');
+            }
+        } catch (\PDOException $e) {
+            throw new RepositoryDatabaseErrorException('Erreur lors de la récupération des lieus', 0, $e);
+        }
+        $tabLieus = [];
+        foreach ($lieus as $lieu) {
+            $lieuObj = new Lieu($lieu['ville'], $lieu['adresse'], $lieu['nom'], $lieu['nb_places_assises'], $lieu['nb_places_debout']);
+            $lieuObj->setID($lieu['id']);
+            $tabLieus[] = $lieuObj;
+        }
+        return $tabLieus;
     }
 
     /**

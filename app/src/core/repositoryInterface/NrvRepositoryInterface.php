@@ -11,6 +11,7 @@ interface NrvRepositoryInterface
 {
 
     public function getSpectacles(): array;
+    public function getLieux(): array;
     public function getSpectacleById(string $id): Spectacle;
     public function getSpectaclesByDate(string $date): array;
     public function getSpectaclesByStyle(string $style): array;

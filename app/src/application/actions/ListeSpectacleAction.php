@@ -25,7 +25,7 @@ class ListeSpectacleAction extends AbstractAction
         try {
             if (isset($style)) {
                 $spectacles = $this->serviceUser->getSpectaclesByStyle($style);
-            } if(isset($date)) {
+            } else if(isset($date)) {
                 $spectacles = $this->serviceUser->getSpectaclesByDate($date);
             } else {
                 $spectacles = $this->serviceUser->getSpectacles();

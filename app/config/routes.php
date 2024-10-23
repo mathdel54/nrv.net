@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-use nrv\application\middlewares\Cors;
+use nrv\application\actions\ListeSpectacleByLieuAction;
+use Slim\App;
 
-return function (\Slim\App $app): \Slim\App {
+return function (App $app): App {
 
     $app->get('/', callable: nrv\application\actions\HomeAction::class)->setName('home');
 
@@ -22,11 +23,14 @@ return function (\Slim\App $app): \Slim\App {
     $app->get('/spectacles/{ID_Spectacle}/soiree', callable: nrv\application\actions\SoireeBySpectacleAction::class)
         ->setName('soireeBySpectacle');
 
-    $app->get('/lieu/{ID_Lieu}/spectacles', callable: \nrv\application\actions\ListeSpectacleByLieuAction::class)
+    $app->get('/lieu/{ID_Lieu}/spectacles', callable: ListeSpectacleByLieuAction::class)
         ->setName('spectaclesByLieu');
 
     $app->get('/users/{id_user}/billets', callable: nrv\application\actions\ListeBilletUser::class)
         ->setName('billetsUser');
+
+    $app->get('/lieux', callable: nrv\application\actions\ListeLieuAction::class)
+        ->setName('lieux');
 
     return $app;
 };
