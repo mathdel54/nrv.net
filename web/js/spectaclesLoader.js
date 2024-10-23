@@ -7,3 +7,7 @@ export async function loadSpectacles(){
 export async function loadSpectaclesParStyle(style){
     return await load(`/spectacles?style=${style}`);
 }
+
+export async function loadSpectaclesParLieu(idLieu){
+    return await load(`/lieux/${idLieu}/spectacles`);
+}

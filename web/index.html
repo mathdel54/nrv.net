@@ -40,6 +40,13 @@
     {{#each styles}}
         <button class="filtreStyle" data-style="{{this}}">{{this}}</button>
     {{/each}}
+    <br>
+
+    <button>Lieu</button>
+    <br>
+    {{#each lieux}}
+        <button class="filtreLieu" data-lieu="{{lieu.ID}}">{{lieu.nom}}</button>
+    {{/each}}
 </script>
 
 <script id="spectaclesTemplate" type="text/x-handlebars-template">

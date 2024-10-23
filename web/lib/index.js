@@ -5786,35 +5786,55 @@
       return yield load(`/spectacles?style=${style}`);
     });
   }
+  function loadSpectaclesParLieu(idLieu) {
+    return __async(this, null, function* () {
+      return yield load(`/lieux/${idLieu}/spectacles`);
+    });
+  }
 
   // js/boutons_ui.js
   var import_handlebars3 = __toESM(require_handlebars());
   var source3 = document.getElementById("buttonsTemplate").innerHTML;
   var template3 = import_handlebars3.default.compile(source3);
-  function display_buttons(styles) {
-    document.getElementById("templateBoutons").innerHTML = template3({ styles });
+  function display_buttons(styles, lieux) {
+    document.getElementById("templateBoutons").innerHTML = template3({ styles, lieux });
     document.querySelectorAll(".filtreStyle").forEach((style) => {
       style.addEventListener("click", () => __async(this, null, function* () {
         let spectacles = yield loadSpectaclesParStyle(style.dataset.style);
         display_spectacles(spectacles, style.dataset.style);
       }));
     });
+    document.querySelectorAll(".filtreLieu").forEach((lieu) => {
+      lieu.addEventListener("click", () => __async(this, null, function* () {
+        let spectacles = yield loadSpectaclesParLieu(lieu.dataset.lieu);
+        display_spectacles(spectacles, lieu.innerHTML);
+      }));
+    });
+  }
+
+  // js/lieuLoader.js
+  function loadLieux() {
+    return __async(this, null, function* () {
+      return yield load("/lieux");
+    });
   }
 
   // js/index.js
-  function showSpectacles() {
+  function init() {
     return __async(this, null, function* () {
       let spectacles = yield loadSpectacles();
+      display_spectacles(spectacles);
       let styles = [];
       for (let i = 0; i < spectacles.spectacles.length; i++) {
         if (!styles.includes(spectacles.spectacles[i].spectacle.style)) {
           styles.push(spectacles.spectacles[i].spectacle.style);
         }
       }
-      display_spectacles(spectacles);
-      display_buttons(styles);
+      let lieux = yield loadLieux();
+      console.log(lieux.lieux);
+      display_buttons(styles, lieux.lieux);
     });
   }
-  showSpectacles();
+  init();
 })();
 //# sourceMappingURL=index.js.map

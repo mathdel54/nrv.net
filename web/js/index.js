@@ -1,12 +1,12 @@
 import {display_spectacles} from "./spectacles_ui";
 import {loadSpectacles} from "./spectaclesLoader";
 import {display_buttons} from "./boutons_ui";
-
-
+import {loadLieux} from "./lieuLoader";
 
 export async function init(){
 
     let spectacles = await loadSpectacles();
+    display_spectacles(spectacles);
 
     //On récupere les styles différents des spectacles
     let styles = [];
@@ -16,9 +16,10 @@ export async function init(){
         }
     }
 
-    display_spectacles(spectacles);
-    display_buttons(styles);
-}
+    let lieux = await loadLieux();
+    console.log(lieux.lieux);
 
+    display_buttons(styles, lieux.lieux);
+}
 
 init();
