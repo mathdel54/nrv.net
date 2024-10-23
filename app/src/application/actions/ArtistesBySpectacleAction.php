@@ -27,6 +27,7 @@ class ArtistesBySpectacleAction extends AbstractAction
             $data = [];
             foreach ($artistes as $artiste) {
                 $data[] = [
+                    'artiste' => $artiste->ID,
                     'nom' => $artiste->nom,
                     'links' => [
                         'self' => ['href' => '/spectacles/' . $id . '/artistes']
@@ -63,6 +64,7 @@ class ArtistesBySpectacleAction extends AbstractAction
             'locale' => 'fr_FR',
             'artistes' => $data,
             'links' => [
+                'self' => ['href' => '/spectacles/' . $id . '/artistes'],
                 'spectacles' => ['href' => '/spectacles']
             ]
         ];

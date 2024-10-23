@@ -3,6 +3,7 @@
 use nrv\application\actions\DetailSoireeAction;
 use nrv\application\actions\ListeSpectacleAction;
 use nrv\application\actions\ListeSpectacleSoireeAction;
+use nrv\application\actions\SpectacleByStyleAction;
 use nrv\core\services\user\ServiceUserInterface;
 use Psr\Container\ContainerInterface;
 use nrv\core\services\user\ServiceUser;
@@ -37,5 +38,5 @@ return [
 
     ListeSpectacleSoireeAction::class => function (ContainerInterface $c) {
         return new ListeSpectacleSoireeAction($c->get(ServiceUserInterface::class));
-    }
+    },
 ];
