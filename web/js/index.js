@@ -1,5 +1,6 @@
 import {display_spectacles} from "./spectacles_ui";
 import {loadSpectacles} from "./spectaclesLoader";
+import {display_buttons} from "./boutons_ui";
 
 
 
@@ -15,9 +16,9 @@ export async function showSpectacles(){
         }
     }
 
-    display_spectacles(spectacles, styles);
+    display_spectacles(spectacles);
+    display_buttons(styles);
 }
 
 
-//On Ajoute un écouteur d'événement sur le bouton "spectacles" pour afficher les spectacles
 showSpectacles();

@@ -29,16 +29,22 @@
     <p>NRV</p>
 </section>
 
+<div id="templateBoutons">
+</div>
 <div id="template">
 </div>
 
-<script id="spectaclesTemplate" type="text/x-handlebars-template">
-    <h2>Affichage de la liste des spectacles {{#if styleSelected}}trié par {{styleSelected}}{{/if}} :</h2>
+<script id="buttonsTemplate" type="text/x-handlebars-template">
     <button>Style</button>
     <br>
     {{#each styles}}
         <button class="filtreStyle" data-style="{{this}}">{{this}}</button>
     {{/each}}
+</script>
+
+<script id="spectaclesTemplate" type="text/x-handlebars-template">
+    <h2>Affichage de la liste des spectacles {{#if styleSelected}}trié par {{styleSelected}}{{/if}} :</h2>
+
     <ul>
         {{#each spectacles}}
             <li class="spectacle" data-lienSoiree="{{links.soiree.href}}">

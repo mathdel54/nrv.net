@@ -810,7 +810,7 @@
       "use strict";
       exports.__esModule = true;
       exports.checkRevision = checkRevision;
-      exports.template = template3;
+      exports.template = template4;
       exports.wrapProgram = wrapProgram;
       exports.resolvePartial = resolvePartial;
       exports.invokePartial = invokePartial;
@@ -852,7 +852,7 @@
           throw new _exception2["default"]("Template was precompiled with a newer version of Handlebars than the current runtime. Please update your runtime to a newer version (" + compilerInfo[1] + ").");
         }
       }
-      function template3(templateSpec, env) {
+      function template4(templateSpec, env) {
         if (!env) {
           throw new _exception2["default"]("No environment passed to template");
         }
@@ -1118,7 +1118,7 @@
     "node_modules/handlebars/dist/cjs/handlebars/no-conflict.js"(exports, module) {
       "use strict";
       exports.__esModule = true;
-      exports["default"] = function(Handlebars3) {
+      exports["default"] = function(Handlebars4) {
         (function() {
           if (typeof globalThis === "object") return;
           Object.prototype.__defineGetter__("__magic__", function() {
@@ -1128,11 +1128,11 @@
           delete Object.prototype.__magic__;
         })();
         var $Handlebars = globalThis.Handlebars;
-        Handlebars3.noConflict = function() {
-          if (globalThis.Handlebars === Handlebars3) {
+        Handlebars4.noConflict = function() {
+          if (globalThis.Handlebars === Handlebars4) {
             globalThis.Handlebars = $Handlebars;
           }
-          return Handlebars3;
+          return Handlebars4;
         };
       };
       module.exports = exports["default"];
@@ -2233,8 +2233,8 @@
           throw new _exception2["default"](open.path.original + " doesn't match " + close, errorNode);
         }
       }
-      function SourceLocation(source3, locInfo) {
-        this.source = source3;
+      function SourceLocation(source4, locInfo) {
+        this.source = source4;
         this.start = {
           line: locInfo.first_line,
           column: locInfo.first_column
@@ -3440,15 +3440,15 @@
       SourceMapGenerator.prototype.addMapping = function SourceMapGenerator_addMapping(aArgs) {
         var generated = util.getArg(aArgs, "generated");
         var original = util.getArg(aArgs, "original", null);
-        var source3 = util.getArg(aArgs, "source", null);
+        var source4 = util.getArg(aArgs, "source", null);
         var name = util.getArg(aArgs, "name", null);
         if (!this._skipValidation) {
-          this._validateMapping(generated, original, source3, name);
+          this._validateMapping(generated, original, source4, name);
         }
-        if (source3 != null) {
-          source3 = String(source3);
-          if (!this._sources.has(source3)) {
-            this._sources.add(source3);
+        if (source4 != null) {
+          source4 = String(source4);
+          if (!this._sources.has(source4)) {
+            this._sources.add(source4);
           }
         }
         if (name != null) {
@@ -3462,22 +3462,22 @@
           generatedColumn: generated.column,
           originalLine: original != null && original.line,
           originalColumn: original != null && original.column,
-          source: source3,
+          source: source4,
           name
         });
       };
       SourceMapGenerator.prototype.setSourceContent = function SourceMapGenerator_setSourceContent(aSourceFile, aSourceContent) {
-        var source3 = aSourceFile;
+        var source4 = aSourceFile;
         if (this._sourceRoot != null) {
-          source3 = util.relative(this._sourceRoot, source3);
+          source4 = util.relative(this._sourceRoot, source4);
         }
         if (aSourceContent != null) {
           if (!this._sourcesContents) {
             this._sourcesContents = /* @__PURE__ */ Object.create(null);
           }
-          this._sourcesContents[util.toSetString(source3)] = aSourceContent;
+          this._sourcesContents[util.toSetString(source4)] = aSourceContent;
         } else if (this._sourcesContents) {
-          delete this._sourcesContents[util.toSetString(source3)];
+          delete this._sourcesContents[util.toSetString(source4)];
           if (Object.keys(this._sourcesContents).length === 0) {
             this._sourcesContents = null;
           }
@@ -3520,9 +3520,9 @@
               }
             }
           }
-          var source3 = mapping.source;
-          if (source3 != null && !newSources.has(source3)) {
-            newSources.add(source3);
+          var source4 = mapping.source;
+          if (source4 != null && !newSources.has(source4)) {
+            newSources.add(source4);
           }
           var name = mapping.name;
           if (name != null && !newNames.has(name)) {
@@ -3614,14 +3614,14 @@
         return result;
       };
       SourceMapGenerator.prototype._generateSourcesContent = function SourceMapGenerator_generateSourcesContent(aSources, aSourceRoot) {
-        return aSources.map(function(source3) {
+        return aSources.map(function(source4) {
           if (!this._sourcesContents) {
             return null;
           }
           if (aSourceRoot != null) {
-            source3 = util.relative(aSourceRoot, source3);
+            source4 = util.relative(aSourceRoot, source4);
           }
-          var key = util.toSetString(source3);
+          var key = util.toSetString(source4);
           return Object.prototype.hasOwnProperty.call(this._sourcesContents, key) ? this._sourcesContents[key] : null;
         }, this);
       };
@@ -3809,10 +3809,10 @@
         }
         var sourceRoot = this.sourceRoot;
         mappings.map(function(mapping) {
-          var source3 = mapping.source === null ? null : this._sources.at(mapping.source);
-          source3 = util.computeSourceURL(sourceRoot, source3, this._sourceMapURL);
+          var source4 = mapping.source === null ? null : this._sources.at(mapping.source);
+          source4 = util.computeSourceURL(sourceRoot, source4, this._sourceMapURL);
           return {
-            source: source3,
+            source: source4,
             generatedLine: mapping.generatedLine,
             generatedColumn: mapping.generatedColumn,
             originalLine: mapping.originalLine,
@@ -3886,8 +3886,8 @@
         if (sourceRoot) {
           sourceRoot = util.normalize(sourceRoot);
         }
-        sources = sources.map(String).map(util.normalize).map(function(source3) {
-          return sourceRoot && util.isAbsolute(sourceRoot) && util.isAbsolute(source3) ? util.relative(sourceRoot, source3) : source3;
+        sources = sources.map(String).map(util.normalize).map(function(source4) {
+          return sourceRoot && util.isAbsolute(sourceRoot) && util.isAbsolute(source4) ? util.relative(sourceRoot, source4) : source4;
         });
         this._names = ArraySet.fromArray(names.map(String), true);
         this._sources = ArraySet.fromArray(sources, true);
@@ -4081,17 +4081,17 @@
         if (index >= 0) {
           var mapping = this._generatedMappings[index];
           if (mapping.generatedLine === needle.generatedLine) {
-            var source3 = util.getArg(mapping, "source", null);
-            if (source3 !== null) {
-              source3 = this._sources.at(source3);
-              source3 = util.computeSourceURL(this.sourceRoot, source3, this._sourceMapURL);
+            var source4 = util.getArg(mapping, "source", null);
+            if (source4 !== null) {
+              source4 = this._sources.at(source4);
+              source4 = util.computeSourceURL(this.sourceRoot, source4, this._sourceMapURL);
             }
             var name = util.getArg(mapping, "name", null);
             if (name !== null) {
               name = this._names.at(name);
             }
             return {
-              source: source3,
+              source: source4,
               line: util.getArg(mapping, "originalLine", null),
               column: util.getArg(mapping, "originalColumn", null),
               name
@@ -4142,9 +4142,9 @@
         }
       };
       BasicSourceMapConsumer.prototype.generatedPositionFor = function SourceMapConsumer_generatedPositionFor(aArgs) {
-        var source3 = util.getArg(aArgs, "source");
-        source3 = this._findSourceIndex(source3);
-        if (source3 < 0) {
+        var source4 = util.getArg(aArgs, "source");
+        source4 = this._findSourceIndex(source4);
+        if (source4 < 0) {
           return {
             line: null,
             column: null,
@@ -4152,7 +4152,7 @@
           };
         }
         var needle = {
-          source: source3,
+          source: source4,
           originalLine: util.getArg(aArgs, "line"),
           originalColumn: util.getArg(aArgs, "column")
         };
@@ -4311,10 +4311,10 @@
           var sectionMappings = section.consumer._generatedMappings;
           for (var j = 0; j < sectionMappings.length; j++) {
             var mapping = sectionMappings[j];
-            var source3 = section.consumer._sources.at(mapping.source);
-            source3 = util.computeSourceURL(section.consumer.sourceRoot, source3, this._sourceMapURL);
-            this._sources.add(source3);
-            source3 = this._sources.indexOf(source3);
+            var source4 = section.consumer._sources.at(mapping.source);
+            source4 = util.computeSourceURL(section.consumer.sourceRoot, source4, this._sourceMapURL);
+            this._sources.add(source4);
+            source4 = this._sources.indexOf(source4);
             var name = null;
             if (mapping.name) {
               name = section.consumer._names.at(mapping.name);
@@ -4322,7 +4322,7 @@
               name = this._names.indexOf(name);
             }
             var adjustedMapping = {
-              source: source3,
+              source: source4,
               generatedLine: mapping.generatedLine + (section.generatedOffset.generatedLine - 1),
               generatedColumn: mapping.generatedColumn + (section.generatedOffset.generatedLine === mapping.generatedLine ? section.generatedOffset.generatedColumn - 1 : 0),
               originalLine: mapping.originalLine,
@@ -4422,11 +4422,11 @@
           if (mapping === null || mapping.source === void 0) {
             node.add(code);
           } else {
-            var source3 = aRelativePath ? util.join(aRelativePath, mapping.source) : mapping.source;
+            var source4 = aRelativePath ? util.join(aRelativePath, mapping.source) : mapping.source;
             node.add(new SourceNode(
               mapping.originalLine,
               mapping.originalColumn,
-              source3,
+              source4,
               code,
               mapping.name
             ));
@@ -4679,18 +4679,18 @@
         isEmpty: function isEmpty() {
           return !this.source.length;
         },
-        prepend: function prepend(source3, loc) {
-          this.source.unshift(this.wrap(source3, loc));
+        prepend: function prepend(source4, loc) {
+          this.source.unshift(this.wrap(source4, loc));
         },
-        push: function push(source3, loc) {
-          this.source.push(this.wrap(source3, loc));
+        push: function push(source4, loc) {
+          this.source.push(this.wrap(source4, loc));
         },
         merge: function merge() {
-          var source3 = this.empty();
+          var source4 = this.empty();
           this.each(function(line) {
-            source3.add(["  ", line, "\n"]);
+            source4.add(["  ", line, "\n"]);
           });
-          return source3;
+          return source4;
         },
         each: function each(iter) {
           for (var i = 0, len = this.source.length; i < len; i++) {
@@ -4784,18 +4784,18 @@
           var revision = _base.COMPILER_REVISION, versions = _base.REVISION_CHANGES[revision];
           return [revision, versions];
         },
-        appendToBuffer: function appendToBuffer(source3, location, explicit) {
-          if (!_utils.isArray(source3)) {
-            source3 = [source3];
+        appendToBuffer: function appendToBuffer(source4, location, explicit) {
+          if (!_utils.isArray(source4)) {
+            source4 = [source4];
           }
-          source3 = this.source.wrap(source3, location);
+          source4 = this.source.wrap(source4, location);
           if (this.environment.isSimple) {
-            return ["return ", source3, ";"];
+            return ["return ", source4, ";"];
           } else if (explicit) {
-            return ["buffer += ", source3, ";"];
+            return ["buffer += ", source4, ";"];
           } else {
-            source3.appendToBuffer = true;
-            return source3;
+            source4.appendToBuffer = true;
+            return source4;
           }
         },
         initializeBuffer: function initializeBuffer() {
@@ -4943,12 +4943,12 @@
           if (this.useDepths) {
             params.push("depths");
           }
-          var source3 = this.mergeSource(varDeclarations);
+          var source4 = this.mergeSource(varDeclarations);
           if (asObject) {
-            params.push(source3);
+            params.push(source4);
             return Function.apply(this, params);
           } else {
-            return this.source.wrap(["function(", params.join(","), ") {\n  ", source3, "}"]);
+            return this.source.wrap(["function(", params.join(","), ") {\n  ", source4, "}"]);
           }
         },
         mergeSource: function mergeSource(varDeclarations) {
@@ -5457,13 +5457,13 @@
         pushStackLiteral: function pushStackLiteral(item) {
           this.push(new Literal(item));
         },
-        pushSource: function pushSource(source3) {
+        pushSource: function pushSource(source4) {
           if (this.pendingContent) {
             this.source.push(this.appendToBuffer(this.source.quotedString(this.pendingContent), this.pendingLocation));
             this.pendingContent = void 0;
           }
-          if (source3) {
-            this.source.push(source3);
+          if (source4) {
+            this.source.push(source4);
           }
         },
         replaceStack: function replaceStack(callback) {
@@ -5762,6 +5762,19 @@
     });
   }
 
+  // js/spectacles_ui.js
+  var source2 = document.getElementById("spectaclesTemplate").innerHTML;
+  var template2 = import_handlebars2.default.compile(source2);
+  function display_spectacles(spectacles, styleSelected) {
+    document.getElementById("template").innerHTML = template2({ spectacles: spectacles.spectacles, styleSelected });
+    document.querySelectorAll(".spectacle").forEach((spectacle) => {
+      spectacle.addEventListener("click", () => __async(this, null, function* () {
+        let soiree = yield load(spectacle.dataset.liensoiree);
+        display_soiree(soiree.soiree);
+      }));
+    });
+  }
+
   // js/spectaclesLoader.js
   function loadSpectacles() {
     return __async(this, null, function* () {
@@ -5774,21 +5787,16 @@
     });
   }
 
-  // js/spectacles_ui.js
-  var source2 = document.getElementById("spectaclesTemplate").innerHTML;
-  var template2 = import_handlebars2.default.compile(source2);
-  function display_spectacles(spectacles, styles, styleSelected) {
-    document.getElementById("template").innerHTML = template2({ spectacles: spectacles.spectacles, styles, styleSelected });
-    document.querySelectorAll(".spectacle").forEach((spectacle) => {
-      spectacle.addEventListener("click", () => __async(this, null, function* () {
-        let soiree = yield load(spectacle.dataset.liensoiree);
-        display_soiree(soiree.soiree);
-      }));
-    });
+  // js/boutons_ui.js
+  var import_handlebars3 = __toESM(require_handlebars());
+  var source3 = document.getElementById("buttonsTemplate").innerHTML;
+  var template3 = import_handlebars3.default.compile(source3);
+  function display_buttons(styles) {
+    document.getElementById("templateBoutons").innerHTML = template3({ styles });
     document.querySelectorAll(".filtreStyle").forEach((style) => {
       style.addEventListener("click", () => __async(this, null, function* () {
-        let spectacles2 = yield loadSpectaclesParStyle(style.dataset.style);
-        display_spectacles(spectacles2, styles, style.dataset.style);
+        let spectacles = yield loadSpectaclesParStyle(style.dataset.style);
+        display_spectacles(spectacles, style.dataset.style);
       }));
     });
   }
@@ -5803,7 +5811,8 @@
           styles.push(spectacles.spectacles[i].spectacle.style);
         }
       }
-      display_spectacles(spectacles, styles);
+      display_spectacles(spectacles);
+      display_buttons(styles);
     });
   }
   showSpectacles();
