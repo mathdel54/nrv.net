@@ -65,7 +65,7 @@ class SoireeBySpectacleAction
             'soiree' => $data,
             'links' => [
                 'spectacles' => ['href' => '/soirees/' . $soiree->ID . '/spectacles'],
-                'self' => ['href' => '/spectacles/'],
+                'self' => ['href' => '/spectacles'],
 
             ]
         ];
