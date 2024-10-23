@@ -8,7 +8,7 @@ use nrv\application\renderer\JsonRenderer;
 use nrv\core\services\user\ServiceUserInterface;
 use nrv\core\services\user\ServiceUserNotFoundException;
 
-class SoireeBySpectacleAction extends AbstractAction
+class ListeSpectacleByDateAction extends AbstractAction
 {
 
     protected ServiceUserInterface $serviceUser;
@@ -20,20 +20,31 @@ class SoireeBySpectacleAction extends AbstractAction
 
     public function __invoke(ServerRequestInterface $rq, ResponseInterface $rs, array $args): ResponseInterface
     {
-        $id = $args['ID_Spectacle'];
+        $date = $args['date'];
+
+        if ($date) {
+            $date = new \DateTime($date);
+        }
 
         try {
-            $soiree = $this->serviceUser->getSoireeBySpectacleId($id);
-            $data = [
-                'ID' => $soiree->ID,
-                'nom' => $soiree->nom,
-                'theme' => $soiree->theme,
-                'date' => $soiree->horaire->format('Y-m-d'),
-                'horaire' => $soiree->horaire->format('H:i'),
-                'lieu' => $soiree->lieu,
-                'tarifNormal' => $soiree->tarifNormal,
-                'tarifReduit' => $soiree->tarifReduit,
-            ];
+            $spectacles = $this->serviceUser->getSpectaclesByDate($date);
+            $data = [];
+            foreach ($spectacles as $spectacle) {
+                $data[] = [
+                    'spectacle' => [
+                        'titre' => $spectacle->titre,
+                        'description' => $spectacle->description,
+                        'date' => $spectacle->horaire->format('Y-m-d'),
+                        'horaire' => $spectacle->horaire->format('H:i'),
+                        'images' => $spectacle->images,
+                        'style' => $spectacle->style,
+                        'links' => [
+                            'artistes' => ['href' => '/spectacles/' . $spectacle->ID . '/artistes'],
+                            'soiree' => ['href' => '/spectacles/' . $spectacle->ID . '/soiree']
+                        ]
+                    ]
+                ];
+            }
         } catch (ServiceUserNotFoundException $e) {
             $data = [
                 'message' => $e->getMessage(),
@@ -60,13 +71,11 @@ class SoireeBySpectacleAction extends AbstractAction
 
         // On rajoute les liens HATEOAS
         $tabFinal = [
-            'type' => 'ressource',
-            'locale' => 'fr_FR',
-            'soiree' => $data,
+            'type' => 'collection',
+            'count' => count($data),
+            'spectacles' => $data,
             'links' => [
-                'spectacles' => ['href' => '/soirees/' . $soiree->ID . '/spectacles'],
                 'self' => ['href' => '/spectacles'],
-
             ]
         ];
 

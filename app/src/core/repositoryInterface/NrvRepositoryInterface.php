@@ -2,6 +2,7 @@
 
 namespace nrv\core\repositoryInterface;
 
+use DateTime;
 use nrv\core\domain\entities\spectacle\Spectacle;
 use nrv\core\domain\entities\soiree\Soiree;
 use nrv\core\domain\entities\spectacle\LieuxSpectacle;
