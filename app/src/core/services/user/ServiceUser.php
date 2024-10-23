@@ -164,4 +164,19 @@ class ServiceUser implements ServiceUserInterface
         }
         return $spectaclesDTO;
     }
+
+    /**
+     * Méthode qui retourne la liste des spectacles par style
+     * @param string $style
+     * @return array liste des spectacles en DTO
+     */
+    public function getSpectacleByStyle(string $style): array
+    {
+        $spectacles = $this->_nrvRepository->getSpectacleByStyle($style);
+        $spectaclesDTO = [];
+        foreach ($spectacles as $spectacle) {
+            $spectaclesDTO[] = $spectacle->toDTO();
+        }
+        return $spectaclesDTO;
+    }
 }
