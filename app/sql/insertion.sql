@@ -75,15 +75,16 @@ CREATE TABLE "public"."lieu" (
     "id" uuid NOT NULL,
     "nom" character varying(255),
     "adresse" character varying(150),
+    "ville" character varying(50),
     "nb_places_assises" integer,
     "nb_places_debout"  integer,
     CONSTRAINT "lieu_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
 
-INSERT INTO "lieu" ("id", "nom", "adresse", "nb_places_assises", "nb_places_debout") VALUES
-('fb17d7bf-2091-4dec-bd64-cf5dc5266acd', 'Théâtre des Arts', '123 Rue de l Art, Paris', 300,	500),
-('18ef7c86-dc18-4561-b355-2c7619973ad1', 'Palais des Congrès', '45 Avenue de la Liberté, Lyon ',	1000,	2000),
-('5277fb17-318b-4a72-b2c7-0bbff48f0aee', 'Salle des Fêtes', 'Place du Marché, Bordeaux ',	200,	300);
+INSERT INTO "lieu" ("id", "nom", "adresse", "ville", "nb_places_assises", "nb_places_debout") VALUES
+('fb17d7bf-2091-4dec-bd64-cf5dc5266acd', 'Théâtre des Arts', '123 Rue de l Art', 'Paris', 300,	500),
+('18ef7c86-dc18-4561-b355-2c7619973ad1', 'Palais des Congrès', '45 Avenue de la Liberté', 'Lyon',	1000,	2000),
+('5277fb17-318b-4a72-b2c7-0bbff48f0aee', 'Salle des Fêtes', 'Place du Marché', 'Bordeaux',	200,	300);
 
 DROP TABLE IF EXISTS "soiree";
 CREATE TABLE "public"."soiree"

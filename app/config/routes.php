@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use nrv\application\actions\ListeSpectacleByLieuAction;
 use Slim\App;
 
 return function (App $app): App {
@@ -22,7 +23,7 @@ return function (App $app): App {
     $app->get('/spectacles/{ID_Spectacle}/soiree', callable: nrv\application\actions\SoireeBySpectacleAction::class)
         ->setName('soireeBySpectacle');
 
-    $app->get('/lieu/{ID_Lieu}/spectacles', callable: \nrv\application\actions\ListeSpectacleByLieuAction::class)
+    $app->get('/lieu/{ID_Lieu}/spectacles', callable: ListeSpectacleByLieuAction::class)
         ->setName('spectaclesByLieu');
 
     return $app;
