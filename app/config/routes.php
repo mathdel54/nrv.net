@@ -26,5 +26,8 @@ return function (App $app): App {
     $app->get('/lieu/{ID_Lieu}/spectacles', callable: ListeSpectacleByLieuAction::class)
         ->setName('spectaclesByLieu');
 
+    $app->get('/users/{id_user}/billets', callable: nrv\application\actions\ListeBilletUser::class)
+        ->setName('billetsUser');
+
     return $app;
 };

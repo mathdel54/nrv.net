@@ -1,15 +1,14 @@
-<?php
+<?php 
 
 namespace nrv\application\actions;
 
-use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Message\ResponseInterface;
-use nrv\application\renderer\JsonRenderer;
 use nrv\core\services\user\ServiceUserInterface;
 use nrv\core\services\user\ServiceUserNotFoundException;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use nrv\application\renderer\JsonRenderer;
 
-class ListeSpectacleByDateAction extends AbstractAction
-{
+class ListeBilletUser extends AbstractAction {
 
     protected ServiceUserInterface $serviceUser;
 
@@ -20,28 +19,22 @@ class ListeSpectacleByDateAction extends AbstractAction
 
     public function __invoke(ServerRequestInterface $rq, ResponseInterface $rs, array $args): ResponseInterface
     {
-        $date = $args['date'];
-
-        if ($date) {
-            $date = new \DateTime($date);
-        }
+        $id = $args['id_user'];
 
         try {
-            $spectacles = $this->serviceUser->getSpectaclesByDate($date);
+            $billets = $this->serviceUser->getBilletsByUser($id);
+
             $data = [];
-            foreach ($spectacles as $spectacle) {
+            foreach ($billets as $billet) {
                 $data[] = [
-                    'spectacle' => [
-                        'titre' => $spectacle->titre,
-                        'description' => $spectacle->description,
-                        'date' => $spectacle->horaire->format('Y-m-d'),
-                        'horaire' => $spectacle->horaire->format('H:i'),
-                        'images' => $spectacle->images,
-                        'style' => $spectacle->style,
-                        'links' => [
-                            'artistes' => ['href' => '/spectacles/' . $spectacle->ID . '/artistes'],
-                            'soiree' => ['href' => '/spectacles/' . $spectacle->ID . '/soiree']
-                        ]
+                    'billet' => [
+                        'user' => $billet->user,
+                        'tarif' => $billet->tarif,
+                        'date' => $billet->date,
+                        'soiree' => $billet->soiree,
+                    ],
+                    'links' => [
+                        'soiree' => ['href' => '/soiree/' . $billet->soiree ]
                     ]
                 ];
             }
@@ -69,16 +62,13 @@ class ListeSpectacleByDateAction extends AbstractAction
             return JsonRenderer::render($rs, 400, $data);
         }
 
-        // On rajoute les liens HATEOAS
         $tabFinal = [
             'type' => 'collection',
-            'count' => count($data),
-            'spectacles' => $data,
+            'billets' => $data,
             'links' => [
-                'self' => ['href' => '/spectacles'],
+                'self' => ['href' => '/users/' . $id . '/billets']
             ]
         ];
-
         return JsonRenderer::render($rs, 200, $tabFinal);
     }
 }
