@@ -74,7 +74,13 @@ header .authentif-bouttons a:hover:after {
 #imageDeFond {
   background-image: url("../images/nrv_accueil.webp");
   background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
   opacity: 0.8;
 }
 
