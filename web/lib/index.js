@@ -5741,8 +5741,8 @@
       }
     });
   }
-  function post(url, data) {
-    return fetch(`${pointEntree}${url}`, {
+  function post(data) {
+    return fetch(`${pointEntree}/billets`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -5762,7 +5762,19 @@
   function creerPanier(panier2) {
     return __async(this, null, function* () {
       for (let i = 0; i < panier2.length; i++) {
-        yield post("/paniers", panier2[i]);
+        let tarif;
+        if (panier2[i] === panier2[i].soiree.tarifNormal) {
+          tarif = "Normal";
+        }
+        if (panier2[i] === panier2[i].soiree.tarifReduit) {
+          tarif = "R\xE9duit";
+        }
+        let data = {
+          // id_user: ,
+          tarif,
+          id_soiree: panier2[i].soiree.ID
+        };
+        yield post(data);
       }
     });
   }
@@ -5892,6 +5904,35 @@
         let spectacles = yield loadSpectaclesParLieu(lieu.dataset.lieu);
         display_spectacles(spectacles, lieu.innerHTML);
       }));
+    });
+    document.querySelectorAll(".filtreLieu").forEach((lieu) => {
+      lieu.addEventListener("click", () => __async(this, null, function* () {
+        let spectacles = yield loadSpectaclesParLieu(lieu.dataset.lieu);
+        display_spectacles(spectacles, lieu.innerHTML);
+      }));
+    });
+    function masquerTousLesFiltres() {
+      document.querySelectorAll(".filtreDate").forEach((filter) => filter.hidden = true);
+      document.querySelectorAll(".filtreStyle").forEach((filter) => filter.hidden = true);
+      document.querySelectorAll(".filtreLieu").forEach((filter) => filter.hidden = true);
+    }
+    document.querySelector("#selectionStyle").addEventListener("click", () => {
+      masquerTousLesFiltres();
+      document.querySelectorAll(".filtreStyle").forEach((filter) => {
+        filter.hidden = false;
+      });
+    });
+    document.querySelector("#selectionDate").addEventListener("click", () => {
+      masquerTousLesFiltres();
+      document.querySelectorAll(".filtreDate").forEach((filter) => {
+        filter.hidden = false;
+      });
+    });
+    document.querySelector("#selectionLieu").addEventListener("click", () => {
+      masquerTousLesFiltres();
+      document.querySelectorAll(".filtreLieu").forEach((filter) => {
+        filter.hidden = false;
+      });
     });
   }
 

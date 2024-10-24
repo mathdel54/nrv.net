@@ -39,4 +39,35 @@ export function display_buttons(styles, lieux, dates) {
             display_spectacles(spectacles, lieu.innerHTML);
         });
     })
+
+    // Fonction pour masquer tous les filtres
+    function masquerTousLesFiltres() {
+        document.querySelectorAll('.filtreDate').forEach(filter => filter.hidden = true);
+        document.querySelectorAll('.filtreStyle').forEach(filter => filter.hidden = true);
+        document.querySelectorAll('.filtreLieu').forEach(filter => filter.hidden = true);
+    }
+
+    // Lorsqu'un bouton selectionStyle est cliqué, on affiche uniquement les filtres de style
+    document.querySelector('#selectionStyle').addEventListener('click', () => {
+        masquerTousLesFiltres(); // Masquer les autres filtres
+        document.querySelectorAll('.filtreStyle').forEach(filter => {
+            filter.hidden = false; // Afficher uniquement les filtres de style
+        });
+    });
+
+    // Lorsqu'un bouton selectionDate est cliqué, on affiche uniquement les filtres de date
+    document.querySelector('#selectionDate').addEventListener('click', () => {
+        masquerTousLesFiltres(); // Masquer les autres filtres
+        document.querySelectorAll('.filtreDate').forEach(filter => {
+            filter.hidden = false; // Afficher uniquement les filtres de date
+        });
+    });
+
+    // Lorsqu'un bouton selectionLieu est cliqué, on affiche uniquement les filtres de lieu
+    document.querySelector('#selectionLieu').addEventListener('click', () => {
+        masquerTousLesFiltres(); // Masquer les autres filtres
+        document.querySelectorAll('.filtreLieu').forEach(filter => {
+            filter.hidden = false; // Afficher uniquement les filtres de lieu
+        });
+    });
 }
