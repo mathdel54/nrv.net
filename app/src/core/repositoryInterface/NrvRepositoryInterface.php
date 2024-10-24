@@ -6,6 +6,7 @@ use DateTime;
 use nrv\core\domain\entities\spectacle\Spectacle;
 use nrv\core\domain\entities\soiree\Soiree;
 use nrv\core\domain\entities\spectacle\LieuxSpectacle;
+use nrv\core\domain\entities\billet\Billet;
 
 interface NrvRepositoryInterface
 {
@@ -25,4 +26,5 @@ interface NrvRepositoryInterface
     public function getSpectaclesByLieu(string $id): array;
     public function getSpectacleByStyle(string $style): array;
     public function getBilletsByUser(string $user): array;
+    public function creerBillet(string $user, string $tarif, DateTime $date, string $soiree): Billet;
 }

@@ -3,6 +3,7 @@
 namespace nrv\infrastructure\repositories;
 
 use DateTime;
+use Ramsey\Uuid\Uuid;
 use nrv\core\domain\entities\artiste\Artiste;
 use nrv\core\domain\entities\lieu\Lieu;
 use nrv\core\repositoryInterface\NrvRepositoryInterface;
@@ -429,5 +430,25 @@ class PDONrvRepository implements NrvRepositoryInterface
             $tabBillets[] = $b;
         }
         return $tabBillets;
+    }
+
+    /**
+     * Méthode qui permet de créer un billet
+     * @param string $user
+     * @param string $tarif
+     * @param DateTime $date
+     * @param string $soiree
+     * @return Billet
+     */
+    public function creerBillet(string $user, string $tarif, DateTime $date, string $soiree): Billet {
+        try {
+            $billet = new Billet($user, $tarif, $date, $soiree);
+            $billet->setID(Uuid::uuid4()->toString());
+            $stmt = $this->pdoNrv->prepare("INSERT INTO billet (id, utilisateur_id, tarif, date_achat, soiree_id) VALUES (:id, :user, :tarif, :date, :soiree)");
+            $stmt->execute(['id' => $billet->ID ,'user' => $billet->user, 'tarif' => $billet->tarif, 'date' => $billet->date->format('Y-m-d H:i:s'), 'soiree' => $billet->soiree]);
+        } catch (\PDOException $e) {
+            throw new RepositoryDatabaseErrorException($e->getMessage(), 0, $e);
+        }
+        return $billet;
     }
 }
