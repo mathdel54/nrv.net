@@ -1,1 +1,1 @@
-import {load} from './loader.js';
+import {load} from './api.js';

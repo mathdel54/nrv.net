@@ -23,7 +23,7 @@ return function (App $app): App {
     $app->get('/spectacles/{ID_Spectacle}/soiree', callable: nrv\application\actions\SoireeBySpectacleAction::class)
         ->setName('soireeBySpectacle');
 
-    $app->get('/lieu/{ID_Lieu}/spectacles', callable: ListeSpectacleByLieuAction::class)
+    $app->get('/lieux/{ID_Lieu}/spectacles', callable: ListeSpectacleByLieuAction::class)
         ->setName('spectaclesByLieu');
 
     $app->get('/users/{id_user}/billets', callable: nrv\application\actions\ListeBilletUser::class)

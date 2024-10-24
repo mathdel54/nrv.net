@@ -810,7 +810,7 @@
       "use strict";
       exports.__esModule = true;
       exports.checkRevision = checkRevision;
-      exports.template = template4;
+      exports.template = template5;
       exports.wrapProgram = wrapProgram;
       exports.resolvePartial = resolvePartial;
       exports.invokePartial = invokePartial;
@@ -852,7 +852,7 @@
           throw new _exception2["default"]("Template was precompiled with a newer version of Handlebars than the current runtime. Please update your runtime to a newer version (" + compilerInfo[1] + ").");
         }
       }
-      function template4(templateSpec, env) {
+      function template5(templateSpec, env) {
         if (!env) {
           throw new _exception2["default"]("No environment passed to template");
         }
@@ -1118,7 +1118,7 @@
     "node_modules/handlebars/dist/cjs/handlebars/no-conflict.js"(exports, module) {
       "use strict";
       exports.__esModule = true;
-      exports["default"] = function(Handlebars4) {
+      exports["default"] = function(Handlebars5) {
         (function() {
           if (typeof globalThis === "object") return;
           Object.prototype.__defineGetter__("__magic__", function() {
@@ -1128,11 +1128,11 @@
           delete Object.prototype.__magic__;
         })();
         var $Handlebars = globalThis.Handlebars;
-        Handlebars4.noConflict = function() {
-          if (globalThis.Handlebars === Handlebars4) {
+        Handlebars5.noConflict = function() {
+          if (globalThis.Handlebars === Handlebars5) {
             globalThis.Handlebars = $Handlebars;
           }
-          return Handlebars4;
+          return Handlebars5;
         };
       };
       module.exports = exports["default"];
@@ -2233,8 +2233,8 @@
           throw new _exception2["default"](open.path.original + " doesn't match " + close, errorNode);
         }
       }
-      function SourceLocation(source4, locInfo) {
-        this.source = source4;
+      function SourceLocation(source5, locInfo) {
+        this.source = source5;
         this.start = {
           line: locInfo.first_line,
           column: locInfo.first_column
@@ -3440,15 +3440,15 @@
       SourceMapGenerator.prototype.addMapping = function SourceMapGenerator_addMapping(aArgs) {
         var generated = util.getArg(aArgs, "generated");
         var original = util.getArg(aArgs, "original", null);
-        var source4 = util.getArg(aArgs, "source", null);
+        var source5 = util.getArg(aArgs, "source", null);
         var name = util.getArg(aArgs, "name", null);
         if (!this._skipValidation) {
-          this._validateMapping(generated, original, source4, name);
+          this._validateMapping(generated, original, source5, name);
         }
-        if (source4 != null) {
-          source4 = String(source4);
-          if (!this._sources.has(source4)) {
-            this._sources.add(source4);
+        if (source5 != null) {
+          source5 = String(source5);
+          if (!this._sources.has(source5)) {
+            this._sources.add(source5);
           }
         }
         if (name != null) {
@@ -3462,22 +3462,22 @@
           generatedColumn: generated.column,
           originalLine: original != null && original.line,
           originalColumn: original != null && original.column,
-          source: source4,
+          source: source5,
           name
         });
       };
       SourceMapGenerator.prototype.setSourceContent = function SourceMapGenerator_setSourceContent(aSourceFile, aSourceContent) {
-        var source4 = aSourceFile;
+        var source5 = aSourceFile;
         if (this._sourceRoot != null) {
-          source4 = util.relative(this._sourceRoot, source4);
+          source5 = util.relative(this._sourceRoot, source5);
         }
         if (aSourceContent != null) {
           if (!this._sourcesContents) {
             this._sourcesContents = /* @__PURE__ */ Object.create(null);
           }
-          this._sourcesContents[util.toSetString(source4)] = aSourceContent;
+          this._sourcesContents[util.toSetString(source5)] = aSourceContent;
         } else if (this._sourcesContents) {
-          delete this._sourcesContents[util.toSetString(source4)];
+          delete this._sourcesContents[util.toSetString(source5)];
           if (Object.keys(this._sourcesContents).length === 0) {
             this._sourcesContents = null;
           }
@@ -3520,9 +3520,9 @@
               }
             }
           }
-          var source4 = mapping.source;
-          if (source4 != null && !newSources.has(source4)) {
-            newSources.add(source4);
+          var source5 = mapping.source;
+          if (source5 != null && !newSources.has(source5)) {
+            newSources.add(source5);
           }
           var name = mapping.name;
           if (name != null && !newNames.has(name)) {
@@ -3614,14 +3614,14 @@
         return result;
       };
       SourceMapGenerator.prototype._generateSourcesContent = function SourceMapGenerator_generateSourcesContent(aSources, aSourceRoot) {
-        return aSources.map(function(source4) {
+        return aSources.map(function(source5) {
           if (!this._sourcesContents) {
             return null;
           }
           if (aSourceRoot != null) {
-            source4 = util.relative(aSourceRoot, source4);
+            source5 = util.relative(aSourceRoot, source5);
           }
-          var key = util.toSetString(source4);
+          var key = util.toSetString(source5);
           return Object.prototype.hasOwnProperty.call(this._sourcesContents, key) ? this._sourcesContents[key] : null;
         }, this);
       };
@@ -3809,10 +3809,10 @@
         }
         var sourceRoot = this.sourceRoot;
         mappings.map(function(mapping) {
-          var source4 = mapping.source === null ? null : this._sources.at(mapping.source);
-          source4 = util.computeSourceURL(sourceRoot, source4, this._sourceMapURL);
+          var source5 = mapping.source === null ? null : this._sources.at(mapping.source);
+          source5 = util.computeSourceURL(sourceRoot, source5, this._sourceMapURL);
           return {
-            source: source4,
+            source: source5,
             generatedLine: mapping.generatedLine,
             generatedColumn: mapping.generatedColumn,
             originalLine: mapping.originalLine,
@@ -3886,8 +3886,8 @@
         if (sourceRoot) {
           sourceRoot = util.normalize(sourceRoot);
         }
-        sources = sources.map(String).map(util.normalize).map(function(source4) {
-          return sourceRoot && util.isAbsolute(sourceRoot) && util.isAbsolute(source4) ? util.relative(sourceRoot, source4) : source4;
+        sources = sources.map(String).map(util.normalize).map(function(source5) {
+          return sourceRoot && util.isAbsolute(sourceRoot) && util.isAbsolute(source5) ? util.relative(sourceRoot, source5) : source5;
         });
         this._names = ArraySet.fromArray(names.map(String), true);
         this._sources = ArraySet.fromArray(sources, true);
@@ -4081,17 +4081,17 @@
         if (index >= 0) {
           var mapping = this._generatedMappings[index];
           if (mapping.generatedLine === needle.generatedLine) {
-            var source4 = util.getArg(mapping, "source", null);
-            if (source4 !== null) {
-              source4 = this._sources.at(source4);
-              source4 = util.computeSourceURL(this.sourceRoot, source4, this._sourceMapURL);
+            var source5 = util.getArg(mapping, "source", null);
+            if (source5 !== null) {
+              source5 = this._sources.at(source5);
+              source5 = util.computeSourceURL(this.sourceRoot, source5, this._sourceMapURL);
             }
             var name = util.getArg(mapping, "name", null);
             if (name !== null) {
               name = this._names.at(name);
             }
             return {
-              source: source4,
+              source: source5,
               line: util.getArg(mapping, "originalLine", null),
               column: util.getArg(mapping, "originalColumn", null),
               name
@@ -4142,9 +4142,9 @@
         }
       };
       BasicSourceMapConsumer.prototype.generatedPositionFor = function SourceMapConsumer_generatedPositionFor(aArgs) {
-        var source4 = util.getArg(aArgs, "source");
-        source4 = this._findSourceIndex(source4);
-        if (source4 < 0) {
+        var source5 = util.getArg(aArgs, "source");
+        source5 = this._findSourceIndex(source5);
+        if (source5 < 0) {
           return {
             line: null,
             column: null,
@@ -4152,7 +4152,7 @@
           };
         }
         var needle = {
-          source: source4,
+          source: source5,
           originalLine: util.getArg(aArgs, "line"),
           originalColumn: util.getArg(aArgs, "column")
         };
@@ -4311,10 +4311,10 @@
           var sectionMappings = section.consumer._generatedMappings;
           for (var j = 0; j < sectionMappings.length; j++) {
             var mapping = sectionMappings[j];
-            var source4 = section.consumer._sources.at(mapping.source);
-            source4 = util.computeSourceURL(section.consumer.sourceRoot, source4, this._sourceMapURL);
-            this._sources.add(source4);
-            source4 = this._sources.indexOf(source4);
+            var source5 = section.consumer._sources.at(mapping.source);
+            source5 = util.computeSourceURL(section.consumer.sourceRoot, source5, this._sourceMapURL);
+            this._sources.add(source5);
+            source5 = this._sources.indexOf(source5);
             var name = null;
             if (mapping.name) {
               name = section.consumer._names.at(mapping.name);
@@ -4322,7 +4322,7 @@
               name = this._names.indexOf(name);
             }
             var adjustedMapping = {
-              source: source4,
+              source: source5,
               generatedLine: mapping.generatedLine + (section.generatedOffset.generatedLine - 1),
               generatedColumn: mapping.generatedColumn + (section.generatedOffset.generatedLine === mapping.generatedLine ? section.generatedOffset.generatedColumn - 1 : 0),
               originalLine: mapping.originalLine,
@@ -4422,11 +4422,11 @@
           if (mapping === null || mapping.source === void 0) {
             node.add(code);
           } else {
-            var source4 = aRelativePath ? util.join(aRelativePath, mapping.source) : mapping.source;
+            var source5 = aRelativePath ? util.join(aRelativePath, mapping.source) : mapping.source;
             node.add(new SourceNode(
               mapping.originalLine,
               mapping.originalColumn,
-              source4,
+              source5,
               code,
               mapping.name
             ));
@@ -4679,18 +4679,18 @@
         isEmpty: function isEmpty() {
           return !this.source.length;
         },
-        prepend: function prepend(source4, loc) {
-          this.source.unshift(this.wrap(source4, loc));
+        prepend: function prepend(source5, loc) {
+          this.source.unshift(this.wrap(source5, loc));
         },
-        push: function push(source4, loc) {
-          this.source.push(this.wrap(source4, loc));
+        push: function push(source5, loc) {
+          this.source.push(this.wrap(source5, loc));
         },
         merge: function merge() {
-          var source4 = this.empty();
+          var source5 = this.empty();
           this.each(function(line) {
-            source4.add(["  ", line, "\n"]);
+            source5.add(["  ", line, "\n"]);
           });
-          return source4;
+          return source5;
         },
         each: function each(iter) {
           for (var i = 0, len = this.source.length; i < len; i++) {
@@ -4784,18 +4784,18 @@
           var revision = _base.COMPILER_REVISION, versions = _base.REVISION_CHANGES[revision];
           return [revision, versions];
         },
-        appendToBuffer: function appendToBuffer(source4, location, explicit) {
-          if (!_utils.isArray(source4)) {
-            source4 = [source4];
+        appendToBuffer: function appendToBuffer(source5, location, explicit) {
+          if (!_utils.isArray(source5)) {
+            source5 = [source5];
           }
-          source4 = this.source.wrap(source4, location);
+          source5 = this.source.wrap(source5, location);
           if (this.environment.isSimple) {
-            return ["return ", source4, ";"];
+            return ["return ", source5, ";"];
           } else if (explicit) {
-            return ["buffer += ", source4, ";"];
+            return ["buffer += ", source5, ";"];
           } else {
-            source4.appendToBuffer = true;
-            return source4;
+            source5.appendToBuffer = true;
+            return source5;
           }
         },
         initializeBuffer: function initializeBuffer() {
@@ -4943,12 +4943,12 @@
           if (this.useDepths) {
             params.push("depths");
           }
-          var source4 = this.mergeSource(varDeclarations);
+          var source5 = this.mergeSource(varDeclarations);
           if (asObject) {
-            params.push(source4);
+            params.push(source5);
             return Function.apply(this, params);
           } else {
-            return this.source.wrap(["function(", params.join(","), ") {\n  ", source4, "}"]);
+            return this.source.wrap(["function(", params.join(","), ") {\n  ", source5, "}"]);
           }
         },
         mergeSource: function mergeSource(varDeclarations) {
@@ -5457,13 +5457,13 @@
         pushStackLiteral: function pushStackLiteral(item) {
           this.push(new Literal(item));
         },
-        pushSource: function pushSource(source4) {
+        pushSource: function pushSource(source5) {
           if (this.pendingContent) {
             this.source.push(this.appendToBuffer(this.source.quotedString(this.pendingContent), this.pendingLocation));
             this.pendingContent = void 0;
           }
-          if (source4) {
-            this.source.push(source4);
+          if (source5) {
+            this.source.push(source5);
           }
         },
         replaceStack: function replaceStack(callback) {
@@ -5724,7 +5724,7 @@
   // js/config.js
   var pointEntree = "http://localhost:6080";
 
-  // js/loader.js
+  // js/api.js
   var controller = new AbortController();
   var { signal } = controller;
   function load(url) {
@@ -5741,12 +5741,79 @@
       }
     });
   }
+  function post(url, data) {
+    return fetch(`${pointEntree}${url}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    }).then((response) => response.json());
+  }
 
   // js/soireeLoader.js
   function loadSpectaclesDeLaSoiree(idSoiree) {
     return __async(this, null, function* () {
       return yield load(`/soirees/${idSoiree}/spectacles`);
     });
+  }
+
+  // js/panierPost.js
+  function creerPanier(panier2) {
+    return __async(this, null, function* () {
+      for (let i = 0; i < panier2.length; i++) {
+        yield post("/paniers", panier2[i]);
+      }
+    });
+  }
+
+  // js/panier.js
+  var panier = [];
+  function initPanier() {
+    panier = JSON.parse(localStorage.getItem("panier")) || [];
+  }
+  function ajouterAuPanier(soiree, nbPlaces) {
+    panier.push({ soiree, nbPlaces, tarif: soiree.tarifNormal });
+    localStorage.setItem("panier", JSON.stringify(panier));
+    showNbElements();
+  }
+  function getPanier() {
+    return panier;
+  }
+  function modifierNbPlaces(index, nbPlaces) {
+    panier[index].nbPlaces = nbPlaces;
+    localStorage.setItem("panier", JSON.stringify(panier));
+    showNbElements();
+  }
+  function viderPanier() {
+    panier = [];
+    localStorage.setItem("panier", JSON.stringify(panier));
+    showNbElements();
+  }
+  function modifierTarif(index, tarif) {
+    panier[index].tarif = tarif;
+    localStorage.setItem("panier", JSON.stringify(panier));
+  }
+  function supprimerDuPanier(index) {
+    panier.splice(index, 1);
+    localStorage.setItem("panier", JSON.stringify(panier));
+    showNbElements();
+  }
+  function validerPanier() {
+    creerPanier(panier).then(() => {
+      viderPanier();
+    });
+  }
+  function showNbElements() {
+    let nbElements = 0;
+    panier.forEach((element) => {
+      nbElements += parseInt(element.nbPlaces);
+    });
+    if (nbElements > 0) {
+      document.getElementById("panier").innerHTML = "Panier (" + nbElements + ")";
+    } else {
+      document.getElementById("panier").innerHTML = "Panier";
+    }
   }
 
   // js/soiree_ui.js
@@ -5759,6 +5826,11 @@
         spectacles.spectacles[i].artiste = yield load(spectacles.spectacles[i].links.artistes.href);
       }
       document.getElementById("template").innerHTML = template({ soiree, spectacles: spectacles.spectacles });
+      document.getElementById("ajouterPanier").addEventListener("click", function() {
+        let nbPlaces = document.getElementById("places").value;
+        ajouterAuPanier(soiree, nbPlaces);
+        document.getElementById("ajouterPanier").disabled = true;
+      });
     });
   }
 
@@ -5786,35 +5858,133 @@
       return yield load(`/spectacles?style=${style}`);
     });
   }
+  function loadSpectaclesParLieu(idLieu) {
+    return __async(this, null, function* () {
+      return yield load(`/lieux/${idLieu}/spectacles`);
+    });
+  }
+  function loadSpectaclesParDate(date) {
+    return __async(this, null, function* () {
+      return yield load(`/spectacles?date=${date}`);
+    });
+  }
 
   // js/boutons_ui.js
   var import_handlebars3 = __toESM(require_handlebars());
   var source3 = document.getElementById("buttonsTemplate").innerHTML;
   var template3 = import_handlebars3.default.compile(source3);
-  function display_buttons(styles) {
-    document.getElementById("templateBoutons").innerHTML = template3({ styles });
+  function display_buttons(styles, lieux, dates) {
+    document.getElementById("templateBoutons").innerHTML = template3({ styles, lieux, dates });
+    document.querySelectorAll(".filtreDate").forEach((date) => {
+      date.addEventListener("click", () => __async(this, null, function* () {
+        let spectacles = yield loadSpectaclesParDate(date.dataset.date);
+        display_spectacles(spectacles, date.dataset.date);
+      }));
+    });
     document.querySelectorAll(".filtreStyle").forEach((style) => {
       style.addEventListener("click", () => __async(this, null, function* () {
         let spectacles = yield loadSpectaclesParStyle(style.dataset.style);
         display_spectacles(spectacles, style.dataset.style);
       }));
     });
+    document.querySelectorAll(".filtreLieu").forEach((lieu) => {
+      lieu.addEventListener("click", () => __async(this, null, function* () {
+        let spectacles = yield loadSpectaclesParLieu(lieu.dataset.lieu);
+        display_spectacles(spectacles, lieu.innerHTML);
+      }));
+    });
+  }
+
+  // js/lieuLoader.js
+  function loadLieux() {
+    return __async(this, null, function* () {
+      return yield load("/lieux");
+    });
+  }
+
+  // js/panier_ui.js
+  var import_handlebars4 = __toESM(require_handlebars());
+  import_handlebars4.default.registerHelper("ifCond", function(v1, v2, options) {
+    if (v1 == v2) {
+      return options.fn(this);
+    }
+    return options.inverse(this);
+  });
+  var source4 = document.getElementById("panierTemplate").innerHTML;
+  var template4 = import_handlebars4.default.compile(source4);
+  function display_panier() {
+    initPanier();
+    document.getElementById("templateBoutons").innerHTML = "";
+    let panier2 = getPanier();
+    console.log(panier2);
+    document.getElementById("template").innerHTML = template4(panier2);
+    calculTotal();
+    document.querySelectorAll(".nbPlaces").forEach((nbPlaces) => {
+      nbPlaces.addEventListener("change", function() {
+        let index = nbPlaces.dataset.index;
+        modifierNbPlaces(index, nbPlaces.value);
+        calculTotal();
+      });
+    });
+    document.querySelectorAll(".tarif").forEach((tarif) => {
+      tarif.addEventListener("change", function() {
+        let index = tarif.dataset.index;
+        modifierTarif(index, tarif.value);
+        calculTotal();
+      });
+    });
+    document.querySelectorAll(".supprimerPanier").forEach((supprimer) => {
+      supprimer.addEventListener("click", function() {
+        let index = supprimer.dataset.index;
+        supprimerDuPanier(index);
+        display_panier();
+      });
+    });
+    document.getElementById("vider").addEventListener("click", function() {
+      viderPanier();
+      display_panier();
+    });
+    document.getElementById("valider").addEventListener("click", function() {
+      alert("Panier valid\xE9");
+      validerPanier();
+      display_panier();
+    });
+  }
+  function calculTotal() {
+    let total = 0;
+    getPanier().forEach((element) => {
+      total += element.nbPlaces * element.tarif;
+    });
+    document.getElementById("total").innerHTML = "Total : " + total + " \u20AC";
   }
 
   // js/index.js
-  function showSpectacles() {
+  document.getElementById("accueil").addEventListener("click", function() {
+    accueil();
+  });
+  function accueil() {
     return __async(this, null, function* () {
       let spectacles = yield loadSpectacles();
+      display_spectacles(spectacles);
+      document.getElementById("panier").addEventListener("click", function() {
+        display_panier();
+      });
       let styles = [];
       for (let i = 0; i < spectacles.spectacles.length; i++) {
         if (!styles.includes(spectacles.spectacles[i].spectacle.style)) {
           styles.push(spectacles.spectacles[i].spectacle.style);
         }
       }
-      display_spectacles(spectacles);
-      display_buttons(styles);
+      let dates = [];
+      for (let i = 0; i < spectacles.spectacles.length; i++) {
+        if (!dates.includes(spectacles.spectacles[i].spectacle.date)) {
+          dates.push(spectacles.spectacles[i].spectacle.date);
+        }
+      }
+      let lieux = yield loadLieux();
+      display_buttons(styles, lieux.lieux, dates);
     });
   }
-  showSpectacles();
+  accueil();
 })();
 //# sourceMappingURL=index.js.map
