@@ -279,31 +279,62 @@ video {
 }
 
 ul.artistes-list {
-    padding-left: 15px;
+    list-style: none;
+    padding-left: 50px;
+    position: relative;
+
+    li::before {
+        content: "";
+        position: absolute;
+        top: 12px;
+        left: 5px;
+        display: inline-block;
+        height: 30px;
+        width: 30px;
+        background-size: contain;
+        background-image: url("../images/musicien-logo.svg");
+    }
 
     li {
-        list-style-type: none;
+        margin: 10px 0;
+        font-size: 1.2rem;
     }
 }
 
 .lieuTarif {
-    background-color: $Coralcolor;
-    color: $Whitecolor;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    width: 60%;
-    margin: 0 auto;
-    border-radius: 10px;
-    ;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #dda89d;
+    max-width: 600px;
+    margin: 1rem auto;
 
-    .lieu {
-        grid-column: span 1;
+    #lieu,
+    #tarif {
+        width: 48%; // Sépare le contenu en deux colonnes presque égales
+        font-size: 1rem;
+        line-height: 1.5;
     }
 
-    .tarif {
-        grid-column: span 1;
+    #lieu {
+        font-weight: bold;
+        color: #333;
+    }
+
+    #tarif {
+        text-align: right; // Aligner le texte à droite pour séparer visuellement les deux sections
+        font-style: italic;
+        color: #555;
+
+        br {
+            margin-bottom: 0.5rem;
+        }
     }
 }
+
 
 select#places {
     appearance: none;
