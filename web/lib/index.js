@@ -5914,6 +5914,35 @@
         display_spectacles(spectacles, lieu.innerHTML);
       }));
     });
+    function masquerTousLesFiltres() {
+      document.querySelectorAll(".filtreDate").forEach((filter) => filter.hidden = true);
+      document.querySelectorAll(".filtreStyle").forEach((filter) => filter.hidden = true);
+      document.querySelectorAll(".filtreLieu").forEach((filter) => filter.hidden = true);
+    }
+    document.querySelector("#selectionStyle").addEventListener("click", () => {
+      masquerTousLesFiltres();
+      document.querySelectorAll(".filtreStyle").forEach((filter) => {
+        filter.hidden = false;
+      });
+    });
+    document.querySelector("#selectionDate").addEventListener("click", () => {
+      masquerTousLesFiltres();
+      document.querySelectorAll(".filtreDate").forEach((filter) => {
+        filter.hidden = false;
+      });
+    });
+    document.querySelector("#selectionLieu").addEventListener("click", () => {
+      masquerTousLesFiltres();
+      document.querySelectorAll(".filtreLieu").forEach((filter) => {
+        filter.hidden = false;
+      });
+    });
+    document.querySelectorAll(".filtreLieu").forEach((lieu) => {
+      lieu.addEventListener("click", () => __async(this, null, function* () {
+        let spectacles = yield loadSpectaclesParLieu(lieu.dataset.lieu);
+        display_spectacles(spectacles, lieu.innerHTML);
+      }));
+    });
   }
 
   // js/lieuLoader.js

@@ -9,8 +9,8 @@ services:
       context: build
       dockerfile: dockerfile
     ports:
-        - '6080:80'
-      # - '20006:80'
+      - '6080:80'
+    # - '20006:80'
     volumes:
       - ./app:/var/php
     working_dir: /var/php
