@@ -23,14 +23,11 @@ class CreerCompteAction extends AbstractAction
 
         $nom = $data['nom'] ?? null;
         $prenom = $data['prenom'] ?? null;
-        $dateNaissance = isset($data['dateNaissance']) ? new DateTime($data['dateNaissance']) : null;
         $email = $data['email'] ?? null;
         $password = $data['password'] ?? null;
         $role = $data['role'] ?? 1; // role par defaut des users est 1
 
-        echo(var_dump($data));
-
-        if (!$nom || !$prenom || !$dateNaissance || !$email || !$password) {
+        if (!$nom || !$prenom || !$email || !$password) {
             $rs->getBody()->write(json_encode(['error' => 'Certains champs requis sont manquants']));
             return $rs->withStatus(400)->withHeader('Content-Type', 'application/json');
         }
@@ -38,7 +35,7 @@ class CreerCompteAction extends AbstractAction
         $credentialsDTO = new CredentialsDTO($email, $password);
 
         try {
-            $this->authProvider->register($nom, $prenom, $dateNaissance, $credentialsDTO, $role);
+            $this->authProvider->register($nom, $prenom, $credentialsDTO, $role);
             $rs->getBody()->write(json_encode(['message' => 'Compte cree avec succes']));
             return $rs->withStatus(201)->withHeader('Content-Type', 'application/json');
         } catch (\Exception $e) {

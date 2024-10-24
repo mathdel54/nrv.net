@@ -35,7 +35,7 @@ class AuthService implements AuthServiceInterface
         );
     }
 
-    public function registerUser(string $nom, string $prenom, DateTime $dateNaissance, CredentialsDTO $credentialsDTO, int $role): void
+    public function registerUser(string $nom, string $prenom, CredentialsDTO $credentialsDTO, int $role): void
     {
         $existingUser = $this->userRepository->findByEmail($credentialsDTO->email);
         if ($existingUser) 
@@ -44,7 +44,7 @@ class AuthService implements AuthServiceInterface
         }
 
         $pass = password_hash($credentialsDTO->password, PASSWORD_BCRYPT);
-        $user = new Users($nom, $prenom, $dateNaissance, $credentialsDTO->email, $credentialsDTO->password, 1);
+        $user = new Users($nom, $prenom, $credentialsDTO->email, $credentialsDTO->password, 1);
 
         $this->userRepository->save($user);
     }

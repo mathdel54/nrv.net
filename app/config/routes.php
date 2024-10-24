@@ -25,5 +25,9 @@ return function(\Slim\App $app):\Slim\App {
     $app->post('/inscription', callable: nrv\application\actions\CreerCompteAction::class)
         ->setName('inscription');
 
+    $app->post('/connexion', callable: nrv\application\actions\ConnexionAction::class)
+    ->setName('connexion');
+
+
     return $app;
 };

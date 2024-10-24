@@ -88,7 +88,7 @@ class PDOUsersRepository implements UsersRepositoryInterface
             return $userId; // Retourner l'UUID généré
         } catch (\PDOException $e) {
             // Logger l'erreur et lancer une exception personnalisée
-            error_log($e->getMessage());
+           echo $e->getMessage();
             throw new RepositoryDatabaseErrorException('Erreur lors de l\'enregistrement de l\'utilisateur', 0, $e);
         }
     }
@@ -138,7 +138,7 @@ class PDOUsersRepository implements UsersRepositoryInterface
      */
     private function mapToUser(array $userData): Users
     {
-        $user = new Users($userData['nom'], $userData['prenom'],$userData['dateNaissance'], $userData['email'], $userData['password'], $userData['role']);
+        $user = new Users($userData['nom'], $userData['prenom'], $userData['email'], $userData['mot_de_passe'], $userData['role']);
         $user->setID($userData['id']);
         return $user;
     }

@@ -12,19 +12,17 @@ class UsersDTO extends DTO
     protected string $nom;
     protected string $prenom;
     protected string $email;
-    protected string $pass;
-    protected DateTime $dateNaissance;
+    protected string $password;
     protected int $role;
 
-    public function __construct(string $ID, string $nom, string $prenom, DateTime $dateNaissance, string $email, string $pass, int $role)
+    public function __construct(string $ID, string $nom, string $prenom, string $email, string $password, int $role)
     {
         $this->ID = $ID;
         $this->nom = $nom;
         $this->prenom = $prenom;
-        $this->dateNaissance = $dateNaissance;
         $this->email = $email;
         $this->role = $role;
-        $this->pass = $pass;
+        $this->password = $password;
     }
 
 }

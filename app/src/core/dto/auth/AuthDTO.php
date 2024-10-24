@@ -32,4 +32,14 @@ class AuthDTO extends DTO
     {
         $this->refreshToken = $refreshToken;
     }
+
+    public function getAccessToken():string
+    {
+        return $this->accessToken;
+    }
+
+    public function getRefreshToken():string
+    {
+        return $this->refreshToken;
+    }
 }

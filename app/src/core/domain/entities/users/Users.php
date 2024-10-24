@@ -12,14 +12,12 @@ class Users extends Entity
     protected string $prenom;
     protected string $email;
     protected string $password;
-    protected DateTime $dateNaissance;
     protected int $role;
 
-    public function __construct(string $nom, string $prenom, DateTime $dateNaissance, string $email, string $password, int $role)
+    public function __construct(string $nom, string $prenom,string $email, string $password, int $role)
     {
         $this->nom = $nom;
         $this->prenom = $prenom;
-        $this->dateNaissance = $dateNaissance;
         $this->email = $email;
         $this->role = $role;
         $this->password = $password;
@@ -27,6 +25,6 @@ class Users extends Entity
 
     public function toDTO() : UsersDTO
     {
-        return new UsersDTO($this->ID, $this->nom, $this->prenom, $this->dateNaissance, $this->email, $this->pass,$this->role );
+        return new UsersDTO($this->ID, $this->nom, $this->prenom, $this->email, $this->password,$this->role );
     }
 }
