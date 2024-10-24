@@ -2,10 +2,11 @@
 
 namespace nrv\core\services\user;
 
-use DateTime;
 use nrv\core\dto\spectacle\LieuxSpectacleDTO;
 use nrv\core\dto\spectacle\SpectacleDTO;
 use nrv\core\dto\soiree\SoireeDTO;
+use nrv\core\dto\billet\InputBilletDTO;
+use nrv\core\dto\billet\BilletDTO;
 
 interface ServiceUserInterface
 {
@@ -23,4 +24,5 @@ interface ServiceUserInterface
     public function getSoireeBySpectacleId(string $id): SoireeDTO;
     public function getSpectaclesByLieu(string $id): array;
     public function getBilletsByUser(string $id): array;
+    public function acheterBillet(InputBilletDTO $inputBilletDTO): BilletDTO;
 }

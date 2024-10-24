@@ -3,10 +3,12 @@
 namespace nrv\core\services\user;
 
 use DateTime;
+use nrv\core\dto\billet\InputBilletDTO;
 use nrv\core\dto\spectacle\LieuxSpectacleDTO;
 use nrv\core\repositoryInterface\NrvRepositoryInterface;
 use nrv\core\dto\spectacle\SpectacleDTO;
 use nrv\core\dto\soiree\SoireeDTO;
+use nrv\core\dto\billet\BilletDTO;
 
 class ServiceUser implements ServiceUserInterface
 {
@@ -207,5 +209,15 @@ class ServiceUser implements ServiceUserInterface
             $billetsDTO[] = $billet->toDTO();
         }
         return $billetsDTO;
+    }
+
+    /**
+     * Méthode qui permet d'acheter un billet
+     * @param InputBilletDTO $inputBilletDTO
+     * @return BilletDTO le billet en DTO
+     */
+    public function acheterBillet(InputBilletDTO $inputBilletDTO): BilletDTO {
+        $billetDTO = $this->_nrvRepository->creerBillet($inputBilletDTO->user, $inputBilletDTO->tarif, new DateTime(), $inputBilletDTO->soiree);
+        return $billetDTO->toDTO();
     }
 }

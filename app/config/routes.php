@@ -2,35 +2,29 @@
 
 declare(strict_types=1);
 
-use nrv\application\actions\ListeSpectacleByLieuAction;
 use Slim\App;
 
 return function (App $app): App {
 
-    $app->get('/', callable: nrv\application\actions\HomeAction::class)->setName('home');
+    $app->get('/', callable: nrv\application\actions\HomeAction::class);
 
-    $app->get('/spectacles', callable: nrv\application\actions\ListeSpectacleAction::class)->setName('spectacles');
+    $app->get('/spectacles', callable: nrv\application\actions\ListeSpectacleAction::class);
 
-    $app->get('/spectacles/{ID_Spectacle}/artistes', callable: nrv\application\actions\ArtistesBySpectacleAction::class)
-        ->setName('artistesBySpectacles');
+    $app->get('/spectacles/{ID_Spectacle}/artistes', callable: nrv\application\actions\ArtistesBySpectacleAction::class);
 
-    $app->get('/soiree/{id}', callable: nrv\application\actions\DetailSoireeAction::class)
-        ->setName('soiree');
+    $app->get('/soiree/{id}', callable: nrv\application\actions\DetailSoireeAction::class);
 
-    $app->get('/soirees/{id}/spectacles', callable: nrv\application\actions\ListeSpectacleSoireeAction::class)
-        ->setName('spectaclesSoiree');
+    $app->get('/soirees/{id}/spectacles', callable: nrv\application\actions\ListeSpectacleSoireeAction::class);
 
-    $app->get('/spectacles/{ID_Spectacle}/soiree', callable: nrv\application\actions\SoireeBySpectacleAction::class)
-        ->setName('soireeBySpectacle');
+    $app->get('/spectacles/{ID_Spectacle}/soiree', callable: nrv\application\actions\SoireeBySpectacleAction::class);
 
-    $app->get('/lieux/{ID_Lieu}/spectacles', callable: ListeSpectacleByLieuAction::class)
-        ->setName('spectaclesByLieu');
+    $app->get('/lieux/{ID_Lieu}/spectacles', callable: nrv\application\actions\ListeSpectacleByLieuAction::class);
 
-    $app->get('/users/{id_user}/billets', callable: nrv\application\actions\ListeBilletUser::class)
-        ->setName('billetsUser');
+    $app->get('/users/{id_user}/billets', callable: nrv\application\actions\ListeBilletUser::class);
 
-    $app->get('/lieux', callable: nrv\application\actions\ListeLieuAction::class)
-        ->setName('lieux');
+    $app->get('/lieux', callable: nrv\application\actions\ListeLieuAction::class);
+
+    $app->post('/billets', callable: nrv\application\actions\AchatBilletAction::class);
 
     return $app;
 };
