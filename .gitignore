@@ -6,3 +6,6 @@ app/vendor
 .idea
 *.lock
 web/node_modules
+web/lib/index.js
+web/lib/indes.js.map
+web/package-lock.json

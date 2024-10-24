@@ -2,13 +2,13 @@
 
 namespace nrv\application\actions;
 
-use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Message\ResponseInterface;
 use nrv\application\renderer\JsonRenderer;
 use nrv\core\services\user\ServiceUserInterface;
 use nrv\core\services\user\ServiceUserNotFoundException;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
-class ArtistesBySpectacleAction extends AbstractAction
+class ListeLieuAction extends AbstractAction
 {
 
     protected ServiceUserInterface $serviceUser;
@@ -20,17 +20,22 @@ class ArtistesBySpectacleAction extends AbstractAction
 
     public function __invoke(ServerRequestInterface $rq, ResponseInterface $rs, array $args): ResponseInterface
     {
-        $id = $args['ID_Spectacle'];
-
         try {
-            $artistes = $this->serviceUser->getArtistesBySpectacle($id);
+            $lieux = $this->serviceUser->getLieux();
             $data = [];
-            foreach ($artistes as $artiste) {
+            foreach ($lieux as $lieu) {
                 $data[] = [
-                    'artiste' => $artiste->ID,
-                    'nom' => $artiste->nom,
+                    'lieu' => [
+                        'ID' => $lieu->ID,
+                        'nom' => $lieu->nom,
+                        'adresse' => $lieu->adresse,
+                        'ville' => $lieu->ville,
+                        'nb_places_assises' => $lieu->nb_places_assises,
+                        'nb_places_debout' => $lieu->nb_places_debout
+                    ],
                     'links' => [
-                        'self' => ['href' => '/spectacles/' . $id . '/artistes']
+                        'spectacles' => ['href' => '/lieux/' . $lieu->ID . '/spectacles'],
+                        'soirees' => ['href' => '/lieux/' . $lieu->ID . '/soirees']
                     ]
                 ];
             }
@@ -45,27 +50,16 @@ class ArtistesBySpectacleAction extends AbstractAction
                 ]
             ];
             return JsonRenderer::render($rs, 404, $data);
-        } catch (\Exception  $e) {
-            $data = [
-                'message' => $e->getMessage(),
-                'exception' => [
-                    'type' => get_class($e),
-                    'code' => $e->getCode(),
-                    'file' => $e->getFile(),
-                    'line' => $e->getLine()
-                ]
-            ];
-            return JsonRenderer::render($rs, 400, $data);
         }
 
-        // On rajoute les liens HATEOAS
         $tabFinal = [
-            'type' => 'ressource',
-            'locale' => 'fr_FR',
-            'artistes' => $data,
+            'type' => 'collection',
+            'count' => count($data),
+            'lieux' => $data,
             'links' => [
-                'self' => ['href' => '/spectacles/' . $id . '/artistes'],
-                'spectacles' => ['href' => '/spectacles']
+                'self' => [
+                    'href' => '/lieux'
+                ]
             ]
         ];
 

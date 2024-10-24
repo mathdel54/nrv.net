@@ -2,10 +2,13 @@
 
 namespace nrv\core\services\user;
 
+use DateTime;
+use nrv\core\dto\billet\InputBilletDTO;
 use nrv\core\dto\spectacle\LieuxSpectacleDTO;
 use nrv\core\repositoryInterface\NrvRepositoryInterface;
 use nrv\core\dto\spectacle\SpectacleDTO;
 use nrv\core\dto\soiree\SoireeDTO;
+use nrv\core\dto\billet\BilletDTO;
 
 class ServiceUser implements ServiceUserInterface
 {
@@ -29,6 +32,20 @@ class ServiceUser implements ServiceUserInterface
             $spectaclesDTO[] = $spectacle->toDTO();
         }
         return $spectaclesDTO;
+    }
+
+    /**
+     * Méthode qui retourne la liste des artistes
+     * @return array liste des artistes
+     */
+    public function getLieux(): array
+    {
+        $lieus = $this->_nrvRepository->getLieux();
+        $lieusDTO = [];
+        foreach ($lieus as $lieu) {
+            $lieusDTO[] = $lieu->toDTO();
+        }
+        return $lieusDTO;
     }
 
     /**
@@ -148,5 +165,59 @@ class ServiceUser implements ServiceUserInterface
     {
         $soiree = $this->_nrvRepository->getSoireeBySpectacleId($id);
         return $soiree->toDTO();
+    }
+
+    /**
+     * Méthode qui retourne la liste des spectacles par lieu
+     * @param string $id
+     * @return array
+     */
+    public function getSpectaclesByLieu(string $id): array
+    {
+        $spectacles = $this->_nrvRepository->getSpectaclesByLieu($id);
+        $spectaclesDTO = [];
+        foreach ($spectacles as $spectacle) {
+            $spectaclesDTO[] = $spectacle->toDTO();
+        }
+        return $spectaclesDTO;
+    }
+
+    /**
+     * Méthode qui retourne la liste des spectacles par style
+     * @param string $style
+     * @return array liste des spectacles en DTO
+     */
+    public function getSpectacleByStyle(string $style): array
+    {
+        $spectacles = $this->_nrvRepository->getSpectacleByStyle($style);
+        $spectaclesDTO = [];
+        foreach ($spectacles as $spectacle) {
+            $spectaclesDTO[] = $spectacle->toDTO();
+        }
+        return $spectaclesDTO;
+    }
+
+    /**
+     * Méthode qui retourne la liste des billets par utilisateur
+     * @param string $id
+     * @return array liste des billets en DTO
+     */
+    public function getBilletsByUser(string $id): array {
+        $billets = $this->_nrvRepository->getBilletsByUser($id);
+        $billetsDTO = [];
+        foreach ($billets as $billet) {
+            $billetsDTO[] = $billet->toDTO();
+        }
+        return $billetsDTO;
+    }
+
+    /**
+     * Méthode qui permet d'acheter un billet
+     * @param InputBilletDTO $inputBilletDTO
+     * @return BilletDTO le billet en DTO
+     */
+    public function acheterBillet(InputBilletDTO $inputBilletDTO): BilletDTO {
+        $billetDTO = $this->_nrvRepository->creerBillet($inputBilletDTO->user, $inputBilletDTO->tarif, new DateTime(), $inputBilletDTO->soiree);
+        return $billetDTO->toDTO();
     }
 }

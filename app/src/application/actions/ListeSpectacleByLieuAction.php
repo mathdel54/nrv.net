@@ -2,13 +2,15 @@
 
 namespace nrv\application\actions;
 
-use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Message\ResponseInterface;
+use nrv\application\actions\AbstractAction;
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
 use nrv\application\renderer\JsonRenderer;
 use nrv\core\services\user\ServiceUserInterface;
 use nrv\core\services\user\ServiceUserNotFoundException;
 
-class ListeSpectacleAction extends AbstractAction
+
+class ListeSpectacleByLieuAction extends AbstractAction
 {
 
     protected ServiceUserInterface $serviceUser;
@@ -18,18 +20,12 @@ class ListeSpectacleAction extends AbstractAction
         $this->serviceUser = $serviceUser;
     }
 
-    public function __invoke(ServerRequestInterface $rq, ResponseInterface $rs, array $args): ResponseInterface
+    public function __invoke(Request $rq, Response $rs, array $args): Response
     {
-        $style = $rq->getQueryParams()['style'] ?? null;
-        $date = $rq->getQueryParams()['date'] ?? null;
+        $id = $args['ID_Lieu'];
+
         try {
-            if (isset($style)) {
-                $spectacles = $this->serviceUser->getSpectaclesByStyle($style);
-            } else if(isset($date)) {
-                $spectacles = $this->serviceUser->getSpectaclesByDate($date);
-            } else {
-                $spectacles = $this->serviceUser->getSpectacles();
-            }
+            $spectacles = $this->serviceUser->getSpectaclesByLieu($id);
             $data = [];
             foreach ($spectacles as $spectacle) {
                 $data[] = [
@@ -71,16 +67,14 @@ class ListeSpectacleAction extends AbstractAction
             return JsonRenderer::render($rs, 400, $data);
         }
 
-        // On rajoute les liens HATEOAS
         $tabFinal = [
             'type' => 'collection',
             'count' => count($data),
             'spectacles' => $data,
             'links' => [
-                'self' => ['href' => '/spectacles'],
+                'self' => ['href' => '/lieu/' . $id . '/spectacles'],
             ]
         ];
-
         return JsonRenderer::render($rs, 200, $tabFinal);
     }
 }

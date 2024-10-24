@@ -1,9 +1,17 @@
-import {load} from './loader.js';
+import {load} from './api.js';
 
 export async function loadSpectacles(){
     return await load('/spectacles');
 }
 
-export async function loadArtisteDeSpectacle(idSpectacle){
-    return await load(`/spectacles/${idSpectacle}/artistes`);
+export async function loadSpectaclesParStyle(style){
+    return await load(`/spectacles?style=${style}`);
+}
+
+export async function loadSpectaclesParLieu(idLieu){
+    return await load(`/lieux/${idLieu}/spectacles`);
+}
+
+export async function loadSpectaclesParDate(date){
+    return await load(`/spectacles?date=${date}`);
 }

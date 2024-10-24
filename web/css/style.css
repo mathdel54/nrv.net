@@ -1,0 +1,235 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+header img {
+  border-radius: 100%;
+  height: 100px;
+  width: 100px;
+  border: 4px solid white;
+}
+header nav {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
+}
+header nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+header nav a:hover {
+  color: #3E3D3B;
+}
+header .authentif-bouttons {
+  display: flex;
+  gap: 10px;
+}
+header .authentif-bouttons a {
+  display: inline;
+  font-size: 16px;
+  text-decoration: none;
+  padding: 10px 15px;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  transition: all 0.35s;
+}
+header .authentif-bouttons a span {
+  position: relative;
+  z-index: 2;
+}
+header .authentif-bouttons a:after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #3E3D3B;
+  border-radius: 10px;
+  transition: all 0.35s;
+}
+header .authentif-bouttons a:hover {
+  color: white;
+}
+header .authentif-bouttons a:hover:after {
+  width: 100%;
+}
+
+#imageDeFond {
+  background-image: url("../images/nrv_accueil.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0.8;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.banniere {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.boutonSelection {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.boutonFiltrage {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+#selectionStyle {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #3E3D3B;
+  font-size: 20px;
+  margin-right: 9px;
+  border: 2px solid #3E3D3B;
+  padding: 4px 13px;
+  border-radius: 10px;
+}
+#selectionStyle:hover {
+  background-color: #3E3D3B;
+  color: white;
+}
+#selectionStyle:hover img {
+  content: url("../images/styles-logo-blanc.svg");
+  width: 20px;
+  height: 20px;
+}
+
+h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  position: relative;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+h2:after {
+  content: "";
+  position: absolute;
+  width: 80px;
+  height: 4px;
+  background-color: #3E3D3B;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.filtreStyle {
+  text-decoration: none;
+  color: #3E3D3B;
+  border-bottom: 1px #3E3D3B solid;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 2px;
+  transition: background-color 0.7s ease, color 0.7s ease;
+}
+.filtreStyle:hover {
+  background-color: #3E3D3B;
+  color: white;
+}
+
+#container-spectacle-carte {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+.spectacle-card {
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin: 10px;
+  height: 400px;
+  grid-column: 1/3;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+.spectacle-card h3 {
+  color: #333;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+.spectacle-card p {
+  color: #555;
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+.spectacle-card img {
+  width: 200px;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.spectacle-card:hover {
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+.spectacle-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+footer {
+  background-color: #e2e1e1;
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+footer ul {
+  list-style: none;
+  padding: 0;
+}
+footer ul li {
+  margin: 5px 0;
+}
+footer .reseauxIcons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+footer .reseauxIcons a {
+  text-decoration: none;
+}
+
+/*# sourceMappingURL=style.css.map */

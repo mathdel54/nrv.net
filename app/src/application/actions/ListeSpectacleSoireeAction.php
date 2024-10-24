@@ -13,11 +13,11 @@ use nrv\core\services\user\ServiceUserNotFoundException;
 class ListeSpectacleSoireeAction extends AbstractAction
 {
 
-    protected ServiceUserInterface $soireeRepository;
+    protected ServiceUserInterface $serviceUser;
 
-    public function __construct(ServiceUserInterface $soireeRepository)
+    public function __construct(ServiceUserInterface $serviceUser)
     {
-        $this->soireeRepository = $soireeRepository;
+        $this->serviceUser = $serviceUser;
     }
 
     public function __invoke(Request $rq, Response $rs, array $args): Response
@@ -25,7 +25,7 @@ class ListeSpectacleSoireeAction extends AbstractAction
         $id = $args['id'];
 
         try {
-            $spectacles = $this->soireeRepository->getSpectaclesBySoireeId($id);
+            $spectacles = $this->serviceUser->getSpectaclesBySoireeId($id);
             $data = [];
             foreach ($spectacles as $spectacle) {
                 $data[] = [
@@ -36,10 +36,10 @@ class ListeSpectacleSoireeAction extends AbstractAction
                         'horaire' => $spectacle->horaire->format('H:i'),
                         'images' => $spectacle->images,
                         'style' => $spectacle->style,
-                        'links' => [
-                            'artistes' => ['href' => '/spectacles/' . $spectacle->ID . '/artistes'],
-                            'soiree' => ['href' => '/spectacles/' . $spectacle->ID . '/soiree']
-                        ]
+                    ],
+                    'links' => [
+                        'artistes' => ['href' => '/spectacles/' . $spectacle->ID . '/artistes'],
+                        'soiree' => ['href' => '/spectacles/' . $spectacle->ID . '/soiree']
                     ]
                 ];
             }

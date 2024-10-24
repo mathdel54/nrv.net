@@ -2,14 +2,14 @@
 
 namespace nrv\application\actions;
 
-use nrv\core\services\user\ServiceUserInterface;
+use nrv\core\dto\billet\InputBilletDTO;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use nrv\application\renderer\JsonRenderer;
+use nrv\core\services\user\ServiceUserInterface;
 use nrv\core\services\user\ServiceUserNotFoundException;
 
-class DetailSoireeAction extends AbstractAction
-{
+class AchatBilletAction extends AbstractAction {
 
     protected ServiceUserInterface $serviceUser;
 
@@ -20,19 +20,25 @@ class DetailSoireeAction extends AbstractAction
 
     public function __invoke(ServerRequestInterface $rq, ResponseInterface $rs, array $args): ResponseInterface
     {
-        $id = $args['id'];
-
         try {
-            $soiree = $this->serviceUser->getSoireeById($id);
+            $id_user = $rq->getParsedBody()['id_user'] ?? null;
+            $id_soiree = $rq->getParsedBody()['id_soiree'] ?? null;
+            $tarif = $rq->getParsedBody()['tarif'] ?? null;
 
-            $data[] = [
-                'nom' => $soiree->nom,
-                'theme' => $soiree->theme,
-                'date' => $soiree->horaire->format('Y-m-d'),
-                'horaire' => $soiree->horaire->format('H:i'),
-                'lieu' => $soiree->lieu,
-                'tarifNormal' => $soiree->tarifNormal,
-                'tarifReduit' => $soiree->tarifReduit,
+            $dtoBillet = new InputBilletDTO($id_user, $tarif, $id_soiree);
+
+            $billet = $this->serviceUser->acheterBillet($dtoBillet);
+
+            $data = [
+                'billet' => [
+                    'user' => $billet->user,
+                    'tarif' => $billet->tarif,
+                    'date' => $billet->date,
+                    'soiree' => $billet->soiree,
+                ],
+                'links' => [
+                    'soiree' => ['href' => '/soiree/' . $billet->soiree ]
+                ]
             ];
         } catch (ServiceUserNotFoundException $e) {
             $data = [
@@ -57,18 +63,6 @@ class DetailSoireeAction extends AbstractAction
             ];
             return JsonRenderer::render($rs, 400, $data);
         }
-
-        // On rajoute les liens HATEOAS
-        $tabFinal = [
-            'type' => 'ressource',
-            'locale' => 'fr_FR',
-            'soiree' => $data,
-            'links' => [
-                'spectacles' => ['href' => '/soiree/' . $id . '/spectacles'],
-                'self' => ['href' => '/spectacles'],
-            ]
-        ];
-
-        return JsonRenderer::render($rs, 200, $tabFinal);
+        return JsonRenderer::render($rs, 200, $data);
     }
 }

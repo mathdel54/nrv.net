@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars';
 import {loadSpectaclesDeLaSoiree} from "./soireeLoader";
-import {loadArtisteDeSpectacle} from "./spectaclesLoader";
-import {load} from "./loader";
+import {load} from "./api";
+import {ajouterAuPanier} from "./panier";
 
 const source = document.getElementById('soireeTemplate').innerHTML;
 const template = Handlebars.compile(source);
@@ -11,11 +11,11 @@ export async function display_soiree(soiree) {
     for (let i = 0; i < spectacles.spectacles.length; i++) {
         spectacles.spectacles[i].artiste = await load(spectacles.spectacles[i].links.artistes.href);
     }
+    document.getElementById('template').innerHTML = template({soiree: soiree, spectacles: spectacles.spectacles});
 
-
-    soiree.spectacles = spectacles;
-
-    console.log(soiree.spectacles);
-
-    document.getElementById('template').innerHTML = template(soiree);
+    document.getElementById("ajouterPanier").addEventListener("click", function() {
+        let nbPlaces = document.getElementById("places").value;
+        ajouterAuPanier(soiree, nbPlaces);
+        document.getElementById("ajouterPanier").disabled = true;
+    });
 }

@@ -10,7 +10,28 @@ CREATE TABLE "public"."artiste" (
 INSERT INTO "artiste" ("id", "nom") VALUES
 ('40bd2432-5670-480c-a2ed-716fa7e7165d',	'John Doe Quartet'),
 ('ac508fd3-885f-4530-96e7-576585604d22',	'The Rockers'),
-('1adf0f50-2744-4149-b65b-7044d79ead8d',	'Orchestre National');
+('1adf0f50-2744-4149-b65b-7044d79ead8d',	'Orchestre National'),
+('0250720c-db12-41f6-9796-c9aff9c20541',	'A Tribe Called Quest'),
+('88740a37-1799-485c-b947-76850b068c65',	'Wu-Tang Clan'),
+('6e364b76-d390-41d1-ac3a-7072c8ade537',	'Maroon 5'),
+('63938f72-8f51-4dec-8583-dd2ec8727c43',	'OneRepublic'),
+('6c48724c-1b29-4122-9584-a9a0a25eab56',	'Pink Floyd'),
+('f9351044-c8a3-4277-8023-b4535a59e8b1',	'Nirvana'),
+('0c33aebc-51f4-49ba-bbf6-76a6d6bc3fd4',	'Electric Symphony'),
+('36fb94b3-275b-43c9-9b80-3cda7d5930c6',	'The Rhythmic Collective'),
+('8576d18e-c27f-4395-ac7b-d25d9e9c7cb8',	'Global Beats Orchestra'),
+('90d4b2ed-5a7e-4981-9dbc-7d7acf66e7b0',	'The Jazz Masters'),
+('544ed318-fca6-4d26-9442-d5f104c0d8f3',	'Deep House Collective'),
+('2255e37d-e98f-4a42-b4fa-f4ef1a93ee7d',	'Funkadelic Experience'),
+('e94ea19b-4a4c-4781-9449-8249bf42e223',	'Smooth Jazz Ensemble'),
+('e124dada-c354-4ad7-9ecd-ef8202208b91',	'Urban Flow Crew'),
+('33ebfae7-2bc3-430e-a935-90d2e3e26e7e',	'Electro Swingers'),
+('d8b7f3bd-3fcd-48fe-83a0-a26f73db5629',	'Blues & Roots Band'),
+('aa80b503-9825-470d-977a-7109667c0cb4',	'Latin Heat Band'),
+('3cebbd41-e6c8-447e-9798-4e266174d9d4',	'Tango Passion Group'),
+('3f8602d4-3f42-49d7-9d2c-e8015ac03853',	'Afrobeat Collective'),
+('25521a67-d6fc-4602-9d63-0fb94a24c205',	'Chillwave Orchestra'),
+('d1e77279-fa6e-4039-9704-df7d1912fbbb',	'Salsa Sensations');
 
 DROP TABLE IF EXISTS "artiste_spectacle";
 CREATE TABLE "public"."artiste_spectacle" (
@@ -19,9 +40,102 @@ CREATE TABLE "public"."artiste_spectacle" (
 ) WITH (oids = false);
 
 INSERT INTO "artiste_spectacle" ("id_artiste", "id_spectacle") VALUES
-('40bd2432-5670-480c-a2ed-716fa7e7165d',	'44533365-fbba-4dd3-865b-1f8af96b3e57'),
-('ac508fd3-885f-4530-96e7-576585604d22',	'acc717f5-ced0-4896-89a7-5cd5bca8d669'),
-('1adf0f50-2744-4149-b65b-7044d79ead8d',	'd8804296-3d11-43c5-92eb-02a087cfb10f');
+('40bd2432-5670-480c-a2ed-716fa7e7165d',	'37bc69e1-c0ba-47f8-a833-66241c15d1a5'),
+('90d4b2ed-5a7e-4981-9dbc-7d7acf66e7b0',	'aaadf734-573c-40ad-bf42-683f0a61dad2'),
+('2255e37d-e98f-4a42-b4fa-f4ef1a93ee7d',	'c49e49e8-812d-4182-ac80-a7106c04da5c'),
+('e124dada-c354-4ad7-9ecd-ef8202208b91',	'ec9fd92b-d48e-4d40-bca1-d67393c91be6'),
+('0c33aebc-51f4-49ba-bbf6-76a6d6bc3fd4',	'8575da03-7019-4eaf-ae21-971609949673'),
+('63938f72-8f51-4dec-8583-dd2ec8727c43',	'1b2b0a28-6805-479d-adee-495deac55519'),
+('e94ea19b-4a4c-4781-9449-8249bf42e223',	'd0039a32-21a1-42a5-a8ec-f322b7343fea'),
+('40bd2432-5670-480c-a2ed-716fa7e7165d',	'7540fe48-8f4c-432c-ac48-6392dea004ef'),
+('36fb94b3-275b-43c9-9b80-3cda7d5930c6',	'd81e57a2-65b8-4ad5-8c10-c48199c0d619'),
+('36fb94b3-275b-43c9-9b80-3cda7d5930c6',	'7c36a118-9a2f-4106-99b4-7e483cd0f691'),
+('1adf0f50-2744-4149-b65b-7044d79ead8d',	'56e52513-18a6-4ad5-8c54-baf4fa4ae2cf'),
+('1adf0f50-2744-4149-b65b-7044d79ead8d',	'63828259-ba0e-4c31-b321-74817f1dea5f'),
+('e124dada-c354-4ad7-9ecd-ef8202208b91',	'ff9c6e3d-131e-4ba6-b817-3372de08c447'),
+('63938f72-8f51-4dec-8583-dd2ec8727c43',	'ad2a11da-b851-4e3f-8b58-35d559fec8b7'),
+('d8b7f3bd-3fcd-48fe-83a0-a26f73db5629',	'f50f24b3-349e-40cf-9d1a-7f58df4bb787'),
+('d8b7f3bd-3fcd-48fe-83a0-a26f73db5629',	'418cd4bc-5077-4d66-9f73-4d64d730cb59'),
+('0c33aebc-51f4-49ba-bbf6-76a6d6bc3fd4',	'bc476715-049a-4143-a425-93dc581cb75e'),
+('90d4b2ed-5a7e-4981-9dbc-7d7acf66e7b0',	'250bec61-75db-4430-ba1f-371079d12d0e'),
+('544ed318-fca6-4d26-9442-d5f104c0d8f3',	'4f0eaa9f-3fe2-4258-8d77-3ea8e25f4722'),
+('544ed318-fca6-4d26-9442-d5f104c0d8f3',	'af38bec9-17de-4d73-b9ac-0d8052b41baf'),
+('88740a37-1799-485c-b947-76850b068c65',	'63cc01d1-7de6-4ed4-89f4-3c1d708aa0bd'),
+('88740a37-1799-485c-b947-76850b068c65',	'1a138d64-6d02-438f-a70c-37b616824ebe'),
+('36fb94b3-275b-43c9-9b80-3cda7d5930c6',	'ea7d3b19-582a-4ad1-af44-01a99535c2b3'),
+('36fb94b3-275b-43c9-9b80-3cda7d5930c6',	'05f7037f-59b7-4c56-9b03-6e5bea69aa16'),
+('2255e37d-e98f-4a42-b4fa-f4ef1a93ee7d',	'f810f094-4372-4291-aa4b-b2c3b52e6ab9'),
+('2255e37d-e98f-4a42-b4fa-f4ef1a93ee7d',	'50e80c9c-8a33-49af-ac70-2341fdfb93af'),
+('544ed318-fca6-4d26-9442-d5f104c0d8f3',	'ad06f837-4a35-4494-9f13-818af8cde6b2'),
+('544ed318-fca6-4d26-9442-d5f104c0d8f3',	'080122a5-c7f0-4e6b-8123-0c7f54d11d49'),
+('33ebfae7-2bc3-430e-a935-90d2e3e26e7e',	'ba2d3606-0856-4b27-95bf-ec0fc9f6e8ff'),
+('33ebfae7-2bc3-430e-a935-90d2e3e26e7e',	'ff45a5c4-5fea-492e-82ba-a3e5e916e16a'),
+('2255e37d-e98f-4a42-b4fa-f4ef1a93ee7d',	'0183cde6-17a2-4c69-946a-e9767cd60c06'),
+('2255e37d-e98f-4a42-b4fa-f4ef1a93ee7d',	'e5fd233c-a6b6-4cd6-b095-c70a27109e7d'),
+('6c48724c-1b29-4122-9584-a9a0a25eab56',	'18c376f2-3059-4ba4-983b-c65927b7ced2'),
+('6c48724c-1b29-4122-9584-a9a0a25eab56',	'368e7950-ef49-4bcd-8714-1d7169d42ee9'),
+('f9351044-c8a3-4277-8023-b4535a59e8b1',	'eec027f8-7200-44ab-8148-eaa96b190767'),
+('f9351044-c8a3-4277-8023-b4535a59e8b1',	'4d678281-4c50-4c37-bada-4ff77b1496d7'),
+('ac508fd3-885f-4530-96e7-576585604d22',	'4b1b0b20-e099-464a-933e-4360814f78e5'),
+('ac508fd3-885f-4530-96e7-576585604d22',	'61a0d0f6-5f72-4148-b10c-d90f5754f8c9'),
+('40bd2432-5670-480c-a2ed-716fa7e7165d',	'21936685-1d39-4c0e-af69-48994550d4b4'),
+('40bd2432-5670-480c-a2ed-716fa7e7165d',	'99dcfc53-7d50-427d-8d3b-576eaaa0007c'),
+('d1e77279-fa6e-4039-9704-df7d1912fbbb',	'd2ff4715-472b-465f-afbb-954e58d58546'),
+('d1e77279-fa6e-4039-9704-df7d1912fbbb',	'0b398142-bf3f-4d5c-8768-e47ce217d6b0'),
+('3cebbd41-e6c8-447e-9798-4e266174d9d4',	'20dc25b4-a37c-4b94-8701-86e317ccf5c9'),
+('3cebbd41-e6c8-447e-9798-4e266174d9d4',	'b17c3b82-510b-46dd-8cdd-63cbe90cfc3e'),
+('8576d18e-c27f-4395-ac7b-d25d9e9c7cb8',	'ca21aad8-78b9-4ce6-b311-f334b4bbba5d'),
+('8576d18e-c27f-4395-ac7b-d25d9e9c7cb8',	'4f5111de-72ce-4a3f-b82c-7296e125f20f'),
+('1adf0f50-2744-4149-b65b-7044d79ead8d',	'ec8b50c5-75a3-46b1-9780-ed6014130a57'),
+('1adf0f50-2744-4149-b65b-7044d79ead8d',	'd2ca1f20-ec6f-4f17-8d0d-dfada467b856'),
+('63938f72-8f51-4dec-8583-dd2ec8727c43',	'dd8e56dd-d1a6-4299-9515-b9d2e07c215b'),
+('63938f72-8f51-4dec-8583-dd2ec8727c43',	'47da17e2-aa53-47b0-9242-a645264042c2'),
+('0250720c-db12-41f6-9796-c9aff9c20541',	'513f9b22-5ea4-4639-b066-d02c17bc5276'),
+('0250720c-db12-41f6-9796-c9aff9c20541',	'1bb8b953-ef66-44a0-82eb-9130275b898e'),
+('90d4b2ed-5a7e-4981-9dbc-7d7acf66e7b0',	'18fc9059-8c1f-43ab-9b42-139bbac6bc31'),
+('90d4b2ed-5a7e-4981-9dbc-7d7acf66e7b0',	'a9294789-43b7-4437-b5e4-2b4d3df781ae'),
+('2255e37d-e98f-4a42-b4fa-f4ef1a93ee7d',	'40c1eb2c-e400-4ddf-a067-ac6ebd4fe643'),
+('2255e37d-e98f-4a42-b4fa-f4ef1a93ee7d',	'e26430f7-7240-417d-b150-c16544b61189'),
+('544ed318-fca6-4d26-9442-d5f104c0d8f3',	'b2668dca-18da-4e6c-a675-a1ea0a9c8756'),
+('544ed318-fca6-4d26-9442-d5f104c0d8f3',	'2df7ec4f-9aae-454c-bb61-9eae9461878e'),
+('d1e77279-fa6e-4039-9704-df7d1912fbbb',	'4b216651-a59e-49ea-9848-af36b18506ed'),
+('d1e77279-fa6e-4039-9704-df7d1912fbbb',	'f8570eaf-5d05-49a0-98af-8bdeb53c9cda'),
+('88740a37-1799-485c-b947-76850b068c65',	'8447ad11-4cdd-4633-be06-9d15e40ad843'),
+('88740a37-1799-485c-b947-76850b068c65',	'22a05fe1-04e7-495c-8fc6-f1e698befbc5'),
+('0c33aebc-51f4-49ba-bbf6-76a6d6bc3fd4',	'f5337d24-9afa-4c04-a83d-f540ed83370e'),
+('0c33aebc-51f4-49ba-bbf6-76a6d6bc3fd4',	'e161c2d8-7450-41b3-9b34-b566e9bcfdc1'),
+('63938f72-8f51-4dec-8583-dd2ec8727c43',	'6db763b0-3975-4e3e-94fb-fe35eb1fe307'),
+('63938f72-8f51-4dec-8583-dd2ec8727c43',	'53690864-d6c2-45d3-8192-0922a9500041'),
+('ac508fd3-885f-4530-96e7-576585604d22',	'5fcae77a-a757-4697-9ec9-980f5e13dc81'),
+('ac508fd3-885f-4530-96e7-576585604d22',	'c58c3727-e985-4aee-afde-79abc34bbe90'),
+('25521a67-d6fc-4602-9d63-0fb94a24c205',	'0a5d633b-89b5-4ecf-a513-89baab18effc'),
+('25521a67-d6fc-4602-9d63-0fb94a24c205',	'db49268d-bcba-45f2-8601-81e84129a035'),
+('1adf0f50-2744-4149-b65b-7044d79ead8d',	'58e39212-338a-42a2-8db2-cd25fd27d888'),
+('1adf0f50-2744-4149-b65b-7044d79ead8d',	'cbf048a6-6657-4dd2-8553-72eb417fcdef'),
+('3f8602d4-3f42-49d7-9d2c-e8015ac03853',	'e233f4e9-c68f-4edf-bc58-6607d9d29096'),
+('3f8602d4-3f42-49d7-9d2c-e8015ac03853',	'58be118a-ac3f-4a72-a4c9-68e2282c9ef8'),
+('aa80b503-9825-470d-977a-7109667c0cb4',	'8337c023-28ba-498a-b810-9f7f33fa95bb'),
+('aa80b503-9825-470d-977a-7109667c0cb4',	'0dcf5a8f-27ce-4a42-875d-05cb7c554d36'),
+('544ed318-fca6-4d26-9442-d5f104c0d8f3',	'fbfd9d62-f12c-418f-a99c-10e4d3535173'),
+('544ed318-fca6-4d26-9442-d5f104c0d8f3',	'821716c4-e8a8-43a7-acc9-52b3e0b1be3f'),
+('2255e37d-e98f-4a42-b4fa-f4ef1a93ee7d',	'd744093f-0520-4222-baba-1a85634adf15'),
+('2255e37d-e98f-4a42-b4fa-f4ef1a93ee7d',	'f59f7b4f-015a-494f-bf76-f974639149e2'),
+('d1e77279-fa6e-4039-9704-df7d1912fbbb',	'fc957a47-42dd-4917-9f98-a81698741d67'),
+('d1e77279-fa6e-4039-9704-df7d1912fbbb',	'26b9df46-1cbe-4af1-8789-14aec54fdc8f'),
+('25521a67-d6fc-4602-9d63-0fb94a24c205',	'7a1bacb3-8738-46b2-a358-c14c6e72a7e7'),
+('25521a67-d6fc-4602-9d63-0fb94a24c205',	'2e50bd4b-0d67-4a80-a038-6a4f71cec1cf'),
+('40bd2432-5670-480c-a2ed-716fa7e7165d',	'cb48d363-5040-4c87-9599-7ac4633d05b8'),
+('40bd2432-5670-480c-a2ed-716fa7e7165d',	'c4016b4e-18cc-497b-8e42-50c65d451e33'),
+('0250720c-db12-41f6-9796-c9aff9c20541',	'6564e043-3e96-4908-a0b5-7802702b6e80'),
+('0250720c-db12-41f6-9796-c9aff9c20541',	'35c338d2-cfa4-4675-952a-fdc87f21bc6b'),
+('d8b7f3bd-3fcd-48fe-83a0-a26f73db5629',	'18eca34a-4d36-444e-9766-63f198d96f17'),
+('d8b7f3bd-3fcd-48fe-83a0-a26f73db5629',	'ea229370-96d0-4fa4-92bd-b85416d990de'),
+('25521a67-d6fc-4602-9d63-0fb94a24c205',	'959c1d8d-4bea-4a6c-b859-912d6f6d2938'),
+('25521a67-d6fc-4602-9d63-0fb94a24c205',	'30217f6e-a74b-43ea-b4d4-2889fb88f570'),
+('63938f72-8f51-4dec-8583-dd2ec8727c43',	'5741ed23-dcf9-46ae-aad9-9bb8350e5114'),
+('63938f72-8f51-4dec-8583-dd2ec8727c43',	'9f94fd57-c508-4b6e-bac9-5a05fad447e1'),
+('1adf0f50-2744-4149-b65b-7044d79ead8d',	'00343438-02b3-47ba-8eeb-619b359bb344'),
+('1adf0f50-2744-4149-b65b-7044d79ead8d',	'624bb979-5397-4b65-a948-a8593cb5c1a9');
 
 DROP TABLE IF EXISTS "billet";
 CREATE TABLE "public"."billet" (
@@ -34,9 +148,51 @@ CREATE TABLE "public"."billet" (
 ) WITH (oids = false);
 
 INSERT INTO "billet" ("id", "utilisateur_id", "tarif", "date_achat", "soiree_id") VALUES
-('a74cc649-41b8-4fa8-b0e4-2e67148e6cbe',	'f7c1eba2-7a35-4ca6-9d8b-eaa9636f4070',	'normal',	'2024-10-22 09:59:47.592324',	'dc4722c7-7fb8-4a21-8b6d-0a567997d874'),
-('33eec6eb-2e1c-4c32-9e80-ce22662a493d',	'a3cd8e39-9dec-4376-a9c8-53356985ba31',	'reduit',	'2024-10-22 09:59:47.592324',	'ee766414-2945-4c8b-9812-c232e14888c7'),
-('4791422d-67f4-4966-9f13-32cf49c72e8d',	'a3cd8e39-9dec-4376-a9c8-53356985ba31',	'normal',	'2024-10-22 09:59:47.592324',	'ee766414-2945-4c8b-9812-c232e14888c7');
+('44a93e03-123d-49e9-b169-13a47a691642',	'f7c1eba2-7a35-4ca6-9d8b-eaa9636f4070',	'Réduit',	'2024-10-24 09:34:01.315163',	'fa4e2552-6843-4c5e-87d2-08885b84929d'),
+('3ea0ddd0-b55e-4883-9010-20d6ce4a0589',	'f7c1eba2-7a35-4ca6-9d8b-eaa9636f4070',	'Normal',	'2024-10-24 09:34:01.315195',	'b5cfbf13-cc15-48e4-8bb8-5eedd38ed6c7'),
+('31a4684b-fb20-4bd5-aa12-9d7b6d6d47ee',	'f7c1eba2-7a35-4ca6-9d8b-eaa9636f4070',	'Normal',	'2024-10-24 09:34:01.315214',	'5aa6c27a-cd65-4805-9166-acff24b6f46e'),
+('d8b96fe4-c7e9-450d-b66c-be65f9dc00ae',	'f7c1eba2-7a35-4ca6-9d8b-eaa9636f4070',	'Réduit',	'2024-10-24 09:34:01.315226',	'eb79b2ae-e03a-49b9-8541-2da78998596c'),
+('80920e0a-f020-498f-ad6f-2c16053004ce',	'a3cd8e39-9dec-4376-a9c8-53356985ba31',	'Normal',	'2024-10-24 09:34:01.315245',	'7abb4579-38f5-4df8-8950-5a03aea2b2c6'),
+('0c7554f9-f6fb-4059-96a9-e666dac0c34f',	'a3cd8e39-9dec-4376-a9c8-53356985ba31',	'Normal',	'2024-10-24 09:34:01.315256',	'51bdde8f-33a2-4f83-b79b-9343662014b1'),
+('9b3b0c4e-9ea7-45aa-aea4-3c7427147160',	'a3cd8e39-9dec-4376-a9c8-53356985ba31',	'Réduit',	'2024-10-24 09:34:01.315281',	'931c0c6d-216e-4265-9dc5-ca57d4099613'),
+('72796316-d611-4f1f-ad1d-e71e507b38b9',	'a3cd8e39-9dec-4376-a9c8-53356985ba31',	'Réduit',	'2024-10-24 09:34:01.315299',	'8b1c1cf1-79b2-422c-a52a-a0ebebf6fa9e'),
+('afe89474-5152-4474-af72-1ba528241002',	'a3cd8e39-9dec-4376-a9c8-53356985ba31',	'Normal',	'2024-10-24 09:34:01.315319',	'63afb684-b9a0-4071-948a-150344a7a499'),
+('2328d905-cf1f-491a-8e3a-94bb73edf0c7',	'a3cd8e39-9dec-4376-a9c8-53356985ba31',	'Réduit',	'2024-10-24 09:34:01.315327',	'63b5aaa2-c5fa-446a-83d0-70b559f98508'),
+('01e5881b-8e40-45b1-b4bd-2fd5f262a6d5',	'a3cd8e39-9dec-4376-a9c8-53356985ba31',	'Réduit',	'2024-10-24 09:34:01.315334',	'd0b6cbd4-848c-48f4-8429-ff2478a2aef8'),
+('42d5dd1f-d5ad-4c86-9e59-298bb14bca7e',	'a3cd8e39-9dec-4376-a9c8-53356985ba31',	'Réduit',	'2024-10-24 09:34:01.315341',	'fc42e9b7-ae49-4e5d-bd9e-892c3e52de90'),
+('94a1347d-52e5-4ecd-99e1-a3a88dc0ccfb',	'a3cd8e39-9dec-4376-a9c8-53356985ba31',	'Réduit',	'2024-10-24 09:34:01.315348',	'22651630-95e6-434b-a188-866ad45ac823'),
+('f10dcdd4-86b1-4695-bdf6-5ac806394468',	'a3cd8e39-9dec-4376-a9c8-53356985ba31',	'Réduit',	'2024-10-24 09:34:01.315355',	'22651630-95e6-434b-a188-866ad45ac823'),
+('d70d05bf-514e-4a2c-b7be-17e9b2e5aa90',	'1d74c1bf-453c-4417-be0a-5095734e886f',	'Réduit',	'2024-10-24 09:34:01.315365',	'96e587d9-e3d0-4f71-99ca-07ef840513f2'),
+('2acc1d9c-383e-43ec-ac8e-6fbb98933240',	'1d74c1bf-453c-4417-be0a-5095734e886f',	'Réduit',	'2024-10-24 09:34:01.315373',	'ef96c80f-d800-4e00-acd5-db2b70489899'),
+('31a67333-4cb3-4bd1-b802-6b4772500839',	'1d74c1bf-453c-4417-be0a-5095734e886f',	'Réduit',	'2024-10-24 09:34:01.31538',	'cbf3dafb-c328-40f4-9d9e-82f717b2451f'),
+('61c7f069-7407-4237-a33e-dcd4b3a328a6',	'579bb5f0-61d4-42f2-aefc-56a605636aef',	'Réduit',	'2024-10-24 09:34:01.315388',	'63afb684-b9a0-4071-948a-150344a7a499'),
+('18651544-8569-4c24-9eec-ea271fdfd4ed',	'579bb5f0-61d4-42f2-aefc-56a605636aef',	'Normal',	'2024-10-24 09:34:01.315395',	'e751e21d-3be1-44d8-8712-1c4faf03b736'),
+('2b170276-a258-4377-9918-d939c7a47ce9',	'579bb5f0-61d4-42f2-aefc-56a605636aef',	'Réduit',	'2024-10-24 09:34:01.315401',	'76b6c64c-9d46-4bb1-9e0f-fbfd56ebbb85'),
+('4869d1cd-5fa0-4860-bdd7-e3d3fe975410',	'579bb5f0-61d4-42f2-aefc-56a605636aef',	'Réduit',	'2024-10-24 09:34:01.315408',	'22651630-95e6-434b-a188-866ad45ac823'),
+('d34d0e33-c531-4716-80df-adc7e90aea2e',	'17c466f8-ed9e-45dc-b6e0-c206c5879316',	'Réduit',	'2024-10-24 09:34:01.315416',	'76b6c64c-9d46-4bb1-9e0f-fbfd56ebbb85'),
+('6042e081-3dbd-4b37-a38c-3abe2dac6c36',	'17c466f8-ed9e-45dc-b6e0-c206c5879316',	'Normal',	'2024-10-24 09:34:01.315423',	'134d5b24-25bb-4d53-a157-ee07e2236e60'),
+('27c96d7b-4c2f-4659-ae45-3377b75e12ce',	'17c466f8-ed9e-45dc-b6e0-c206c5879316',	'Normal',	'2024-10-24 09:34:01.31543',	'22651630-95e6-434b-a188-866ad45ac823'),
+('55535689-60dd-4cc2-8128-76e76f4ace83',	'17c466f8-ed9e-45dc-b6e0-c206c5879316',	'Réduit',	'2024-10-24 09:34:01.315437',	'66fbfe25-1f1f-42e5-ab60-1c72417f9660'),
+('685859c2-586c-4555-b3bf-e01a47ad3c7e',	'17c466f8-ed9e-45dc-b6e0-c206c5879316',	'Normal',	'2024-10-24 09:34:01.315443',	'1e327cb1-83c4-4528-82bf-9318dffbb429'),
+('bdea696c-37c5-4cd7-b1e0-71be1ccbfebc',	'17c466f8-ed9e-45dc-b6e0-c206c5879316',	'Réduit',	'2024-10-24 09:34:01.31545',	'22651630-95e6-434b-a188-866ad45ac823'),
+('622d6fad-9d20-4174-94c4-526dad280a86',	'17c466f8-ed9e-45dc-b6e0-c206c5879316',	'Normal',	'2024-10-24 09:34:01.315456',	'fc42e9b7-ae49-4e5d-bd9e-892c3e52de90'),
+('0eb3c420-149c-4266-b6f9-34c6b04eea25',	'17c466f8-ed9e-45dc-b6e0-c206c5879316',	'Normal',	'2024-10-24 09:34:01.315464',	'3e310479-dca7-4ece-a6ad-8d6c18f923bf'),
+('be32b4c8-7d8d-4d06-b973-6008c99c6509',	'aae9a9e9-5a3e-4d0f-be66-36c6e40efd47',	'Réduit',	'2024-10-24 09:34:01.315472',	'66fbfe25-1f1f-42e5-ab60-1c72417f9660'),
+('57b65c68-c40f-49e8-94c6-789569e57103',	'aae9a9e9-5a3e-4d0f-be66-36c6e40efd47',	'Réduit',	'2024-10-24 09:34:01.315478',	'63b5aaa2-c5fa-446a-83d0-70b559f98508'),
+('1b46de8b-b60f-4c4e-ac1a-0b1d86b1fcde',	'aae9a9e9-5a3e-4d0f-be66-36c6e40efd47',	'Réduit',	'2024-10-24 09:34:01.315495',	'53293409-4ba5-4790-a34a-7126680f48fc'),
+('2ac9db23-f933-43bf-9e5e-2487ad2c9a6f',	'601cfec7-c65d-4f7a-8a8e-36f7cf1cba63',	'Réduit',	'2024-10-24 09:34:01.315505',	'96e587d9-e3d0-4f71-99ca-07ef840513f2'),
+('98f38b94-e38f-4ec2-bbe4-3e30f46a93e4',	'601cfec7-c65d-4f7a-8a8e-36f7cf1cba63',	'Réduit',	'2024-10-24 09:34:01.315513',	'e651d534-c079-4a98-95c7-b85a0868e337'),
+('23d95395-cb42-4f02-9367-9f31d6a8230e',	'601cfec7-c65d-4f7a-8a8e-36f7cf1cba63',	'Réduit',	'2024-10-24 09:34:01.315519',	'ef96c80f-d800-4e00-acd5-db2b70489899'),
+('cbfa1d47-286b-4d67-b34a-42fe575e15f4',	'601cfec7-c65d-4f7a-8a8e-36f7cf1cba63',	'Normal',	'2024-10-24 09:34:01.315526',	'7101229a-34af-49cb-820e-a1994c4fb0ba'),
+('982d373f-524c-4ea9-a06b-884d9a1b2df1',	'601cfec7-c65d-4f7a-8a8e-36f7cf1cba63',	'Réduit',	'2024-10-24 09:34:01.315533',	'53293409-4ba5-4790-a34a-7126680f48fc'),
+('735def64-dced-49b5-8250-7a6516ff3df4',	'601cfec7-c65d-4f7a-8a8e-36f7cf1cba63',	'Normal',	'2024-10-24 09:34:01.31554',	'eb79b2ae-e03a-49b9-8541-2da78998596c'),
+('b8244fc3-cd32-4bcd-85a5-03f187e52023',	'601cfec7-c65d-4f7a-8a8e-36f7cf1cba63',	'Réduit',	'2024-10-24 09:34:01.315547',	'931c0c6d-216e-4265-9dc5-ca57d4099613'),
+('c9a96969-96fe-4a6b-bc1c-8e96a0e1167d',	'601cfec7-c65d-4f7a-8a8e-36f7cf1cba63',	'Normal',	'2024-10-24 09:34:01.315554',	'e05860c6-010f-4a98-88e9-37b06025538e'),
+('10b7f0e4-11a7-478c-9d1c-dff40f556283',	'601cfec7-c65d-4f7a-8a8e-36f7cf1cba63',	'Normal',	'2024-10-24 09:34:01.315561',	'134d5b24-25bb-4d53-a157-ee07e2236e60'),
+('c4ba62d0-c035-48b7-b92e-cb65fe620b4a',	'eabdb8e5-a591-4349-9606-18045de23831',	'Normal',	'2024-10-24 09:34:01.315573',	'524de760-2cc2-43ce-bb93-bb247156b6e5'),
+('864395e0-2a9f-4104-9124-890e21fbe831',	'eabdb8e5-a591-4349-9606-18045de23831',	'Normal',	'2024-10-24 09:34:01.315579',	'5aa6c27a-cd65-4805-9166-acff24b6f46e'),
+('74a02378-8698-4cbc-a01d-2412c1bd71ca',	'eabdb8e5-a591-4349-9606-18045de23831',	'Réduit',	'2024-10-24 09:34:01.315586',	'4ffeea1b-299f-4232-a7ee-b1481c31e6c6'),
+('26048f62-450d-430e-8920-f47de292adca',	'eabdb8e5-a591-4349-9606-18045de23831',	'Réduit',	'2024-10-24 09:34:01.315606',	'730fe55b-6da3-4cae-a0c8-ce7778ad8b06');
 
 DROP TABLE IF EXISTS "image_lieu";
 CREATE TABLE "public"."image_lieu" (
@@ -60,16 +216,18 @@ DROP TABLE IF EXISTS "lieu";
 CREATE TABLE "public"."lieu" (
     "id" uuid NOT NULL,
     "nom" character varying(255),
-    "adresse" text,
+    "adresse" character varying(150),
+    "ville" character varying(50),
     "nb_places_assises" integer,
     "nb_places_debout" integer,
     CONSTRAINT "lieu_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
 
-INSERT INTO "lieu" ("id", "nom", "adresse", "nb_places_assises", "nb_places_debout") VALUES
-('fb17d7bf-2091-4dec-bd64-cf5dc5266acd',	'Théâtre des Arts',	'123 Rue de l Art, Paris',	300,	500),
-('18ef7c86-dc18-4561-b355-2c7619973ad1',	'Palais des Congrès',	'45 Avenue de la Liberté, Lyon ',	1000,	2000),
-('5277fb17-318b-4a72-b2c7-0bbff48f0aee',	'Salle des Fêtes',	'Place du Marché, Bordeaux ',	200,	300);
+INSERT INTO "lieu" ("id", "nom", "adresse", "ville", "nb_places_assises", "nb_places_debout") VALUES
+('fb17d7bf-2091-4dec-bd64-cf5dc5266acd',	'Théâtre des Arts',	'123 Rue de l Art',	'Paris',	300,	500),
+('18ef7c86-dc18-4561-b355-2c7619973ad1',	'Palais des Congrès',	'45 Avenue de la Liberté',	'Lyon',	1000,	2000),
+('5277fb17-318b-4a72-b2c7-0bbff48f0aee',	'Salle des Fêtes',	'Place du Marché',	'Bordeaux',	200,	300),
+('f7c1eba2-7a35-4ca6-9d8b-eaa9636f4070',	'Zénith de Marseille',	'1 Rue de la Paix',	'Marseille',	2000,	10000);
 
 DROP TABLE IF EXISTS "soiree";
 CREATE TABLE "public"."soiree" (
@@ -84,8 +242,54 @@ CREATE TABLE "public"."soiree" (
 ) WITH (oids = false);
 
 INSERT INTO "soiree" ("id", "nom", "thematique", "date_heure", "lieu_id", "tarif_normal", "tarif_reduit") VALUES
-('dc4722c7-7fb8-4a21-8b6d-0a567997d874',	'Soiree Rock',	'Rock',	'2024-10-28 20:00:00',	'5277fb17-318b-4a72-b2c7-0bbff48f0aee',	20.00,	12.00),
-('ee766414-2945-4c8b-9812-c232e14888c7',	'Soiree Sympa',	'Jazz/Classique',	'2024-11-15 18:30:00',	'fb17d7bf-2091-4dec-bd64-cf5dc5266acd',	30.00,	23.00);
+('06eb4a22-429c-4b26-aa30-21957a87a94d',	'Soirée Jazz Chill',	'Jazz',	'2024-11-03 20:00:00',	'fb17d7bf-2091-4dec-bd64-cf5dc5266acd',	25.00,	15.00),
+('27b9a146-3985-4edd-9d4a-5b712cad0e9a',	'Soirée Groove Night',	'Funk & Soul',	'2024-11-10 19:00:00',	'fb17d7bf-2091-4dec-bd64-cf5dc5266acd',	30.00,	20.00),
+('ef96c80f-d800-4e00-acd5-db2b70489899',	'Soirée Parisian Beats',	'Électro Pop',	'2024-11-17 18:00:00',	'fb17d7bf-2091-4dec-bd64-cf5dc5266acd',	35.00,	25.00),
+('63afb684-b9a0-4071-948a-150344a7a499',	'Soirée Smooth Jazz Night',	'Jazz',	'2024-11-24 20:00:00',	'fb17d7bf-2091-4dec-bd64-cf5dc5266acd',	40.00,	28.00),
+('931c0c6d-216e-4265-9dc5-ca57d4099613',	'Soirée Acoustic Vibes',	'Acoustique',	'2024-12-01 20:00:00',	'fb17d7bf-2091-4dec-bd64-cf5dc5266acd',	25.00,	15.00),
+('5aa6c27a-cd65-4805-9166-acff24b6f46e',	'Soirée Classic Serenade',	'Classique',	'2024-12-08 20:00:00',	'fb17d7bf-2091-4dec-bd64-cf5dc5266acd',	30.00,	20.00),
+('e751e21d-3be1-44d8-8712-1c4faf03b736',	'Soirée Soul & RnB Fusion',	'Soul',	'2024-12-15 21:00:00',	'fb17d7bf-2091-4dec-bd64-cf5dc5266acd',	30.00,	22.00),
+('63b5aaa2-c5fa-446a-83d0-70b559f98508',	'Soirée Blues & Brews',	'Blues',	'2024-12-22 18:00:00',	'fb17d7bf-2091-4dec-bd64-cf5dc5266acd',	35.00,	18.00),
+('730fe55b-6da3-4cae-a0c8-ce7778ad8b06',	'Soirée Jazz & Electro Jam',	'Électro Jazz',	'2024-12-29 20:00:00',	'fb17d7bf-2091-4dec-bd64-cf5dc5266acd',	40.00,	28.00),
+('3e310479-dca7-4ece-a6ad-8d6c18f923bf',	'Soirée House Party',	'House',	'2025-01-05 21:00:00',	'fb17d7bf-2091-4dec-bd64-cf5dc5266acd',	45.00,	32.00),
+('e651d534-c079-4a98-95c7-b85a0868e337',	'Soirée Reggae Night',	'Reggae',	'2025-01-12 19:00:00',	'fb17d7bf-2091-4dec-bd64-cf5dc5266acd',	30.00,	20.00),
+('66fbfe25-1f1f-42e5-ab60-1c72417f9660',	'Soirée Unplugged Evening',	'Acoustique',	'2025-01-19 20:00:00',	'fb17d7bf-2091-4dec-bd64-cf5dc5266acd',	20.00,	10.00),
+('22651630-95e6-434b-a188-866ad45ac823',	'Soirée Chill & Groove',	'Chill',	'2024-11-03 20:00:00',	'18ef7c86-dc18-4561-b355-2c7619973ad1',	25.00,	12.00),
+('b5cfbf13-cc15-48e4-8bb8-5eedd38ed6c7',	'Soirée Deep Vibes',	'Deep House',	'2024-11-10 20:00:00',	'18ef7c86-dc18-4561-b355-2c7619973ad1',	40.00,	28.00),
+('53293409-4ba5-4790-a34a-7126680f48fc',	'Soirée Swing & Sway',	'Electro Swing',	'2024-11-17 19:00:00',	'18ef7c86-dc18-4561-b355-2c7619973ad1',	35.00,	22.00),
+('8b1c1cf1-79b2-422c-a52a-a0ebebf6fa9e',	'Soirée Funkadelic Night',	'Funk',	'2024-11-24 21:00:00',	'18ef7c86-dc18-4561-b355-2c7619973ad1',	50.00,	35.00),
+('76b6c64c-9d46-4bb1-9e0f-fbfd56ebbb85',	'Soirée Back to the 80s',	'Années 80',	'2024-12-01 20:00:00',	'18ef7c86-dc18-4561-b355-2c7619973ad1',	60.00,	45.00),
+('96e587d9-e3d0-4f71-99ca-07ef840513f2',	'Soirée Metal Inferno',	'Metal',	'2024-12-08 20:00:00',	'18ef7c86-dc18-4561-b355-2c7619973ad1',	20.00,	12.00),
+('7abb4579-38f5-4df8-8950-5a03aea2b2c6',	'Soirée Rock Opera Night',	'Rock',	'2024-12-15 20:00:00',	'18ef7c86-dc18-4561-b355-2c7619973ad1',	30.00,	18.00),
+('407816af-89e0-4560-8608-c3618801ee9e',	'Soirée Jazz Fusion Jam',	'Jazz',	'2024-12-22 18:00:00',	'18ef7c86-dc18-4561-b355-2c7619973ad1',	40.00,	25.00),
+('4ffeea1b-299f-4232-a7ee-b1481c31e6c6',	'Soirée Salsa Fiesta',	'Salsa',	'2024-12-29 19:30:00',	'18ef7c86-dc18-4561-b355-2c7619973ad1',	45.00,	30.00),
+('51bdde8f-33a2-4f83-b79b-9343662014b1',	'Soirée Tango Passion',	'Tango',	'2025-01-05 20:00:00',	'18ef7c86-dc18-4561-b355-2c7619973ad1',	30.00,	15.00),
+('d950f39e-0480-47c6-b286-c2eea59297f4',	'Soirée World Vibes',	'World Music',	'2025-01-12 19:30:00',	'18ef7c86-dc18-4561-b355-2c7619973ad1',	35.00,	25.00),
+('cbf3dafb-c328-40f4-9d9e-82f717b2451f',	'Soirée Classics Remixed',	'Classique',	'2025-01-19 20:00:00',	'18ef7c86-dc18-4561-b355-2c7619973ad1',	40.00,	28.00),
+('7101229a-34af-49cb-820e-a1994c4fb0ba',	'Soirée Indie Stars',	'Indie Pop',	'2024-11-03 20:00:00',	'5277fb17-318b-4a72-b2c7-0bbff48f0aee',	25.00,	18.00),
+('eb79b2ae-e03a-49b9-8541-2da78998596c',	'Soirée Urban Flow',	'Hip-Hop',	'2024-11-10 19:00:00',	'5277fb17-318b-4a72-b2c7-0bbff48f0aee',	30.00,	22.00),
+('d54a800a-35e7-4318-97d3-843d059da7c5',	'Soirée Dub & Bass',	'Dubstep',	'2024-11-17 21:00:00',	'5277fb17-318b-4a72-b2c7-0bbff48f0aee',	40.00,	28.00),
+('1e327cb1-83c4-4528-82bf-9318dffbb429',	'Soirée Funky Groove',	'Funk & Soul',	'2024-11-24 20:00:00',	'5277fb17-318b-4a72-b2c7-0bbff48f0aee',	35.00,	25.00),
+('134d5b24-25bb-4d53-a157-ee07e2236e60',	'Soirée Chill House',	'House',	'2024-12-01 19:30:00',	'5277fb17-318b-4a72-b2c7-0bbff48f0aee',	30.00,	20.00),
+('e05860c6-010f-4a98-88e9-37b06025538e',	'Soirée Latin Vibes',	'Salsa',	'2024-12-08 20:00:00',	'5277fb17-318b-4a72-b2c7-0bbff48f0aee',	40.00,	28.00),
+('524de760-2cc2-43ce-bb93-bb247156b6e5',	'Soirée Reggae Groove',	'Reggae',	'2024-12-15 20:00:00',	'5277fb17-318b-4a72-b2c7-0bbff48f0aee',	25.00,	15.00),
+('d0b6cbd4-848c-48f4-8429-ff2478a2aef8',	'Soirée Electro Party',	'Electro',	'2024-12-22 21:00:00',	'5277fb17-318b-4a72-b2c7-0bbff48f0aee',	45.00,	30.00),
+('fc42e9b7-ae49-4e5d-bd9e-892c3e52de90',	'Soirée RnB Vibes',	'RnB',	'2024-12-29 20:00:00',	'5277fb17-318b-4a72-b2c7-0bbff48f0aee',	35.00,	25.00),
+('3edca7c1-176c-4d86-84e0-ab8a96eba7b2',	'Soirée Rock Legends',	'Rock',	'2025-01-05 19:00:00',	'5277fb17-318b-4a72-b2c7-0bbff48f0aee',	50.00,	35.00),
+('40327675-cf4b-465d-ae10-eebc822e8cd4',	'Soirée Chill & Lounge',	'Chill',	'2025-01-12 19:30:00',	'5277fb17-318b-4a72-b2c7-0bbff48f0aee',	40.00,	28.00),
+('fa4e2552-6843-4c5e-87d2-08885b84929d',	'Soirée Classic Jam',	'Classique',	'2025-01-19 20:00:00',	'5277fb17-318b-4a72-b2c7-0bbff48f0aee',	30.00,	20.00),
+('da668906-9d85-4e9f-9e58-737982dc39a7',	'Soirée Afro Vibes',	'Afrobeat',	'2024-11-03 20:00:00',	'f7c1eba2-7a35-4ca6-9d8b-eaa9636f4070',	30.00,	20.00),
+('0ebc474b-f125-471a-bfdd-bb152195eb49',	'Soirée Latino Heat',	'Latino',	'2024-11-10 19:00:00',	'f7c1eba2-7a35-4ca6-9d8b-eaa9636f4070',	35.00,	25.00),
+('bf599c64-7a79-4e62-b058-3b06e1f29152',	'Soirée Deep House Session',	'House',	'2024-11-17 21:00:00',	'f7c1eba2-7a35-4ca6-9d8b-eaa9636f4070',	40.00,	28.00),
+('be9f9e3a-1611-4a77-9c9b-8d391f9e30c6',	'Soirée Funk Party',	'Funk',	'2024-11-24 20:00:00',	'f7c1eba2-7a35-4ca6-9d8b-eaa9636f4070',	50.00,	35.00),
+('bfce113b-12d8-442c-ad58-40986c313320',	'Soirée Salsa Nights',	'Salsa',	'2024-12-01 20:00:00',	'f7c1eba2-7a35-4ca6-9d8b-eaa9636f4070',	45.00,	30.00),
+('2f61488f-c84e-4087-8746-f0d454bf06b7',	'Soirée Electro Chill',	'Électro',	'2024-12-08 21:00:00',	'f7c1eba2-7a35-4ca6-9d8b-eaa9636f4070',	40.00,	25.00),
+('7b91ce45-0923-495c-92e1-7205abf13356',	'Soirée Jazz & Bossa',	'Jazz',	'2024-12-15 19:00:00',	'f7c1eba2-7a35-4ca6-9d8b-eaa9636f4070',	35.00,	25.00),
+('0e3d3c14-fa0d-4a3b-ad8a-50c2a3e44207',	'Soirée Hip-Hop Beats',	'Hip-Hop',	'2024-12-22 20:00:00',	'f7c1eba2-7a35-4ca6-9d8b-eaa9636f4070',	50.00,	40.00),
+('6343dfb1-1673-4c7f-8899-def71ac98f01',	'Soirée Blues & Roots',	'Blues',	'2024-12-29 19:30:00',	'f7c1eba2-7a35-4ca6-9d8b-eaa9636f4070',	35.00,	22.00),
+('f4f7bbbc-eeaf-4f36-b144-f0cdb6d34d12',	'Soirée Chillwave Nights',	'Chillwave',	'2025-01-05 21:00:00',	'f7c1eba2-7a35-4ca6-9d8b-eaa9636f4070',	45.00,	28.00),
+('21810711-b50e-40a0-88ec-01cc3d41f38d',	'Soirée Indie Rock Fusion',	'Indie Rock',	'2025-01-12 20:00:00',	'f7c1eba2-7a35-4ca6-9d8b-eaa9636f4070',	30.00,	18.00),
+('fa812fa9-bafd-4928-953d-c7e9ed4b4007',	'Soirée Classical Sunset',	'Classique',	'2025-01-19 19:00:00',	'f7c1eba2-7a35-4ca6-9d8b-eaa9636f4070',	40.00,	28.00);
 
 DROP TABLE IF EXISTS "spectacle";
 CREATE TABLE "public"."spectacle" (
@@ -100,9 +304,102 @@ CREATE TABLE "public"."spectacle" (
 ) WITH (oids = false);
 
 INSERT INTO "spectacle" ("id", "titre", "description", "url_video", "horaire_previsionnel", "soiree_id", "style") VALUES
-('44533365-fbba-4dd3-865b-1f8af96b3e57',	'Jazz Band Live',	'Un concert jazz avec les meilleurs musiciens de la ville.',	'https://example.com/jazzband',	'2024-11-15 21:00:00',	'ee766414-2945-4c8b-9812-c232e14888c7',	'Jazz'),
-('acc717f5-ced0-4896-89a7-5cd5bca8d669',	'Rock en scène',	'Un groupe de rock pour une soirée mémorable.',	'https://example.com/rockband',	'2024-10-28 20:00:00',	'dc4722c7-7fb8-4a21-8b6d-0a567997d874',	'Rock'),
-('d8804296-3d11-43c5-92eb-02a087cfb10f',	'Orchestre Symphonique',	'Gala de musique classique avec un orchestre complet.',	'https://example.com/classique',	'2024-11-15 19:30:00',	'ee766414-2945-4c8b-9812-c232e14888c7',	'Classique');
+('37bc69e1-c0ba-47f8-a833-66241c15d1a5',	'Jazz Vibes',	'Un spectacle captivant de jazz traditionnel avec des artistes de renommée.',	'',	'2024-11-03 20:30:00',	'06eb4a22-429c-4b26-aa30-21957a87a94d',	'Jazz'),
+('aaadf734-573c-40ad-bf42-683f0a61dad2',	'Jazz Masters',	'Une performance énergique par un collectif de musiciens jazz innovants.',	'',	'2024-11-03 21:30:00',	'06eb4a22-429c-4b26-aa30-21957a87a94d',	'Jazz'),
+('c49e49e8-812d-4182-ac80-a7106c04da5c',	'Groove Beats',	'Un spectacle où le funk et la soul se rencontrent pour une soirée inoubliable.',	'',	'2024-11-10 19:30:00',	'27b9a146-3985-4edd-9d4a-5b712cad0e9a',	'Funk & Soul'),
+('ec9fd92b-d48e-4d40-bca1-d67393c91be6',	'Soul Connection',	'Un voyage musical à travers les plus grands classiques du funk et soul.',	'',	'2024-11-10 20:30:00',	'27b9a146-3985-4edd-9d4a-5b712cad0e9a',	'Funk & Soul'),
+('8575da03-7019-4eaf-ae21-971609949673',	'Electro Pop Extravaganza',	'Une performance électrisante des meilleurs DJ et artistes électro-pop.',	'',	'2024-11-17 18:30:00',	'ef96c80f-d800-4e00-acd5-db2b70489899',	'Électro Pop'),
+('1b2b0a28-6805-479d-adee-495deac55519',	'Pop Beats',	'Des rythmes entraînants et des sons électro modernes.',	'',	'2024-11-17 19:30:00',	'ef96c80f-d800-4e00-acd5-db2b70489899',	'Électro Pop'),
+('d0039a32-21a1-42a5-a8ec-f322b7343fea',	'Smooth Jazz Classics',	'Le meilleur du smooth jazz avec des solos envoûtants.',	'',	'2024-11-24 20:30:00',	'63afb684-b9a0-4071-948a-150344a7a499',	'Jazz'),
+('7540fe48-8f4c-432c-ac48-6392dea004ef',	'Jazz Lounge',	'Un ensemble de jazz en direct avec des sons doux et relaxants.',	'',	'2024-11-24 21:30:00',	'63afb684-b9a0-4071-948a-150344a7a499',	'Jazz'),
+('d81e57a2-65b8-4ad5-8c10-c48199c0d619',	'Acoustic Harmony',	'Une soirée acoustique avec des artistes locaux.',	'',	'2024-12-01 20:30:00',	'931c0c6d-216e-4265-9dc5-ca57d4099613',	'Acoustique'),
+('7c36a118-9a2f-4106-99b4-7e483cd0f691',	'Unplugged Session',	'Des versions acoustiques des plus grandes chansons du moment.',	'',	'2024-12-01 21:30:00',	'931c0c6d-216e-4265-9dc5-ca57d4099613',	'Acoustique'),
+('56e52513-18a6-4ad5-8c54-baf4fa4ae2cf',	'Classic Serenade',	'Un concert de musique classique avec des instruments à cordes.',	'',	'2024-12-08 20:30:00',	'5aa6c27a-cd65-4805-9166-acff24b6f46e',	'Classique'),
+('63828259-ba0e-4c31-b321-74817f1dea5f',	'Strings Ensemble',	'Un ensemble de cordes interprétant des morceaux classiques connus.',	'',	'2024-12-08 21:30:00',	'5aa6c27a-cd65-4805-9166-acff24b6f46e',	'Classique'),
+('ff9c6e3d-131e-4ba6-b817-3372de08c447',	'Soul Fusion',	'Une fusion de styles soul et RnB pour une soirée rythmée.',	'',	'2024-12-15 21:30:00',	'e751e21d-3be1-44d8-8712-1c4faf03b736',	'Soul'),
+('ad2a11da-b851-4e3f-8b58-35d559fec8b7',	'RnB Vibes',	'Des sons RnB lents et puissants, un spectacle à ne pas manquer.',	'',	'2024-12-15 22:30:00',	'e751e21d-3be1-44d8-8712-1c4faf03b736',	'Soul'),
+('f50f24b3-349e-40cf-9d1a-7f58df4bb787',	'Blues Night',	'Un spectacle de blues captivant, chargé d émotion.',	'',	'2024-12-22 18:30:00',	'63b5aaa2-c5fa-446a-83d0-70b559f98508',	'Blues'),
+('418cd4bc-5077-4d66-9f73-4d64d730cb59',	'Roots Blues',	'Retour aux racines du blues avec des morceaux classiques.',	'',	'2024-12-22 19:30:00',	'63b5aaa2-c5fa-446a-83d0-70b559f98508',	'Blues'),
+('bc476715-049a-4143-a425-93dc581cb75e',	'Electro Jazz Fusion',	'Une soirée de fusion électro-jazz.',	'',	'2024-12-29 20:30:00',	'730fe55b-6da3-4cae-a0c8-ce7778ad8b06',	'Électro Jazz'),
+('250bec61-75db-4430-ba1f-371079d12d0e',	'Jazz Beats',	'Des sons modernes et un jazz réinventé pour une ambiance unique.',	'',	'2024-12-29 21:30:00',	'730fe55b-6da3-4cae-a0c8-ce7778ad8b06',	'Électro Jazz'),
+('4f0eaa9f-3fe2-4258-8d77-3ea8e25f4722',	'House Explosion',	'Une performance intense de musique house.',	'',	'2025-01-05 21:30:00',	'3e310479-dca7-4ece-a6ad-8d6c18f923bf',	'House'),
+('af38bec9-17de-4d73-b9ac-0d8052b41baf',	'House Legends',	'Les plus grands succès de la musique house, remixés en direct.',	'',	'2025-01-05 22:30:00',	'3e310479-dca7-4ece-a6ad-8d6c18f923bf',	'House'),
+('63cc01d1-7de6-4ed4-89f4-3c1d708aa0bd',	'Reggae Roots',	'Un hommage aux grands noms du reggae avec des rythmes envoûtants.',	'',	'2025-01-12 19:30:00',	'e651d534-c079-4a98-95c7-b85a0868e337',	'Reggae'),
+('1a138d64-6d02-438f-a70c-37b616824ebe',	'Reggae Grooves',	'Une soirée reggae pleine de bonnes vibrations.',	'',	'2025-01-12 20:30:00',	'e651d534-c079-4a98-95c7-b85a0868e337',	'Reggae'),
+('ea7d3b19-582a-4ad1-af44-01a99535c2b3',	'Acoustic Serenade',	'Un spectacle acoustique pour une soirée relaxante.',	'',	'2025-01-19 20:30:00',	'66fbfe25-1f1f-42e5-ab60-1c72417f9660',	'Acoustique'),
+('05f7037f-59b7-4c56-9b03-6e5bea69aa16',	'Unplugged Harmony',	'Des performances acoustiques dans une atmosphère intime.',	'',	'2025-01-19 21:30:00',	'66fbfe25-1f1f-42e5-ab60-1c72417f9660',	'Acoustique'),
+('f810f094-4372-4291-aa4b-b2c3b52e6ab9',	'Chill & Groove Vibes',	'Une ambiance détendue avec des rythmes chill pour commencer la soirée.',	'',	'2024-11-03 20:30:00',	'22651630-95e6-434b-a188-866ad45ac823',	'Chill'),
+('50e80c9c-8a33-49af-ac70-2341fdfb93af',	'Groove Sessions',	'Un set de musique chill et groove pour finir la soirée en douceur.',	'',	'2024-11-03 21:30:00',	'22651630-95e6-434b-a188-866ad45ac823',	'Chill'),
+('ad06f837-4a35-4494-9f13-818af8cde6b2',	'Deep House Journey',	'Un voyage à travers les sons profonds de la house avec des DJ talentueux.',	'',	'2024-11-10 20:30:00',	'b5cfbf13-cc15-48e4-8bb8-5eedd38ed6c7',	'Deep House'),
+('080122a5-c7f0-4e6b-8123-0c7f54d11d49',	'House Vibes',	'Les meilleurs morceaux de deep house pour une ambiance nocturne.',	'',	'2024-11-10 21:30:00',	'b5cfbf13-cc15-48e4-8bb8-5eedd38ed6c7',	'Deep House'),
+('ba2d3606-0856-4b27-95bf-ec0fc9f6e8ff',	'Swing Dance Night',	'Une soirée pleine d énergie avec des rythmes électro swing.',	'',	'2024-11-17 19:30:00',	'53293409-4ba5-4790-a34a-7126680f48fc',	'Electro Swing'),
+('ff45a5c4-5fea-492e-82ba-a3e5e916e16a',	'Electro Swing Beats',	'Des DJ talentueux qui fusionnent électro et swing pour une soirée mémorable.',	'',	'2024-11-17 20:30:00',	'53293409-4ba5-4790-a34a-7126680f48fc',	'Electro Swing'),
+('0183cde6-17a2-4c69-946a-e9767cd60c06',	'Funkadelic Beats',	'Un spectacle funk haut en couleur, avec des solos entraînants.',	'',	'2024-11-24 21:30:00',	'8b1c1cf1-79b2-422c-a52a-a0ebebf6fa9e',	'Funk'),
+('e5fd233c-a6b6-4cd6-b095-c70a27109e7d',	'Funk Explosion',	'Une explosion de grooves funky pour faire danser la foule.',	'',	'2024-11-24 22:30:00',	'8b1c1cf1-79b2-422c-a52a-a0ebebf6fa9e',	'Funk'),
+('18c376f2-3059-4ba4-983b-c65927b7ced2',	'Back to the 80s',	'Une soirée pour revivre les classiques des années 80 avec des performances live.',	'',	'2024-12-01 20:30:00',	'76b6c64c-9d46-4bb1-9e0f-fbfd56ebbb85',	'Années 80'),
+('368e7950-ef49-4bcd-8714-1d7169d42ee9',	'80s Hits Live',	'Les plus grands hits des années 80 joués par un groupe talentueux.',	'',	'2024-12-01 21:30:00',	'76b6c64c-9d46-4bb1-9e0f-fbfd56ebbb85',	'Années 80'),
+('eec027f8-7200-44ab-8148-eaa96b190767',	'Metal Thunder',	'Un spectacle de heavy metal avec des groupes enflammés.',	'',	'2024-12-08 20:30:00',	'96e587d9-e3d0-4f71-99ca-07ef840513f2',	'Metal'),
+('4d678281-4c50-4c37-bada-4ff77b1496d7',	'Inferno Metal',	'Des riffs puissants et des performances intenses pour une soirée métal.',	'',	'2024-12-08 21:30:00',	'96e587d9-e3d0-4f71-99ca-07ef840513f2',	'Metal'),
+('4b1b0b20-e099-464a-933e-4360814f78e5',	'Rock Opera Journey',	'Une fusion épique de rock et d opéra pour une soirée unique.',	'',	'2024-12-15 20:30:00',	'7abb4579-38f5-4df8-8950-5a03aea2b2c6',	'Rock'),
+('61a0d0f6-5f72-4148-b10c-d90f5754f8c9',	'Epic Rock Opera',	'Une performance théâtrale qui marie le rock et l opéra.',	'',	'2024-12-15 21:30:00',	'7abb4579-38f5-4df8-8950-5a03aea2b2c6',	'Rock'),
+('21936685-1d39-4c0e-af69-48994550d4b4',	'Jazz Fusion Experience',	'Une fusion unique de jazz avec des influences modernes.',	'',	'2024-12-22 18:30:00',	'407816af-89e0-4560-8608-c3618801ee9e',	'Jazz'),
+('99dcfc53-7d50-427d-8d3b-576eaaa0007c',	'Jazz Grooves',	'Un ensemble de jazz avec des rythmes captivants.',	'',	'2024-12-22 19:30:00',	'407816af-89e0-4560-8608-c3618801ee9e',	'Jazz'),
+('d2ff4715-472b-465f-afbb-954e58d58546',	'Salsa Jam',	'Une soirée salsa pleine de passion et d énergie.',	'',	'2024-12-29 19:30:00',	'4ffeea1b-299f-4232-a7ee-b1481c31e6c6',	'Salsa'),
+('0b398142-bf3f-4d5c-8768-e47ce217d6b0',	'Fiesta Salsa',	'Des danseurs et musiciens salsa pour une soirée inoubliable.',	'',	'2024-12-29 20:30:00',	'4ffeea1b-299f-4232-a7ee-b1481c31e6c6',	'Salsa'),
+('20dc25b4-a37c-4b94-8701-86e317ccf5c9',	'Tango Night',	'Une soirée dédiée à la passion du tango.',	'',	'2025-01-05 20:30:00',	'51bdde8f-33a2-4f83-b79b-9343662014b1',	'Tango'),
+('b17c3b82-510b-46dd-8cdd-63cbe90cfc3e',	'Tango Passion',	'Des couples de danseurs talentueux pour un spectacle de tango.',	'',	'2025-01-05 21:30:00',	'51bdde8f-33a2-4f83-b79b-9343662014b1',	'Tango'),
+('ca21aad8-78b9-4ce6-b311-f334b4bbba5d',	'World Beats',	'Un spectacle de musique du monde avec des artistes internationaux.',	'',	'2025-01-12 19:30:00',	'd950f39e-0480-47c6-b286-c2eea59297f4',	'World Music'),
+('4f5111de-72ce-4a3f-b82c-7296e125f20f',	'World Fusion',	'Une fusion de sons traditionnels et modernes de différentes cultures.',	'',	'2025-01-12 20:30:00',	'd950f39e-0480-47c6-b286-c2eea59297f4',	'World Music'),
+('ec8b50c5-75a3-46b1-9780-ed6014130a57',	'Classical Masterpieces',	'Un concert de morceaux classiques interprétés par un orchestre talentueux.',	'',	'2025-01-19 20:30:00',	'cbf3dafb-c328-40f4-9d9e-82f717b2451f',	'Classique'),
+('d2ca1f20-ec6f-4f17-8d0d-dfada467b856',	'Classics Redefined',	'Une nouvelle interprétation de classiques intemporels.',	'',	'2025-01-19 21:30:00',	'cbf3dafb-c328-40f4-9d9e-82f717b2451f',	'Classique'),
+('dd8e56dd-d1a6-4299-9515-b9d2e07c215b',	'Indie Pop Stars',	'Une performance live des meilleurs groupes indie pop du moment.',	'',	'2024-11-03 20:30:00',	'7101229a-34af-49cb-820e-a1994c4fb0ba',	'Indie Pop'),
+('47da17e2-aa53-47b0-9242-a645264042c2',	'Pop Sensations',	'Une soirée indie pop avec des groupes montants sur la scène internationale.',	'',	'2024-11-03 21:30:00',	'7101229a-34af-49cb-820e-a1994c4fb0ba',	'Indie Pop'),
+('513f9b22-5ea4-4639-b066-d02c17bc5276',	'Hip-Hop Beats',	'Une performance hip-hop avec des artistes émergents et des danseurs.',	'',	'2024-11-10 19:30:00',	'eb79b2ae-e03a-49b9-8541-2da78998596c',	'Hip-Hop'),
+('1bb8b953-ef66-44a0-82eb-9130275b898e',	'Urban Grooves',	'Les plus grands morceaux de la culture hip-hop joués en live.',	'',	'2024-11-10 20:30:00',	'eb79b2ae-e03a-49b9-8541-2da78998596c',	'Hip-Hop'),
+('18fc9059-8c1f-43ab-9b42-139bbac6bc31',	'Dub & Bass Experience',	'Un set énergique de dubstep et bass music pour les amateurs de basses lourdes.',	'',	'2024-11-17 21:30:00',	'd54a800a-35e7-4318-97d3-843d059da7c5',	'Dubstep'),
+('a9294789-43b7-4437-b5e4-2b4d3df781ae',	'Dubstep Night',	'Des DJ talentueux offrant des performances intenses de dubstep.',	'',	'2024-11-17 22:30:00',	'd54a800a-35e7-4318-97d3-843d059da7c5',	'Dubstep'),
+('40c1eb2c-e400-4ddf-a067-ac6ebd4fe643',	'Funky Groove Jam',	'Une performance de musique funk live avec des solos de guitare incroyables.',	'',	'2024-11-24 20:30:00',	'1e327cb1-83c4-4528-82bf-9318dffbb429',	'Funk & Soul'),
+('e26430f7-7240-417d-b150-c16544b61189',	'Funk Soul Fusion',	'Une fusion unique de funk et soul pour une soirée dansante.',	'',	'2024-11-24 21:30:00',	'1e327cb1-83c4-4528-82bf-9318dffbb429',	'Funk & Soul'),
+('b2668dca-18da-4e6c-a675-a1ea0a9c8756',	'House Chill',	'Une soirée de house douce et relaxante.',	'',	'2024-12-01 19:30:00',	'134d5b24-25bb-4d53-a157-ee07e2236e60',	'House'),
+('2df7ec4f-9aae-454c-bb61-9eae9461878e',	'Chill House Experience',	'Des DJ talentueux mixant les meilleurs morceaux chill house.',	'',	'2024-12-01 20:30:00',	'134d5b24-25bb-4d53-a157-ee07e2236e60',	'House'),
+('4b216651-a59e-49ea-9848-af36b18506ed',	'Latin Dance Fever',	'Une soirée de salsa et rythmes latinos.',	'',	'2024-12-08 20:30:00',	'e05860c6-010f-4a98-88e9-37b06025538e',	'Salsa'),
+('f8570eaf-5d05-49a0-98af-8bdeb53c9cda',	'Salsa Sensation',	'Des danseurs et musiciens pour une soirée latine enflammée.',	'',	'2024-12-08 21:30:00',	'e05860c6-010f-4a98-88e9-37b06025538e',	'Salsa'),
+('8447ad11-4cdd-4633-be06-9d15e40ad843',	'Reggae Beats',	'Une soirée relaxante avec des rythmes reggae.',	'',	'2024-12-15 20:30:00',	'524de760-2cc2-43ce-bb93-bb247156b6e5',	'Reggae'),
+('22a05fe1-04e7-495c-8fc6-f1e698befbc5',	'Roots Reggae Night',	'Une performance reggae authentique pour une ambiance détendue.',	'',	'2024-12-15 21:30:00',	'524de760-2cc2-43ce-bb93-bb247156b6e5',	'Reggae'),
+('f5337d24-9afa-4c04-a83d-f540ed83370e',	'Electro Party Jam',	'Des DJ de talent mixant des morceaux électro puissants.',	'',	'2024-12-22 21:30:00',	'd0b6cbd4-848c-48f4-8429-ff2478a2aef8',	'Electro'),
+('e161c2d8-7450-41b3-9b34-b566e9bcfdc1',	'Bass & Beats',	'Une soirée électro avec des basses vibrantes.',	'',	'2024-12-22 22:30:00',	'd0b6cbd4-848c-48f4-8429-ff2478a2aef8',	'Electro'),
+('6db763b0-3975-4e3e-94fb-fe35eb1fe307',	'RnB Vibes',	'Un mélange de RnB et de soul pour une ambiance douce.',	'',	'2024-12-29 20:30:00',	'fc42e9b7-ae49-4e5d-bd9e-892c3e52de90',	'RnB'),
+('53690864-d6c2-45d3-8192-0922a9500041',	'RnB Grooves',	'Des sons doux et envoûtants pour une soirée RnB mémorable.',	'',	'2024-12-29 21:30:00',	'fc42e9b7-ae49-4e5d-bd9e-892c3e52de90',	'RnB'),
+('5fcae77a-a757-4697-9ec9-980f5e13dc81',	'Rock Legends',	'Une performance des plus grands morceaux rock.',	'',	'2025-01-05 19:30:00',	'3edca7c1-176c-4d86-84e0-ab8a96eba7b2',	'Rock'),
+('c58c3727-e985-4aee-afde-79abc34bbe90',	'Rock & Roll Night',	'Des groupes de rock en direct pour une soirée explosive.',	'',	'2025-01-05 20:30:00',	'3edca7c1-176c-4d86-84e0-ab8a96eba7b2',	'Rock'),
+('0a5d633b-89b5-4ecf-a513-89baab18effc',	'Chill & Lounge Experience',	'Une ambiance détendue avec des sons chill et lounge.',	'',	'2025-01-12 19:30:00',	'40327675-cf4b-465d-ae10-eebc822e8cd4',	'Chill'),
+('db49268d-bcba-45f2-8601-81e84129a035',	'Lounge Vibes',	'Une performance live de musiques relaxantes pour une soirée tranquille.',	'',	'2025-01-12 20:30:00',	'40327675-cf4b-465d-ae10-eebc822e8cd4',	'Chill'),
+('58e39212-338a-42a2-8db2-cd25fd27d888',	'Classical Jam',	'Des performances de morceaux classiques par des artistes de talent.',	'',	'2025-01-19 20:30:00',	'fa4e2552-6843-4c5e-87d2-08885b84929d',	'Classique'),
+('cbf048a6-6657-4dd2-8553-72eb417fcdef',	'Classical Fusion',	'Une fusion unique de musique classique et moderne.',	'',	'2025-01-19 21:30:00',	'fa4e2552-6843-4c5e-87d2-08885b84929d',	'Classique'),
+('e233f4e9-c68f-4edf-bc58-6607d9d29096',	'Afrobeat Experience',	'Un spectacle de musique afrobeat plein de rythmes vibrants.',	'',	'2024-11-03 20:30:00',	'da668906-9d85-4e9f-9e58-737982dc39a7',	'Afrobeat'),
+('58be118a-ac3f-4a72-a4c9-68e2282c9ef8',	'Afro Vibes',	'Des musiciens talentueux qui emmènent la foule dans un voyage afrobeat.',	'',	'2024-11-03 21:30:00',	'da668906-9d85-4e9f-9e58-737982dc39a7',	'Afrobeat'),
+('8337c023-28ba-498a-b810-9f7f33fa95bb',	'Latino Beats',	'Une performance vibrante de musique latino.',	'',	'2024-11-10 19:30:00',	'0ebc474b-f125-471a-bfdd-bb152195eb49',	'Latino'),
+('0dcf5a8f-27ce-4a42-875d-05cb7c554d36',	'Latino Groove',	'Des rythmes ensoleillés pour une soirée latino festive.',	'',	'2024-11-10 20:30:00',	'0ebc474b-f125-471a-bfdd-bb152195eb49',	'Latino'),
+('fbfd9d62-f12c-418f-a99c-10e4d3535173',	'Deep House Grooves',	'Une soirée de deep house avec des DJ talentueux.',	'',	'2024-11-17 21:30:00',	'bf599c64-7a79-4e62-b058-3b06e1f29152',	'House'),
+('821716c4-e8a8-43a7-acc9-52b3e0b1be3f',	'House Legends',	'Les meilleurs morceaux deep house joués en live.',	'',	'2024-11-17 22:30:00',	'bf599c64-7a79-4e62-b058-3b06e1f29152',	'House'),
+('d744093f-0520-4222-baba-1a85634adf15',	'Funk Explosion',	'Une soirée funk explosive avec des solos de guitare incroyables.',	'',	'2024-11-24 20:30:00',	'be9f9e3a-1611-4a77-9c9b-8d391f9e30c6',	'Funk'),
+('f59f7b4f-015a-494f-bf76-f974639149e2',	'Funk Grooves',	'Un ensemble funk avec des musiciens de talent.',	'',	'2024-11-24 21:30:00',	'be9f9e3a-1611-4a77-9c9b-8d391f9e30c6',	'Funk'),
+('fc957a47-42dd-4917-9f98-a81698741d67',	'Salsa Night',	'Un spectacle salsa avec des performances enflammées.',	'',	'2024-12-01 20:30:00',	'bfce113b-12d8-442c-ad58-40986c313320',	'Salsa'),
+('26b9df46-1cbe-4af1-8789-14aec54fdc8f',	'Latin Heat',	'Des danseurs et musiciens salsa pour une ambiance festive.',	'',	'2024-12-01 21:30:00',	'bfce113b-12d8-442c-ad58-40986c313320',	'Salsa'),
+('7a1bacb3-8738-46b2-a358-c14c6e72a7e7',	'Electro Chill Night',	'Une performance électro avec des sons chill.',	'',	'2024-12-08 21:30:00',	'2f61488f-c84e-4087-8746-f0d454bf06b7',	'Électro'),
+('2e50bd4b-0d67-4a80-a038-6a4f71cec1cf',	'Chill Beats',	'Des DJ talentueux offrant des sets électro chill.',	'',	'2024-12-08 22:30:00',	'2f61488f-c84e-4087-8746-f0d454bf06b7',	'Électro'),
+('cb48d363-5040-4c87-9599-7ac4633d05b8',	'Jazz & Bossa Night',	'Une soirée jazz avec des influences bossa nova.',	'',	'2024-12-15 19:30:00',	'7b91ce45-0923-495c-92e1-7205abf13356',	'Jazz'),
+('c4016b4e-18cc-497b-8e42-50c65d451e33',	'Bossa Nova Vibes',	'Un voyage musical entre le jazz et la bossa nova.',	'',	'2024-12-15 20:30:00',	'7b91ce45-0923-495c-92e1-7205abf13356',	'Jazz'),
+('6564e043-3e96-4908-a0b5-7802702b6e80',	'Hip-Hop Beats',	'Une soirée de performances hip-hop avec des DJ et danseurs talentueux.',	'',	'2024-12-22 20:30:00',	'0e3d3c14-fa0d-4a3b-ad8a-50c2a3e44207',	'Hip-Hop'),
+('35c338d2-cfa4-4675-952a-fdc87f21bc6b',	'Urban Beats',	'Un set hip-hop explosif avec des rythmes puissants.',	'',	'2024-12-22 21:30:00',	'0e3d3c14-fa0d-4a3b-ad8a-50c2a3e44207',	'Hip-Hop'),
+('18eca34a-4d36-444e-9766-63f198d96f17',	'Blues Night',	'Une soirée de blues avec des musiciens passionnés.',	'',	'2024-12-29 19:30:00',	'6343dfb1-1673-4c7f-8899-def71ac98f01',	'Blues'),
+('ea229370-96d0-4fa4-92bd-b85416d990de',	'Roots Blues',	'Une performance de blues authentique.',	'',	'2024-12-29 20:30:00',	'6343dfb1-1673-4c7f-8899-def71ac98f01',	'Blues'),
+('959c1d8d-4bea-4a6c-b859-912d6f6d2938',	'Chillwave Journey',	'Un set de chillwave relaxant avec des sons électroniques doux.',	'',	'2025-01-05 21:30:00',	'f4f7bbbc-eeaf-4f36-b144-f0cdb6d34d12',	'Chillwave'),
+('30217f6e-a74b-43ea-b4d4-2889fb88f570',	'Chillwave Vibes',	'Des DJ talentueux offrant des sons chillwave pour une soirée relaxante.',	'',	'2025-01-05 22:30:00',	'f4f7bbbc-eeaf-4f36-b144-f0cdb6d34d12',	'Chillwave'),
+('5741ed23-dcf9-46ae-aad9-9bb8350e5114',	'Indie Rock Jam',	'Une soirée dédiée à l indie rock avec des groupes montants.',	'',	'2025-01-12 20:30:00',	'21810711-b50e-40a0-88ec-01cc3d41f38d',	'Indie Rock'),
+('9f94fd57-c508-4b6e-bac9-5a05fad447e1',	'Indie Stars',	'Les plus grands groupes indie rock en live.',	'',	'2025-01-12 21:30:00',	'21810711-b50e-40a0-88ec-01cc3d41f38d',	'Indie Rock'),
+('00343438-02b3-47ba-8eeb-619b359bb344',	'Classical Sunset',	'Une performance de musique classique dans une ambiance détendue.',	'',	'2025-01-19 19:30:00',	'fa812fa9-bafd-4928-953d-c7e9ed4b4007',	'Classique'),
+('624bb979-5397-4b65-a948-a8593cb5c1a9',	'Classical Vibes',	'Un orchestre talentueux interprétant des morceaux classiques.',	'',	'2025-01-19 20:30:00',	'fa812fa9-bafd-4928-953d-c7e9ed4b4007',	'Classique');
 
 DROP TABLE IF EXISTS "users";
 CREATE TABLE "public"."users" (
@@ -120,20 +417,24 @@ CREATE TABLE "public"."users" (
 INSERT INTO "users" ("id", "nom", "prenom", "email", "mot_de_passe", "date_enregistrement") VALUES
 ('f7c1eba2-7a35-4ca6-9d8b-eaa9636f4070',	'Dupont',	'Jean',	'jean.dupont@example.com',	'password123',	'2024-10-22 09:36:27.221967'),
 ('a3cd8e39-9dec-4376-a9c8-53356985ba31',	'Martin',	'Marie',	'marie.martin@example.com',	'securepass',	'2024-10-22 09:36:27.221967'),
-('1d74c1bf-453c-4417-be0a-5095734e886f',	'Lefevre',	'Luc',	'luc.lefevre@example.com',	'hashme',	'2024-10-22 09:36:27.221967');
+('1d74c1bf-453c-4417-be0a-5095734e886f',	'Lefevre',	'Luc',	'luc.lefevre@example.com',	'hashme',	'2024-10-22 09:36:27.221967'),
+('579bb5f0-61d4-42f2-aefc-56a605636aef',	'Durand',	'Sophie',	'sophie.durand@example.com',	'mypassword2024',	'2024-10-22 09:36:27.221967'),
+('17c466f8-ed9e-45dc-b6e0-c206c5879316',	'Bernard',	'Paul',	'paul.bernard@example.com',	'paulsecure2024',	'2024-10-22 09:36:27.221967'),
+('aae9a9e9-5a3e-4d0f-be66-36c6e40efd47',	'Girard',	'Emma',	'emma.girard@example.com',	'emmahash2024',	'2024-10-22 09:36:27.221967'),
+('601cfec7-c65d-4f7a-8a8e-36f7cf1cba63',	'Rousseau',	'Louis',	'louis.rousseau@example.com',	'louispass123',	'2024-10-22 09:36:27.221967'),
+('eabdb8e5-a591-4349-9606-18045de23831',	'Moreau',	'Julie',	'julie.moreau@example.com',	'juliesafe2024',	'2024-10-22 09:36:27.221967');
 
-ALTER TABLE ONLY "public"."artiste_spectacle" ADD CONSTRAINT "artiste_spectacle_id_artiste_fkey" FOREIGN KEY (id_artiste) REFERENCES artiste(id) NOT DEFERRABLE;
-ALTER TABLE ONLY "public"."artiste_spectacle" ADD CONSTRAINT "artiste_spectacle_id_spectacle_fkey" FOREIGN KEY (id_spectacle) REFERENCES spectacle(id) NOT DEFERRABLE;
+ALTER TABLE ONLY "public"."artiste_spectacle" ADD CONSTRAINT "artiste_spectacle_id_artiste_fkey" FOREIGN KEY (id_artiste) REFERENCES artiste(id) ON DELETE CASCADE NOT DEFERRABLE;
 
-ALTER TABLE ONLY "public"."billet" ADD CONSTRAINT "billet_soiree_id_fkey" FOREIGN KEY (soiree_id) REFERENCES soiree(id) NOT DEFERRABLE;
-ALTER TABLE ONLY "public"."billet" ADD CONSTRAINT "billet_utilisateur_id_fkey" FOREIGN KEY (utilisateur_id) REFERENCES users(id) NOT DEFERRABLE;
+ALTER TABLE ONLY "public"."billet" ADD CONSTRAINT "billet_soiree_id_fkey" FOREIGN KEY (soiree_id) REFERENCES soiree(id) ON DELETE CASCADE NOT DEFERRABLE;
+ALTER TABLE ONLY "public"."billet" ADD CONSTRAINT "billet_utilisateur_id_fkey" FOREIGN KEY (utilisateur_id) REFERENCES users(id) ON DELETE CASCADE NOT DEFERRABLE;
 
-ALTER TABLE ONLY "public"."image_lieu" ADD CONSTRAINT "image_lieu_lieu_id_fkey" FOREIGN KEY (lieu_id) REFERENCES lieu(id) NOT DEFERRABLE;
+ALTER TABLE ONLY "public"."image_lieu" ADD CONSTRAINT "image_lieu_lieu_id_fkey" FOREIGN KEY (lieu_id) REFERENCES lieu(id) ON DELETE CASCADE NOT DEFERRABLE;
 
-ALTER TABLE ONLY "public"."image_spectacle" ADD CONSTRAINT "image_spectacle_spectacle_id_fkey" FOREIGN KEY (spectacle_id) REFERENCES spectacle(id) NOT DEFERRABLE;
+ALTER TABLE ONLY "public"."image_spectacle" ADD CONSTRAINT "image_spectacle_spectacle_id_fkey" FOREIGN KEY (spectacle_id) REFERENCES spectacle(id) ON DELETE CASCADE NOT DEFERRABLE;
 
-ALTER TABLE ONLY "public"."soiree" ADD CONSTRAINT "soiree_lieu_id_fkey" FOREIGN KEY (lieu_id) REFERENCES lieu(id) NOT DEFERRABLE;
+ALTER TABLE ONLY "public"."soiree" ADD CONSTRAINT "soiree_lieu_id_fkey" FOREIGN KEY (lieu_id) REFERENCES lieu(id) ON DELETE CASCADE NOT DEFERRABLE;
 
-ALTER TABLE ONLY "public"."spectacle" ADD CONSTRAINT "spectacle_soiree_id_fkey" FOREIGN KEY (soiree_id) REFERENCES soiree(id) NOT DEFERRABLE;
+ALTER TABLE ONLY "public"."spectacle" ADD CONSTRAINT "spectacle_soiree_id_fkey" FOREIGN KEY (soiree_id) REFERENCES soiree(id) ON DELETE CASCADE NOT DEFERRABLE;
 
--- 2024-10-22 11:07:44.395733+00
+-- 2024-10-24 10:19:31.082725+00
