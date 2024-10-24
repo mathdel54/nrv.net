@@ -41,7 +41,7 @@ class ConnexionAction extends AbstractAction
                 // Si l'authentification réussit, renvoyer un token ou des infos de session
                 $rs->getBody()->write(json_encode([
                     'message' => 'Connexion réussie',
-                    'token' => $authResult->getAccessToken() // ou une autre donnée d'authentification
+                    'token' => $authResult->getAccessToken()
                 ]));
                 return $rs->withStatus(200)->withHeader('Content-Type', 'application/json');
             } else {
@@ -51,6 +51,7 @@ class ConnexionAction extends AbstractAction
             }
         } catch (\Exception $e) {
             // En cas d'erreur d'authentification
+            var_dump($e);
             $rs->getBody()->write(json_encode(['error' => 'Erreur lors de la connexion']));
             return $rs->withStatus(500)->withHeader('Content-Type', 'application/json');
         }

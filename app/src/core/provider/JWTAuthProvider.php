@@ -26,6 +26,7 @@ class JWTAuthProvider implements AuthProviderInterface
 
     public function register(string $nom, string $prenom, CredentialsDTO $credentialsDTO, int $role): void
     {
+        $authDTO = $this->authService->verifyCredentials($credentialsDTO->email, $credentialsDTO->password);
         $this->authService->registerUser($nom, $prenom, $credentialsDTO, $role);
     }
 
@@ -42,7 +43,7 @@ class JWTAuthProvider implements AuthProviderInterface
             'iss'  => $serverName,
             'nbf'  => $issuedAt->getTimestamp(),
             'exp'  => $expire,
-            'userId' => $authDTO->ID,
+            'userId' => $authDTO->id,
             'role' => $authDTO->role,
         ];
 
