@@ -28,8 +28,7 @@ return function (App $app): App {
     
     $app->patch('/billets/{id}', callable: nrv\application\actions\UpdateBilletAction::class);
 
-    $app->post('/inscription', callable: nrv\application\actions\CreerCompteAction::class)
-        ->setName('inscription');
+    $app->post('/inscription', callable: nrv\application\actions\CreerCompteAction::class);
 
     $app->post('/connexion', callable: nrv\application\actions\ConnexionAction::class)
     ->setName('connexion');

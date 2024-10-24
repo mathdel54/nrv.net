@@ -13,6 +13,7 @@ $app = AppFactory::createFromContainer($c);
 
 $app->add(new Cors());
 
+
 $app->addBodyParsingMiddleware();
 $app->addRoutingMiddleware();
 $app->addErrorMiddleware($c->get('displayErrorDetails'), false, false);

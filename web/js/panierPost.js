@@ -13,11 +13,11 @@ export async function creerPanier(panier){
         }
 
         let data = {
-            id_user: ,
+            id_user: localStorage.getItem('user_id'),
             tarif: tarif,
             id_soiree: panier[i].soiree.ID,
         };
 
-        await post(data);
+        await post(data, '/billets');
     }
 }

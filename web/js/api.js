@@ -24,8 +24,8 @@ export function load(url) {
         });
 }
 
-export function post(data) {
-    return fetch(`${pointEntree}/billets`, {
+export function post(data, url) {
+    return fetch(`${pointEntree}${url}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

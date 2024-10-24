@@ -3,12 +3,41 @@ import {loadSpectacles} from "./spectaclesLoader";
 import {display_buttons} from "./boutons_ui";
 import {loadLieux} from "./lieuLoader";
 import {display_panier} from "./panier_ui";
+import {display_auth, display_connexion} from "./auth_ui";
+import {connecterUtilisateur, inscrireUtilisateur} from "./auth";
 
 //On ajoute un ecouteur d'événement sur le bouton le festival
 document.getElementById("accueil").addEventListener("click", function() {
     accueil();
 });
 
+//On ajoute un ecouteur d'événement sur le bouton Inscription
+document.getElementById("inscription").addEventListener("click", function() {
+    display_auth();
+});
+
+//On ajoute un ecouteur d'événement sur le bouton Connexion
+document.getElementById("connexion").addEventListener("click", function() {
+    display_connexion();
+});
+
+//On ajoute un ecouteur d'événement sur le formulaire d'inscription
+document.getElementById("authTemplate").addEventListener("submit", async function () {
+    event.preventDefault();
+    const nom = document.getElementById("nom").value;
+    const prenom = document.getElementById("prenom").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    await inscrireUtilisateur(nom, prenom, email, password);
+});
+
+//On ajoute un ecouteur d'événement sur le formulaire de connexion
+document.getElementById("connexionTemplate").addEventListener("submit", async function () {
+    event.preventDefault();
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    await connecterUtilisateur(email, password);
+});
 
 export async function accueil(){
 

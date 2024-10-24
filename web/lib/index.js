@@ -5741,11 +5741,12 @@
       }
     });
   }
-  function post(url, data) {
+  function post(data, url) {
     return fetch(`${pointEntree}${url}`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Origin": "http://localhost:20004"
       },
       body: JSON.stringify(data)
     }).then((response) => response.json());
@@ -5762,7 +5763,19 @@
   function creerPanier(panier2) {
     return __async(this, null, function* () {
       for (let i = 0; i < panier2.length; i++) {
-        yield post("/paniers", panier2[i]);
+        let tarif;
+        if (panier2[i] === panier2[i].soiree.tarifNormal) {
+          tarif = "Normal";
+        }
+        if (panier2[i] === panier2[i].soiree.tarifReduit) {
+          tarif = "R\xE9duit";
+        }
+        let data = {
+          id_user: localStorage.getItem("user_id"),
+          tarif,
+          id_soiree: panier2[i].soiree.ID
+        };
+        yield post(data, "/billets");
       }
     });
   }
@@ -5838,6 +5851,7 @@
   var source2 = document.getElementById("spectaclesTemplate").innerHTML;
   var template2 = import_handlebars2.default.compile(source2);
   function display_spectacles(spectacles, styleSelected) {
+    document.getElementById("authTemplate").style.display = "none";
     document.getElementById("template").innerHTML = template2({ spectacles: spectacles.spectacles, styleSelected });
     document.querySelectorAll(".spectacle").forEach((spectacle) => {
       spectacle.addEventListener("click", () => __async(this, null, function* () {
@@ -5855,6 +5869,7 @@
   }
   function loadSpectaclesParStyle(style) {
     return __async(this, null, function* () {
+      style = style.replace("&", "%26");
       return yield load(`/spectacles?style=${style}`);
     });
   }
@@ -5893,6 +5908,12 @@
         display_spectacles(spectacles, lieu.innerHTML);
       }));
     });
+    document.querySelectorAll(".filtreLieu").forEach((lieu) => {
+      lieu.addEventListener("click", () => __async(this, null, function* () {
+        let spectacles = yield loadSpectaclesParLieu(lieu.dataset.lieu);
+        display_spectacles(spectacles, lieu.innerHTML);
+      }));
+    });
   }
 
   // js/lieuLoader.js
@@ -5913,10 +5934,10 @@
   var source4 = document.getElementById("panierTemplate").innerHTML;
   var template4 = import_handlebars4.default.compile(source4);
   function display_panier() {
+    document.getElementById("authTemplate").style.display = "none";
     initPanier();
     document.getElementById("templateBoutons").innerHTML = "";
     let panier2 = getPanier();
-    console.log(panier2);
     document.getElementById("template").innerHTML = template4(panier2);
     calculTotal();
     document.querySelectorAll(".nbPlaces").forEach((nbPlaces) => {
@@ -5944,7 +5965,7 @@
       viderPanier();
       display_panier();
     });
-    document.getElementById("valider").addEventListener("click", function() {
+    document.getElementById("validerPanier").addEventListener("click", function() {
       alert("Panier valid\xE9");
       validerPanier();
       display_panier();
@@ -5958,9 +5979,91 @@
     document.getElementById("total").innerHTML = "Total : " + total + " \u20AC";
   }
 
+  // js/auth_ui.js
+  function display_auth() {
+    document.getElementById("templateBoutons").innerHTML = "";
+    document.getElementById("template").innerHTML = "";
+    document.getElementById("connexionTemplate").style.display = "none";
+    document.getElementById("authTemplate").style.display = "block";
+  }
+  function display_connexion() {
+    document.getElementById("templateBoutons").innerHTML = "";
+    document.getElementById("template").innerHTML = "";
+    document.getElementById("authTemplate").style.display = "none";
+    document.getElementById("connexionTemplate").style.display = "block";
+  }
+
+  // js/auth.js
+  function inscrireUtilisateur(nom, prenom, email, mdp) {
+    return __async(this, null, function* () {
+      let data = {
+        nom,
+        prenom,
+        email,
+        mdp
+      };
+      try {
+        const response = yield post(data, "/inscription");
+        if (response.ok) {
+          alert("Inscription r\xE9ussie");
+        } else {
+          alert("Inscription \xE9chou\xE9e");
+        }
+      } catch (error) {
+        console.error("Erreur lors de l'inscription", error);
+        alert("Inscription \xE9chou\xE9e");
+      }
+    });
+  }
+  function connecterUtilisateur(email, mdp) {
+    return __async(this, null, function* () {
+      let data = {
+        email,
+        mdp
+      };
+      try {
+        const response = yield post(data, "/connexion");
+        if (response.ok) {
+          alert("Connexion r\xE9ussie");
+          localStorage.setItem("user_id", response.id);
+          localStorage.setItem("token", response.token);
+        } else {
+          alert("Connexion \xE9chou\xE9e");
+        }
+      } catch (error) {
+        console.error("Erreur lors de la connexion", error);
+        alert("Connexion \xE9chou\xE9e");
+      }
+    });
+  }
+
   // js/index.js
   document.getElementById("accueil").addEventListener("click", function() {
     accueil();
+  });
+  document.getElementById("inscription").addEventListener("click", function() {
+    display_auth();
+  });
+  document.getElementById("connexion").addEventListener("click", function() {
+    display_connexion();
+  });
+  document.getElementById("authTemplate").addEventListener("submit", function() {
+    return __async(this, null, function* () {
+      event.preventDefault();
+      const nom = document.getElementById("nom").value;
+      const prenom = document.getElementById("prenom").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      yield inscrireUtilisateur(nom, prenom, email, password);
+    });
+  });
+  document.getElementById("connexionTemplate").addEventListener("submit", function() {
+    return __async(this, null, function* () {
+      event.preventDefault();
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      yield connecterUtilisateur(email, password);
+    });
   });
   function accueil() {
     return __async(this, null, function* () {
