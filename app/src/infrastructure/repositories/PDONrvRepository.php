@@ -440,15 +440,66 @@ class PDONrvRepository implements NrvRepositoryInterface
      * @param string $soiree
      * @return Billet
      */
-    public function creerBillet(string $user, string $tarif, DateTime $date, string $soiree): Billet {
+    public function creerBillet(string $user, string $tarif, string $soiree): Billet {
         try {
-            $billet = new Billet($user, $tarif, $date, $soiree);
+            $billet = new Billet($user, $tarif, null, $soiree);
             $billet->setID(Uuid::uuid4()->toString());
-            $stmt = $this->pdoNrv->prepare("INSERT INTO billet (id, utilisateur_id, tarif, date_achat, soiree_id) VALUES (:id, :user, :tarif, :date, :soiree)");
-            $stmt->execute(['id' => $billet->ID ,'user' => $billet->user, 'tarif' => $billet->tarif, 'date' => $billet->date->format('Y-m-d H:i:s'), 'soiree' => $billet->soiree]);
+            $stmt = $this->pdoNrv->prepare("INSERT INTO billet (id, utilisateur_id, tarif, soiree_id) VALUES (:id, :user, :tarif, :soiree)");
+            $stmt->execute(['id' => $billet->ID ,'user' => $billet->user, 'tarif' => $billet->tarif, 'soiree' => $billet->soiree]);
         } catch (\PDOException $e) {
             throw new RepositoryDatabaseErrorException($e->getMessage(), 0, $e);
         }
         return $billet;
+    }
+
+    /**
+     * Méthode qui vérifie la disponibilité afin de mettre une date au billet
+     * @param string $id
+     * @return Billet
+     */
+    public function achatBillet(string $id): Billet {
+        try {
+            // Récupération du billet
+            $stmt = $this->pdoNrv->prepare("SELECT * FROM billet WHERE id = :id");
+            $stmt->execute(['id' => $id]);
+            $billet = $stmt->fetch();
+            // Vérification de l'existence du billet
+            if (!$billet) {
+                throw new RepositoryEntityNotFoundException('Aucun billet trouvé');
+            }
+            // Vérification de la disponibilité
+            if($this->checkBilletById($id)){
+                throw new RepositoryEntityNotFoundException('Plus de place disponible pour ce billet');
+            }
+            $stmt = $this->pdoNrv->prepare("UPDATE billet SET date_achat = :date WHERE id = :id");
+            $stmt->execute(['date' => 'now()', 'id' => $id]);
+        } catch (\PDOException $e) {
+            throw new RepositoryDatabaseErrorException($e->getMessage(), 0, $e);
+        }
+        $b = new Billet($billet['utilisateur_id'], $billet['tarif'], new DateTime($billet['date_achat']), $billet['soiree_id']);
+        $b->setID($billet['id']);
+        return $b;
+    }
+
+    /**
+     * Méthode qui vérifie la disponibilité d'un billet par son ID
+     * @param string $id
+     * @return bool
+     */
+    public function checkBilletById(string $id): bool {
+        try {
+            $stmt = $this->pdoNrv->prepare("SELECT DISTINCT nb_places_assises, nb_places_debout, soiree.id FROM lieu INNER JOIN soiree ON lieu.id = soiree.lieu_id INNER JOIN spectacle ON soiree.id = spectacle.soiree_id INNER JOIN billet ON soiree.id = billet.soiree_id WHERE billet.id = :id");
+            $stmt->execute(['id' => $id]);
+            $lieu = $stmt->fetch();
+            $stmt = $this->pdoNrv->prepare("SELECT COUNT(*) FROM billet WHERE soiree_id = :soiree_id");
+            $stmt->execute(['soiree_id' => $lieu['id']]);
+            $nbBillets = $stmt->fetch();
+            if ($nbBillets >= ($lieu['nb_places_assises'] + $lieu['nb_places_debout'])) {
+                return false;
+            }
+        } catch (\PDOException $e) {
+            throw new RepositoryDatabaseErrorException($e->getMessage(), 0, $e);
+        }
+        return true;
     }
 }

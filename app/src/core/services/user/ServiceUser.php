@@ -217,7 +217,17 @@ class ServiceUser implements ServiceUserInterface
      * @return BilletDTO le billet en DTO
      */
     public function acheterBillet(InputBilletDTO $inputBilletDTO): BilletDTO {
-        $billetDTO = $this->_nrvRepository->creerBillet($inputBilletDTO->user, $inputBilletDTO->tarif, new DateTime(), $inputBilletDTO->soiree);
+        $billetDTO = $this->_nrvRepository->creerBillet($inputBilletDTO->user, $inputBilletDTO->tarif, $inputBilletDTO->soiree);
+        return $billetDTO->toDTO();
+    }
+
+    /**
+     * Méthode qui permet de mettre à jour un billet
+     * @param string $id
+     * @return BilletDTO le billet en DTO
+     */
+    public function updateBillet(string $id): BilletDTO {
+        $billetDTO = $this->_nrvRepository->achatBillet($id);
         return $billetDTO->toDTO();
     }
 }

@@ -25,6 +25,15 @@ return function (App $app): App {
     $app->get('/lieux', callable: nrv\application\actions\ListeLieuAction::class);
 
     $app->post('/billets', callable: nrv\application\actions\AchatBilletAction::class);
+    
+    $app->patch('/billets/{id}', callable: nrv\application\actions\UpdateBilletAction::class);
+
+    $app->post('/inscription', callable: nrv\application\actions\CreerCompteAction::class)
+        ->setName('inscription');
+
+    $app->post('/connexion', callable: nrv\application\actions\ConnexionAction::class)
+    ->setName('connexion');
+
 
     return $app;
 };
