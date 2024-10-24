@@ -5791,13 +5791,24 @@
       return yield load(`/lieux/${idLieu}/spectacles`);
     });
   }
+  function loadSpectaclesParDate(date) {
+    return __async(this, null, function* () {
+      return yield load(`/spectacles?date=${date}`);
+    });
+  }
 
   // js/boutons_ui.js
   var import_handlebars3 = __toESM(require_handlebars());
   var source3 = document.getElementById("buttonsTemplate").innerHTML;
   var template3 = import_handlebars3.default.compile(source3);
-  function display_buttons(styles, lieux) {
-    document.getElementById("templateBoutons").innerHTML = template3({ styles, lieux });
+  function display_buttons(styles, lieux, dates) {
+    document.getElementById("templateBoutons").innerHTML = template3({ styles, lieux, dates });
+    document.querySelectorAll(".filtreDate").forEach((date) => {
+      date.addEventListener("click", () => __async(this, null, function* () {
+        let spectacles = yield loadSpectaclesParDate(date.dataset.date);
+        display_spectacles(spectacles, date.dataset.date);
+      }));
+    });
     document.querySelectorAll(".filtreStyle").forEach((style) => {
       style.addEventListener("click", () => __async(this, null, function* () {
         let spectacles = yield loadSpectaclesParStyle(style.dataset.style);
@@ -5830,9 +5841,14 @@
           styles.push(spectacles.spectacles[i].spectacle.style);
         }
       }
+      let dates = [];
+      for (let i = 0; i < spectacles.spectacles.length; i++) {
+        if (!dates.includes(spectacles.spectacles[i].spectacle.date)) {
+          dates.push(spectacles.spectacles[i].spectacle.date);
+        }
+      }
       let lieux = yield loadLieux();
-      console.log(lieux.lieux);
-      display_buttons(styles, lieux.lieux);
+      display_buttons(styles, lieux.lieux, dates);
     });
   }
   init();

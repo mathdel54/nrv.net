@@ -16,10 +16,18 @@ export async function init(){
         }
     }
 
-    let lieux = await loadLieux();
-    console.log(lieux.lieux);
+    //On récupere les dates différentes des spectacles
+    let dates = [];
+    for (let i = 0; i < spectacles.spectacles.length; i++) {
+        if (!dates.includes(spectacles.spectacles[i].spectacle.date)) {
+            dates.push(spectacles.spectacles[i].spectacle.date);
+        }
+    }
 
-    display_buttons(styles, lieux.lieux);
+    //On récupere les lieux
+    let lieux = await loadLieux();
+
+    display_buttons(styles, lieux.lieux, dates);
 }
 
 init();

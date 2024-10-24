@@ -36,19 +36,28 @@
     </div>
 
     <script id="buttonsTemplate" type="text/x-handlebars-template">
-    <button>Style</button>
-    <br>
-    {{#each styles}}
-        <button class="filtreStyle" data-style="{{this}}">{{this}}</button>
-    {{/each}}
-    <br>
+        <button>Jours</button>
+        <br>
+        {{#each dates}}
+            <button class="filtreDate" data-date="{{this}}">{{this}}</button>
+        {{/each}}
+        <br>
 
-    <button>Lieu</button>
-    <br>
-    {{#each lieux}}
-        <button class="filtreLieu" data-lieu="{{lieu.ID}}">{{lieu.nom}}</button>
-    {{/each}}
-</script>
+        <button>Style</button>
+        <br>
+        {{#each styles}}
+            <button class="filtreStyle" data-style="{{this}}">{{this}}</button>
+        {{/each}}
+        <br>
+
+        <button>Lieu</button>
+        <br>
+        {{#each lieux}}
+            <button class="filtreLieu" data-lieu="{{lieu.ID}}">{{lieu.nom}}</button>
+        {{/each}}
+
+
+    </script>
 
     <script id="spectaclesTemplate" type="text/x-handlebars-template">
     <h2>Affichage de la liste des spectacles {{#if styleSelected}}trié par {{styleSelected}}{{/if}} :</h2>
