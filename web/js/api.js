@@ -72,3 +72,36 @@ export function post(data, url) {
         });
     }
 }
+
+export function patch(data, url) {
+    // Si une requête est en cours, l'annuler
+    if (controller) {
+        controller.abort();
+    }
+
+    // Créer un nouveau contrôleur pour la nouvelle requête
+    controller = new AbortController();
+    signal = controller.signal;
+
+    if (localStorage.getItem('token')) {
+        return fetch(`${pointEntree}${url}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify(data),
+            signal
+        });
+    }
+    else {
+        return fetch(`${pointEntree}${url}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data),
+            signal
+        });
+    }
+}

@@ -13,11 +13,19 @@ export async function creerPanier(panier) {
         }
 
         let data = {
-            id_user: localStorage.getItem('user_id'),
+            id_user: sessionStorage.getItem('user_id'),
             tarif: tarif,
             id_soiree: panier[i].soiree.ID,
         };
 
         await post(data, '/billets');
+    }
+}
+
+export async function payerPanierPatch(panier) {
+
+    for (let i = 0; i < panier.length; i++) {
+
+        await patch(panier[i].soiree.ID);
     }
 }

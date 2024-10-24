@@ -5789,7 +5789,7 @@
     });
   }
 
-  // js/panierPost.js
+  // js/panierApi.js
   function creerPanier(panier2) {
     return __async(this, null, function* () {
       for (let i = 0; i < panier2.length; i++) {
@@ -5801,7 +5801,7 @@
           tarif = "R\xE9duit";
         }
         let data = {
-          id_user: localStorage.getItem("user_id"),
+          id_user: sessionStorage.getItem("user_id"),
           tarif,
           id_soiree: panier2[i].soiree.ID
         };
@@ -5845,6 +5845,7 @@
   function validerPanier() {
     creerPanier(panier).then(() => {
       viderPanier();
+      alert("Panier valid\xE9");
     });
   }
   function showNbElements() {
@@ -5987,6 +5988,7 @@
   });
   var source4 = document.getElementById("panierTemplate").innerHTML;
   var template4 = import_handlebars4.default.compile(source4);
+  localStorage.setItem("panierValide", false);
   function display_panier() {
     document.getElementById("connexionTemplate").style.display = "none";
     document.getElementById("authTemplate").style.display = "none";
@@ -6021,7 +6023,6 @@
       display_panier();
     });
     document.getElementById("validerPanier").addEventListener("click", function() {
-      alert("Panier valid\xE9");
       validerPanier();
       display_panier();
     });
@@ -6080,7 +6081,7 @@
         const response = yield post(data, "/connexion");
         if (response.ok) {
           alert("Connexion r\xE9ussie");
-          localStorage.setItem("user_id", response.id);
+          sessionStorage.setItem("user_id", response.id);
           localStorage.setItem("token", response.token);
         } else {
           alert("Connexion \xE9chou\xE9e");
