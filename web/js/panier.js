@@ -1,3 +1,5 @@
+import {creerPanier} from "./panierPost";
+
 let panier = [];
 
 /**
@@ -44,6 +46,14 @@ export function supprimerDuPanier(index) {
     panier.splice(index, 1);
     localStorage.setItem('panier', JSON.stringify(panier));
     showNbElements();
+}
+
+export function validerPanier() {
+
+    creerPanier(panier)
+        .then(() => {
+            viderPanier();
+        });
 }
 
 /**
