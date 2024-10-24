@@ -8,6 +8,7 @@ const template = Handlebars.compile(source);
 
 export function display_spectacles(spectacles, styleSelected) {
 
+    document.getElementById('connexionTemplate').style.display = "none";
     document.getElementById('authTemplate').style.display = "none";
 
     document.getElementById('template').innerHTML = template({spectacles: spectacles.spectacles, styleSelected: styleSelected});

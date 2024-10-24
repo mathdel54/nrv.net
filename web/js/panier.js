@@ -53,6 +53,7 @@ export function validerPanier() {
     creerPanier(panier)
         .then(() => {
             viderPanier();
+            alert("Panier validé");
         });
 }
 

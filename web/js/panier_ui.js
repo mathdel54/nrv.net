@@ -20,6 +20,7 @@ const source = document.getElementById('panierTemplate').innerHTML;
 const template = Handlebars.compile(source);
 
 export function display_panier() {
+    document.getElementById('connexionTemplate').style.display = "none";
     document.getElementById('authTemplate').style.display = "none";
 
     initPanier();
@@ -63,7 +64,6 @@ export function display_panier() {
 
     //On rajoute un evenement sur le bouton valider
     document.getElementById('validerPanier').addEventListener('click', function() {
-        alert("Panier validé");
         validerPanier();
         display_panier();
     });

@@ -5733,23 +5733,53 @@
     }
     controller = new AbortController();
     signal = controller.signal;
-    return fetch(`${pointEntree}${url}`, { signal }).then((response) => response.json()).catch((error) => {
-      if (error.name === "AbortError") {
-        console.log("Fetch aborted");
-      } else {
-        console.error("Erreur lors du chargement de la ressource", error);
-      }
-    });
+    if (localStorage.getItem("token")) {
+      return fetch(`${pointEntree}${url}`, {
+        headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` },
+        signal
+      }).then((response) => response.json()).catch((error) => {
+        if (error.name === "AbortError") {
+          console.log("Fetch aborted");
+        } else {
+          console.error("Erreur lors du chargement de la ressource", error);
+        }
+      });
+    } else {
+      return fetch(`${pointEntree}${url}`, { signal }).then((response) => response.json()).catch((error) => {
+        if (error.name === "AbortError") {
+          console.log("Fetch aborted");
+        } else {
+          console.error("Erreur lors du chargement de la ressource", error);
+        }
+      });
+    }
   }
   function post(data, url) {
-    return fetch(`${pointEntree}${url}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Origin": "http://localhost:20004"
-      },
-      body: JSON.stringify(data)
-    }).then((response) => response.json());
+    if (controller) {
+      controller.abort();
+    }
+    controller = new AbortController();
+    signal = controller.signal;
+    if (localStorage.getItem("token")) {
+      return fetch(`${pointEntree}${url}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify(data),
+        signal
+      });
+    } else {
+      return fetch(`${pointEntree}${url}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data),
+        signal
+      });
+    }
   }
 
   // js/soireeLoader.js
@@ -5851,6 +5881,7 @@
   var source2 = document.getElementById("spectaclesTemplate").innerHTML;
   var template2 = import_handlebars2.default.compile(source2);
   function display_spectacles(spectacles, styleSelected) {
+    document.getElementById("connexionTemplate").style.display = "none";
     document.getElementById("authTemplate").style.display = "none";
     document.getElementById("template").innerHTML = template2({ spectacles: spectacles.spectacles, styleSelected });
     document.querySelectorAll(".spectacle").forEach((spectacle) => {
@@ -5937,12 +5968,6 @@
         filter.hidden = false;
       });
     });
-    document.querySelectorAll(".filtreLieu").forEach((lieu) => {
-      lieu.addEventListener("click", () => __async(this, null, function* () {
-        let spectacles = yield loadSpectaclesParLieu(lieu.dataset.lieu);
-        display_spectacles(spectacles, lieu.innerHTML);
-      }));
-    });
   }
 
   // js/lieuLoader.js
@@ -5963,6 +5988,7 @@
   var source4 = document.getElementById("panierTemplate").innerHTML;
   var template4 = import_handlebars4.default.compile(source4);
   function display_panier() {
+    document.getElementById("connexionTemplate").style.display = "none";
     document.getElementById("authTemplate").style.display = "none";
     initPanier();
     document.getElementById("templateBoutons").innerHTML = "";

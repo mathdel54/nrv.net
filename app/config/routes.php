@@ -30,8 +30,7 @@ return function (App $app): App {
 
     $app->post('/inscription', callable: nrv\application\actions\CreerCompteAction::class);
 
-    $app->post('/connexion', callable: nrv\application\actions\ConnexionAction::class)
-    ->setName('connexion');
+    $app->post('/connexion', callable: nrv\application\actions\ConnexionAction::class);
 
 
     return $app;
