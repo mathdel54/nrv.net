@@ -25,4 +25,5 @@ interface ServiceUserInterface
     public function getSpectaclesByLieu(string $id): array;
     public function getBilletsByUser(string $id): array;
     public function acheterBillet(InputBilletDTO $inputBilletDTO): BilletDTO;
+    public function updateBillet(string $id): BilletDTO;
 }

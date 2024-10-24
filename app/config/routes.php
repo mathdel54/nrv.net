@@ -25,6 +25,8 @@ return function (App $app): App {
     $app->get('/lieux', callable: nrv\application\actions\ListeLieuAction::class);
 
     $app->post('/billets', callable: nrv\application\actions\AchatBilletAction::class);
+    
+    $app->patch('/billets/{id}', callable: nrv\application\actions\UpdateBilletAction::class);
 
     return $app;
 };

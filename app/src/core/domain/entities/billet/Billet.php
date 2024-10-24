@@ -10,10 +10,10 @@ class Billet extends Entity {
 
     protected string $user;
     protected string $tarif;
-    protected DateTime $date;
+    protected ?DateTime $date;
     protected string $soiree;
 
-    public function __construct(string $user, string $tarif, DateTime $date, string $soiree){
+    public function __construct(string $user, string $tarif, ?DateTime $date, string $soiree){
         $this->user = $user;
         $this->tarif = $tarif;
         $this->date = $date;

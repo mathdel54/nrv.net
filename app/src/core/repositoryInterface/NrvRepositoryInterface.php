@@ -26,5 +26,7 @@ interface NrvRepositoryInterface
     public function getSpectaclesByLieu(string $id): array;
     public function getSpectacleByStyle(string $style): array;
     public function getBilletsByUser(string $user): array;
-    public function creerBillet(string $user, string $tarif, DateTime $date, string $soiree): Billet;
+    public function creerBillet(string $user, string $tarif, string $soiree): Billet;
+    public function achatBillet(string $id): Billet;
+    public function checkBilletById(string $id): bool;
 }
