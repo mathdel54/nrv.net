@@ -1,9 +1,12 @@
 <?php
 
-namespace nrv\core\services\auth;
+namespace nrv\core\services\user\auth;
 
+use DateTime;
 use nrv\core\dto\auth\AuthDTO;
+use nrv\core\dto\auth\CredentialsDTO;
 use InvalidArgumentException;
+use nrv\core\domain\entities\users\Users;
 use nrv\core\repositoryInterface\UsersRepositoryInterface;
 
 class AuthService implements AuthServiceInterface
@@ -31,4 +34,36 @@ class AuthService implements AuthServiceInterface
             ''  
         );
     }
+
+    public function registerUser(string $nom, string $prenom, DateTime $dateNaissance, CredentialsDTO $credentialsDTO, int $role): void
+    {
+        $existingUser = $this->userRepository->findByEmail($credentialsDTO->email);
+        if ($existingUser) 
+        {
+            throw new InvalidArgumentException('Un compte avec cette adresses existe deja');
+        }
+
+        $pass = password_hash($credentialsDTO->password, PASSWORD_BCRYPT);
+        $user = new Users($nom, $prenom, $dateNaissance, $credentialsDTO->email, $credentialsDTO->password, 1);
+
+        $this->userRepository->save($user);
+    }
+
+    public function getUserById(int $userId): AuthDTO
+    {
+        $user = $this->userRepository->findById($userId);
+
+        if (!$user) {
+            throw new InvalidArgumentException('User not found');
+        }
+
+        return new AuthDTO(
+            $user->getId(),
+            $user->email,
+            $user->pass,
+            '', // Access token
+            ''  // Refresh token
+        );
+    }
+
 }

@@ -22,5 +22,8 @@ return function(\Slim\App $app):\Slim\App {
     $app->get('/spectacles/{ID_Spectacle}/soiree', callable: nrv\application\actions\SoireeBySpectacleAction::class)
         ->setName('soireeBySpectacle');
 
+    $app->post('/inscription', callable: nrv\application\actions\CreerCompteAction::class)
+        ->setName('inscription');
+
     return $app;
 };

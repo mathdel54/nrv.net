@@ -111,6 +111,7 @@ CREATE TABLE "public"."users" (
     "prenom" character varying(50),
     "email" character varying(255),
     "mot_de_passe" character varying(255),
+    "role" CHARACTER INTEGER(2),
     "date_enregistrement" timestamp,
     CONSTRAINT "users_email_key" UNIQUE ("email"),
     CONSTRAINT "users_pkey" PRIMARY KEY ("id")

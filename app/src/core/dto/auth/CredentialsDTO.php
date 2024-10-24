@@ -6,8 +6,8 @@ use nrv\core\dto\DTO;
 
 class CredentialsDTO extends DTO
 {
-    private string $email;
-    private string $password;
+    protected string $email;
+    protected string $password;
 
     /**
      * Constructor

@@ -1,6 +1,6 @@
 <?php
 
-namespace nrv\core\domain\entitie\users;
+namespace nrv\core\domain\entities\users;
 
 use DateTime;
 use nrv\core\domain\entities\Entity;
@@ -11,22 +11,22 @@ class Users extends Entity
     protected string $nom;
     protected string $prenom;
     protected string $email;
-    protected string $pass;
+    protected string $password;
     protected DateTime $dateNaissance;
     protected int $role;
 
-    public function __construct(string $nom, string $prenom, DateTime $dateNaissance, string $email, string $pass, int $role)
+    public function __construct(string $nom, string $prenom, DateTime $dateNaissance, string $email, string $password, int $role)
     {
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->dateNaissance = $dateNaissance;
         $this->email = $email;
         $this->role = $role;
-        $this->pass = $pass;
+        $this->password = $password;
     }
 
     public function toDTO() : UsersDTO
     {
-        return new UsersDTO($this->ID, $this->nom, $this->prenom, $this->dateNaissance, $this->email, $this->role );
+        return new UsersDTO($this->ID, $this->nom, $this->prenom, $this->dateNaissance, $this->email, $this->pass,$this->role );
     }
 }

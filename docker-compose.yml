@@ -26,7 +26,7 @@ services:
     image: 'postgres:latest'
     env_file: ./nrvdb.env
     ports:
-      - '5432:5432'
+      - '31001:5432'
       # - '20007:80'
     networks:
       - nrv.net
@@ -39,11 +39,11 @@ services:
   adminer:
     image: adminer
     ports:
-      - '8080:8080'
+      - '31000:8080'
       # - '20008:80'
     networks:
       - nrv.net
-    command: php -S 0.0.0.0:80 -t /var/www/html
+    #command: php -S 0.0.0.0:80 -t /var/www/html
     restart: always
 
   nginx:
@@ -52,8 +52,8 @@ services:
       dockerfile: Dockerfile.nginx
     hostname: nginx
     ports:
-      # - "20004:80"
-      - '20009:80'
+      - "20004:80"
+      # - '20009:80'
     volumes:
       - ./web:/usr/share/nginx/html
     networks:

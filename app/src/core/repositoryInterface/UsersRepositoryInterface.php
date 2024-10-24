@@ -2,7 +2,7 @@
 
 namespace nrv\core\repositoryInterface;
 
-use nrv\core\domain\entitie\users\Users;
+use nrv\core\domain\entities\users\Users;
 
 interface UsersRepositoryInterface {
     /**

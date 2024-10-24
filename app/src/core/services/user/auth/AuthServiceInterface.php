@@ -1,18 +1,14 @@
 <?php
 
-namespace nrv\core\services\auth;
+namespace nrv\core\services\user\auth;
 
+use DateTime;
 use nrv\core\dto\auth\AuthDTO;
+use nrv\core\dto\auth\CredentialsDTO;
 
 interface AuthServiceInterface
 {
-    /**
-     * Vérifie les identifiants de l'utilisateur (email et mot de passe).
-     *
-     * @param string $email L'email de l'utilisateur.
-     * @param string $password Le mot de passe de l'utilisateur.
-     * @return AuthDTO Renvoie un DTO contenant les informations d'authentification de l'utilisateur.
-     * @throws \InvalidArgumentException Si les identifiants sont incorrects.
-     */
     public function verifyCredentials(string $email, string $password): AuthDTO;
+    public function registerUser(string $nom, string $prenom, DateTime $dateNaissance, CredentialsDTO $credentialsDTO, int $role): void;
+    public function getUserById(int $userId): AuthDTO;
 }
