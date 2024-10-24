@@ -45,15 +45,15 @@
         </div>
         <div class="boutonFiltrage">
         {{#each dates}}
-            <a class="filtreDate" data-date="{{this}}">{{this}}</a>
+            <a class="filtreDate" data-date="{{this}}" hidden="true">{{this}}</a>
         {{/each}}
         <br>
         {{#each styles}}
-            <a class="filtreStyle" data-style="{{this}}">{{this}}</a>
+            <a class="filtreStyle" data-style="{{this}}" hidden="true">{{this}}</a>
         {{/each}}
         <br>
         {{#each lieux}}
-            <a class="filtreLieu" data-lieu="{{lieu.ID}}">{{lieu.nom}}</a>
+            <a class="filtreLieu" data-lieu="{{lieu.ID}}" hidden="true">{{lieu.nom}}</a>
         {{/each}}
         </div>
 </script>

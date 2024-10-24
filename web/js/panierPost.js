@@ -1,6 +1,6 @@
-import {post} from './api.js';
+import { post } from './api.js';
 
-export async function creerPanier(panier){
+export async function creerPanier(panier) {
 
     for (let i = 0; i < panier.length; i++) {
 
