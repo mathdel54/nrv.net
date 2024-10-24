@@ -107,14 +107,12 @@
         {{#each spectacles}}
             <li>
                 <h3>{{spectacle.titre}}</h3>
-                <h4>Artistes: </h4>
                 <ul class="artistes-list">
                     {{#each artiste.artistes}}
                         <li>{{nom}} </li>
                     {{/each}}
                 </ul>
                 <p>{{spectacle.description}}</p>
-                <h4>Style: {{spectacle.style}}</h4>
                 <video controls>
                     <source src="{{spectacle.video}}" type="video/mp4">
                 </video>
