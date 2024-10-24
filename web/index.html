@@ -95,14 +95,12 @@
     <div class="lieuTarif">
     <p id="lieu">{{soiree.lieu.nom}} au {{soiree.lieu.adresse}} il contient {{soiree.lieu.placesAssises}} places assises et {{soiree.lieu.placesDebout}} places debout</p>
     <p id="tarif">
-        Tarif normal: {{soiree.tarifNormal}}
+        Tarif normal: {{soiree.tarifNormal}} €
         <br>
-        Tarif réduit: {{soiree.tarifReduit}}
+        Tarif réduit: {{soiree.tarifReduit}} €
     </p>
     </div>
     </div>
-
-    <h3>Spectacles de la soirée -> </h3>
     <ul class="spectacles-list">
         {{#each spectacles}}
             <li>
