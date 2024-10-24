@@ -1,7 +1,11 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   margin: 0;
   padding: 0;
+}
+
+a {
+  cursor: pointer;
 }
 
 header {
@@ -103,27 +107,44 @@ header .authentif-bouttons a:hover:after {
 }
 
 .boutonFiltrage {
-  display: flex;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-gap: 10px;
   margin-top: 20px;
 }
 
-#selectionStyle {
+#selectionStyle,
+#selectionDate,
+#selectionLieu {
   text-decoration: none;
   text-transform: uppercase;
   color: #3E3D3B;
   font-size: 20px;
-  margin-right: 9px;
   border: 2px solid #3E3D3B;
   padding: 4px 13px;
   border-radius: 10px;
 }
-#selectionStyle:hover {
+#selectionStyle:hover,
+#selectionDate:hover,
+#selectionLieu:hover {
   background-color: #3E3D3B;
   color: white;
 }
+
 #selectionStyle:hover img {
   content: url("../images/styles-logo-blanc.svg");
+  width: 20px;
+  height: 20px;
+}
+
+#selectionDate:hover img {
+  content: url("../images/jours-logo-blanc.svg");
+  width: 20px;
+  height: 20px;
+}
+
+#selectionLieu:hover img {
+  content: url("../images/lieu-logo-blanc.svg");
   width: 20px;
   height: 20px;
 }
@@ -145,23 +166,30 @@ h2:after {
   position: absolute;
   width: 80px;
   height: 4px;
-  background-color: #3E3D3B;
+  background-color: #E08F7E;
   bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
   border-radius: 2px;
 }
 
-.filtreStyle {
+.filtreStyle,
+.filtreDate,
+.filtreLieu {
   text-decoration: none;
   color: #3E3D3B;
   border-bottom: 1px #3E3D3B solid;
   font-size: 20px;
   cursor: pointer;
-  padding: 2px;
+  padding: 1px;
+  grid-column: span 1;
+  grid-row: auto;
+  text-align: center;
   transition: background-color 0.7s ease, color 0.7s ease;
 }
-.filtreStyle:hover {
+.filtreStyle:hover,
+.filtreDate:hover,
+.filtreLieu:hover {
   background-color: #3E3D3B;
   color: white;
 }
@@ -207,6 +235,115 @@ h2:after {
 .spectacle-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+h3 {
+  color: #333;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+h4 {
+  color: #333;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+p {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.InfosSoiree {
+  text-align: center;
+}
+
+ul.spectacles-list {
+  padding: 0;
+  margin-top: 20px;
+  background-color: #F2F2F2;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+ul.spectacles-list li {
+  list-style-type: none;
+  padding: 15px;
+  grid-column: span 1;
+  grid-row: auto;
+}
+
+video {
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+ul.artistes-list {
+  padding-left: 15px;
+}
+ul.artistes-list li {
+  list-style-type: none;
+}
+
+.lieuTarif {
+  background-color: #E08F7E;
+  color: #ffffff;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 60%;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+.lieuTarif .lieu {
+  grid-column: span 1;
+}
+.lieuTarif .tarif {
+  grid-column: span 1;
+}
+
+select#places {
+  appearance: none;
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  color: #000000;
+  border: 2px solid #3E3D3B;
+  transition: border 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+  width: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234A00FF'%3E%3Cpath d='M7 10l5 5 5-5H7z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 15px;
+}
+select#places:hover, select#places:focus {
+  border-color: rgb(187, 187, 187);
+  background-color: rgb(212.5, 212.5, 212.5);
+}
+select#places option {
+  padding: 10px;
+}
+
+button#ajouterPanier {
+  font-size: 1rem;
+  background-color: rgb(187, 187, 187);
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  width: 100%;
+}
+button#ajouterPanier:hover {
+  background-color: rgb(161.5, 161.5, 161.5);
+}
+button#ajouterPanier:active {
+  background-color: #888888;
 }
 
 footer {
