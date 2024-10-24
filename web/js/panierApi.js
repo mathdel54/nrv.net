@@ -1,7 +1,8 @@
-import { post } from './api.js';
+import {patch, post} from './api.js';
 
 export async function creerPanier(panier) {
 
+    let idBillet = [];
     for (let i = 0; i < panier.length; i++) {
 
         let tarif;
@@ -18,14 +19,24 @@ export async function creerPanier(panier) {
             id_soiree: panier[i].soiree.ID,
         };
 
-        await post(data, '/billets');
+        await post(data, '/billets')
+            .then((response) => {
+                idBillet.push(response.billet.ID);
+            });
     }
+    localStorage.setItem('idBillets', JSON.stringify(idBillet));
 }
 
-export async function payerPanierPatch(panier) {
+export async function payerPanierPatch() {
 
-    for (let i = 0; i < panier.length; i++) {
+    let idBillets = JSON.parse(localStorage.getItem('idBillets'));
 
-        await patch(panier[i].soiree.ID);
+    for (let i = 0; i < idBillets.length; i++) {
+
+        await patch('/billets/' + idBillets[i]);
     }
+
+    localStorage.removeItem('idBillets');
+
+    alert('Paiement effectué');
 }

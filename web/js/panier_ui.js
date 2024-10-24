@@ -3,7 +3,7 @@ import {
     getPanier,
     initPanier,
     modifierNbPlaces,
-    modifierTarif,
+    modifierTarif, payerPanier,
     supprimerDuPanier,
     validerPanier,
     viderPanier

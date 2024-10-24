@@ -73,7 +73,7 @@ export function post(data, url) {
     }
 }
 
-export function patch(data, url) {
+export function patch(url) {
     // Si une requête est en cours, l'annuler
     if (controller) {
         controller.abort();
@@ -90,7 +90,6 @@ export function patch(data, url) {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
-            body: JSON.stringify(data),
             signal
         });
     }
@@ -100,7 +99,6 @@ export function patch(data, url) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(data),
             signal
         });
     }
