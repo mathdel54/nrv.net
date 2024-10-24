@@ -5724,7 +5724,7 @@
   // js/config.js
   var pointEntree = "http://localhost:6080";
 
-  // js/loader.js
+  // js/api.js
   var controller = new AbortController();
   var { signal } = controller;
   function load(url) {
@@ -5741,6 +5741,15 @@
       }
     });
   }
+  function post(url, data) {
+    return fetch(`${pointEntree}${url}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    }).then((response) => response.json());
+  }
 
   // js/soireeLoader.js
   function loadSpectaclesDeLaSoiree(idSoiree) {
@@ -5749,8 +5758,20 @@
     });
   }
 
+  // js/panierPost.js
+  function creerPanier(panier2) {
+    return __async(this, null, function* () {
+      for (let i = 0; i < panier2.length; i++) {
+        yield post("/paniers", panier2[i]);
+      }
+    });
+  }
+
   // js/panier.js
   var panier = [];
+  function initPanier() {
+    panier = JSON.parse(localStorage.getItem("panier")) || [];
+  }
   function ajouterAuPanier(soiree, nbPlaces) {
     panier.push({ soiree, nbPlaces, tarif: soiree.tarifNormal });
     localStorage.setItem("panier", JSON.stringify(panier));
@@ -5777,6 +5798,11 @@
     panier.splice(index, 1);
     localStorage.setItem("panier", JSON.stringify(panier));
     showNbElements();
+  }
+  function validerPanier() {
+    creerPanier(panier).then(() => {
+      viderPanier();
+    });
   }
   function showNbElements() {
     let nbElements = 0;
@@ -5887,8 +5913,10 @@
   var source4 = document.getElementById("panierTemplate").innerHTML;
   var template4 = import_handlebars4.default.compile(source4);
   function display_panier() {
+    initPanier();
     document.getElementById("templateBoutons").innerHTML = "";
     let panier2 = getPanier();
+    console.log(panier2);
     document.getElementById("template").innerHTML = template4(panier2);
     calculTotal();
     document.querySelectorAll(".nbPlaces").forEach((nbPlaces) => {
@@ -5914,6 +5942,11 @@
     });
     document.getElementById("vider").addEventListener("click", function() {
       viderPanier();
+      display_panier();
+    });
+    document.getElementById("valider").addEventListener("click", function() {
+      alert("Panier valid\xE9");
+      validerPanier();
       display_panier();
     });
   }

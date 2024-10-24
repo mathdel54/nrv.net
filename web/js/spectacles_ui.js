@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars';
 import {display_soiree} from "./soiree_ui";
-import {load} from "./loader";
+import {load} from "./api";
 
 
 const source = document.getElementById('spectaclesTemplate').innerHTML;

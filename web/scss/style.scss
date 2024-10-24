@@ -1,5 +1,7 @@
-@use 'placeholder';
 @use 'sass:math';
+@import 'spectacleCard';
+@import 'placeholder';
+
 
 $color: #0cf;
 
@@ -101,11 +103,112 @@ header {
     opacity: 0.8;
 }
 
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
 .banniere {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.boutonSelection {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.boutonFiltrage {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#selectionStyle {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #3E3D3B;
+    font-size: 20px;
+    margin-right: 9px;
+    border: 2px solid #3E3D3B;
+    padding: 4px 13px;
+    border-radius: 10px;
+
+
+    &:hover {
+        background-color: #3E3D3B;
+        color: white;
+    }
+
+    &:hover img {
+        content: url('../images/styles-logo-blanc.svg');
+        width: 20px;
+        height: 20px;
+    }
+
+}
+
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    position: relative;
+    margin-bottom: 2rem;
+
+    &:after {
+        content: '';
+        position: absolute;
+        width: 80px;
+        height: 4px;
+        background-color: #3E3D3B;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 2px;
+    }
+
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.filtreStyle {
+    text-decoration: none;
+    color: #3E3D3B;
+    border-bottom: 1px #3E3D3B solid;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 2px;
+    transition: background-color 0.7s ease, color 0.7s ease;
+
+    &:hover {
+        background-color: #3E3D3B;
+        color: white;
+    }
+}
+
+#container-spectacle-carte {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.spectacle-card {
+    @include spectacleCard();
+    grid-column: 1 / 3;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    }
 }
 
 footer {

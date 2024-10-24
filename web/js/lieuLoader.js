@@ -1,4 +1,4 @@
-import {load} from './loader.js';
+import {load} from './api.js';
 
 export async function loadLieux(){
     return await load('/lieux');
