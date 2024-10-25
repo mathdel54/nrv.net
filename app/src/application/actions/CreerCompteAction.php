@@ -39,8 +39,9 @@ class CreerCompteAction extends AbstractAction
             $rs->getBody()->write(json_encode(['message' => 'Compte cree avec succes']));
             return $rs->withStatus(201)->withHeader('Content-Type', 'application/json');
         } catch (\Exception $e) {
-            $rs->getBody()->write(json_encode(['error' => "Erreur lors de la creation du compte: " . $e->getMessage()]));
+            $rs->getBody()->write(json_encode(['error' => "Erreur lors de la creation du compte: " . $e->getMessage() . $e]));
             return $rs->withStatus(400)->withHeader('Content-Type', 'application/json');
+            var_dump($e->getMessage());
         }
 
     }
