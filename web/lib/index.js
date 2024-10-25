@@ -5745,8 +5745,7 @@
     return fetch(`${pointEntree}${url}`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        "Origin": "http://localhost:20004"
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(data)
     }).then((response) => response.json());
@@ -5851,7 +5850,7 @@
   var source2 = document.getElementById("spectaclesTemplate").innerHTML;
   var template2 = import_handlebars2.default.compile(source2);
   function display_spectacles(spectacles, styleSelected) {
-    document.getElementById("authTemplate").style.display = "none";
+    document.getElementById("inscriptionTemplate").style.display = "none";
     document.getElementById("template").innerHTML = template2({ spectacles: spectacles.spectacles, styleSelected });
     document.querySelectorAll(".spectacle").forEach((spectacle) => {
       spectacle.addEventListener("click", () => __async(this, null, function* () {
@@ -5984,13 +5983,19 @@
     document.getElementById("templateBoutons").innerHTML = "";
     document.getElementById("template").innerHTML = "";
     document.getElementById("connexionTemplate").style.display = "none";
-    document.getElementById("authTemplate").style.display = "block";
+    document.getElementById("inscriptionTemplate").style.display = "block";
   }
   function display_connexion() {
     document.getElementById("templateBoutons").innerHTML = "";
     document.getElementById("template").innerHTML = "";
-    document.getElementById("authTemplate").style.display = "none";
+    document.getElementById("inscriptionTemplate").style.display = "none";
     document.getElementById("connexionTemplate").style.display = "block";
+  }
+  function display_hidden_img() {
+    document.getElementById("imageDeFond").style.backgroundImage = "none";
+    document.getElementsByClassName("banniere").item(0).style.display = "none";
+    document.getElementsByTagName("header").item(0).style.backgroundColor = "#E08F7E";
+    document.getElementById("imageDeFond").style.minHeight = "3vh";
   }
 
   // js/auth.js
@@ -6046,8 +6051,9 @@
   });
   document.getElementById("connexion").addEventListener("click", function() {
     display_connexion();
+    display_hidden_img();
   });
-  document.getElementById("authTemplate").addEventListener("submit", function() {
+  document.getElementById("inscriptionTemplate").addEventListener("submit", function() {
     return __async(this, null, function* () {
       event.preventDefault();
       const nom = document.getElementById("nom").value;

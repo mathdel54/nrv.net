@@ -8,7 +8,7 @@ const template = Handlebars.compile(source);
 
 export function display_spectacles(spectacles, styleSelected) {
 
-    document.getElementById('authTemplate').style.display = "none";
+    document.getElementById('inscriptionTemplate').style.display = "none";
 
     document.getElementById('template').innerHTML = template({spectacles: spectacles.spectacles, styleSelected: styleSelected});
 

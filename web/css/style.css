@@ -1,3 +1,91 @@
+#inscriptionTemplate {
+  display: block;
+  width: 90%;
+  max-width: 25em;
+  margin: 0 auto;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  padding: 2em;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+#inscriptionTemplate h2 {
+  font-size: 1.5em;
+  margin-bottom: 1.25em;
+}
+#inscriptionTemplate label {
+  display: block;
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 0.3125em;
+  font-size: 0.875em;
+}
+#inscriptionTemplate input {
+  width: 100%;
+  padding: 0.625em;
+  margin-bottom: 0.9375em;
+  font-size: 1em;
+  border: 0.0625em solid #ccc;
+  border-radius: 0.25em;
+  box-sizing: border-box;
+}
+#inscriptionTemplate button {
+  width: 100%;
+  padding: 0.625em;
+  font-size: 1em;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.25em;
+  transition: background-color 0.3s ease;
+}
+#inscriptionTemplate button:hover {
+  background-color: #333;
+}
+
+#connexionTemplate {
+  display: block;
+  max-width: 25em;
+  margin: 0 auto;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+}
+#connexionTemplate h2 {
+  font-size: 1.5em;
+  margin-bottom: 1.25em;
+}
+#connexionTemplate label {
+  display: block;
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 0.3125em;
+  font-size: 0.875em;
+}
+#connexionTemplate input {
+  width: 100%;
+  padding: 0.625em;
+  margin-bottom: 0.9375em;
+  font-size: 1em;
+  border: 0.0625em solid #ccc;
+  border-radius: 0.25em;
+  box-sizing: border-box;
+}
+#connexionTemplate button {
+  width: 100%;
+  padding: 0.625em;
+  font-size: 1em;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.25em;
+  transition: background-color 0.3s ease;
+}
+#connexionTemplate button:hover {
+  background-color: #333;
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
