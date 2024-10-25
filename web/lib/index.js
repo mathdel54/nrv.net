@@ -5895,14 +5895,12 @@
     });
   }
   function showNbElements() {
-    let nbElements = 0;
-    panier.forEach((element) => {
-      nbElements += parseInt(element.nbPlaces);
-    });
+    let nbElements = getPanier().length;
+    console.log(getPanier());
     if (nbElements > 0) {
       document.getElementById("panier").innerHTML = "Panier (" + nbElements + ")";
     } else {
-      document.getElementById("panier").innerHTML = "Panier";
+      document.getElementById("panier").innerHTML = "PanierCACA";
     }
   }
 
@@ -6215,6 +6213,7 @@
       }
       let lieux = yield loadLieux();
       display_buttons(styles, lieux.lieux, dates);
+      showNbElements();
     });
   }
   accueil();
