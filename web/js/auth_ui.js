@@ -23,7 +23,7 @@ export function hide_imgFond() {
 }
 
 export function display_imgFond() {
-    document.getElementById('imageDeFond').style.backgroundImage = "url('../images/nrv_accueil.webp')";
+    document.getElementById('imageDeFond').style.backgroundImage = "url('../images/imageDefond.webp')";
     document.getElementsByClassName('banniere').item(0).style.display = "block";
     document.getElementsByTagName('header').item(0).style.backgroundColor = "transparent";
     document.getElementById('imageDeFond').style.minHeight = "100vh";

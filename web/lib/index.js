@@ -6118,8 +6118,14 @@
     document.getElementById("authTemplate").style.display = "none";
     document.getElementById("connexionTemplate").style.display = "block";
   }
+  function hide_imgFond() {
+    document.getElementById("imageDeFond").style.backgroundImage = "none";
+    document.getElementsByClassName("banniere").item(0).style.display = "none";
+    document.getElementsByTagName("header").item(0).style.backgroundColor = "#E08F7E";
+    document.getElementById("imageDeFond").style.minHeight = "0vh";
+  }
   function display_imgFond() {
-    document.getElementById("imageDeFond").style.backgroundImage = "url('../images/nrv_accueil.webp')";
+    document.getElementById("imageDeFond").style.backgroundImage = "url('../images/imageDefond.webp')";
     document.getElementsByClassName("banniere").item(0).style.display = "block";
     document.getElementsByTagName("header").item(0).style.backgroundColor = "transparent";
     document.getElementById("imageDeFond").style.minHeight = "100vh";
@@ -6176,11 +6182,11 @@
   });
   document.getElementById("inscription").addEventListener("click", function() {
     display_auth();
-    display_imgFond();
+    hide_imgFond();
   });
   document.getElementById("connexion").addEventListener("click", function() {
     display_connexion();
-    display_imgFond();
+    hide_imgFond();
   });
   document.getElementById("authTemplate").addEventListener("submit", function() {
     return __async(this, null, function* () {
@@ -6206,6 +6212,7 @@
       display_spectacles(spectacles);
       document.getElementById("panier").addEventListener("click", function() {
         display_panier();
+        hide_imgFond();
       });
       let styles = [];
       for (let i = 0; i < spectacles.spectacles.length; i++) {
