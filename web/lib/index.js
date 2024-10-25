@@ -6118,6 +6118,12 @@
     document.getElementById("authTemplate").style.display = "none";
     document.getElementById("connexionTemplate").style.display = "block";
   }
+  function display_imgFond() {
+    document.getElementById("imageDeFond").style.backgroundImage = "url('../images/nrv_accueil.webp')";
+    document.getElementsByClassName("banniere").item(0).style.display = "block";
+    document.getElementsByTagName("header").item(0).style.backgroundColor = "transparent";
+    document.getElementById("imageDeFond").style.minHeight = "100vh";
+  }
 
   // js/auth.js
   function inscrireUtilisateur(nom, prenom, email, mdp) {
@@ -6166,12 +6172,15 @@
   // js/index.js
   document.getElementById("accueil").addEventListener("click", function() {
     accueil();
+    display_imgFond();
   });
   document.getElementById("inscription").addEventListener("click", function() {
     display_auth();
+    display_imgFond();
   });
   document.getElementById("connexion").addEventListener("click", function() {
     display_connexion();
+    display_imgFond();
   });
   document.getElementById("authTemplate").addEventListener("submit", function() {
     return __async(this, null, function* () {
