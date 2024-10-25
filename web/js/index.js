@@ -3,28 +3,29 @@ import {loadSpectacles} from "./spectaclesLoader";
 import {display_buttons} from "./boutons_ui";
 import {loadLieux} from "./lieuLoader";
 import {display_panier} from "./panier_ui";
-import {display_auth, display_connexion, display_hidden_img} from "./auth_ui";
+import {display_auth, display_connexion, hide_imgFond, display_imgFond} from "./auth_ui";
 import {connecterUtilisateur, inscrireUtilisateur} from "./auth";
 
 //On ajoute un ecouteur d'événement sur le bouton le festival
 document.getElementById("accueil").addEventListener("click", function() {
     accueil();
+    display_imgFond();
 });
 
 //On ajoute un ecouteur d'événement sur le bouton Inscription
 document.getElementById("inscription").addEventListener("click", function() {
     display_auth();
-    display_hidden_img();
+    hide_imgFond();
 });
 
 //On ajoute un ecouteur d'événement sur le bouton Connexion
 document.getElementById("connexion").addEventListener("click", function() {
     display_connexion();
-    display_hidden_img();
+    hide_imgFond();
 });
 
 //On ajoute un ecouteur d'événement sur le formulaire d'inscription
-document.getElementById("inscriptionTemplate").addEventListener("submit", async function () {
+document.getElementById("authTemplate").addEventListener("submit", async function () {
     event.preventDefault();
     const nom = document.getElementById("nom").value;
     const prenom = document.getElementById("prenom").value;

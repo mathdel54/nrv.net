@@ -6,11 +6,11 @@ use nrv\core\dto\DTO;
 
 class AuthDTO extends DTO
 {
-    private string $id;
-    private string $email;
-    private int $role;
-    private string $accessToken;
-    private string $refreshToken;
+    protected string $id;
+    protected string $email;
+    protected int $role;
+    protected string $accessToken;
+    protected string $refreshToken;
 
     public function __construct(string $id, string $email, int $role, string $accessToken, string $refreshToken)
     {

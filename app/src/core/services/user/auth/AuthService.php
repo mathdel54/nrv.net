@@ -21,34 +21,34 @@ class AuthService implements AuthServiceInterface
     public function verifyCredentials(string $email, string $password): AuthDTO
     {
         $user = $this->userRepository->findByEmail($email);
-
-        if (!$user || !password_verify($password, $user->pass)) {
+    
+        if (!$user || !password_verify($password, $user->password)) {
             throw new InvalidArgumentException('Invalid credentials');
         }
-
+    
         return new AuthDTO(
             $user->getId(),
             $user->email,
-            $user->pass,
-            '',
-            ''  
+            $user->role, // Utilisez le rôle de l'utilisateur, pas le mot de passe
+            '', // accessToken vide ici
+            ''  // refreshToken vide ici
         );
     }
+    
 
     public function registerUser(string $nom, string $prenom, CredentialsDTO $credentialsDTO, int $role): void
     {
         $existingUser = $this->userRepository->findByEmail($credentialsDTO->email);
-        if ($existingUser) 
-        {
-            throw new InvalidArgumentException('Un compte avec cette adresses existe deja');
+        if ($existingUser) {
+            throw new InvalidArgumentException('Un compte avec cette adresse existe déjà');
         }
-
-        $pass = password_hash($credentialsDTO->password, PASSWORD_BCRYPT);
-        $user = new Users($nom, $prenom, $credentialsDTO->email, $credentialsDTO->password, 1);
-
+    
+        $hashedPassword = password_hash($credentialsDTO->password, PASSWORD_BCRYPT);
+        $user = new Users($nom, $prenom, $credentialsDTO->email, $hashedPassword, $role); // Utiliser $hashedPassword ici
+    
         $this->userRepository->save($user);
     }
-
+    
     public function getUserById(int $userId): AuthDTO
     {
         $user = $this->userRepository->findById($userId);
@@ -60,7 +60,7 @@ class AuthService implements AuthServiceInterface
         return new AuthDTO(
             $user->getId(),
             $user->email,
-            $user->pass,
+            $user->role,
             '', // Access token
             ''  // Refresh token
         );

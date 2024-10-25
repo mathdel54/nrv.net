@@ -5733,22 +5733,78 @@
     }
     controller = new AbortController();
     signal = controller.signal;
-    return fetch(`${pointEntree}${url}`, { signal }).then((response) => response.json()).catch((error) => {
-      if (error.name === "AbortError") {
-        console.log("Fetch aborted");
-      } else {
-        console.error("Erreur lors du chargement de la ressource", error);
-      }
-    });
+    if (localStorage.getItem("token")) {
+      return fetch(`${pointEntree}${url}`, {
+        headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` },
+        signal
+      }).then((response) => response.json()).catch((error) => {
+        if (error.name === "AbortError") {
+          console.log("Fetch aborted");
+        } else {
+          console.error("Erreur lors du chargement de la ressource", error);
+        }
+      });
+    } else {
+      return fetch(`${pointEntree}${url}`, { signal }).then((response) => response.json()).catch((error) => {
+        if (error.name === "AbortError") {
+          console.log("Fetch aborted");
+        } else {
+          console.error("Erreur lors du chargement de la ressource", error);
+        }
+      });
+    }
   }
   function post(data, url) {
-    return fetch(`${pointEntree}${url}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    }).then((response) => response.json());
+    if (controller) {
+      controller.abort();
+    }
+    controller = new AbortController();
+    signal = controller.signal;
+    if (localStorage.getItem("token")) {
+      return fetch(`${pointEntree}${url}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify(data),
+        signal
+      });
+    } else {
+      return fetch(`${pointEntree}${url}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data),
+        signal
+      });
+    }
+  }
+  function patch(url) {
+    if (controller) {
+      controller.abort();
+    }
+    controller = new AbortController();
+    signal = controller.signal;
+    if (localStorage.getItem("token")) {
+      return fetch(`${pointEntree}${url}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token")}`
+        },
+        signal
+      });
+    } else {
+      return fetch(`${pointEntree}${url}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        signal
+      });
+    }
   }
 
   // js/soireeLoader.js
@@ -5758,9 +5814,10 @@
     });
   }
 
-  // js/panierPost.js
+  // js/panierApi.js
   function creerPanier(panier2) {
     return __async(this, null, function* () {
+      let idBillet = [];
       for (let i = 0; i < panier2.length; i++) {
         let tarif;
         if (panier2[i] === panier2[i].soiree.tarifNormal) {
@@ -5770,12 +5827,25 @@
           tarif = "R\xE9duit";
         }
         let data = {
-          id_user: localStorage.getItem("user_id"),
+          id_user: sessionStorage.getItem("user_id"),
           tarif,
           id_soiree: panier2[i].soiree.ID
         };
-        yield post(data, "/billets");
+        yield post(data, "/billets").then((response) => {
+          idBillet.push(response.billet.ID);
+        });
       }
+      localStorage.setItem("idBillets", JSON.stringify(idBillet));
+    });
+  }
+  function payerPanierPatch() {
+    return __async(this, null, function* () {
+      let idBillets = JSON.parse(localStorage.getItem("idBillets"));
+      for (let i = 0; i < idBillets.length; i++) {
+        yield patch("/billets/" + idBillets[i]);
+      }
+      localStorage.removeItem("idBillets");
+      alert("Paiement effectu\xE9");
     });
   }
 
@@ -5814,6 +5884,14 @@
   function validerPanier() {
     creerPanier(panier).then(() => {
       viderPanier();
+      alert("Panier valid\xE9");
+    });
+  }
+  function payerPanier() {
+    payerPanierPatch().then(() => {
+      viderPanier();
+      localStorage.setItem("panierValide", false);
+      alert("Paiement effectu\xE9");
     });
   }
   function showNbElements() {
@@ -5850,7 +5928,8 @@
   var source2 = document.getElementById("spectaclesTemplate").innerHTML;
   var template2 = import_handlebars2.default.compile(source2);
   function display_spectacles(spectacles, styleSelected) {
-    document.getElementById("inscriptionTemplate").style.display = "none";
+    document.getElementById("connexionTemplate").style.display = "none";
+    document.getElementById("authTemplate").style.display = "none";
     document.getElementById("template").innerHTML = template2({ spectacles: spectacles.spectacles, styleSelected });
     document.querySelectorAll(".spectacle").forEach((spectacle) => {
       spectacle.addEventListener("click", () => __async(this, null, function* () {
@@ -5913,6 +5992,29 @@
         display_spectacles(spectacles, lieu.innerHTML);
       }));
     });
+    function masquerTousLesFiltres() {
+      document.querySelectorAll(".filtreDate").forEach((filter) => filter.hidden = true);
+      document.querySelectorAll(".filtreStyle").forEach((filter) => filter.hidden = true);
+      document.querySelectorAll(".filtreLieu").forEach((filter) => filter.hidden = true);
+    }
+    document.querySelector("#selectionStyle").addEventListener("click", () => {
+      masquerTousLesFiltres();
+      document.querySelectorAll(".filtreStyle").forEach((filter) => {
+        filter.hidden = false;
+      });
+    });
+    document.querySelector("#selectionDate").addEventListener("click", () => {
+      masquerTousLesFiltres();
+      document.querySelectorAll(".filtreDate").forEach((filter) => {
+        filter.hidden = false;
+      });
+    });
+    document.querySelector("#selectionLieu").addEventListener("click", () => {
+      masquerTousLesFiltres();
+      document.querySelectorAll(".filtreLieu").forEach((filter) => {
+        filter.hidden = false;
+      });
+    });
   }
 
   // js/lieuLoader.js
@@ -5932,7 +6034,11 @@
   });
   var source4 = document.getElementById("panierTemplate").innerHTML;
   var template4 = import_handlebars4.default.compile(source4);
+  if (localStorage.getItem("panierValide") === null) {
+    localStorage.setItem("panierValide", false);
+  }
   function display_panier() {
+    document.getElementById("connexionTemplate").style.display = "none";
     document.getElementById("authTemplate").style.display = "none";
     initPanier();
     document.getElementById("templateBoutons").innerHTML = "";
@@ -5964,9 +6070,19 @@
       viderPanier();
       display_panier();
     });
+    if (localStorage.getItem("panierValide") === "true") {
+      document.getElementById("validerPanier").style.display = "none";
+      document.getElementById("payerPanier").style.display = "block";
+    } else {
+      document.getElementById("validerPanier").style.display = "block";
+      document.getElementById("payerPanier").style.display = "none";
+    }
     document.getElementById("validerPanier").addEventListener("click", function() {
-      alert("Panier valid\xE9");
       validerPanier();
+      display_panier();
+    });
+    document.getElementById("payerPanier").addEventListener("click", function() {
+      payerPanier();
       display_panier();
     });
   }
@@ -5983,19 +6099,25 @@
     document.getElementById("templateBoutons").innerHTML = "";
     document.getElementById("template").innerHTML = "";
     document.getElementById("connexionTemplate").style.display = "none";
-    document.getElementById("inscriptionTemplate").style.display = "block";
+    document.getElementById("authTemplate").style.display = "block";
   }
   function display_connexion() {
     document.getElementById("templateBoutons").innerHTML = "";
     document.getElementById("template").innerHTML = "";
-    document.getElementById("inscriptionTemplate").style.display = "none";
+    document.getElementById("authTemplate").style.display = "none";
     document.getElementById("connexionTemplate").style.display = "block";
   }
-  function display_hidden_img() {
+  function hide_imgFond() {
     document.getElementById("imageDeFond").style.backgroundImage = "none";
     document.getElementsByClassName("banniere").item(0).style.display = "none";
     document.getElementsByTagName("header").item(0).style.backgroundColor = "#E08F7E";
-    document.getElementById("imageDeFond").style.minHeight = "3vh";
+    document.getElementById("imageDeFond").style.minHeight = "0vh";
+  }
+  function display_imgFond() {
+    document.getElementById("imageDeFond").style.backgroundImage = "url('../images/nrv_accueil.webp')";
+    document.getElementsByClassName("banniere").item(0).style.display = "block";
+    document.getElementsByTagName("header").item(0).style.backgroundColor = "transparent";
+    document.getElementById("imageDeFond").style.minHeight = "100vh";
   }
 
   // js/auth.js
@@ -6030,7 +6152,7 @@
         const response = yield post(data, "/connexion");
         if (response.ok) {
           alert("Connexion r\xE9ussie");
-          localStorage.setItem("user_id", response.id);
+          sessionStorage.setItem("user_id", response.id);
           localStorage.setItem("token", response.token);
         } else {
           alert("Connexion \xE9chou\xE9e");
@@ -6045,15 +6167,17 @@
   // js/index.js
   document.getElementById("accueil").addEventListener("click", function() {
     accueil();
+    display_imgFond();
   });
   document.getElementById("inscription").addEventListener("click", function() {
     display_auth();
+    hide_imgFond();
   });
   document.getElementById("connexion").addEventListener("click", function() {
     display_connexion();
-    display_hidden_img();
+    hide_imgFond();
   });
-  document.getElementById("inscriptionTemplate").addEventListener("submit", function() {
+  document.getElementById("authTemplate").addEventListener("submit", function() {
     return __async(this, null, function* () {
       event.preventDefault();
       const nom = document.getElementById("nom").value;

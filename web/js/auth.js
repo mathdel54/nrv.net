@@ -35,7 +35,7 @@ export async function connecterUtilisateur(email, mdp) {
 
             if (response.ok){
                 alert('Connexion réussie');
-                localStorage.setItem('user_id', response.id);
+                sessionStorage.setItem('user_id', response.id);
                 localStorage.setItem('token', response.token);
             }
             else {

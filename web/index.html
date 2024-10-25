@@ -31,7 +31,7 @@
     </section>
 </div>
 
-<form id="inscriptionTemplate" style="display: none;">
+<form id="authTemplate" style="display: none;">
     <h2>Inscription</h2>
     <label for="nom">Nom</label>
     <input type="text" id="nom" name="nom" required>
@@ -60,31 +60,25 @@
         <div id="template">
         </div>
 
-<script id="buttonsTemplate" type="text/x-handlebars-template">
-    <button>Jours</button>
-    <br>
-    {{#each dates}}
-        <button class="filtreDate" data-date="{{this}}">{{this}}</button>
-    {{/each}}
-    <br>
-
+        <script id="buttonsTemplate" type="text/x-handlebars-template">
         <div class="boutonSelection">
-            <a id="selectionStyle" href="#"><img src="images/styles-logo-grey.svg" alt="styleLogo" height="20" width="20"> Styles</a>
+            <a id="selectionDate"><img src="images/jours-logo-grey.svg" alt="artisteLogo" height="20" width="20"> Jours</a>
+            <a id="selectionStyle"><img src="images/styles-logo-grey.svg" alt="styleLogo" height="20" width="20"> Styles</a>
+            <a id="selectionLieu"><img src="images/lieu-logo-grey.svg" alt="lieuLogo" height="20" width="20"> Lieux</a>
         </div>
-        <div class="boutonFiltrage"></div>
+        <div class="boutonFiltrage">
+        {{#each dates}}
+            <a class="filtreDate" data-date="{{this}}" hidden="true">{{this}}</a>
+        {{/each}}
+        <br>
         {{#each styles}}
-            <button class="filtreStyle" data-style="{{this}}">{{this}}</button>
+            <a class="filtreStyle" data-style="{{this}}" hidden="true">{{this}}</a>
+        {{/each}}
+        <br>
+        {{#each lieux}}
+            <a class="filtreLieu" data-lieu="{{lieu.ID}}" hidden="true">{{lieu.nom}}</a>
         {{/each}}
         </div>
-        <br>
-
-    <button>Lieu</button>
-    <br>
-    {{#each lieux}}
-        <button class="filtreLieu" data-lieu="{{lieu.ID}}">{{lieu.nom}}</button>
-    {{/each}}
-
-
 </script>
 
         <script id="spectaclesTemplate" type="text/x-handlebars-template">
@@ -105,7 +99,7 @@
 
 <script id="soireeTemplate" type="text/x-handlebars-template">
     <h2>{{soiree.nom}}</h2>
-    <p>Ajouter au panier :</p>
+    <h3> Je réserve ! </h3>
     <select id="places">
         <option value="1">1 place</option>
         <option value="2">2 places</option>
@@ -119,39 +113,34 @@
         <option value="10">10 places</option>
     </select>
     <button id="ajouterPanier" data-soiree-id="{{soiree.id}}">Ajout</button>
-    <p>Thématique: {{soiree.theme}}</p>
-    <p>Date: {{soiree.date}}</p>
-    <p>Heure: {{soiree.horaire}}</p>
-    <p>Lieu: </p>
-    <ul>
-        <li>nom : {{soiree.lieu.nom}}</li>
-        <li>adresse : {{soiree.lieu.adresse}}</li>
-        <li>places assises : {{soiree.lieu.placesAssises}}</li>
-        <li>places debout : {{soiree.lieu.placesDebout}}</li>
-    </ul>
-    <p>Tarif normal: {{soiree.tarifNormal}}</p>
-    <p>Tarif réduit: {{soiree.tarifReduit}}</p>
-
-    <h4>Spectacles :</h4>
-    <ul>
+    <div class="InfosSoiree">
+    <h3>{{soiree.theme}} -- {{soiree.date}} / {{soiree.horaire}}</h3>
+    <div class="lieuTarif">
+    <p id="lieu">{{soiree.lieu.nom}} au {{soiree.lieu.adresse}} il contient {{soiree.lieu.placesAssises}} places assises et {{soiree.lieu.placesDebout}} places debout</p>
+    <p id="tarif">
+        Tarif normal: {{soiree.tarifNormal}} €
+        <br>
+        Tarif réduit: {{soiree.tarifReduit}} €
+    </p>
+    </div>
+    </div>
+    <ul class="spectacles-list">
         {{#each spectacles}}
             <li>
-                <h5>{{spectacle.titre}}</h5>
-                <p>Artistes: </p>
-                <ul>
+                <h3>{{spectacle.titre}}</h3>
+                <ul class="artistes-list">
                     {{#each artiste.artistes}}
                         <li>{{nom}} </li>
                     {{/each}}
                 </ul>
-                <p>Description: {{spectacle.description}}</p>
-                <p>Style: {{spectacle.style}}</p>
+                <p>{{spectacle.description}}</p>
                 <video controls>
                     <source src="{{spectacle.video}}" type="video/mp4">
                 </video>
             </li>
         {{/each}}
     </ul>
-</script>
+    </script>
 
 <script id="panierTemplate" type="text/x-handlebars-template">
     <h2>Panier</h2>
@@ -184,6 +173,7 @@
     </ul>
     <p id="total">Total: €</p>
     <button id="validerPanier">Valider le panier</button>
+    <button id="payerPanier" style="display: none;">Payer le panier</button>
 </script>
 
     </div>

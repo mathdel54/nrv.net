@@ -31,6 +31,7 @@ class AchatBilletAction extends AbstractAction {
 
             $data = [
                 'billet' => [
+                    'ID' => $billet->ID,
                     'user' => $billet->user,
                     'tarif' => $billet->tarif,
                     'date' => $billet->date,

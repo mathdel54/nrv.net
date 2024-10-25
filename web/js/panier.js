@@ -1,4 +1,4 @@
-import {creerPanier} from "./panierPost";
+import {creerPanier, payerPanierPatch} from "./panierApi";
 
 let panier = [];
 
@@ -53,6 +53,17 @@ export function validerPanier() {
     creerPanier(panier)
         .then(() => {
             viderPanier();
+            alert("Panier validé");
+        });
+}
+
+export function payerPanier() {
+
+    payerPanierPatch()
+        .then(() => {
+            viderPanier();
+            localStorage.setItem('panierValide', false);
+            alert("Paiement effectué");
         });
 }
 
