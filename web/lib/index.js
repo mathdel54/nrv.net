@@ -5760,14 +5760,26 @@
     }
     controller = new AbortController();
     signal = controller.signal;
-    return fetch(`${pointEntree}${url}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data),
-      signal
-    });
+    if (localStorage.getItem("token")) {
+      return fetch(`${pointEntree}${url}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify(data),
+        signal
+      });
+    } else {
+      return fetch(`${pointEntree}${url}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data),
+        signal
+      });
+    }
   }
   function patch(url) {
     if (controller) {
