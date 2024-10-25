@@ -1,6 +1,8 @@
 @mixin panierStyle() {
     max-width: 600px;
     margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
     padding: 20px;
     background-color: #f8f8f8;
     border: 1px solid #ddd;
