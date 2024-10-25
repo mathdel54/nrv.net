@@ -73,8 +73,6 @@ export function payerPanier() {
 export function showNbElements() {
     let nbElements = getPanier().length;
 
-    console.log(getPanier());
-
     if (nbElements > 0) {
         document.getElementById('panier').innerHTML = "Panier (" + nbElements + ")";
     }

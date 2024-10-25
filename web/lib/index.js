@@ -5896,11 +5896,10 @@
   }
   function showNbElements() {
     let nbElements = getPanier().length;
-    console.log(getPanier());
     if (nbElements > 0) {
       document.getElementById("panier").innerHTML = "Panier (" + nbElements + ")";
     } else {
-      document.getElementById("panier").innerHTML = "PanierCACA";
+      document.getElementById("panier").innerHTML = "Panier";
     }
   }
 
