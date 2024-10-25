@@ -6044,25 +6044,34 @@
     document.getElementById("templateBoutons").innerHTML = "";
     let panier2 = getPanier();
     document.getElementById("template").innerHTML = template4(panier2);
+    let index = 0;
+    getPanier().forEach(
+      (element) => {
+        prixParGroupePlaces(index);
+        index++;
+      }
+    );
     calculTotal();
     document.querySelectorAll(".nbPlaces").forEach((nbPlaces) => {
       nbPlaces.addEventListener("change", function() {
-        let index = nbPlaces.dataset.index;
-        modifierNbPlaces(index, nbPlaces.value);
+        let index2 = nbPlaces.dataset.index;
+        modifierNbPlaces(index2, nbPlaces.value);
+        prixParGroupePlaces(index2);
         calculTotal();
       });
     });
     document.querySelectorAll(".tarif").forEach((tarif) => {
       tarif.addEventListener("change", function() {
-        let index = tarif.dataset.index;
-        modifierTarif(index, tarif.value);
+        let index2 = tarif.dataset.index;
+        modifierTarif(index2, tarif.value);
+        prixParGroupePlaces(index2);
         calculTotal();
       });
     });
     document.querySelectorAll(".supprimerPanier").forEach((supprimer) => {
       supprimer.addEventListener("click", function() {
-        let index = supprimer.dataset.index;
-        supprimerDuPanier(index);
+        let index2 = supprimer.dataset.index;
+        supprimerDuPanier(index2);
         display_panier();
       });
     });
@@ -6092,6 +6101,11 @@
       total += element.nbPlaces * element.tarif;
     });
     document.getElementById("total").innerHTML = "Total : " + total + " \u20AC";
+  }
+  function prixParGroupePlaces(index) {
+    let element = getPanier()[index];
+    let total = element.nbPlaces * element.tarif;
+    document.getElementById("prixUnitaire" + index).innerHTML = "Prix : " + total + " \u20AC";
   }
 
   // js/auth_ui.js

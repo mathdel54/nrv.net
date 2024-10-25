@@ -33,28 +33,36 @@ export function display_panier() {
     document.getElementById('templateBoutons').innerHTML = "";
     let panier = getPanier();
     document.getElementById('template').innerHTML = template(panier);
+    let index = 0;
+    getPanier().forEach(element => {
+        prixParGroupePlaces(index);
+        index++;
+    }
+    );
     calculTotal();
 
     //On rajoute un evenement sur les select nbPlaces et sur les select tarif
     document.querySelectorAll('.nbPlaces').forEach(nbPlaces => {
-        nbPlaces.addEventListener('change', function() {
+        nbPlaces.addEventListener('change', function () {
             let index = nbPlaces.dataset.index;
             modifierNbPlaces(index, nbPlaces.value);
+            prixParGroupePlaces(index);
             calculTotal();
         });
     });
 
     document.querySelectorAll('.tarif').forEach(tarif => {
-        tarif.addEventListener('change', function() {
+        tarif.addEventListener('change', function () {
             let index = tarif.dataset.index;
             modifierTarif(index, tarif.value);
+            prixParGroupePlaces(index);
             calculTotal();
         });
     });
 
     //On rajoute un evenement sur les boutons supprimer
     document.querySelectorAll('.supprimerPanier').forEach(supprimer => {
-        supprimer.addEventListener('click', function() {
+        supprimer.addEventListener('click', function () {
             let index = supprimer.dataset.index;
             supprimerDuPanier(index);
             display_panier();
@@ -62,7 +70,7 @@ export function display_panier() {
     });
 
     //On rajoute un evenement sur le bouton vider
-    document.getElementById('vider').addEventListener('click', function() {
+    document.getElementById('vider').addEventListener('click', function () {
         viderPanier();
         display_panier();
     });
@@ -76,13 +84,13 @@ export function display_panier() {
         document.getElementById('payerPanier').style.display = "none";
     }
     //On rajoute un evenement sur le bouton valider
-    document.getElementById('validerPanier').addEventListener('click', function() {
+    document.getElementById('validerPanier').addEventListener('click', function () {
         validerPanier();
         display_panier();
     });
 
     //On rajoute un evenement sur le bouton payer
-    document.getElementById('payerPanier').addEventListener("click", function() {
+    document.getElementById('payerPanier').addEventListener("click", function () {
         payerPanier();
         display_panier();
     });
@@ -94,4 +102,10 @@ function calculTotal() {
         total += element.nbPlaces * element.tarif;
     });
     document.getElementById('total').innerHTML = "Total : " + total + " €";
+}
+
+function prixParGroupePlaces(index) {
+    let element = getPanier()[index];
+    let total = element.nbPlaces * element.tarif;
+    document.getElementById('prixUnitaire' + index).innerHTML = "Prix : " + total + " €";
 }

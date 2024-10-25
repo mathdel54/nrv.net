@@ -12,46 +12,44 @@
 
 <body>
 
-<div id="imageDeFond">
-    <header>
-        <img src="images/logoNrv.webp" alt="Logo Nancy Rock Vibration">
-        <nav>
-            <a id="accueil">Le Festival</a>
-            <a href="#">Infos Pratiques</a>
-            <a id="panier">Panier</a>
-            <a href="#">Contact</a>
-        </nav>
-        <div class="authentif-bouttons">
-            <a id="connexion"><span>Connexion</span></a>
-            <a id="inscription"><span>Inscription</span></a>
-        </div>
-    </header>
+    <div id="imageDeFond">
+        <header>
+            <img src="images/logoNrv.webp" alt="Logo Nancy Rock Vibration">
+            <nav>
+                <a id="accueil">Le Festival</a>
+                <a id="panier">Panier</a>
+            </nav>
+            <div class="authentif-bouttons">
+                <a id="connexion"><span>Connexion</span></a>
+                <a id="inscription"><span>Inscription</span></a>
+            </div>
+        </header>
 
-    <section class="banniere">
-    </section>
-</div>
+        <section class="banniere">
+        </section>
+    </div>
 
-<form id="authTemplate" style="display: none;">
-    <h2>Inscription</h2>
-    <label for="nom">Nom</label>
-    <input type="text" id="nom" name="nom" required>
-    <label for="prenom">Prénom</label>
-    <input type="text" id="prenom" name="prenom" required>
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" required>
-    <label for="password">Mot de passe</label>
-    <input type="password" id="password" name="password" required>
-    <button type="submit">Inscription</button>
-</form>
+    <form id="authTemplate" style="display: none;">
+        <h2>Inscription</h2>
+        <label for="nom">Nom</label>
+        <input type="text" id="nom" name="nom" required>
+        <label for="prenom">Prénom</label>
+        <input type="text" id="prenom" name="prenom" required>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Inscription</button>
+    </form>
 
-<form id="connexionTemplate" style="display: none;">
-    <h2>Connexion</h2>
-    <label for="emailConnexion">Email</label>
-    <input type="email" id="emailConnexion" name="email" required>
-    <label for="passwordConnexion">Mot de passe</label>
-    <input type="password" id="passwordConnexion" name="password" required>
-    <button type="submit">Connexion</button>
-</form>
+    <form id="connexionTemplate" style="display: none;">
+        <h2>Connexion</h2>
+        <label for="emailConnexion">Email</label>
+        <input type="email" id="emailConnexion" name="email" required>
+        <label for="passwordConnexion">Mot de passe</label>
+        <input type="password" id="passwordConnexion" name="password" required>
+        <button type="submit">Connexion</button>
+    </form>
 
     <div class="container">
 
@@ -90,14 +88,15 @@
                 <div class="spectacle-card">
                     <h3>{{spectacle.titre}}</h3>
                     <p>{{spectacle.date}} / {{spectacle.horaire}}</p>
-                    <img src="{{spectacle.images.[0]}}" alt="image">
+                    <!-- <img src="{{spectacle.images.[0]}}" alt="image"> -->
+                    <img src="images/nrv_accueil.webp" alt="image">
                 </div>
         </div>
         {{/each}}
     </div>
 </script>
 
-<script id="soireeTemplate" type="text/x-handlebars-template">
+        <script id="soireeTemplate" type="text/x-handlebars-template">
     <h2>{{soiree.nom}}</h2>
     <h3> Je réserve ! </h3>
     <select id="places">
@@ -142,7 +141,8 @@
     </ul>
     </script>
 
-<script id="panierTemplate" type="text/x-handlebars-template">
+        <script id="panierTemplate" type="text/x-handlebars-template">
+    <div id="panierContainer">
     <h2>Panier</h2>
     <button id="vider">Vider le panier</button>
     <ul>
@@ -167,13 +167,14 @@
                     <option value="{{soiree.tarifReduit}}">Tarif réduit</option>
                 </select>
                 <button class="supprimerPanier" data-index="{{@index}}">Supprimer</button>
-                <p id="prix">Prix: €</p>
+                <p id="prixUnitaire{{@index}}">Prix : €</p>
             </li>
         {{/each}}
     </ul>
     <p id="total">Total: €</p>
     <button id="validerPanier">Valider le panier</button>
     <button id="payerPanier" style="display: none;">Payer le panier</button>
+</div>
 </script>
 
     </div>
