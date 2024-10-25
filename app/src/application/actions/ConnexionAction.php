@@ -22,7 +22,6 @@ class ConnexionAction extends AbstractAction
         // Récupérer les données de la requête (ex: email et mot de passe)
         $data = $rq->getParsedBody();
 
-        var_dump ($data);
         
         if (!isset($data['email'], $data['password'])) {
             // Si les informations d'authentification sont manquantes, renvoyer une erreur
@@ -51,8 +50,8 @@ class ConnexionAction extends AbstractAction
                 return $rs->withStatus(401)->withHeader('Content-Type', 'application/json');
             }
         } catch (\Exception $e) {
-            // En cas d'erreur d'authentification
-            var_dump($e);
+
+            var_dump($e->getMessage());
             $rs->getBody()->write(json_encode(['error' => 'Erreur lors de la connexion']));
             return $rs->withStatus(500)->withHeader('Content-Type', 'application/json');
         }

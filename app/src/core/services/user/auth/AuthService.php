@@ -21,17 +21,27 @@ class AuthService implements AuthServiceInterface
     public function verifyCredentials(string $email, string $password): AuthDTO
     {
         $user = $this->userRepository->findByEmail($email);
-    
-        if (!$user || !password_verify($password, $user->password)) {
+        
+        if (!$user) {
+            error_log("Authentication failed for email: $email - User not found");
             throw new InvalidArgumentException('Invalid credentials');
         }
+
+        try {
+            if (!password_verify($password, $user->password)) {
+                error_log("Authentication failed for email: $email - Incorrect password");
+                throw new InvalidArgumentException('Invalid credentials'); 
+            }
+        }  catch (InvalidArgumentException $e) {
+            
+        }   
     
         return new AuthDTO(
             $user->getId(),
             $user->email,
-            $user->role, // Utilisez le rôle de l'utilisateur, pas le mot de passe
-            '', // accessToken vide ici
-            ''  // refreshToken vide ici
+            $user->role,
+            '', // Access token not generated yet
+            ''  // Refresh token not generated yet
         );
     }
     
