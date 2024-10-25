@@ -415,14 +415,14 @@ CREATE TABLE "public"."users" (
 ) WITH (oids = false);
 
 INSERT INTO "users" ("id", "nom", "prenom", "email", "mot_de_passe", "date_enregistrement") VALUES
-('f7c1eba2-7a35-4ca6-9d8b-eaa9636f4070',	'Dupont',	'Jean',	'jean.dupont@example.com',	'password123',	'2024-10-22 09:36:27.221967'),
-('a3cd8e39-9dec-4376-a9c8-53356985ba31',	'Martin',	'Marie',	'marie.martin@example.com',	'securepass',	'2024-10-22 09:36:27.221967'),
-('1d74c1bf-453c-4417-be0a-5095734e886f',	'Lefevre',	'Luc',	'luc.lefevre@example.com',	'hashme',	'2024-10-22 09:36:27.221967'),
-('579bb5f0-61d4-42f2-aefc-56a605636aef',	'Durand',	'Sophie',	'sophie.durand@example.com',	'mypassword2024',	'2024-10-22 09:36:27.221967'),
-('17c466f8-ed9e-45dc-b6e0-c206c5879316',	'Bernard',	'Paul',	'paul.bernard@example.com',	'paulsecure2024',	'2024-10-22 09:36:27.221967'),
-('aae9a9e9-5a3e-4d0f-be66-36c6e40efd47',	'Girard',	'Emma',	'emma.girard@example.com',	'emmahash2024',	'2024-10-22 09:36:27.221967'),
-('601cfec7-c65d-4f7a-8a8e-36f7cf1cba63',	'Rousseau',	'Louis',	'louis.rousseau@example.com',	'louispass123',	'2024-10-22 09:36:27.221967'),
-('eabdb8e5-a591-4349-9606-18045de23831',	'Moreau',	'Julie',	'julie.moreau@example.com',	'juliesafe2024',	'2024-10-22 09:36:27.221967');
+('f7c1eba2-7a35-4ca6-9d8b-eaa9636f4070', 'Dupont', 'Jean', 'jean.dupont@example.com', 'password123', '2024-10-22 09:36:27.221967'),
+('a3cd8e39-9dec-4376-a9c8-53356985ba31', 'Martin', 'Marie', 'marie.martin@example.com', 'securepass', '2024-10-22 09:36:27.221967'),
+('1d74c1bf-453c-4417-be0a-5095734e886f', 'Lefevre', 'Luc', 'luc.lefevre@example.com', 'hashme', '2024-10-22 09:36:27.221967'),
+('579bb5f0-61d4-42f2-aefc-56a605636aef', 'Durand', 'Sophie', 'sophie.durand@example.com', 'mypassword2024', '2024-10-22 09:36:27.221967'),
+('17c466f8-ed9e-45dc-b6e0-c206c5879316', 'Bernard', 'Paul', 'paul.bernard@example.com', 'paulsecure2024', '2024-10-22 09:36:27.221967'),
+('aae9a9e9-5a3e-4d0f-be66-36c6e40efd47', 'Girard', 'Emma', 'emma.girard@example.com', 'emmahash2024', '2024-10-22 09:36:27.221967'),
+('601cfec7-c65d-4f7a-8a8e-36f7cf1cba63', 'Rousseau', 'Louis', 'louis.rousseau@example.com', 'louispass123', '2024-10-22 09:36:27.221967'),
+('eabdb8e5-a591-4349-9606-18045de23831', 'Moreau', 'Julie', 'julie.moreau@example.com', 'juliesafe2024', '2024-10-22 09:36:27.221967');
 
 ALTER TABLE ONLY "public"."artiste_spectacle" ADD CONSTRAINT "artiste_spectacle_id_artiste_fkey" FOREIGN KEY (id_artiste) REFERENCES artiste(id) ON DELETE CASCADE NOT DEFERRABLE;
 
