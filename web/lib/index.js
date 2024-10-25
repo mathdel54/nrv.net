@@ -5722,7 +5722,7 @@
   var import_handlebars = __toESM(require_handlebars());
 
   // js/config.js
-  var pointEntree = "http://localhost:6080";
+  var pointEntree = "http://docketu.iutnc.univ-lorraine.fr:20006";
 
   // js/api.js
   var controller = new AbortController();

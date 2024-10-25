@@ -1,1 +1,1 @@
-export var pointEntree = 'http://localhost:6080';
+export var pointEntree = 'http://docketu.iutnc.univ-lorraine.fr:20006';
