@@ -1,4 +1,4 @@
-import {creerPanier, payerPanierPatch} from "./panierApi";
+import { creerPanier, payerPanierPatch } from "./panierApi";
 
 let panier = [];
 
@@ -10,7 +10,7 @@ export function initPanier() {
 }
 
 export function ajouterAuPanier(soiree, nbPlaces) {
-    panier.push({soiree: soiree, nbPlaces: nbPlaces, tarif: soiree.tarifNormal});
+    panier.push({ soiree: soiree, nbPlaces: nbPlaces, tarif: soiree.tarifNormal });
     localStorage.setItem('panier', JSON.stringify(panier));
 
     showNbElements();
@@ -70,11 +70,8 @@ export function payerPanier() {
 /**
  * Fonction qui affiche le nombre d'éléments dans le panier
  */
-function showNbElements() {
-    let nbElements = 0;
-    panier.forEach(element => {
-        nbElements += parseInt(element.nbPlaces);
-    });
+export function showNbElements() {
+    let nbElements = getPanier().length;
 
     if (nbElements > 0) {
         document.getElementById('panier').innerHTML = "Panier (" + nbElements + ")";

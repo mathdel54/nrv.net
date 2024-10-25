@@ -1,4 +1,4 @@
-@mixin spectacleCard($background-color: #f8f8f8, $title-color: #333, $text-color: #555, $image-width: 200px, $padding: 20px) {
+@mixin spectacleCard($background-color: #e9e8e8, $title-color: #333, $text-color: #555, $image-width: 300px, $padding: 20px) {
     background-color: $background-color;
     padding: $padding;
     border-radius: 8px;

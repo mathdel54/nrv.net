@@ -5781,6 +5781,31 @@
       });
     }
   }
+  function patch(url) {
+    if (controller) {
+      controller.abort();
+    }
+    controller = new AbortController();
+    signal = controller.signal;
+    if (localStorage.getItem("token")) {
+      return fetch(`${pointEntree}${url}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token")}`
+        },
+        signal
+      });
+    } else {
+      return fetch(`${pointEntree}${url}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        signal
+      });
+    }
+  }
 
   // js/soireeLoader.js
   function loadSpectaclesDeLaSoiree(idSoiree) {
@@ -5792,6 +5817,7 @@
   // js/panierApi.js
   function creerPanier(panier2) {
     return __async(this, null, function* () {
+      let idBillet = [];
       for (let i = 0; i < panier2.length; i++) {
         let tarif;
         if (panier2[i] === panier2[i].soiree.tarifNormal) {
@@ -5805,8 +5831,21 @@
           tarif,
           id_soiree: panier2[i].soiree.ID
         };
-        yield post(data, "/billets");
+        yield post(data, "/billets").then((response) => {
+          idBillet.push(response.billet.ID);
+        });
       }
+      localStorage.setItem("idBillets", JSON.stringify(idBillet));
+    });
+  }
+  function payerPanierPatch() {
+    return __async(this, null, function* () {
+      let idBillets = JSON.parse(localStorage.getItem("idBillets"));
+      for (let i = 0; i < idBillets.length; i++) {
+        yield patch("/billets/" + idBillets[i]);
+      }
+      localStorage.removeItem("idBillets");
+      alert("Paiement effectu\xE9");
     });
   }
 
@@ -5848,11 +5887,15 @@
       alert("Panier valid\xE9");
     });
   }
-  function showNbElements() {
-    let nbElements = 0;
-    panier.forEach((element) => {
-      nbElements += parseInt(element.nbPlaces);
+  function payerPanier() {
+    payerPanierPatch().then(() => {
+      viderPanier();
+      localStorage.setItem("panierValide", false);
+      alert("Paiement effectu\xE9");
     });
+  }
+  function showNbElements() {
+    let nbElements = getPanier().length;
     if (nbElements > 0) {
       document.getElementById("panier").innerHTML = "Panier (" + nbElements + ")";
     } else {
@@ -5988,7 +6031,9 @@
   });
   var source4 = document.getElementById("panierTemplate").innerHTML;
   var template4 = import_handlebars4.default.compile(source4);
-  localStorage.setItem("panierValide", false);
+  if (localStorage.getItem("panierValide") === null) {
+    localStorage.setItem("panierValide", false);
+  }
   function display_panier() {
     document.getElementById("connexionTemplate").style.display = "none";
     document.getElementById("authTemplate").style.display = "none";
@@ -5996,25 +6041,34 @@
     document.getElementById("templateBoutons").innerHTML = "";
     let panier2 = getPanier();
     document.getElementById("template").innerHTML = template4(panier2);
+    let index = 0;
+    getPanier().forEach(
+      (element) => {
+        prixParGroupePlaces(index);
+        index++;
+      }
+    );
     calculTotal();
     document.querySelectorAll(".nbPlaces").forEach((nbPlaces) => {
       nbPlaces.addEventListener("change", function() {
-        let index = nbPlaces.dataset.index;
-        modifierNbPlaces(index, nbPlaces.value);
+        let index2 = nbPlaces.dataset.index;
+        modifierNbPlaces(index2, nbPlaces.value);
+        prixParGroupePlaces(index2);
         calculTotal();
       });
     });
     document.querySelectorAll(".tarif").forEach((tarif) => {
       tarif.addEventListener("change", function() {
-        let index = tarif.dataset.index;
-        modifierTarif(index, tarif.value);
+        let index2 = tarif.dataset.index;
+        modifierTarif(index2, tarif.value);
+        prixParGroupePlaces(index2);
         calculTotal();
       });
     });
     document.querySelectorAll(".supprimerPanier").forEach((supprimer) => {
       supprimer.addEventListener("click", function() {
-        let index = supprimer.dataset.index;
-        supprimerDuPanier(index);
+        let index2 = supprimer.dataset.index;
+        supprimerDuPanier(index2);
         display_panier();
       });
     });
@@ -6022,8 +6076,19 @@
       viderPanier();
       display_panier();
     });
+    if (localStorage.getItem("panierValide") === "true") {
+      document.getElementById("validerPanier").style.display = "none";
+      document.getElementById("payerPanier").style.display = "block";
+    } else {
+      document.getElementById("validerPanier").style.display = "block";
+      document.getElementById("payerPanier").style.display = "none";
+    }
     document.getElementById("validerPanier").addEventListener("click", function() {
       validerPanier();
+      display_panier();
+    });
+    document.getElementById("payerPanier").addEventListener("click", function() {
+      payerPanier();
       display_panier();
     });
   }
@@ -6033,6 +6098,11 @@
       total += element.nbPlaces * element.tarif;
     });
     document.getElementById("total").innerHTML = "Total : " + total + " \u20AC";
+  }
+  function prixParGroupePlaces(index) {
+    let element = getPanier()[index];
+    let total = element.nbPlaces * element.tarif;
+    document.getElementById("prixUnitaire" + index).innerHTML = "Prix : " + total + " \u20AC";
   }
 
   // js/auth_ui.js
@@ -6047,6 +6117,18 @@
     document.getElementById("template").innerHTML = "";
     document.getElementById("authTemplate").style.display = "none";
     document.getElementById("connexionTemplate").style.display = "block";
+  }
+  function hide_imgFond() {
+    document.getElementById("imageDeFond").style.backgroundImage = "none";
+    document.getElementsByClassName("banniere").item(0).style.display = "none";
+    document.getElementsByTagName("header").item(0).style.backgroundColor = "#E08F7E";
+    document.getElementById("imageDeFond").style.minHeight = "0vh";
+  }
+  function display_imgFond() {
+    document.getElementById("imageDeFond").style.backgroundImage = "url('../images/imageDefond.webp')";
+    document.getElementsByClassName("banniere").item(0).style.display = "block";
+    document.getElementsByTagName("header").item(0).style.backgroundColor = "transparent";
+    document.getElementById("imageDeFond").style.minHeight = "100vh";
   }
 
   // js/auth.js
@@ -6096,12 +6178,15 @@
   // js/index.js
   document.getElementById("accueil").addEventListener("click", function() {
     accueil();
+    display_imgFond();
   });
   document.getElementById("inscription").addEventListener("click", function() {
     display_auth();
+    hide_imgFond();
   });
   document.getElementById("connexion").addEventListener("click", function() {
     display_connexion();
+    hide_imgFond();
   });
   document.getElementById("authTemplate").addEventListener("submit", function() {
     return __async(this, null, function* () {
@@ -6127,6 +6212,7 @@
       display_spectacles(spectacles);
       document.getElementById("panier").addEventListener("click", function() {
         display_panier();
+        hide_imgFond();
       });
       let styles = [];
       for (let i = 0; i < spectacles.spectacles.length; i++) {
@@ -6142,6 +6228,7 @@
       }
       let lieux = yield loadLieux();
       display_buttons(styles, lieux.lieux, dates);
+      showNbElements();
     });
   }
   accueil();

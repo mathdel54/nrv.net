@@ -1,7 +1,109 @@
+#authTemplate {
+  display: block;
+  width: 90%;
+  max-width: 25em;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  padding: 2em;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+#authTemplate h2 {
+  font-size: 1.5em;
+  margin-bottom: 1.25em;
+}
+#authTemplate label {
+  display: block;
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 0.3125em;
+  font-size: 0.875em;
+}
+#authTemplate input {
+  width: 100%;
+  padding: 0.625em;
+  margin-bottom: 0.9375em;
+  font-size: 1em;
+  border: 0.0625em solid #ccc;
+  border-radius: 0.25em;
+  box-sizing: border-box;
+}
+#authTemplate button {
+  width: 100%;
+  padding: 0.625em;
+  font-size: 1em;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.25em;
+  transition: background-color 0.3s ease;
+}
+#authTemplate button:hover {
+  background-color: #333;
+}
+
+#connexionTemplate {
+  display: block;
+  max-width: 25em;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: 2em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+#connexionTemplate h2 {
+  font-size: 1.5em;
+  margin-bottom: 1.25em;
+}
+#connexionTemplate label {
+  display: block;
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 0.3125em;
+  font-size: 0.875em;
+}
+#connexionTemplate input {
+  width: 100%;
+  padding: 0.625em;
+  margin-bottom: 0.9375em;
+  font-size: 1em;
+  border: 0.0625em solid #ccc;
+  border-radius: 0.25em;
+  box-sizing: border-box;
+}
+#connexionTemplate button {
+  width: 100%;
+  padding: 0.625em;
+  font-size: 1em;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.25em;
+  transition: background-color 0.3s ease;
+}
+#connexionTemplate button:hover {
+  background-color: #333;
+}
+
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 a {
@@ -76,21 +178,18 @@ header .authentif-bouttons a:hover:after {
 }
 
 #imageDeFond {
-  background-image: url("../images/nrv_accueil.webp");
+  background-image: url("../images/imageDefond.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 100vh;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: -1;
   opacity: 0.8;
+  flex-grow: 1;
 }
 
 .container {
   width: 80%;
   margin: 0 auto;
+  flex-grow: 1;
 }
 
 .banniere {
@@ -202,7 +301,7 @@ h2:after {
 }
 
 .spectacle-card {
-  background-color: #f8f8f8;
+  background-color: #e9e8e8;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -224,7 +323,7 @@ h2:after {
   margin-bottom: 5px;
 }
 .spectacle-card img {
-  width: 200px;
+  width: 300px;
   height: auto;
   border-radius: 4px;
   margin-bottom: 10px;
@@ -372,6 +471,100 @@ button#ajouterPanier:hover {
 }
 button#ajouterPanier:active {
   background-color: #888888;
+}
+
+#panierContainer {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+#panierContainer h2 {
+  font-size: 1.5rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+#panierContainer button {
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+#panierContainer button:hover {
+  background-color: #0056b3;
+}
+#panierContainer button#vider {
+  background-color: #dc3545;
+}
+#panierContainer button#vider:hover {
+  background-color: #c82333;
+}
+#panierContainer ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+#panierContainer .panier {
+  border-bottom: 1px solid #ddd;
+  padding: 15px 0;
+}
+#panierContainer .panier h3 {
+  font-size: 1.2rem;
+  color: #444;
+}
+#panierContainer .panier p {
+  font-size: 0.9rem;
+  color: #666;
+}
+#panierContainer .panier p#prix {
+  font-weight: bold;
+  color: #000;
+}
+#panierContainer .panier .nbPlaces,
+#panierContainer .panier .tarif {
+  margin: 10px 0;
+  padding: 5px;
+  font-size: 0.9rem;
+}
+#panierContainer .panier .supprimerPanier {
+  background-color: #dc3545;
+  margin-top: 10px;
+}
+#panierContainer .panier .supprimerPanier:hover {
+  background-color: #c82333;
+}
+#panierContainer #total {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+  text-align: right;
+  margin-top: 20px;
+}
+#panierContainer #validerPanier,
+#panierContainer #payerPanier {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 1rem;
+}
+#panierContainer #validerPanier#payerPanier,
+#panierContainer #payerPanier#payerPanier {
+  background-color: #28a745;
+}
+#panierContainer #validerPanier#payerPanier:hover,
+#panierContainer #payerPanier#payerPanier:hover {
+  background-color: #218838;
 }
 
 footer {
