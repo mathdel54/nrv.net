@@ -5767,11 +5767,10 @@
           "Content-Type": "application/json",
           "Authorization": `Bearer ${localStorage.getItem("token")}`
         },
-        body: data,
+        body: JSON.stringify(data),
         signal
       });
     } else {
-      console.log(JSON.stringify(data));
       return fetch(`${pointEntree}${url}`, {
         method: "POST",
         headers: {
@@ -6158,8 +6157,8 @@
   function connecterUtilisateur(email, mdp) {
     return __async(this, null, function* () {
       let data = {
-        email,
-        mdp
+        "email": email,
+        "password": mdp
       };
       try {
         const response = yield post(data, "/connexion");
@@ -6203,8 +6202,8 @@
   document.getElementById("connexionTemplate").addEventListener("submit", function() {
     return __async(this, null, function* () {
       event.preventDefault();
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
+      const email = document.getElementById("emailConnexion").value;
+      const password = document.getElementById("passwordConnexion").value;
       yield connecterUtilisateur(email, password);
     });
   });

@@ -38,8 +38,8 @@ document.getElementById("authTemplate").addEventListener("submit", async functio
 //On ajoute un ecouteur d'événement sur le formulaire de connexion
 document.getElementById("connexionTemplate").addEventListener("submit", async function () {
     event.preventDefault();
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+    const email = document.getElementById("emailConnexion").value;
+    const password = document.getElementById("passwordConnexion").value;
     await connecterUtilisateur(email, password);
 });
 

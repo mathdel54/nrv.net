@@ -32,7 +32,7 @@ class PDOUsersRepository implements UsersRepositoryInterface
             $stmt->execute(['email' => $email]);
             $user = $stmt->fetch();
             if (!$user) {
-                return null; // Pas trouvé
+                return null;
             }
             return $this->mapToUser($user);
         } catch (\PDOException $e) {

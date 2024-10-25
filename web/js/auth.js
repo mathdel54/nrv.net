@@ -31,9 +31,9 @@ export async function inscrireUtilisateur(nom, prenom, email, mdp) {
 export async function connecterUtilisateur(email, mdp) {
 
         let data = {
-            email: email,
-            mdp: mdp
-        };
+            "email": email,
+            "password": mdp
+        }
         try {
             const response = await post(data, '/connexion');
 
