@@ -21,7 +21,11 @@ export async function creerPanier(panier) {
 
         await post(data, '/billets')
             .then((response) => {
-                idBillet.push(response.billet.ID);
+
+                if (response.ok) {
+                    idBillet.push(response.billet.ID);
+                    alert('Billet créé');
+                }
             });
     }
     localStorage.setItem('idBillets', JSON.stringify(idBillet));

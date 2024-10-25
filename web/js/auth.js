@@ -41,6 +41,9 @@ export async function connecterUtilisateur(email, mdp) {
                 alert('Connexion réussie');
                 sessionStorage.setItem('user_id', response.id);
                 localStorage.setItem('token', response.token);
+                //On enleve les boutons de connexion et d'inscription si l'user est connecté
+                document.getElementById("connexion").style.display = "none";
+                document.getElementById("inscription").style.display = "none";
             }
             else {
                 alert('Connexion échouée');

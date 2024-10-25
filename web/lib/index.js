@@ -5760,26 +5760,14 @@
     }
     controller = new AbortController();
     signal = controller.signal;
-    if (localStorage.getItem("token")) {
-      return fetch(`${pointEntree}${url}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${localStorage.getItem("token")}`
-        },
-        body: JSON.stringify(data),
-        signal
-      });
-    } else {
-      return fetch(`${pointEntree}${url}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data),
-        signal
-      });
-    }
+    return fetch(`${pointEntree}${url}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data),
+      signal
+    });
   }
   function patch(url) {
     if (controller) {
@@ -5832,7 +5820,10 @@
           id_soiree: panier2[i].soiree.ID
         };
         yield post(data, "/billets").then((response) => {
-          idBillet.push(response.billet.ID);
+          if (response.ok) {
+            idBillet.push(response.billet.ID);
+            alert("Billet cr\xE9\xE9");
+          }
         });
       }
       localStorage.setItem("idBillets", JSON.stringify(idBillet));
@@ -6166,6 +6157,8 @@
           alert("Connexion r\xE9ussie");
           sessionStorage.setItem("user_id", response.id);
           localStorage.setItem("token", response.token);
+          document.getElementById("connexion").style.display = "none";
+          document.getElementById("inscription").style.display = "none";
         } else {
           alert("Connexion \xE9chou\xE9e");
         }
