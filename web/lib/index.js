@@ -5767,10 +5767,11 @@
           "Content-Type": "application/json",
           "Authorization": `Bearer ${localStorage.getItem("token")}`
         },
-        body: JSON.stringify(data),
+        body: data,
         signal
       });
     } else {
+      console.log(JSON.stringify(data));
       return fetch(`${pointEntree}${url}`, {
         method: "POST",
         headers: {
@@ -6135,10 +6136,10 @@
   function inscrireUtilisateur(nom, prenom, email, mdp) {
     return __async(this, null, function* () {
       let data = {
-        nom,
-        prenom,
-        email,
-        mdp
+        "nom": nom,
+        "prenom": prenom,
+        "email": email,
+        "password": mdp
       };
       try {
         const response = yield post(data, "/inscription");
@@ -6146,6 +6147,7 @@
           alert("Inscription r\xE9ussie");
         } else {
           alert("Inscription \xE9chou\xE9e");
+          console.error("Erreur lors de l'inscription", response.error);
         }
       } catch (error) {
         console.error("Erreur lors de l'inscription", error);

@@ -51,7 +51,6 @@ class ConnexionAction extends AbstractAction
             }
         } catch (\Exception $e) {
 
-            var_dump($e->getMessage());
             $rs->getBody()->write(json_encode(['error' => 'Erreur lors de la connexion']));
             return $rs->withStatus(500)->withHeader('Content-Type', 'application/json');
         }

@@ -20,7 +20,6 @@ class CreerCompteAction extends AbstractAction
     public function __invoke(ServerRequestInterface $rq, ResponseInterface $rs, array $args): ResponseInterface
     {
         $data = $rq->getParsedBody();
-
         $nom = $data['nom'] ?? null;
         $prenom = $data['prenom'] ?? null;
         $email = $data['email'] ?? null;
@@ -41,7 +40,6 @@ class CreerCompteAction extends AbstractAction
         } catch (\Exception $e) {
             $rs->getBody()->write(json_encode(['error' => "Erreur lors de la creation du compte: " . $e->getMessage() . $e]));
             return $rs->withStatus(400)->withHeader('Content-Type', 'application/json');
-            var_dump($e->getMessage());
         }
 
     }

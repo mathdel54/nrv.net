@@ -3,7 +3,6 @@
 namespace nrv\core\provider;
 
 use DateTime;
-use nrv\core\services\auth\AuthServiceInterface;
 use nrv\core\dto\auth\AuthDTO;
 use nrv\core\dto\auth\CredentialsDTO;
 use PhpParser\Token;

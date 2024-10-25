@@ -36,7 +36,6 @@ class AuthMiddleware
         $authHeader = $request->getHeader('Authorization');
         if (!$authHeader || empty($authHeader[0])) {
             throw new HttpException($request, "header invalide", 401);
-            var_dump($authHeader);
         }
 
         $token = str_replace('Bearer ', '', $authHeader[0]);

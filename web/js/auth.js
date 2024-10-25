@@ -2,12 +2,15 @@ import { post } from './api.js';
 
 export async function inscrireUtilisateur(nom, prenom, email, mdp) {
 
+    //On crée un objet data avec les données du formulaire en format JSON
+
     let data = {
-        nom: nom,
-        prenom: prenom,
-        email: email,
-        mdp: mdp
+        "nom": nom,
+        "prenom": prenom,
+        "email": email,
+        "password": mdp
     };
+
     try {
         const response = await post(data, '/inscription');
 
@@ -16,6 +19,7 @@ export async function inscrireUtilisateur(nom, prenom, email, mdp) {
         }
         else {
             alert('Inscription échouée');
+            console.error('Erreur lors de l\'inscription', response.error);
         }
     }
     catch (error) {
