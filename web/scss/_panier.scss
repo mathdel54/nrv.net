@@ -1,28 +1,28 @@
 @mixin panierStyle() {
-    max-width: 600px;
+    max-width: 30em;
     margin: 0 auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 20px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding: 1em;
     background-color: #f8f8f8;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border: 0.1em solid #ddd;
+    border-radius: 0.4em;
 
     h2 {
         font-size: 1.5rem;
         color: #333;
         text-align: center;
-        margin-bottom: 20px;
+        margin-bottom: 1em;
     }
 
     button {
         display: inline-block;
-        padding: 10px 15px;
+        padding: 0.5em 0.6em;
         font-size: 1rem;
         color: #fff;
         background-color: #007bff;
         border: none;
-        border-radius: 4px;
+        border-radius: 0.2em;
         cursor: pointer;
         transition: background-color 0.3s;
 
@@ -42,12 +42,12 @@
     ul {
         list-style: none;
         padding: 0;
-        margin: 20px 0;
+        margin: 1em 0;
     }
 
     .panier {
-        border-bottom: 1px solid #ddd;
-        padding: 15px 0;
+        border-bottom: 0.1em solid #ddd;
+        padding: 0.6em 0;
 
         h3 {
             font-size: 1.2rem;
@@ -66,14 +66,14 @@
 
         .nbPlaces,
         .tarif {
-            margin: 10px 0;
-            padding: 5px;
+            margin: 0.5em 0;
+            padding: 0.2em;
             font-size: 0.9rem;
         }
 
         .supprimerPanier {
             background-color: #dc3545;
-            margin-top: 10px;
+            margin-top: 0.5em;
 
             &:hover {
                 background-color: #c82333;
@@ -86,15 +86,15 @@
         font-weight: bold;
         color: #333;
         text-align: right;
-        margin-top: 20px;
+        margin-top: 1em;
     }
 
     #validerPanier,
     #payerPanier {
         display: block;
         width: 100%;
-        padding: 10px;
-        margin-top: 10px;
+        padding: 0.5em;
+        margin-top: 0.5em;
         font-size: 1rem;
 
         &#payerPanier {
