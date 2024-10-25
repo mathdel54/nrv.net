@@ -5900,7 +5900,7 @@
     if (nbElements > 0) {
       document.getElementById("panier").innerHTML = "Panier (" + nbElements + ")";
     } else {
-      document.getElementById("panier").innerHTML = "PanierCACA";
+      document.getElementById("panier").innerHTML = "Panier";
     }
   }
 
@@ -6119,12 +6119,6 @@
     document.getElementById("authTemplate").style.display = "none";
     document.getElementById("connexionTemplate").style.display = "block";
   }
-  function hide_imgFond() {
-    document.getElementById("imageDeFond").style.backgroundImage = "none";
-    document.getElementsByClassName("banniere").item(0).style.display = "none";
-    document.getElementsByTagName("header").item(0).style.backgroundColor = "#E08F7E";
-    document.getElementById("imageDeFond").style.minHeight = "0vh";
-  }
   function display_imgFond() {
     document.getElementById("imageDeFond").style.backgroundImage = "url('../images/nrv_accueil.webp')";
     document.getElementsByClassName("banniere").item(0).style.display = "block";
@@ -6183,11 +6177,11 @@
   });
   document.getElementById("inscription").addEventListener("click", function() {
     display_auth();
-    hide_imgFond();
+    display_imgFond();
   });
   document.getElementById("connexion").addEventListener("click", function() {
     display_connexion();
-    hide_imgFond();
+    display_imgFond();
   });
   document.getElementById("authTemplate").addEventListener("submit", function() {
     return __async(this, null, function* () {

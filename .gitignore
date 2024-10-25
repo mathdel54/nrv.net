@@ -7,5 +7,6 @@ app/vendor
 *.lock
 web/node_modules
 web/lib
+web/css/style.css.map
 *.map
 web/package-lock.json

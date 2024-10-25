@@ -5,7 +5,6 @@ import { loadLieux } from "./lieuLoader";
 import { display_panier } from "./panier_ui";
 import { showNbElements } from "./panier";
 import {display_auth, display_connexion, hide_imgFond, display_imgFond} from "./auth_ui";
-import { display_auth, display_connexion } from "./auth_ui";
 import { connecterUtilisateur, inscrireUtilisateur } from "./auth";
 
 //On ajoute un ecouteur d'événement sur le bouton le festival
@@ -17,13 +16,13 @@ document.getElementById("accueil").addEventListener("click", function () {
 //On ajoute un ecouteur d'événement sur le bouton Inscription
 document.getElementById("inscription").addEventListener("click", function () {
     display_auth();
-    hide_imgFond();
+    display_imgFond();
 });
 
 //On ajoute un ecouteur d'événement sur le bouton Connexion
 document.getElementById("connexion").addEventListener("click", function () {
     display_connexion();
-    hide_imgFond();
+    display_imgFond();
 });
 
 //On ajoute un ecouteur d'événement sur le formulaire d'inscription
