@@ -202,6 +202,29 @@ CREATE TABLE "public"."image_lieu" (
     CONSTRAINT "image_lieu_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
 
+INSERT INTO "image_spectacle" ("id", "lien", "spectacle_id") VALUES
+('dcbcc01a-34af-4959-a932-13a4e3b00d85',	'images/image_Chillwave.webp',	'959c1d8d-4bea-4a6c-b859-912d6f6d2938'),
+('b1c4d597-7464-4dfe-a0b6-c15ab2301559',	'images/image_Chillwave.webp',	'30217f6e-a74b-43ea-b4d4-2889fb88f570'),
+('ff6e307c-0c57-429b-afdd-8b48fb9b03b2',	'images/image_Funk.webp',	'0183cde6-17a2-4c69-946a-e9767cd60c06'),
+('3f69a66c-ab69-4ce0-82b9-3add0f1275d8',	'images/image_Funk.webp',	'e5fd233c-a6b6-4cd6-b095-c70a27109e7d'),
+('2c3b596c-ab62-4e3d-a8a5-0b1b2dca4685',	'images/image_Funk.webp',	'd744093f-0520-4222-baba-1a85634adf15'),
+('62bafef6-d1f9-4f25-ae90-3a4150add03c',	'images/image_Funk.webp',	'f59f7b4f-015a-494f-bf76-f974639149e2'),
+('60d10edf-26a0-441b-88e1-62951a84bfba',	'images/image_House.webp',	'4f0eaa9f-3fe2-4258-8d77-3ea8e25f4722'),
+('43445c5b-2b66-4688-b49a-d5426a1326e2',	'images/image_House.webp',	'af38bec9-17de-4d73-b9ac-0d8052b41baf'),
+('c4bbed63-ce85-4a41-ab61-7e0cdf1eab76',	'images/image_House.webp',	'b2668dca-18da-4e6c-a675-a1ea0a9c8756'),
+('34dd82a3-c58e-43c8-9c9d-942aaa7e9bcd',	'images/image_House.webp',	'2df7ec4f-9aae-454c-bb61-9eae9461878e'),
+('2e1f45d2-2f5c-4443-9a77-991e282efa7b',	'images/image_House.webp',	'fbfd9d62-f12c-418f-a99c-10e4d3535173'),
+('99d57a60-b6ea-40ad-a13c-97ac5a821b05',	'images/image_House.webp',	'821716c4-e8a8-43a7-acc9-52b3e0b1be3f'),
+('1c475757-0ae2-4906-bdaf-33ff90bdfaa4',	'images/image_Soul.webp',	'ff9c6e3d-131e-4ba6-b817-3372de08c447'),
+('cbfc9eac-28f0-4f5d-be33-6ab1d611770c',	'images/image_Soul.webp',	'ad2a11da-b851-4e3f-8b58-35d559fec8b7'),
+('0d86b315-1e0e-4d8a-8233-94d274ddb10e',	'images/image_Funk_&_Soul.webp',	'c49e49e8-812d-4182-ac80-a7106c04da5c'),
+('6f6db42d-2a00-46de-ab14-14a7caf19064',	'images/image_Funk_&_Soul.webp',	'ec9fd92b-d48e-4d40-bca1-d67393c91be6'),
+('52229e7a-3bfe-4d65-a1c3-c16bcfa2e8f4',	'images/image_Funk_&_Soul.webp',	'40c1eb2c-e400-4ddf-a067-ac6ebd4fe643'),
+('b52bd09a-a19e-4bf8-af0b-07812d8d6a50',	'images/image_Funk_&_Soul.webp',	'e26430f7-7240-417d-b150-c16544b61189'),
+('1faf41ce-a9fd-410e-b700-ad16f1204173',	'images/image_Electro_Pop.webp',	'8575da03-7019-4eaf-ae21-971609949673'),
+('5499c82f-6592-4a89-a037-239699d7a9e0',	'images/image_Electro_Pop.webp',	'1b2b0a28-6805-479d-adee-495deac55519'),
+('270dcfb4-03e4-4ac1-b222-8f14129de467',	'images/image_Electro_Jazz.webp',	'bc476715-049a-4143-a425-93dc581cb75e'),
+('28437644-4b25-4805-b643-329d6f53ea97',	'images/image_Electro_Jazz.webp',	'250bec61-75db-4430-ba1f-371079d12d0e');
 
 DROP TABLE IF EXISTS "image_spectacle";
 CREATE TABLE "public"."image_spectacle" (
