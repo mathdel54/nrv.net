@@ -30,11 +30,14 @@ return function (App $app): App {
         $group->patch('/billets/{id}', callable: nrv\application\actions\UpdateBilletAction::class);
     })->add(AuthMiddleware::class);
 
+
     $app->options('/{routes:.+}',
     function( ServerRequestInterface $rq, ResponseInterface $rs, array $args) : ResponseInterface 
                 {
                     return $rs;
                 });
+
+
 
     return $app;
 };
