@@ -3,13 +3,11 @@
   width: 90%;
   max-width: 25em;
   margin: 0 auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
   font-family: "Montserrat", sans-serif;
   text-align: center;
   padding: 2em;
   background-color: #f8f8f8;
-  border: 1px solid #ddd;
+  border: 0.1em solid #ddd;
   margin-top: 2em;
   margin-bottom: 2em;
 }
@@ -52,12 +50,10 @@
   display: block;
   max-width: 25em;
   margin: 0 auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
   font-family: "Montserrat", sans-serif;
   text-align: center;
   background-color: #f8f8f8;
-  border: 1px solid #ddd;
+  border: 0.1em solid #ddd;
   padding: 2em;
   margin-top: 2em;
   margin-bottom: 2em;
@@ -114,43 +110,89 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 1em 2em;
 }
 header img {
+  width: 150px;
+  height: auto;
   border-radius: 100%;
-  height: 100px;
-  width: 100px;
-  border: 4px solid white;
+  border: 0.3em solid #fff;
+  transition: transform 0.3s ease;
+}
+@media (max-width: 992px) {
+  header img {
+    width: 130px;
+  }
+}
+@media (max-width: 768px) {
+  header img {
+    width: 110px;
+  }
+}
+@media (max-width: 576px) {
+  header img {
+    width: 90px;
+  }
+}
+header img:hover {
+  transform: scale(1.05);
 }
 header nav {
   flex-grow: 1;
   display: flex;
   justify-content: flex-end;
-  margin-right: 20px;
+  margin-right: 2em;
+  gap: 1em;
+}
+@media (max-width: 768px) {
+  header nav {
+    flex-direction: column;
+    gap: 0.5em;
+  }
 }
 header nav a {
-  margin: 0 10px;
   text-decoration: none;
-  color: white;
-  font-size: 20px;
-  font-weight: bold;
+  color: #fff;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
   transition: color 0.3s ease;
 }
 header nav a:hover {
-  color: #3E3D3B;
+  background-color: #555;
+}
+@media (max-width: 768px) {
+  header nav a {
+    padding: 0.5em 0.8em;
+    background-color: #3E3D3B;
+  }
+  header nav a:hover {
+    background-color: #F2F2F2;
+    color: #3E3D3B;
+  }
+}
+@media (max-width: 576px) {
+  header nav a {
+    padding: 0.5em 0.6em;
+    background-color: #3E3D3B;
+  }
+  header nav a:hover {
+    background-color: #F2F2F2;
+    color: #3E3D3B;
+  }
 }
 header .authentif-bouttons {
   display: flex;
-  gap: 10px;
+  gap: 1em;
 }
 header .authentif-bouttons a {
   display: inline;
-  font-size: 16px;
+  font-size: 1.1em;
   text-decoration: none;
-  padding: 10px 15px;
+  padding: 0.5em 1em;
   color: #ffffff;
-  border: 1px solid #ffffff;
-  border-radius: 10px;
+  border: 0.1em solid #ffffff;
+  border-radius: 0.5em;
   text-align: center;
   position: relative;
   transition: all 0.35s;
@@ -167,7 +209,7 @@ header .authentif-bouttons a:after {
   width: 0;
   height: 100%;
   background: #3E3D3B;
-  border-radius: 10px;
+  border-radius: 0.5em;
   transition: all 0.35s;
 }
 header .authentif-bouttons a:hover {
@@ -175,6 +217,46 @@ header .authentif-bouttons a:hover {
 }
 header .authentif-bouttons a:hover:after {
   width: 100%;
+}
+@media (max-width: 992px) {
+  header {
+    padding: 0.8em 1.5em;
+  }
+}
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    padding: 0.6em 1em;
+    text-align: center;
+  }
+}
+@media (max-width: 576px) {
+  header {
+    padding: 0.5em;
+  }
+}
+
+header h1,
+header nav a {
+  font-size: 1.5em;
+}
+@media (max-width: 992px) {
+  header h1,
+  header nav a {
+    font-size: 1.3em;
+  }
+}
+@media (max-width: 768px) {
+  header h1,
+  header nav a {
+    font-size: 1.1em;
+  }
+}
+@media (max-width: 576px) {
+  header h1,
+  header nav a {
+    font-size: 1em;
+  }
 }
 
 #imageDeFond {
@@ -191,6 +273,22 @@ header .authentif-bouttons a:hover:after {
   margin: 0 auto;
   flex-grow: 1;
 }
+@media (max-width: 1200px) {
+  .container {
+    width: 90%;
+  }
+}
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+  }
+}
+@media (max-width: 576px) {
+  .container {
+    width: 100%;
+    padding: 0 1em;
+  }
+}
 
 .banniere {
   height: 100vh;
@@ -201,15 +299,51 @@ header .authentif-bouttons a:hover:after {
 
 .boutonSelection {
   display: flex;
-  gap: 10px;
-  margin-top: 20px;
+  gap: 0.5em;
+  margin-top: 1em;
+}
+@media (max-width: 992px) {
+  .boutonSelection {
+    gap: 0.4em;
+  }
+}
+@media (max-width: 768px) {
+  .boutonSelection {
+    flex-direction: column;
+    gap: 0.3em;
+  }
+}
+@media (max-width: 576px) {
+  .boutonSelection {
+    flex-direction: column;
+    gap: 0.2em;
+    margin-top: 0.5em;
+  }
 }
 
 .boutonFiltrage {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
-  grid-gap: 10px;
-  margin-top: 20px;
+  grid-gap: 0.5em;
+  margin-top: 1em;
+}
+@media (max-width: 992px) {
+  .boutonFiltrage {
+    gap: 0.4em;
+  }
+}
+@media (max-width: 768px) {
+  .boutonFiltrage {
+    flex-direction: column;
+    gap: 0.3em;
+  }
+}
+@media (max-width: 576px) {
+  .boutonFiltrage {
+    flex-direction: column;
+    gap: 0.2em;
+    margin-top: 0.5em;
+  }
 }
 
 #selectionStyle,
@@ -218,10 +352,16 @@ header .authentif-bouttons a:hover:after {
   text-decoration: none;
   text-transform: uppercase;
   color: #3E3D3B;
-  font-size: 20px;
-  border: 2px solid #3E3D3B;
-  padding: 4px 13px;
-  border-radius: 10px;
+  font-size: 1.5em;
+  border: 0.1em solid #3E3D3B;
+  padding: 0.2em 1em;
+  border-radius: 0.5em;
+}
+#selectionStyle img,
+#selectionDate img,
+#selectionLieu img {
+  width: 1em;
+  height: 1em;
 }
 #selectionStyle:hover,
 #selectionDate:hover,
@@ -229,23 +369,47 @@ header .authentif-bouttons a:hover:after {
   background-color: #3E3D3B;
   color: white;
 }
+@media (max-width: 992px) {
+  #selectionStyle,
+  #selectionDate,
+  #selectionLieu {
+    font-size: 1.3em;
+    padding: 0.4em 0.8em;
+  }
+}
+@media (max-width: 768px) {
+  #selectionStyle,
+  #selectionDate,
+  #selectionLieu {
+    font-size: 1.1em;
+    padding: 0.3em 0.6em;
+  }
+}
+@media (max-width: 576px) {
+  #selectionStyle,
+  #selectionDate,
+  #selectionLieu {
+    font-size: 1em;
+    padding: 0.2em 0.5em;
+  }
+}
 
 #selectionStyle:hover img {
   content: url("../images/styles-logo-blanc.svg");
-  width: 20px;
-  height: 20px;
+  width: 1em;
+  height: 1em;
 }
 
 #selectionDate:hover img {
   content: url("../images/jours-logo-blanc.svg");
-  width: 20px;
-  height: 20px;
+  width: 1em;
+  height: 1em;
 }
 
 #selectionLieu:hover img {
   content: url("../images/lieu-logo-blanc.svg");
-  width: 20px;
-  height: 20px;
+  width: 1em;
+  height: 1em;
 }
 
 h2 {
@@ -254,22 +418,63 @@ h2 {
   font-weight: 700;
   color: #333;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 0.1em;
   text-align: center;
   position: relative;
   margin-bottom: 2rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  text-shadow: 0.1em 0.1em 0.2em rgba(0, 0, 0, 0.2);
 }
 h2:after {
   content: "";
   position: absolute;
-  width: 80px;
-  height: 4px;
+  width: 4em;
+  height: 0.1em;
   background-color: #E08F7E;
-  bottom: -10px;
+  bottom: -0.5em;
   left: 50%;
   transform: translateX(-50%);
-  border-radius: 2px;
+  border-radius: 0.1em;
+}
+@media (max-width: 1023px) {
+  h2 {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 767px) {
+  h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  h2,
+  h3,
+  p {
+    font-size: 90%;
+  }
+}
+@media (max-width: 992px) {
+  h2,
+  h3,
+  p {
+    font-size: 85%;
+  }
+}
+@media (max-width: 768px) {
+  h2,
+  h3,
+  p {
+    font-size: 80%;
+  }
+}
+@media (max-width: 576px) {
+  h2,
+  h3,
+  p {
+    font-size: 75%;
+    margin-bottom: 1em;
+  }
 }
 
 .filtreStyle,
@@ -277,10 +482,10 @@ h2:after {
 .filtreLieu {
   text-decoration: none;
   color: #3E3D3B;
-  border-bottom: 1px #3E3D3B solid;
-  font-size: 20px;
+  border-bottom: 0.1em #3E3D3B solid;
+  font-size: 1em;
   cursor: pointer;
-  padding: 1px;
+  padding: 0.1em;
   grid-column: span 1;
   grid-row: auto;
   text-align: center;
@@ -296,50 +501,85 @@ h2:after {
 #container-spectacle-carte {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px;
-  grid-auto-rows: minmax(100px, auto);
+  grid-gap: 0.5em;
+}
+@media (min-width: 1024px) {
+  #container-spectacle-carte {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 1023px) and (min-width: 768px) {
+  #container-spectacle-carte {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 767px) {
+  #container-spectacle-carte {
+    grid-template-columns: 1fr;
+  }
 }
 
 .spectacle-card {
   background-color: #e9e8e8;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1em;
+  border-radius: 0.4em;
+  box-shadow: 0 0.2em 0.3em rgba(0, 0, 0, 0.1);
   text-align: center;
-  margin: 10px;
-  height: 400px;
-  grid-column: 1/3;
+  margin: 0.5em;
+  height: 20em;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 1em auto;
+  padding: 1em;
   cursor: pointer;
 }
 .spectacle-card h3 {
   color: #333;
   font-size: 1.5rem;
-  margin-bottom: 10px;
+  margin-bottom: 0.5em;
 }
 .spectacle-card p {
   color: #555;
   font-size: 1rem;
-  margin-bottom: 5px;
+  margin-bottom: 0.2em;
 }
 .spectacle-card img {
-  width: 300px;
+  width: 15em;
   height: auto;
-  border-radius: 4px;
-  margin-bottom: 10px;
+  border-radius: 0.2em;
+  margin-bottom: 0.5em;
 }
 .spectacle-card:hover {
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0.3em 0.5em rgba(0, 0, 0, 0.15);
+}
+@media (max-width: 1023px) {
+  .spectacle-card {
+    padding: 0.8em;
+  }
+}
+@media (max-width: 767px) {
+  .spectacle-card {
+    padding: 0.5em;
+  }
 }
 .spectacle-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  transform: translateY(-0.5em);
+  box-shadow: 0 0.4em 0.7em rgba(0, 0, 0, 0.3);
 }
 
 h3 {
   color: #333;
   font-size: 1.5rem;
-  margin-bottom: 10px;
+  margin-bottom: 0.5em;
+}
+@media (max-width: 1023px) {
+  h3 {
+    font-size: 1.25rem;
+  }
+}
+@media (max-width: 767px) {
+  h3 {
+    font-size: 1.125rem;
+  }
 }
 
 h4 {
@@ -349,8 +589,18 @@ h4 {
 }
 
 p {
-  font-size: 20px;
-  margin-bottom: 5px;
+  font-size: 1em;
+  margin-bottom: 0.3em;
+}
+@media (max-width: 1023px) {
+  p {
+    font-size: 0.875rem;
+  }
+}
+@media (max-width: 767px) {
+  p {
+    font-size: 0.75rem;
+  }
 }
 
 .InfosSoiree {
@@ -359,44 +609,44 @@ p {
 
 ul.spectacles-list {
   padding: 0;
-  margin-top: 20px;
+  margin-top: 1em;
   background-color: #F2F2F2;
-  border-radius: 10px;
+  border-radius: 0.5em;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
 
 ul.spectacles-list li {
   list-style-type: none;
-  padding: 15px;
+  padding: 0.7em;
   grid-column: span 1;
   grid-row: auto;
 }
 
 video {
   width: 100%;
-  margin-top: 10px;
-  border-radius: 10px;
+  margin-top: 0.5em;
+  border-radius: 0.5em;
 }
 
 ul.artistes-list {
   list-style: none;
-  padding-left: 50px;
+  padding-left: 2.5em;
   position: relative;
 }
 ul.artistes-list li::before {
   content: "";
   position: absolute;
-  top: 12px;
-  left: 5px;
+  top: 0.6em;
+  left: 0.2em;
   display: inline-block;
-  height: 30px;
-  width: 30px;
+  height: 2.5em;
+  width: 2.5em;
   background-size: contain;
   background-image: url("../images/musicien-logo.svg");
 }
 ul.artistes-list li {
-  margin: 10px 0;
+  margin: 0.5em 0;
   font-size: 1.2rem;
 }
 
@@ -405,10 +655,10 @@ ul.artistes-list li {
   justify-content: space-between;
   align-items: flex-start;
   padding: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  border: 0.1em solid #ddd;
+  border-radius: 0.4em;
   background-color: #dda89d;
-  max-width: 600px;
+  max-width: 30em;
   margin: 1rem auto;
 }
 .lieuTarif #lieu,
@@ -433,25 +683,25 @@ ul.artistes-list li {
 select#places {
   appearance: none;
   font-size: 1rem;
-  padding: 10px;
-  border-radius: 5px;
+  padding: 0.5em;
+  border-radius: 0.3em;
   background-color: #ffffff;
   color: #000000;
-  border: 2px solid #3E3D3B;
+  border: 0.1em solid #3E3D3B;
   transition: border 0.3s ease, background-color 0.3s ease;
   cursor: pointer;
   width: 100%;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234A00FF'%3E%3Cpath d='M7 10l5 5 5-5H7z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 15px;
+  background-position: right 0.5em center;
+  background-size: 0.7em;
 }
 select#places:hover, select#places:focus {
   border-color: rgb(187, 187, 187);
   background-color: rgb(212.5, 212.5, 212.5);
 }
 select#places option {
-  padding: 10px;
+  padding: 0.5em;
 }
 
 button#ajouterPanier {
@@ -459,11 +709,11 @@ button#ajouterPanier {
   background-color: rgb(187, 187, 187);
   color: #ffffff;
   border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
+  border-radius: 0.3em;
+  padding: 0.5em 1em;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-top: 10px;
+  margin-top: 0.5em;
   width: 100%;
 }
 button#ajouterPanier:hover {
@@ -474,29 +724,29 @@ button#ajouterPanier:active {
 }
 
 #panierContainer {
-  max-width: 600px;
+  max-width: 30em;
   margin: 0 auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding: 20px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding: 1em;
   background-color: #f8f8f8;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  border: 0.1em solid #ddd;
+  border-radius: 0.4em;
 }
 #panierContainer h2 {
   font-size: 1.5rem;
   color: #333;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 1em;
 }
 #panierContainer button {
   display: inline-block;
-  padding: 10px 15px;
+  padding: 0.5em 0.6em;
   font-size: 1rem;
   color: #fff;
   background-color: #007bff;
   border: none;
-  border-radius: 4px;
+  border-radius: 0.2em;
   cursor: pointer;
   transition: background-color 0.3s;
 }
@@ -512,11 +762,11 @@ button#ajouterPanier:active {
 #panierContainer ul {
   list-style: none;
   padding: 0;
-  margin: 20px 0;
+  margin: 1em 0;
 }
 #panierContainer .panier {
-  border-bottom: 1px solid #ddd;
-  padding: 15px 0;
+  border-bottom: 0.1em solid #ddd;
+  padding: 0.6em 0;
 }
 #panierContainer .panier h3 {
   font-size: 1.2rem;
@@ -532,13 +782,13 @@ button#ajouterPanier:active {
 }
 #panierContainer .panier .nbPlaces,
 #panierContainer .panier .tarif {
-  margin: 10px 0;
-  padding: 5px;
+  margin: 0.5em 0;
+  padding: 0.2em;
   font-size: 0.9rem;
 }
 #panierContainer .panier .supprimerPanier {
   background-color: #dc3545;
-  margin-top: 10px;
+  margin-top: 0.5em;
 }
 #panierContainer .panier .supprimerPanier:hover {
   background-color: #c82333;
@@ -548,14 +798,14 @@ button#ajouterPanier:active {
   font-weight: bold;
   color: #333;
   text-align: right;
-  margin-top: 20px;
+  margin-top: 1em;
 }
 #panierContainer #validerPanier,
 #panierContainer #payerPanier {
   display: block;
   width: 100%;
-  padding: 10px;
-  margin-top: 10px;
+  padding: 0.5em;
+  margin-top: 0.5em;
   font-size: 1rem;
 }
 #panierContainer #validerPanier#payerPanier,
@@ -568,23 +818,40 @@ button#ajouterPanier:active {
 }
 
 footer {
-  background-color: #e2e1e1;
-  padding: 20px;
-  display: flex;
-  justify-content: space-around;
+  background-color: #333;
+  color: #fff;
+  padding: 2em;
+  text-align: center;
+}
+@media (max-width: 992px) {
+  footer {
+    padding: 1.5em;
+  }
+}
+@media (max-width: 768px) {
+  footer {
+    padding: 1em;
+    font-size: 0.9em;
+  }
+}
+@media (max-width: 576px) {
+  footer {
+    padding: 0.8em;
+    font-size: 0.8em;
+  }
 }
 footer ul {
   list-style: none;
   padding: 0;
 }
 footer ul li {
-  margin: 5px 0;
+  margin: 0.2em 0;
 }
 footer .reseauxIcons {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 0.5em;
+  margin-bottom: 1em;
 }
 footer .reseauxIcons a {
   text-decoration: none;
