@@ -15,16 +15,15 @@ export async function creerPanier(panier) {
             tarif: tarif,
             id_soiree: panier[i].soiree.ID,
         };
-        console.log(data);
 
         await post(data, '/billets')
-            .then((response) => {
+            .then(async (response) => {
 
                 if (response.ok) {
 
 
-                    const responseData = response.json();
-                    console.log(responseData);
+                    const responseData = await response.json();
+                    idBillet.push(responseData.billet.ID);
                 }
             });
     }

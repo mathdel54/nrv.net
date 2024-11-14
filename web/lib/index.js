@@ -5829,13 +5829,12 @@
           tarif,
           id_soiree: panier2[i].soiree.ID
         };
-        console.log(data);
-        yield post(data, "/billets").then((response) => {
+        yield post(data, "/billets").then((response) => __async(this, null, function* () {
           if (response.ok) {
-            const responseData = response.json();
-            console.log(responseData);
+            const responseData = yield response.json();
+            idBillet.push(responseData.billet.ID);
           }
-        });
+        }));
       }
       localStorage.setItem("idBillets", JSON.stringify(idBillet));
       alert("Panier valid\xE9");

@@ -52,7 +52,6 @@ export function post(data, url) {
 
 
     if (localStorage.getItem('token')) {
-        console.log(localStorage.getItem('token'));
         return fetch(`${pointEntree}${url}`, {
             method: 'POST',
             headers: {
