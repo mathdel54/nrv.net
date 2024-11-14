@@ -5722,7 +5722,7 @@
   var import_handlebars = __toESM(require_handlebars());
 
   // js/config.js
-  var pointEntree = "http://docketu.iutnc.univ-lorraine.fr:20006";
+  var pointEntree = "http://localhost:6080";
 
   // js/api.js
   var controller = new AbortController();
@@ -6166,9 +6166,11 @@
       try {
         const response = yield post(data, "/connexion");
         if (response.ok) {
+          const responseData = yield response.json();
+          console.log(responseData);
           alert("Connexion r\xE9ussie");
-          sessionStorage.setItem("user_id", response.id);
-          localStorage.setItem("token", response.token);
+          sessionStorage.setItem("user_id", responseData.id);
+          localStorage.setItem("token", responseData.token);
           document.getElementById("connexion").style.display = "none";
           document.getElementById("inscription").style.display = "none";
         } else {

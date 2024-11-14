@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Slim\App;
 use Slim\Routing\RouteCollectorProxy;
+use Slim\App;
 use nrv\application\middlewares\AuthMiddleware;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
