@@ -1,6 +1,7 @@
 <?php
 
 use nrv\application\actions\AchatBilletAction;
+use nrv\application\middlewares\AuthMiddleware;
 use nrv\core\provider\AuthProviderInterface;
 use nrv\core\provider\JWTAuthProvider;
 use nrv\core\services\user\auth\AuthServiceInterface;
@@ -9,7 +10,6 @@ use nrv\application\actions\DetailSoireeAction;
 use nrv\application\actions\ListeBilletUser;
 use nrv\application\actions\ListeSpectacleAction;
 use nrv\application\actions\ListeSpectacleSoireeAction;
-use nrv\application\actions\SpectacleByStyleAction;
 use nrv\core\services\user\ServiceUserInterface;
 use Psr\Container\ContainerInterface;
 use nrv\core\services\user\ServiceUser;
@@ -67,7 +67,10 @@ return [
     AuthProviderInterface::class => function(ContainerInterface $c) {
         $jwtSecret = $_ENV['JWT_SECRET'] ?? 'default_fallback_secret';
         return new JWTAuthProvider($c->get(AuthServiceInterface::class), $jwtSecret);
-    }
+    },
 
+    AuthMiddleware::class => function(ContainerInterface $c) {
+        return new AuthMiddleware($_ENV['JWT_SECRET']);
+    }
 
 ];

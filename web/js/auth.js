@@ -39,7 +39,7 @@ export async function connecterUtilisateur(email, mdp) {
         if (response.ok) {
             const responseData = await response.json();
             alert('Connexion réussie');
-            sessionStorage.setItem('user_id', responseData.id);
+            sessionStorage.setItem('user_id', responseData.user_id);
             localStorage.setItem('token', responseData.token);
             // On enleve les boutons de connexion et d'inscription si l'user est connecté
             document.getElementById("connexion").style.display = "none";

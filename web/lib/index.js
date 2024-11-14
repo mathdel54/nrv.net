@@ -5761,6 +5761,7 @@
     controller = new AbortController();
     signal = controller.signal;
     if (localStorage.getItem("token")) {
+      console.log(localStorage.getItem("token"));
       return fetch(`${pointEntree}${url}`, {
         method: "POST",
         headers: {
@@ -5819,10 +5820,7 @@
     return __async(this, null, function* () {
       let idBillet = [];
       for (let i = 0; i < panier2.length; i++) {
-        let tarif;
-        if (panier2[i] === panier2[i].soiree.tarifNormal) {
-          tarif = "Normal";
-        }
+        let tarif = "Normal";
         if (panier2[i] === panier2[i].soiree.tarifReduit) {
           tarif = "R\xE9duit";
         }
@@ -5831,14 +5829,16 @@
           tarif,
           id_soiree: panier2[i].soiree.ID
         };
+        console.log(data);
         yield post(data, "/billets").then((response) => {
           if (response.ok) {
-            idBillet.push(response.billet.ID);
-            alert("Billet cr\xE9\xE9");
+            const responseData = response.json();
+            console.log(responseData);
           }
         });
       }
       localStorage.setItem("idBillets", JSON.stringify(idBillet));
+      alert("Panier valid\xE9");
     });
   }
   function payerPanierPatch() {
@@ -6167,9 +6167,8 @@
         const response = yield post(data, "/connexion");
         if (response.ok) {
           const responseData = yield response.json();
-          console.log(responseData);
           alert("Connexion r\xE9ussie");
-          sessionStorage.setItem("user_id", responseData.id);
+          sessionStorage.setItem("user_id", responseData.user_id);
           localStorage.setItem("token", responseData.token);
           document.getElementById("connexion").style.display = "none";
           document.getElementById("inscription").style.display = "none";

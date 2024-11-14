@@ -5,10 +5,7 @@ export async function creerPanier(panier) {
     let idBillet = [];
     for (let i = 0; i < panier.length; i++) {
 
-        let tarif;
-        if (panier[i] === panier[i].soiree.tarifNormal) {
-            tarif = "Normal";
-        }
+        let tarif = "Normal";
         if (panier[i] === panier[i].soiree.tarifReduit) {
             tarif = "Réduit";
         }
@@ -18,17 +15,21 @@ export async function creerPanier(panier) {
             tarif: tarif,
             id_soiree: panier[i].soiree.ID,
         };
+        console.log(data);
 
         await post(data, '/billets')
             .then((response) => {
 
                 if (response.ok) {
-                    idBillet.push(response.billet.ID);
-                    alert('Billet créé');
+
+
+                    const responseData = response.json();
+                    console.log(responseData);
                 }
             });
     }
     localStorage.setItem('idBillets', JSON.stringify(idBillet));
+    alert('Panier validé');
 }
 
 export async function payerPanierPatch() {
