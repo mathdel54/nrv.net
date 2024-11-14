@@ -5761,7 +5761,6 @@
     controller = new AbortController();
     signal = controller.signal;
     if (localStorage.getItem("token")) {
-      console.log(localStorage.getItem("token"));
       return fetch(`${pointEntree}${url}`, {
         method: "POST",
         headers: {
@@ -5820,6 +5819,7 @@
     return __async(this, null, function* () {
       let idBillet = [];
       for (let i = 0; i < panier2.length; i++) {
+        console.log(panier2[i]);
         let tarif = "Normal";
         if (panier2[i] === panier2[i].soiree.tarifReduit) {
           tarif = "R\xE9duit";
@@ -5829,12 +5829,15 @@
           tarif,
           id_soiree: panier2[i].soiree.ID
         };
-        yield post(data, "/billets").then((response) => __async(this, null, function* () {
-          if (response.ok) {
-            const responseData = yield response.json();
-            idBillet.push(responseData.billet.ID);
-          }
-        }));
+        const nbPlaces = panier2[i].nbPlaces;
+        for (let j = 0; j < nbPlaces; j++) {
+          yield post(data, "/billets").then((response) => __async(this, null, function* () {
+            if (response.ok) {
+              const responseData = yield response.json();
+              idBillet.push(responseData.billet.ID);
+            }
+          }));
+        }
       }
       localStorage.setItem("idBillets", JSON.stringify(idBillet));
       alert("Panier valid\xE9");

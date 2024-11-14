@@ -5,6 +5,8 @@ export async function creerPanier(panier) {
     let idBillet = [];
     for (let i = 0; i < panier.length; i++) {
 
+        console.log(panier[i]);
+
         let tarif = "Normal";
         if (panier[i] === panier[i].soiree.tarifReduit) {
             tarif = "Réduit";
@@ -16,16 +18,19 @@ export async function creerPanier(panier) {
             id_soiree: panier[i].soiree.ID,
         };
 
-        await post(data, '/billets')
-            .then(async (response) => {
+        const nbPlaces = panier[i].nbPlaces;
 
-                if (response.ok) {
+        for (let j = 0; j < nbPlaces; j++) {
+            await post(data, '/billets')
+                .then(async (response) => {
 
+                    if (response.ok) {
+                        const responseData = await response.json();
+                        idBillet.push(responseData.billet.ID);
+                    }
+                });
+        }
 
-                    const responseData = await response.json();
-                    idBillet.push(responseData.billet.ID);
-                }
-            });
     }
     localStorage.setItem('idBillets', JSON.stringify(idBillet));
     alert('Panier validé');
