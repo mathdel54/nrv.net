@@ -64,7 +64,7 @@ class DetailSoireeAction extends AbstractAction
             'locale' => 'fr_FR',
             'soiree' => $data,
             'links' => [
-                'spectacles' => ['href' => '/soiree/' . $id . '/spectacles'],
+                'spectacles' => ['href' => '/soirees/' . $id . '/spectacles'],
                 'self' => ['href' => '/spectacles'],
             ]
         ];

@@ -30,7 +30,6 @@ export async function creerPanier(panier) {
                     }
                 });
         }
-
     }
     localStorage.setItem('idBillets', JSON.stringify(idBillet));
     alert('Panier validé');

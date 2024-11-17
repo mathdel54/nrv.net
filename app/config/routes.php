@@ -17,7 +17,7 @@ return function (App $app): App {
     $app->get('/lieux', callable: nrv\application\actions\ListeLieuAction::class);
     $app->get('/spectacles', callable: nrv\application\actions\ListeSpectacleAction::class);
     $app->get('/spectacles/{ID_Spectacle}/artistes', callable: nrv\application\actions\ArtistesBySpectacleAction::class);
-    $app->get('/soiree/{id}', callable: nrv\application\actions\DetailSoireeAction::class);
+    $app->get('/soirees/{id}', callable: nrv\application\actions\DetailSoireeAction::class);
     $app->get('/soirees/{id}/spectacles', callable: nrv\application\actions\ListeSpectacleSoireeAction::class);
     $app->get('/spectacles/{ID_Spectacle}/soiree', callable: nrv\application\actions\SoireeBySpectacleAction::class);
     $app->get('/lieux/{ID_Lieu}/spectacles', callable: nrv\application\actions\ListeSpectacleByLieuAction::class);

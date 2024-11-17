@@ -38,7 +38,7 @@ class AchatBilletAction extends AbstractAction {
                     'soiree' => $billet->soiree,
                 ],
                 'links' => [
-                    'soiree' => ['href' => '/soiree/' . $billet->soiree ]
+                    'soiree' => ['href' => '/soirees/' . $billet->soiree ]
                 ]
             ];
         } catch (ServiceUserNotFoundException $e) {
