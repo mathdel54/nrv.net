@@ -25,6 +25,11 @@ document.getElementById("connexion").addEventListener("click", function () {
     hide_imgFond();
 });
 
+//On ajoute un ecouteur d'événement sur le bouton mes billets
+document.getElementById("mesBillets").addEventListener("click", function () {
+
+});
+
 //On ajoute un ecouteur d'événement sur le formulaire d'inscription
 document.getElementById("authTemplate").addEventListener("submit", async function () {
     event.preventDefault();
@@ -45,6 +50,19 @@ document.getElementById("connexionTemplate").addEventListener("submit", async fu
 
 export async function accueil() {
 
+    //On affiche ou non le bouton mes billets et connexion inscription
+    if (sessionStorage.getItem('user_id') === null) {
+        document.getElementById('panier').style.display = "none";
+        document.getElementById('connexion').style.display = "block";
+        document.getElementById('inscription').style.display = "block";
+    }
+    else {
+        document.getElementById('panier').style.display = "block";
+        document.getElementById('connexion').style.display = "none";
+        document.getElementById('inscription').style.display = "none";
+    }
+
+    //On récupere les spectacles
     let spectacles = await loadSpectacles();
     display_spectacles(spectacles);
 

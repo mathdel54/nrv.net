@@ -26,9 +26,9 @@ class PDONrvRepository implements NrvRepositoryInterface
 
     /**
      * Méthode qui retourne la liste des spectacles
-     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
-     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
      * @return array
+     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
+     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
      * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
      * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
      */
@@ -113,9 +113,9 @@ class PDONrvRepository implements NrvRepositoryInterface
     /**
      * Méthode qui retourne la liste des spectacles par date
      * @param string $date
-     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
-     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
      * @return array
+     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
+     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
      */
     public function getSpectaclesByDate(string $date): array
     {
@@ -205,9 +205,9 @@ class PDONrvRepository implements NrvRepositoryInterface
     /**
      * Méthode qui retourne la liste des images par spectacle
      * @param string $id
-     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
-     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
      * @return array
+     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
+     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
      */
     public function getImagesBySpectacle(string $id): array
     {
@@ -224,9 +224,9 @@ class PDONrvRepository implements NrvRepositoryInterface
     /**
      * Méthode qui retourne une soirée par son ID
      * @param string $id
-     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
-     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
      * @return Soiree
+     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
+     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
      */
     public function getSoireeById(string $id): Soiree
     {
@@ -247,9 +247,9 @@ class PDONrvRepository implements NrvRepositoryInterface
 
     /**
      * Méthode qui retourne le lieu de la soirée par son ID
-     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
-     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
      * @return LieuxSpectacle
+     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
+     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
      */
     public function getLieuById(string $id): LieuxSpectacle
     {
@@ -272,8 +272,8 @@ class PDONrvRepository implements NrvRepositoryInterface
     /**
      * Méthode qui retourne la liste des images par lieu
      * @param string $id
-     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
      * @return array
+     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
      */
     public function getImagesByLieu(string $id): array
     {
@@ -290,9 +290,9 @@ class PDONrvRepository implements NrvRepositoryInterface
     /**
      * Méthode qui retourne la liste des spectacles par soirée
      * @param string $id
-     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
-     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
      * @return array
+     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
+     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
      */
     public function getSpectaclesBySoireeId(string $id): array
     {
@@ -322,9 +322,9 @@ class PDONrvRepository implements NrvRepositoryInterface
     /**
      * Méthode qui retourne la soirée par spectacle
      * @param string $id
-     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
-     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
      * @return Soiree
+     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
+     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
      */
     public function getSoireeBySpectacleId(string $id): Soiree
     {
@@ -378,9 +378,9 @@ class PDONrvRepository implements NrvRepositoryInterface
     /**
      * Méthode qui retourne la liste des spectacles par lieu
      * @param string $id
-     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
-     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
      * @return array
+     * @throws \nrv\core\repositoryInterface\RepositoryDatabaseErrorException
+     * @throws \nrv\core\repositoryInterface\RepositoryEntityNotFoundException
      */
     public function getSpectaclesByLieu(string $id): array
     {
@@ -412,9 +412,15 @@ class PDONrvRepository implements NrvRepositoryInterface
      * @param string $id_user
      * @return array
      */
-    public function getBilletsByUser(string $id_user): array {
+    public function getBilletsByUser(string $id_user): array
+    {
         try {
-            $stmt = $this->pdoNrv->prepare("SELECT * FROM billet WHERE utilisateur_id = :id_user");
+            $stmt = $this->pdoNrv->prepare("
+                SELECT billet.*, soiree.nom AS soiree_nom, soiree.thematique, soiree.date_heure, soiree.lieu_id, soiree.tarif_normal, soiree.tarif_reduit 
+                FROM billet 
+                INNER JOIN soiree ON billet.soiree_id = soiree.id 
+                WHERE billet.utilisateur_id = :id_user
+            ");
             $stmt->execute(['id_user' => $id_user]);
             $billets = $stmt->fetchAll();
             if (!$billets) {
@@ -425,7 +431,17 @@ class PDONrvRepository implements NrvRepositoryInterface
         }
         $tabBillets = [];
         foreach($billets as $billet){
-            $b = new Billet($billet['utilisateur_id'], $billet['tarif'], new DateTime($billet['date_achat']), $billet['soiree_id']);
+            $soiree = new Soiree(
+                $billet['soiree_nom'],
+                $billet['thematique'],
+                new DateTime($billet['date_heure']),
+                $this->getLieuById($billet['lieu_id']),
+                $this->getSpectaclesBySoireeId($billet['soiree_id']),
+                $billet['tarif_normal'],
+                $billet['tarif_reduit']
+            );
+            $soiree->setID($billet['soiree_id']);
+            $b = new Billet($billet['utilisateur_id'], $billet['tarif'], new DateTime($billet['date_achat']), $soiree);
             $b->setID($billet['id']);
             $tabBillets[] = $b;
         }
@@ -440,12 +456,13 @@ class PDONrvRepository implements NrvRepositoryInterface
      * @param string $soiree
      * @return Billet
      */
-    public function creerBillet(string $user, string $tarif, string $soiree): Billet {
+    public function creerBillet(string $user, string $tarif, string $soiree): Billet
+    {
         try {
             $billet = new Billet($user, $tarif, null, $soiree);
             $billet->setID(Uuid::uuid4()->toString());
             $stmt = $this->pdoNrv->prepare("INSERT INTO billet (id, utilisateur_id, tarif, soiree_id) VALUES (:id, :user, :tarif, :soiree)");
-            $stmt->execute(['id' => $billet->ID ,'user' => $billet->user, 'tarif' => $billet->tarif, 'soiree' => $billet->soiree]);
+            $stmt->execute(['id' => $billet->ID, 'user' => $billet->user, 'tarif' => $billet->tarif, 'soiree' => $billet->soiree]);
         } catch (\PDOException $e) {
             throw new RepositoryDatabaseErrorException($e->getMessage(), 0, $e);
         }
@@ -457,7 +474,8 @@ class PDONrvRepository implements NrvRepositoryInterface
      * @param string $id
      * @return Billet
      */
-    public function achatBillet(string $id): Billet {
+    public function achatBillet(string $id): Billet
+    {
         try {
             // Récupération du billet
             $stmt = $this->pdoNrv->prepare("SELECT * FROM billet WHERE id = :id");
@@ -468,7 +486,7 @@ class PDONrvRepository implements NrvRepositoryInterface
                 throw new RepositoryEntityNotFoundException('Aucun billet trouvé');
             }
             // Vérification de la disponibilité
-            if($this->checkBilletById($id)){
+            if ($this->checkBilletById($id)) {
                 throw new RepositoryEntityNotFoundException('Plus de place disponible pour ce billet');
             }
             $stmt = $this->pdoNrv->prepare("UPDATE billet SET date_achat = :date WHERE id = :id");
@@ -486,7 +504,8 @@ class PDONrvRepository implements NrvRepositoryInterface
      * @param string $id
      * @return bool
      */
-    public function checkBilletById(string $id): bool {
+    public function checkBilletById(string $id): bool
+    {
         try {
             $stmt = $this->pdoNrv->prepare("SELECT DISTINCT nb_places_assises, nb_places_debout, soiree.id FROM lieu INNER JOIN soiree ON lieu.id = soiree.lieu_id INNER JOIN spectacle ON soiree.id = spectacle.soiree_id INNER JOIN billet ON soiree.id = billet.soiree_id WHERE billet.id = :id");
             $stmt->execute(['id' => $id]);

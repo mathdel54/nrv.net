@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace nrv\application\actions;
 
@@ -8,7 +8,8 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use nrv\application\renderer\JsonRenderer;
 
-class ListeBilletUser extends AbstractAction {
+class ListeBilletUser extends AbstractAction
+{
 
     protected ServiceUserInterface $serviceUser;
 
@@ -31,10 +32,19 @@ class ListeBilletUser extends AbstractAction {
                         'user' => $billet->user,
                         'tarif' => $billet->tarif,
                         'date' => $billet->date,
-                        'soiree' => $billet->soiree,
+                        'soiree' => [
+                            'ID' => $billet->soiree->ID,
+                            'nom' => $billet->soiree->nom,
+                            'theme' => $billet->soiree->theme,
+                            'date' => $billet->soiree->horaire->format('Y-m-d'),
+                            'horaire' => $billet->soiree->horaire->format('H:i'),
+                            'lieu' => $billet->soiree->lieu->ID,
+                            'tarifNormal' => $billet->soiree->tarifNormal,
+                            'tarifReduit' => $billet->soiree->tarifReduit,
+                        ]
                     ],
                     'links' => [
-                        'soiree' => ['href' => '/soirees/' . $billet->soiree ]
+                        'soiree' => ['href' => '/soirees/' . $billet->soiree->ID]
                     ]
                 ];
             }

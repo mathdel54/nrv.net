@@ -6217,6 +6217,15 @@
   });
   function accueil() {
     return __async(this, null, function* () {
+      if (sessionStorage.getItem("user_id") === null) {
+        document.getElementById("panier").style.display = "none";
+        document.getElementById("connexion").style.display = "block";
+        document.getElementById("inscription").style.display = "block";
+      } else {
+        document.getElementById("panier").style.display = "block";
+        document.getElementById("connexion").style.display = "none";
+        document.getElementById("inscription").style.display = "none";
+      }
       let spectacles = yield loadSpectacles();
       display_spectacles(spectacles);
       document.getElementById("panier").addEventListener("click", function() {
