@@ -441,7 +441,12 @@ class PDONrvRepository implements NrvRepositoryInterface
                 $billet['tarif_reduit']
             );
             $soiree->setID($billet['soiree_id']);
-            $b = new Billet($billet['utilisateur_id'], $billet['tarif'], new DateTime($billet['date_achat']), $soiree);
+            if ($billet['date_achat'] === null) {
+                $b = new Billet($billet['utilisateur_id'], $billet['tarif'], null, $soiree);
+            }
+            else {
+                $b = new Billet($billet['utilisateur_id'], $billet['tarif'], new DateTime($billet['date_achat']), $soiree);
+            }
             $b->setID($billet['id']);
             $tabBillets[] = $b;
         }
