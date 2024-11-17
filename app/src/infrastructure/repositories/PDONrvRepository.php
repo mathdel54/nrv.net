@@ -453,16 +453,24 @@ class PDONrvRepository implements NrvRepositoryInterface
      * @param string $user
      * @param string $tarif
      * @param DateTime $date
-     * @param string $soiree
+     * @param Soiree $soiree
      * @return Billet
      */
-    public function creerBillet(string $user, string $tarif, string $soiree): Billet
+    public function creerBillet(string $user, string $tarif, string $soiree_id): Billet
     {
         try {
-            $billet = new Billet($user, $tarif, null, $soiree);
+            //On récupere la soirée
+            $stmt = $this->pdoNrv->prepare("SELECT * FROM soiree WHERE id = :id");
+            $stmt->execute(['id' => $soiree_id]);
+            $soiree = $stmt->fetch();
+            if (!$soiree) {
+                throw new RepositoryEntityNotFoundException('Soirée non trouvée');
+            }
+
+            $billet = new Billet($user, $tarif, new DateTime(), $soiree);
             $billet->setID(Uuid::uuid4()->toString());
-            $stmt = $this->pdoNrv->prepare("INSERT INTO billet (id, utilisateur_id, tarif, soiree_id) VALUES (:id, :user, :tarif, :soiree)");
-            $stmt->execute(['id' => $billet->ID, 'user' => $billet->user, 'tarif' => $billet->tarif, 'soiree' => $billet->soiree]);
+            $stmt = $this->pdoNrv->prepare("INSERT INTO billet (id, utilisateur_id, tarif, soiree_id) VALUES (:id, :user, :tarif, :date_achat, :soiree)");
+            $stmt->execute(['id' => $billet->ID, 'user' => $billet->user, 'tarif' => $billet->tarif, 'date_achat' => $billet->date_achat, 'soiree' => $billet->soiree]);
         } catch (\PDOException $e) {
             throw new RepositoryDatabaseErrorException($e->getMessage(), 0, $e);
         }
@@ -481,6 +489,15 @@ class PDONrvRepository implements NrvRepositoryInterface
             $stmt = $this->pdoNrv->prepare("SELECT * FROM billet WHERE id = :id");
             $stmt->execute(['id' => $id]);
             $billet = $stmt->fetch();
+
+            //On recupere la soirée
+            $stmt = $this->pdoNrv->prepare("SELECT * FROM soiree WHERE id = :id");
+            $stmt->execute(['id' => $billet['soiree_id']]);
+            $soiree = $stmt->fetch();
+            if (!$soiree) {
+                throw new RepositoryEntityNotFoundException('Soirée non trouvée');
+            }
+
             // Vérification de l'existence du billet
             if (!$billet) {
                 throw new RepositoryEntityNotFoundException('Aucun billet trouvé');
@@ -494,7 +511,7 @@ class PDONrvRepository implements NrvRepositoryInterface
         } catch (\PDOException $e) {
             throw new RepositoryDatabaseErrorException($e->getMessage(), 0, $e);
         }
-        $b = new Billet($billet['utilisateur_id'], $billet['tarif'], new DateTime($billet['date_achat']), $billet['soiree_id']);
+        $b = new Billet($billet['utilisateur_id'], $billet['tarif'], new DateTime($billet['date_achat']), $soiree);
         $b->setID($billet['id']);
         return $b;
     }

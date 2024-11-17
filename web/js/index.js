@@ -6,6 +6,7 @@ import { display_panier } from "./panier_ui";
 import { showNbElements } from "./panier";
 import { display_auth, display_connexion, hide_imgFond, display_imgFond } from "./auth_ui";
 import { connecterUtilisateur, inscrireUtilisateur } from "./auth";
+import {display_mesBillets} from "./mesBillets_ui";
 
 //On ajoute un ecouteur d'événement sur le bouton le festival
 document.getElementById("accueil").addEventListener("click", function () {
@@ -27,7 +28,8 @@ document.getElementById("connexion").addEventListener("click", function () {
 
 //On ajoute un ecouteur d'événement sur le bouton mes billets
 document.getElementById("mesBillets").addEventListener("click", function () {
-
+    display_mesBillets();
+    hide_imgFond();
 });
 
 //On ajoute un ecouteur d'événement sur le formulaire d'inscription

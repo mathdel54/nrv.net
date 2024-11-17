@@ -13,9 +13,13 @@ export function load(url) {
     controller = new AbortController();
     signal = controller.signal;
 
+
     if (localStorage.getItem('token')) {
         return fetch(`${pointEntree}${url}`, {
-            headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
             signal
         })
             .then(response => response.json())
@@ -26,8 +30,7 @@ export function load(url) {
                     console.error('Erreur lors du chargement de la ressource', error);
                 }
             });
-    }
-    else {
+    } else {
         return fetch(`${pointEntree}${url}`, {signal})
             .then(response => response.json())
             .catch(error => {
@@ -61,8 +64,7 @@ export function post(data, url) {
             body: JSON.stringify(data),
             signal
         });
-    }
-    else {
+    } else {
         return fetch(`${pointEntree}${url}`, {
             method: 'POST',
             headers: {
@@ -93,8 +95,7 @@ export function patch(url) {
             },
             signal
         });
-    }
-    else {
+    } else {
         return fetch(`${pointEntree}${url}`, {
             method: 'PATCH',
             headers: {

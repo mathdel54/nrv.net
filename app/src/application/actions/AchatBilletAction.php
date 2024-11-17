@@ -9,7 +9,8 @@ use nrv\application\renderer\JsonRenderer;
 use nrv\core\services\user\ServiceUserInterface;
 use nrv\core\services\user\ServiceUserNotFoundException;
 
-class AchatBilletAction extends AbstractAction {
+class AchatBilletAction extends AbstractAction
+{
 
     protected ServiceUserInterface $serviceUser;
 
@@ -35,10 +36,19 @@ class AchatBilletAction extends AbstractAction {
                     'user' => $billet->user,
                     'tarif' => $billet->tarif,
                     'date' => $billet->date,
-                    'soiree' => $billet->soiree,
+                    'soiree' => [
+                        'ID' => $billet->soiree->ID,
+                        'nom' => $billet->soiree->nom,
+                        'theme' => $billet->soiree->theme,
+                        'date' => $billet->soiree->horaire->format('Y-m-d'),
+                        'horaire' => $billet->soiree->horaire->format('H:i'),
+                        'lieu' => $billet->soiree->lieu->ID,
+                        'tarifNormal' => $billet->soiree->tarifNormal,
+                        'tarifReduit' => $billet->soiree->tarifReduit,
+                    ]
                 ],
                 'links' => [
-                    'soiree' => ['href' => '/soirees/' . $billet->soiree ]
+                    'soiree' => ['href' => '/soirees/' . $billet->soiree->ID]
                 ]
             ];
         } catch (ServiceUserNotFoundException $e) {
