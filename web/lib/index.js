@@ -5722,7 +5722,7 @@
   var import_handlebars = __toESM(require_handlebars());
 
   // js/config.js
-  var pointEntree = "http://docketu.iutnc.univ-lorraine.fr:20006";
+  var pointEntree = "http://localhost:6080";
 
   // js/api.js
   var controller = new AbortController();
@@ -5819,10 +5819,8 @@
     return __async(this, null, function* () {
       let idBillet = [];
       for (let i = 0; i < panier2.length; i++) {
-        let tarif;
-        if (panier2[i] === panier2[i].soiree.tarifNormal) {
-          tarif = "Normal";
-        }
+        console.log(panier2[i]);
+        let tarif = "Normal";
         if (panier2[i] === panier2[i].soiree.tarifReduit) {
           tarif = "R\xE9duit";
         }
@@ -5831,14 +5829,18 @@
           tarif,
           id_soiree: panier2[i].soiree.ID
         };
-        yield post(data, "/billets").then((response) => {
-          if (response.ok) {
-            idBillet.push(response.billet.ID);
-            alert("Billet cr\xE9\xE9");
-          }
-        });
+        const nbPlaces = panier2[i].nbPlaces;
+        for (let j = 0; j < nbPlaces; j++) {
+          yield post(data, "/billets").then((response) => __async(this, null, function* () {
+            if (response.ok) {
+              const responseData = yield response.json();
+              idBillet.push(responseData.billet.ID);
+            }
+          }));
+        }
       }
       localStorage.setItem("idBillets", JSON.stringify(idBillet));
+      alert("Panier valid\xE9");
     });
   }
   function payerPanierPatch() {
@@ -6166,9 +6168,10 @@
       try {
         const response = yield post(data, "/connexion");
         if (response.ok) {
+          const responseData = yield response.json();
           alert("Connexion r\xE9ussie");
-          sessionStorage.setItem("user_id", response.id);
-          localStorage.setItem("token", response.token);
+          sessionStorage.setItem("user_id", responseData.user_id);
+          localStorage.setItem("token", responseData.token);
           document.getElementById("connexion").style.display = "none";
           document.getElementById("inscription").style.display = "none";
         } else {

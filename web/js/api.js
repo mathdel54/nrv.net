@@ -50,6 +50,7 @@ export function post(data, url) {
     controller = new AbortController();
     signal = controller.signal;
 
+
     if (localStorage.getItem('token')) {
         return fetch(`${pointEntree}${url}`, {
             method: 'POST',

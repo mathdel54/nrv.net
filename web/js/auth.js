@@ -29,28 +29,26 @@ export async function inscrireUtilisateur(nom, prenom, email, mdp) {
 }
 
 export async function connecterUtilisateur(email, mdp) {
+    let data = {
+        "email": email,
+        "password": mdp
+    };
+    try {
+        const response = await post(data, '/connexion');
 
-        let data = {
-            "email": email,
-            "password": mdp
-        }
-        try {
-            const response = await post(data, '/connexion');
-
-            if (response.ok){
-                alert('Connexion réussie');
-                sessionStorage.setItem('user_id', response.id);
-                localStorage.setItem('token', response.token);
-                //On enleve les boutons de connexion et d'inscription si l'user est connecté
-                document.getElementById("connexion").style.display = "none";
-                document.getElementById("inscription").style.display = "none";
-            }
-            else {
-                alert('Connexion échouée');
-            }
-        }
-        catch (error) {
-            console.error('Erreur lors de la connexion', error);
+        if (response.ok) {
+            const responseData = await response.json();
+            alert('Connexion réussie');
+            sessionStorage.setItem('user_id', responseData.user_id);
+            localStorage.setItem('token', responseData.token);
+            // On enleve les boutons de connexion et d'inscription si l'user est connecté
+            document.getElementById("connexion").style.display = "none";
+            document.getElementById("inscription").style.display = "none";
+        } else {
             alert('Connexion échouée');
         }
+    } catch (error) {
+        console.error('Erreur lors de la connexion', error);
+        alert('Connexion échouée');
+    }
 }
