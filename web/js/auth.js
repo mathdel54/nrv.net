@@ -1,6 +1,6 @@
 import { post } from './api.js';
 
-export async function inscrireUtilisateur(nom, prenom, email, mdp) {
+export async function inscrireUtilisateur(nom, prenom, email, mdp, passwordConfirmation) {
 
     //On crée un objet data avec les données du formulaire en format JSON
 
@@ -8,7 +8,8 @@ export async function inscrireUtilisateur(nom, prenom, email, mdp) {
         "nom": nom,
         "prenom": prenom,
         "email": email,
-        "password": mdp
+        "password": mdp,
+        "passwordConfirmation": passwordConfirmation
     };
 
     try {

@@ -5722,7 +5722,7 @@
   var import_handlebars = __toESM(require_handlebars());
 
   // js/config.js
-  var pointEntree = "http://localhost:6080";
+  var pointEntree = "http://docketu.iutnc.univ-lorraine.fr:20006";
 
   // js/api.js
   var controller = new AbortController();
@@ -5733,7 +5733,7 @@
     }
     controller = new AbortController();
     signal = controller.signal;
-    if (localStorage.getItem("token")) {
+    if (localStorage.getItem("token") && localStorage.getItem("token") !== "undefined" && localStorage.getItem("token") !== "null") {
       return fetch(`${pointEntree}${url}`, {
         method: "GET",
         headers: {
@@ -5763,7 +5763,7 @@
     }
     controller = new AbortController();
     signal = controller.signal;
-    if (localStorage.getItem("token")) {
+    if (localStorage.getItem("token") && localStorage.getItem("token") !== "undefined" && localStorage.getItem("token") !== "null") {
       return fetch(`${pointEntree}${url}`, {
         method: "POST",
         headers: {
@@ -5790,7 +5790,7 @@
     }
     controller = new AbortController();
     signal = controller.signal;
-    if (localStorage.getItem("token")) {
+    if (localStorage.getItem("token") && localStorage.getItem("token") !== "undefined" && localStorage.getItem("token") !== "null") {
       return fetch(`${pointEntree}${url}`, {
         method: "PATCH",
         headers: {
@@ -6140,13 +6140,14 @@
   }
 
   // js/auth.js
-  function inscrireUtilisateur(nom, prenom, email, mdp) {
+  function inscrireUtilisateur(nom, prenom, email, mdp, passwordConfirmation) {
     return __async(this, null, function* () {
       let data = {
         "nom": nom,
         "prenom": prenom,
         "email": email,
-        "password": mdp
+        "password": mdp,
+        "passwordConfirmation": passwordConfirmation
       };
       try {
         const response = yield post(data, "/inscription");
@@ -6235,7 +6236,8 @@
       const prenom = document.getElementById("prenom").value;
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
-      yield inscrireUtilisateur(nom, prenom, email, password);
+      const passwordConfirmation = document.getElementById("passwordConfirmation").value;
+      yield inscrireUtilisateur(nom, prenom, email, password, passwordConfirmation);
     });
   });
   document.getElementById("connexionTemplate").addEventListener("submit", function() {

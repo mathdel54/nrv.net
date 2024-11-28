@@ -14,7 +14,7 @@ export function load(url) {
     signal = controller.signal;
 
 
-    if (localStorage.getItem('token') && localStorage.getItem('token') !== 'undefined' && localStorage.getItem('token') !== 'null') {
+    if (localStorage.getItem('token')) {
         return fetch(`${pointEntree}${url}`, {
             method: 'GET',
             headers: {
@@ -54,7 +54,7 @@ export function post(data, url) {
     signal = controller.signal;
 
 
-    if (localStorage.getItem('token') && localStorage.getItem('token') !== 'undefined' && localStorage.getItem('token') !== 'null') {
+    if (localStorage.getItem('token')) {
         return fetch(`${pointEntree}${url}`, {
             method: 'POST',
             headers: {
@@ -86,7 +86,7 @@ export function patch(url) {
     controller = new AbortController();
     signal = controller.signal;
 
-    if (localStorage.getItem('token') && localStorage.getItem('token') !== 'undefined' && localStorage.getItem('token') !== 'null') {
+    if (localStorage.getItem('token')) {
         return fetch(`${pointEntree}${url}`, {
             method: 'PATCH',
             headers: {

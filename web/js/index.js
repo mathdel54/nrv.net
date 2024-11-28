@@ -39,7 +39,8 @@ document.getElementById("authTemplate").addEventListener("submit", async functio
     const prenom = document.getElementById("prenom").value;
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
-    await inscrireUtilisateur(nom, prenom, email, password);
+    const passwordConfirmation = document.getElementById("passwordConfirmation").value;
+    await inscrireUtilisateur(nom, prenom, email, password, passwordConfirmation);
 });
 
 //On ajoute un ecouteur d'événement sur le formulaire de connexion
