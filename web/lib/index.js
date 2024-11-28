@@ -5737,7 +5737,6 @@
       return fetch(`${pointEntree}${url}`, {
         method: "GET",
         headers: {
-          "Content-Type": "application/json",
           "Authorization": `Bearer ${localStorage.getItem("token")}`
         },
         signal
@@ -5823,10 +5822,11 @@
     return __async(this, null, function* () {
       let idBillet = [];
       for (let i = 0; i < panier2.length; i++) {
-        console.log(panier2[i]);
         let tarif = "Normal";
-        if (panier2[i] === panier2[i].soiree.tarifReduit) {
-          tarif = "R\xE9duit";
+        console.log(panier2[i].tarif);
+        console.log(panier2[i].soiree.tarifReduit);
+        if (panier2[i].tarif == panier2[i].soiree.tarifReduit) {
+          tarif = "Reduit";
         }
         let data = {
           id_user: sessionStorage.getItem("user_id"),
@@ -5844,7 +5844,6 @@
         }
       }
       localStorage.setItem("idBillets", JSON.stringify(idBillet));
-      alert("Panier valid\xE9");
     });
   }
   function payerPanierPatch() {
@@ -6207,6 +6206,7 @@
   function display_mesBillets() {
     return __async(this, null, function* () {
       let billets = yield loadBillets();
+      console.log(billets);
       document.getElementById("template").innerHTML = template5({ billets: billets.billets });
     });
   }

@@ -182,12 +182,16 @@
         <div id="mesBilletsContainer">
             <h2>Mes billets</h2>
             <ul>
-                {{#each this}}
+                {{#each this.billets}}
                     <li class="billet">
-                        <h3>{{soiree.nom}}</h3>
-                        <p>Date: {{soiree.date}}</p>
-                        <p>Nombre de places: {{nbPlaces}}</p>
-                        <p>Tarif: {{tarif}} €</p>
+                        <h3>{{billet.soiree.nom}}</h3>
+                        <p>Date: {{billet.soiree.date}}</p>
+                        <p>Nombre de places: {{billet.nbPlaces}}</p>
+                        {{#ifCond billet.tarif 'Normal'}}
+                            <p>Tarif: {{billet.soiree.tarifNormal}} € (Tarif normal)</p>
+                        {{else}}
+                            <p>Tarif: {{billet.soiree.tarifReduit}} € (Tarif réduit)</p>
+                        {{/ifCond}}
                     </li>
                 {{/each}}
             </ul>

@@ -472,10 +472,13 @@ class PDONrvRepository implements NrvRepositoryInterface
                 throw new RepositoryEntityNotFoundException('Soirée non trouvée');
             }
 
+            //On transforme la soirée en objet
+            $soiree = new Soiree($soiree['nom'], $soiree['thematique'], new DateTime($soiree['date_heure']), $this->getLieuById($soiree['lieu_id']), $this->getSpectaclesBySoireeId($soiree['id']), $soiree['tarif_normal'], $soiree['tarif_reduit']);
+
             $billet = new Billet($user, $tarif, new DateTime(), $soiree);
             $billet->setID(Uuid::uuid4()->toString());
-            $stmt = $this->pdoNrv->prepare("INSERT INTO billet (id, utilisateur_id, tarif, soiree_id) VALUES (:id, :user, :tarif, :date_achat, :soiree)");
-            $stmt->execute(['id' => $billet->ID, 'user' => $billet->user, 'tarif' => $billet->tarif, 'date_achat' => $billet->date_achat, 'soiree' => $billet->soiree]);
+            $stmt = $this->pdoNrv->prepare("INSERT INTO billet (id, utilisateur_id, tarif, date_achat, soiree_id) VALUES (:id, :user, :tarif, :date_achat, :soiree)");
+            $stmt->execute(['id' => $billet->ID, 'user' => $billet->user, 'tarif' => $billet->tarif, 'date_achat' => $billet->date->format('Y-m-d H:i:s.u'), 'soiree' => $soiree_id]);
         } catch (\PDOException $e) {
             throw new RepositoryDatabaseErrorException($e->getMessage(), 0, $e);
         }
@@ -502,6 +505,9 @@ class PDONrvRepository implements NrvRepositoryInterface
             if (!$soiree) {
                 throw new RepositoryEntityNotFoundException('Soirée non trouvée');
             }
+
+            //On transforme la soirée en objet
+            $soiree = new Soiree($soiree['nom'], $soiree['thematique'], new DateTime($soiree['date_heure']), $this->getLieuById($soiree['lieu_id']), $this->getSpectaclesBySoireeId($soiree['id']), $soiree['tarif_normal'], $soiree['tarif_reduit']);
 
             // Vérification de l'existence du billet
             if (!$billet) {

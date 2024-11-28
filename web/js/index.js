@@ -52,7 +52,7 @@ document.getElementById("connexionTemplate").addEventListener("submit", async fu
 
 export async function accueil() {
 
-    //On affiche ou non le bouton mes billets et connexion inscription
+    //Si l'utilisateur n'est pas connecté, on affiche les boutons connexion et inscription
     if (sessionStorage.getItem('user_id') === null) {
         document.getElementById('panier').style.display = "none";
         document.getElementById('connexion').style.display = "block";

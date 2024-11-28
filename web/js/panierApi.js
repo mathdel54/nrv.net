@@ -5,11 +5,12 @@ export async function creerPanier(panier) {
     let idBillet = [];
     for (let i = 0; i < panier.length; i++) {
 
-        console.log(panier[i]);
-
         let tarif = "Normal";
-        if (panier[i] === panier[i].soiree.tarifReduit) {
-            tarif = "Réduit";
+        console.log(panier[i].tarif);
+        console.log(panier[i].soiree.tarifReduit);
+        //On compare ici un string et un nombre
+        if (panier[i].tarif == panier[i].soiree.tarifReduit) {
+            tarif = "Reduit";
         }
 
         let data = {
@@ -32,7 +33,6 @@ export async function creerPanier(panier) {
         }
     }
     localStorage.setItem('idBillets', JSON.stringify(idBillet));
-    alert('Panier validé');
 }
 
 export async function payerPanierPatch() {
