@@ -24,6 +24,7 @@ class CreerCompteAction extends AbstractAction
         $prenom = $data['prenom'] ?? null;
         $email = $data['email'] ?? null;
         $password = $data['password'] ?? null;
+        $passwordConfirmac = $data['passwordConfirmation'] ?? null;
         $role = $data['role'] ?? 1; // role par defaut des users est 1
 
         if (!$nom || !$prenom || !$email || !$password) {
@@ -34,7 +35,7 @@ class CreerCompteAction extends AbstractAction
         $credentialsDTO = new CredentialsDTO($email, $password);
 
         try {
-            $this->authProvider->register($nom, $prenom, $credentialsDTO, $role);
+            $this->authProvider->register($nom, $prenom, $credentialsDTO, $passwordConfirmac, $role);
             $rs->getBody()->write(json_encode(['message' => 'Compte cree avec succes']));
             return $rs->withStatus(201)->withHeader('Content-Type', 'application/json');
         } catch (\Exception $e) {

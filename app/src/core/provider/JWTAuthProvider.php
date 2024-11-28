@@ -24,12 +24,12 @@ class JWTAuthProvider implements AuthProviderInterface
         $this->jwtSecret = $jwtSecret;
     }
 
-    public function register(string $nom, string $prenom, CredentialsDTO $credentialsDTO, int $role): void
+    public function register(string $nom, string $prenom, CredentialsDTO $credentialsDTO, string $pwdConfirmation, int $role): void
     {
-        $this->authService->registerUser($nom, $prenom, $credentialsDTO, $role);
+        $this->authService->registerUser($nom, $prenom, $credentialsDTO, $pwdConfirmation, $role);
     }
 
-    public function authenticate(CredentialsDTO $credentialsDTO): AuthDTO
+    public function authenticate(CredentialsDTO $credentialsDTO): AuthDTO 
     {
         $authDTO = $this->authService->verifyCredentials($credentialsDTO->email, $credentialsDTO->password);
 

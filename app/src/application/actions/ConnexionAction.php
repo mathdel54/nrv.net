@@ -41,7 +41,8 @@ class ConnexionAction extends AbstractAction
                 $rs->getBody()->write(json_encode([
                     'message' => 'Connexion réussie',
                     'token' => $authResult->getAccessToken(),
-                    'user_id' => $authResult->id
+                    'user_id' => $authResult->id,
+                    'refresh_token' => $authResult->getRefreshToken()
                 ]));
                 return $rs->withStatus(200)->withHeader('Content-Type', 'application/json');
             } else {

@@ -46,15 +46,17 @@ class AuthService implements AuthServiceInterface
     }
     
 
-    public function registerUser(string $nom, string $prenom, CredentialsDTO $credentialsDTO, int $role): void
+    public function registerUser(string $nom, string $prenom, CredentialsDTO $credentialsDTO, string $pwdConfirmation,  int $role): void
     {
         $existingUser = $this->userRepository->findByEmail($credentialsDTO->email);
         if ($existingUser) {
             throw new InvalidArgumentException('Un compte avec cette adresse existe déjà');
         }
-    
+        if ($credentialsDTO->password !== $pwdConfirmation) {
+            throw new InvalidArgumentException('les mots de passes ne sont pas identiques');
+        }
         $hashedPassword = password_hash($credentialsDTO->password, PASSWORD_BCRYPT);
-        $user = new Users($nom, $prenom, $credentialsDTO->email, $hashedPassword, $role); // Utiliser $hashedPassword ici
+        $user = new Users($nom, $prenom, $credentialsDTO->email, $hashedPassword, $role); 
     
         $this->userRepository->save($user);
     }
@@ -71,8 +73,8 @@ class AuthService implements AuthServiceInterface
             $user->getId(),
             $user->email,
             $user->role,
-            '', // Access token
-            ''  // Refresh token
+            '', 
+            ''  
         );
     }
 
